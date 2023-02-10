@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter } from 'element-plus'
+import PageSidebar from '@/components/PageSidebar.vue'
 </script>
 
 <template>
-  <ElContainer class="page-container">
-    <ElAside>Aside</ElAside>
-    <ElContainer>
-      <ElHeader>Header</ElHeader>
-      <ElMain>
+  <el-container class="page-container">
+    <el-aside class="w-auto">
+      <page-sidebar />
+    </el-aside>
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>
         <slot></slot>
-      </ElMain>
-      <ElFooter>Footer</ElFooter>
-    </ElContainer>
-  </ElContainer>
+      </el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </el-container>
 </template>
 
 <style scoped lang="scss">
 .page-container {
-  width: 100vw;
-  min-height: 100vh;
+  @apply w-screen min-h-screen;
 }
 </style>

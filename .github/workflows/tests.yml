@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+jobs:
+  tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: install global package manager
+        run: npm install pnpm@7.25.0 -g
+      - name: install dependencies
+        run: pnpm install
+      - name: install playwright browsers
+        run: pnpm exec playwright install --with-deps
+      - name: run tests
+        run: pnpm test

@@ -80,6 +80,7 @@ specifiers:
   tailwindcss: ^3.2.4
   terser: ^5.16.3
   typescript: ^4.9.5
+  unplugin-element-plus: ^0.6.0
   vite: ^4.1.1
   vite-plugin-eslint: ^1.8.1
   vite-plugin-stylelint: ^4.1.8
@@ -172,6 +173,7 @@ devDependencies:
   tailwindcss: 3.2.4_postcss@8.4.21
   terser: 5.16.3
   typescript: 4.9.5
+  unplugin-element-plus: 0.6.0
   vite: 4.1.1_xtenvrmliuhbgpfvorwbeapcp4
   vite-plugin-eslint: 1.8.1_eslint@8.33.0+vite@4.1.1
   vite-plugin-stylelint: 4.1.8_ygqtw32ugykflvstaf6c57ggy4
@@ -4406,6 +4408,10 @@ packages:
       is-string: 1.0.7
       isarray: 2.0.5
       stop-iteration-iterator: 1.0.0
+    dev: true
+
+  /es-module-lexer/1.1.1:
+    resolution: { integrity: sha512-n3ruqU8Te7I5prBd6d0darM8ajFuVNhLWvgo04hN7goWSaSrxe7ENOZitac7akN0A2o+8fMomBDsNPvW/eE3CQ== }
     dev: true
 
   /es-set-tostringtag/2.0.1:
@@ -10168,6 +10174,27 @@ packages:
     engines: { node: '>= 10.0.0' }
     dev: true
 
+  /unplugin-element-plus/0.6.0:
+    resolution: { integrity: sha512-4UR25mjPFD2UKlY1F8H3/eFDjjhFYWb6z3b7i87ciN4kPnnBRYTzZBvSP/sdpiCNvKucXlwj77kdveFWUW8Egw== }
+    engines: { node: '>=14.19.0' }
+    dependencies:
+      '@rollup/pluginutils': 5.0.2
+      es-module-lexer: 1.1.1
+      magic-string: 0.27.0
+      unplugin: 1.0.1
+    transitivePeerDependencies:
+      - rollup
+    dev: true
+
+  /unplugin/1.0.1:
+    resolution: { integrity: sha512-aqrHaVBWW1JVKBHmGo33T5TxeL0qWzfvjWokObHA9bYmN7eNDkwOxmLjhioHl9878qDFMAaT51XNroRyuz7WxA== }
+    dependencies:
+      acorn: 8.8.2
+      chokidar: 3.5.3
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.5.0
+    dev: true
+
   /unset-value/1.0.0:
     resolution: { integrity: sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ== }
     engines: { node: '>=0.10.0' }
@@ -10524,6 +10551,15 @@ packages:
   /webidl-conversions/7.0.0:
     resolution: { integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g== }
     engines: { node: '>=12' }
+    dev: true
+
+  /webpack-sources/3.2.3:
+    resolution: { integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w== }
+    engines: { node: '>=10.13.0' }
+    dev: true
+
+  /webpack-virtual-modules/0.5.0:
+    resolution: { integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw== }
     dev: true
 
   /whatwg-encoding/2.0.0:

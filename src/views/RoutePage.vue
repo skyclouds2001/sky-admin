@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { ref, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-console.log(route.params)
-const text = Array.isArray(route.params.id) ? route.params.id.reduce((pre, cur) => pre + '-' + cur, '') : ''
+const text = ref('')
+
+onBeforeMount(() => {
+  text.value = Array.isArray(route.params.id) ? route.params.id.reduce((pre, cur) => pre + '-' + cur, '') : ''
+})
 </script>
 
 <template>

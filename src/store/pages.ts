@@ -14,7 +14,12 @@ export const usePagesStore = defineStore('pages', {
   state() {
     return {
       /** 路径页 */
-      pages: [] as Page[],
+      pages: [
+        {
+          name: '首页',
+          path: '/',
+        },
+      ] as Page[],
     }
   },
 })

@@ -25,24 +25,34 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const route = pick(to, ['path', 'name'])
+  const matched = to.matched.map((v) => pick(v, ['path', 'name']) as Page)
   // 处理 route 路由名称
   if (/\/route/.test(route.path)) {
     route.name = '嵌套菜单'
     route.name += Array.isArray(to.params.id) ? to.params.id.reduce((pre, cur) => pre + '-' + cur, '') : ''
+    console.debug(to.params)
   }
 
   // 自动修改 Tab
   const tabsStore = useTabsStore()
-  if (tabsStore.tabs.findIndex((v) => v.path === to.path) === -1) {
-    tabsStore.$patch((state) => {
+  tabsStore.$patch((state) => {
+    if (tabsStore.tabs.findIndex((v) => v.path === to.path) === -1) {
       state.tabs.push(route as Tab)
-      state.currentTab = to.path
-    })
-  } else {
-    tabsStore.currentTab = to.path
-  }
+    }
+    state.currentTab = to.path
+  })
 
   // 自动更新 Page
+  const pagesStore = usePagesStore()
+  pagesStore.$patch((state) => {
+    state.pages = matched
+    if (route.path !== '/') {
+      state.pages.unshift({
+        name: '首页',
+        path: '/',
+      })
+    }
+  })
 })
 
 export default router

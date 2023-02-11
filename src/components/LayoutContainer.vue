@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter } from 'element-plus'
 import PageSidebar from '@/components/PageSidebar.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageFooter from '@/components/PageFooter.vue'
 </script>
 
 <template>
@@ -9,11 +11,15 @@ import PageSidebar from '@/components/PageSidebar.vue'
       <page-sidebar />
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <page-header />
+      </el-header>
       <el-main>
         <slot></slot>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <page-footer />
+      </el-footer>
     </el-container>
   </el-container>
 </template>

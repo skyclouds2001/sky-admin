@@ -5,7 +5,7 @@ interface Page {
   path: string
 }
 
-export const usePagesStore = defineStore('main', {
+export const usePagesStore = defineStore('pages', {
   state() {
     return {
       pages: [] as Page[],

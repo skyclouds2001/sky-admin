@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-interface Tab {
+export interface Tab {
   name: string
   path: string
 }
@@ -14,6 +14,7 @@ export const useTabsStore = defineStore('tabs', {
           path: '/home',
         },
       ] as Tab[],
+      currentTab: '/home',
     }
   },
 })

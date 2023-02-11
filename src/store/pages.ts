@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-interface Page {
+export interface Page {
   name: string
   path: string
 }

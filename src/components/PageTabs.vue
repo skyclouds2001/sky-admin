@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElTabs, ElTabPane } from 'element-plus'
 import { useTabsStore } from '@/store'
@@ -9,8 +9,6 @@ const route = useRoute()
 const router = useRouter()
 
 const store = useTabsStore()
-
-const currentTab = ref(route.path)
 
 /**
  * 切换 Tab 方法
@@ -29,20 +27,18 @@ const switchTab = (path: string) => {
 const removeTab = (path: string) => {
   const index = store.tabs.findIndex((v) => v.path === path)
   store.tabs.splice(index, 1)
-  if (currentTab.value === path) {
-    currentTab.value = store.tabs[0].path
+  if (store.currentTab === path) {
+    store.currentTab = store.tabs[0].path
   }
 }
 
 onBeforeMount(() => {
-  store.$subscribe((mutation, state) => {
-    currentTab.value = state.currentTab
-  })
+  store.currentTab = route.path
 })
 </script>
 
 <template>
-  <el-tabs v-model="currentTab" type="border-card" class="tabs" @tab-change="switchTab" @tab-remove="removeTab">
+  <el-tabs v-model="store.currentTab" type="border-card" class="tabs" @tab-change="switchTab" @tab-remove="removeTab">
     <el-tab-pane v-for="item in store.tabs" :key="item.path" :label="item.name" :name="item.path" lazy :closable="item.path !== '/'">
       <slot />
     </el-tab-pane>

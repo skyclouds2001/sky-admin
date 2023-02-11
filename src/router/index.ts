@@ -7,23 +7,33 @@ const router = createRouter({
   routes: [
     {
       name: '首页',
-      path: '/home',
+      path: '/',
       component: () => import('@/views/HomePage.vue'),
-      alias: '/',
     },
     {
       name: '嵌套菜单',
       path: '/route',
       children: [
         {
-          name: 'route-1',
+          name: 'route01',
           path: '/route/1',
           component: () => import(''),
         },
         {
-          name: 'route-2',
+          name: 'route02',
           path: '/route/2',
-          component: () => import(''),
+          children: [
+            {
+              name: 'route0201',
+              path: '/route/2/1',
+              component: () => import(''),
+            },
+            {
+              name: 'route0202',
+              path: '/route/2/2',
+              component: () => import(''),
+            },
+          ],
         },
       ],
     },
@@ -36,6 +46,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
+  // 自动修改 Tab
   const tabsStore = useTabsStore()
   if (tabsStore.tabs.findIndex((v) => v.path === to.path) === -1) {
     tabsStore.$patch((state) => {
@@ -45,6 +56,8 @@ router.beforeEach((to) => {
   } else {
     tabsStore.currentTab = to.path
   }
+
+  // 自动更新 Page
 })
 
 export default router

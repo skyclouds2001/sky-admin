@@ -11,10 +11,10 @@ export const useTabsStore = defineStore('tabs', {
       tabs: [
         {
           name: '首页',
-          path: '/home',
+          path: '/',
         },
       ] as Tab[],
-      currentTab: '/home',
+      currentTab: '/',
     }
   },
 })

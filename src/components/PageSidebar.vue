@@ -3,16 +3,22 @@ import { ref } from 'vue'
 import { ElMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand } from '@element-plus/icons-vue'
 
+/**
+ * 控制 Sidebar 伸缩状态
+ */
 const isCollapse = ref(false)
 
+/**
+ * 切换 Sidebar 伸缩状态方法
+ */
 const handleCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
 </script>
 
 <template>
-  <el-menu router default-active="/home" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']">
-    <el-menu-item index="/home">
+  <el-menu router default-active="/" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']">
+    <el-menu-item index="/">
       <el-icon><HomeFilled /></el-icon>
       <span>首页</span>
     </el-menu-item>

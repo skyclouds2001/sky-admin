@@ -8,7 +8,7 @@ onBeforeMount(() => {
   store.pages = [
     {
       name: '首页',
-      path: '/home',
+      path: '/',
     },
   ]
 })

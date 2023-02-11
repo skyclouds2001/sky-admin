@@ -14,10 +14,24 @@ const isCollapse = ref(false)
 const handleCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
+
+/**
+ * 默认选取菜单 index
+ */
+const defaultActive = ref('/')
+
+/**
+ * 选取菜单方法
+ *
+ * @param index 菜单 index
+ */
+const handleSelect = (index: string) => {
+  defaultActive.value = index
+}
 </script>
 
 <template>
-  <el-menu router default-active="/" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']">
+  <el-menu router :default-active="defaultActive" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']" @select="handleSelect">
     <el-menu-item index="/">
       <el-icon><HomeFilled /></el-icon>
       <span>首页</span>

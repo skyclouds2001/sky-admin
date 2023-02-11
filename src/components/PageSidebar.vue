@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ElMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand } from '@element-plus/icons-vue'
+import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu } from '@element-plus/icons-vue'
 
 /**
  * 控制 Sidebar 伸缩状态
@@ -22,6 +22,48 @@ const handleCollapse = () => {
       <el-icon><HomeFilled /></el-icon>
       <span>首页</span>
     </el-menu-item>
+    <el-sub-menu index="/route">
+      <template #title>
+        <el-icon><Menu /></el-icon>
+        <span>嵌套菜单</span>
+      </template>
+      <el-menu-item index="/route/1">
+        <el-icon><Menu /></el-icon>
+        <span>嵌套菜单-1</span>
+      </el-menu-item>
+      <el-sub-menu index="/route/2">
+        <template #title>
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单-2</span>
+        </template>
+        <el-menu-item index="/route/2/1">
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单-2-1</span>
+        </el-menu-item>
+        <el-sub-menu index="/route/2/2">
+          <template #title>
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-2</span>
+          </template>
+          <el-menu-item index="/route/2/2/1">
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-2-1</span>
+          </el-menu-item>
+          <el-menu-item index="/route/2/2/2">
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-2-2</span>
+          </el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="/route/2/3">
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单-2-3</span>
+        </el-menu-item>
+      </el-sub-menu>
+      <el-menu-item index="/route/3">
+        <el-icon><Menu /></el-icon>
+        <span>嵌套菜单-3</span>
+      </el-menu-item>
+    </el-sub-menu>
     <el-menu-item index="/about">
       <el-icon><InfoFilled /></el-icon>
       <span>关于</span>

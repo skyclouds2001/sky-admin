@@ -12,30 +12,8 @@ const router = createRouter({
     },
     {
       name: '嵌套菜单',
-      path: '/route',
-      children: [
-        {
-          name: 'route01',
-          path: '/route/1',
-          component: () => import(''),
-        },
-        {
-          name: 'route02',
-          path: '/route/2',
-          children: [
-            {
-              name: 'route0201',
-              path: '/route/2/1',
-              component: () => import(''),
-            },
-            {
-              name: 'route0202',
-              path: '/route/2/2',
-              component: () => import(''),
-            },
-          ],
-        },
-      ],
+      path: '/route/:id*',
+      component: () => import('@/views/RoutePage.vue'),
     },
     {
       name: '关于',
@@ -46,11 +24,18 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
+  const route = pick(to, ['path', 'name'])
+  // 处理 route 路由名称
+  if (/\/route/.test(route.path)) {
+    route.name = '嵌套菜单'
+    route.name += Array.isArray(to.params.id) ? to.params.id.reduce((pre, cur) => pre + '-' + cur, '') : ''
+  }
+
   // 自动修改 Tab
   const tabsStore = useTabsStore()
   if (tabsStore.tabs.findIndex((v) => v.path === to.path) === -1) {
     tabsStore.$patch((state) => {
-      state.tabs.push(pick(to, ['path', 'name']) as Tab)
+      state.tabs.push(route as Tab)
       state.currentTab = to.path
     })
   } else {

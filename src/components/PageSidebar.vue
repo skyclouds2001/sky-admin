@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document } from '@element-plus/icons-vue'
+import { useTabsStore } from '@/store'
 
 const route = useRoute()
+
+const tabsStore = useTabsStore()
+
+watch(
+  () => tabsStore.currentTab,
+  (path) => {
+    defaultActive.value = path
+  }
+)
 
 /**
  * 控制 Sidebar 伸缩状态
@@ -22,19 +32,10 @@ const handleCollapse = () => {
  * 默认选取菜单 index
  */
 const defaultActive = ref(route.path)
-
-/**
- * 选取菜单方法
- *
- * @param index 菜单 index
- */
-const handleSelect = (index: string) => {
-  defaultActive.value = index
-}
 </script>
 
 <template>
-  <el-menu router :default-active="defaultActive" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']" @select="handleSelect">
+  <el-menu router :default-active="defaultActive" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']">
     <!-- 首页 -->
     <el-menu-item index="/">
       <el-icon><HomeFilled /></el-icon>

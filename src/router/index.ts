@@ -18,25 +18,26 @@ const router = createRouter({
     {
       name: '预览文档',
       path: '/docs',
+      redirect: '/docs/word-preview',
       children: [
         {
           name: '预览 Word',
-          path: '/docs/word',
+          path: '/docs/word-preview',
           component: () => import('@/views/docs/WordPreview.vue'),
         },
         {
           name: '预览 Excel',
-          path: '/docs/excel',
+          path: '/docs/excel-preview',
           component: () => import('@/views/docs/ExcelPreview.vue'),
         },
         {
           name: '预览 PPT',
-          path: '/docs/ppt',
+          path: '/docs/ppt-preview',
           component: () => import('@/views/docs/PPTPreview.vue'),
         },
         {
           name: '预览 PDF',
-          path: '/docs/pdf',
+          path: '/docs/pdf-preview',
           component: () => import('@/views/docs/PDFPreview.vue'),
         },
       ],
@@ -57,7 +58,6 @@ router.beforeEach((to) => {
   if (/\/route/.test(route.path)) {
     route.name = '嵌套菜单'
     route.name += Array.isArray(to.params.id) ? to.params.id.reduce((pre, cur) => pre + '-' + cur, '') : ''
-    console.debug(to.params)
   }
 
   // 自动修改 Tab

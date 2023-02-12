@@ -9,13 +9,6 @@ const route = useRoute()
 
 const tabsStore = useTabsStore()
 
-watch(
-  () => tabsStore.currentTab,
-  (path) => {
-    defaultActive.value = path
-  }
-)
-
 /**
  * 控制 Sidebar 伸缩状态
  */
@@ -32,6 +25,13 @@ const handleCollapse = () => {
  * 默认选取菜单 index
  */
 const defaultActive = ref(route.path)
+
+watch(
+  () => tabsStore.currentTab,
+  (path) => {
+    defaultActive.value = path
+  }
+)
 </script>
 
 <template>
@@ -92,19 +92,19 @@ const defaultActive = ref(route.path)
         <el-icon><Document /></el-icon>
         <span>预览文档</span>
       </template>
-      <el-menu-item index="/docs/word">
+      <el-menu-item index="/docs/word-preview">
         <el-icon><Document /></el-icon>
         <span>预览 Word</span>
       </el-menu-item>
-      <el-menu-item index="/docs/excel">
+      <el-menu-item index="/docs/excel-preview">
         <el-icon><Document /></el-icon>
         <span>预览 Excel</span>
       </el-menu-item>
-      <el-menu-item index="/docs/ppt">
+      <el-menu-item index="/docs/ppt-preview">
         <el-icon><Document /></el-icon>
         <span>预览 PPT</span>
       </el-menu-item>
-      <el-menu-item index="/docs/pdf">
+      <el-menu-item index="/docs/pdf-preview">
         <el-icon><Document /></el-icon>
         <span>预览 PDF</span>
       </el-menu-item>

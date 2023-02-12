@@ -12,11 +12,11 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <ElConfigProvider :locale="zhCn">
-    <LayoutContainer>
+  <el-config-provider :locale="zhCn">
+    <layout-container>
       <router-view></router-view>
-    </LayoutContainer>
-  </ElConfigProvider>
+    </layout-container>
+  </el-config-provider>
 </template>
 
 <style scoped></style>

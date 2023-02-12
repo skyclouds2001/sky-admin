@@ -8,15 +8,15 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  config => {
+  (config) => {
     return config
   },
-  error => Promise.reject(error)
+  (error) => Promise.reject(error)
 )
 
 instance.interceptors.response.use(
-  result => result,
-  error => Promise.reject(error)
+  (result) => result,
+  (error) => Promise.reject(error)
 )
 
 export default instance

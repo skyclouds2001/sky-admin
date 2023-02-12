@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document } from '@element-plus/icons-vue'
 
 /**
  * 控制 Sidebar 伸缩状态
@@ -32,10 +32,13 @@ const handleSelect = (index: string) => {
 
 <template>
   <el-menu router :default-active="defaultActive" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']" @select="handleSelect">
+    <!-- 首页 -->
     <el-menu-item index="/">
       <el-icon><HomeFilled /></el-icon>
       <span>首页</span>
     </el-menu-item>
+
+    <!-- 嵌套菜单 -->
     <el-sub-menu index="/route">
       <template #title>
         <el-icon><Menu /></el-icon>
@@ -78,10 +81,38 @@ const handleSelect = (index: string) => {
         <span>嵌套菜单-3</span>
       </el-menu-item>
     </el-sub-menu>
+
+    <!-- 文档 -->
+    <el-sub-menu index="/docs">
+      <template #title>
+        <el-icon><Document /></el-icon>
+        <span>预览文档</span>
+      </template>
+      <el-menu-item index="/docs/word">
+        <el-icon><Document /></el-icon>
+        <span>预览 Word</span>
+      </el-menu-item>
+      <el-menu-item index="/docs/excel">
+        <el-icon><Document /></el-icon>
+        <span>预览 Excel</span>
+      </el-menu-item>
+      <el-menu-item index="/docs/ppt">
+        <el-icon><Document /></el-icon>
+        <span>预览 PPT</span>
+      </el-menu-item>
+      <el-menu-item index="/docs/pdf">
+        <el-icon><Document /></el-icon>
+        <span>预览 PDF</span>
+      </el-menu-item>
+    </el-sub-menu>
+
+    <!-- 关于 -->
     <el-menu-item index="/about">
       <el-icon><InfoFilled /></el-icon>
       <span>关于</span>
     </el-menu-item>
+
+    <!-- 菜单伸缩状态控制 -->
     <div class="collapse-controller" @click="handleCollapse">
       <el-icon v-if="isCollapse"><Expand /></el-icon>
       <el-icon v-else><Fold /></el-icon>

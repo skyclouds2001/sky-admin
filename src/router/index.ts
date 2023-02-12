@@ -16,6 +16,32 @@ const router = createRouter({
       component: () => import('@/views/RoutePage.vue'),
     },
     {
+      name: '预览文档',
+      path: '/docs',
+      children: [
+        {
+          name: '预览 Word',
+          path: '/docs/word',
+          component: () => import('@/views/docs/WordPreview.vue'),
+        },
+        {
+          name: '预览 Excel',
+          path: '/docs/excel',
+          component: () => import('@/views/docs/ExcelPreview.vue'),
+        },
+        {
+          name: '预览 PPT',
+          path: '/docs/ppt',
+          component: () => import('@/views/docs/PPTPreview.vue'),
+        },
+        {
+          name: '预览 PDF',
+          path: '/docs/pdf',
+          component: () => import('@/views/docs/PDFPreview.vue'),
+        },
+      ],
+    },
+    {
       name: '关于',
       path: '/about',
       component: () => import('@/views/AboutPage.vue'),
@@ -26,6 +52,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   const route = pick(to, ['path', 'name'])
   const matched = to.matched.map((v) => pick(v, ['path', 'name']) as Page)
+
   // 处理 route 路由名称
   if (/\/route/.test(route.path)) {
     route.name = '嵌套菜单'

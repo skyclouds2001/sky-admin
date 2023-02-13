@@ -94,19 +94,19 @@ watch(
       </template>
       <el-menu-item index="/docs/word-preview">
         <el-icon><Document /></el-icon>
-        <span>预览 Word</span>
+        <span>Word 预览</span>
       </el-menu-item>
       <el-menu-item index="/docs/excel-preview">
         <el-icon><Document /></el-icon>
-        <span>预览 Excel</span>
+        <span>Excel 预览</span>
       </el-menu-item>
       <el-menu-item index="/docs/ppt-preview">
         <el-icon><Document /></el-icon>
-        <span>预览 PPT</span>
+        <span>PPT 预览</span>
       </el-menu-item>
       <el-menu-item index="/docs/pdf-preview">
         <el-icon><Document /></el-icon>
-        <span>预览 PDF</span>
+        <span>PDF 预览</span>
       </el-menu-item>
     </el-sub-menu>
 

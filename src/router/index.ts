@@ -16,27 +16,27 @@ const router = createRouter({
       component: () => import('@/views/RoutePage.vue'),
     },
     {
-      name: '预览文档',
+      name: '文档',
       path: '/docs',
       redirect: '/docs/word-preview',
       children: [
         {
-          name: '预览 Word',
+          name: 'Word 预览',
           path: '/docs/word-preview',
           component: () => import('@/views/docs/WordPreview.vue'),
         },
         {
-          name: '预览 Excel',
+          name: 'Excel 预览',
           path: '/docs/excel-preview',
           component: () => import('@/views/docs/ExcelPreview.vue'),
         },
         {
-          name: '预览 PPT',
+          name: 'PPT 预览',
           path: '/docs/ppt-preview',
           component: () => import('@/views/docs/PPTPreview.vue'),
         },
         {
-          name: '预览 PDF',
+          name: 'PDF 预览',
           path: '/docs/pdf-preview',
           component: () => import('@/views/docs/PDFPreview.vue'),
         },

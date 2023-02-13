@@ -1,7 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onBeforeMount } from 'vue'
+import { ElSpace } from 'element-plus'
+import { renderPDF } from '@/util/pdf-preview'
+
+const PDFurl = '/pdf-preview.pdf'
+
+onBeforeMount(() => {
+  renderPDF('/public/pdf-preview.pdf', document.getElementById('pdf-preview') as HTMLCanvasElement)
+})
+</script>
 
 <template>
-  <iframe class="pdf-preview" name="pdf-preview" title="pdf-preview" referrerpolicy="no-referrer" src="http://localhost:5173/ppt-preview.pdf"></iframe>
+  <el-space direction="vertical" alignment="flex-start">
+    <div class="overflow-hidden">
+      <div class="text-xl font-bold py-4">原生 iframe 方案</div>
+      <iframe class="pdf-preview" name="pdf-preview" title="pdf-preview" referrerpolicy="no-referrer" :src="PDFurl"></iframe>
+    </div>
+    <!--
+    <div class="overflow-hidden">
+      <div class="text-xl font-bold py-4">pdf.js 方案</div>
+      <canvas id="pdf-preview"></canvas>
+    </div>
+    -->
+  </el-space>
 </template>
 
 <style scoped lang="scss">
@@ -9,6 +30,6 @@
   width: 100%;
   height: 100%;
   min-width: 1000px;
-  min-height: 1500px;
+  min-height: 1200px;
 }
 </style>

@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { DEMO_EXCEL_SRC } from '@/config'
+
+const PREVIEW_EXCEL_SRC = `https://view.officeapps.live.com/op/view.aspx?src=${DEMO_EXCEL_SRC}`
+</script>
 
 <template>
-  <iframe class="excel-preview" name="excel-preview" title="excel-preview" referrerpolicy="no-referrer" src="https://view.officeapps.live.com/op/view.aspx?src=https://github.com/skyclouds2001/SkyAdmin/blob/master/src/assets/excel-preview.xlsx"></iframe>
+  <iframe class="excel-preview" name="excel-preview" title="excel-preview" referrerpolicy="no-referrer" :src="PREVIEW_EXCEL_SRC"></iframe>
 </template>
 
 <style scoped lang="scss">

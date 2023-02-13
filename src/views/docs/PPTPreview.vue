@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { DEMO_PPT_SRC } from '@/config'
+
+const PREVIEW_PPT_SRC = `https://view.officeapps.live.com/op/view.aspx?src=${DEMO_PPT_SRC}`
+</script>
 
 <template>
-  <iframe class="ppt-preview" name="ppt-preview" title="ppt-preview" referrerpolicy="no-referrer" src="https://view.officeapps.live.com/op/view.aspx?src=https://github.com/skyclouds2001/SkyAdmin/blob/master/src/assets/ppt-preview.pptx"></iframe>
+  <iframe class="ppt-preview" name="ppt-preview" title="ppt-preview" referrerpolicy="no-referrer" :src="PREVIEW_PPT_SRC"></iframe>
 </template>
 
 <style scoped lang="scss">

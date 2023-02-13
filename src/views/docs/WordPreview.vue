@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { DEMO_WORD_SRC } from '@/config'
+
+const PREVIEW_WORD_SRC = `https://view.officeapps.live.com/op/view.aspx?src=${DEMO_WORD_SRC}`
+</script>
 
 <template>
-  <iframe class="word-preview" name="word-preview" title="word-preview" referrerpolicy="no-referrer" src="https://view.officeapps.live.com/op/view.aspx?src=https://github.com/skyclouds2001/SkyAdmin/blob/master/src/assets/word-preview.docx"></iframe>
+  <iframe class="word-preview" name="word-preview" title="word-preview" referrerpolicy="no-referrer" :src="PREVIEW_WORD_SRC"></iframe>
 </template>
 
 <style scoped lang="scss">

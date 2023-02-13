@@ -1,37 +1,28 @@
 {
-  "name": "vite-vue-tempalte-sky",
+  "name": "sky-admin",
   "private": true,
   "version": "0.0.0",
-  "description": "A template project of Vue-Vite",
+  "license": "MIT",
+  "description": "An admin system demo built by vue.",
   "keywords": [
-    "template",
-    "project",
-    "vite",
-    "vue",
-    "vue-router",
-    "pinia",
-    "element-plus",
-    "typescript",
-    "eslint",
-    "prettier",
-    "stylelint",
-    "commitlint",
-    "lint-staged"
+    "admin",
+    "management",
+    "system",
+    "skyclouds2001"
   ],
+  "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skyclouds2001/vite-vue-template-config-sky.git"
+    "url": "git+https://github.com/skyclouds2001/SkyAdmin.git"
   },
-  "homepage": "https://github.com/skyclouds2001/vite-vue-template-config-sky#readme",
   "bugs": {
-    "url": "https://github.com/skyclouds2001/vite-vue-template-config-sky/issues",
+    "url": "https://github.com/skyclouds2001/SkyAdmin/issues",
     "email": "skyclouds2001@163.com"
   },
-  "license": "MIT",
   "author": {
     "name": "skyclouds2001",
     "email": "skyclouds2001@163.com",
-    "url": "https://skyclouds2001.github.io/"
+    "url": "https://skyclouds2001.github.io"
   },
   "contributors": [
     "skyclouds2001"
@@ -45,7 +36,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vue-tsc && vite build",
-    "lint": "pnpm exec eslint && pnpm exec stylelint",
+    "lint": "pnpm lint:eslint && pnpm lint:stylelint",
+    "lint:eslint": "pnpm exec eslint",
+    "lint:stylelint": "pnpm exec stylelint",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest --coverage",
     "test:e2e": "cross-env NODE_ENV=test playwright test",

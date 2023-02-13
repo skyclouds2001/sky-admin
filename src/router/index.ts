@@ -5,16 +5,21 @@ import { useTabsStore, usePagesStore, type Tab, type Page } from '@/store'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    // 首页
     {
       name: '首页',
       path: '/',
       component: () => import('@/views/HomePage.vue'),
     },
+
+    // 嵌套菜单
     {
       name: '嵌套菜单',
       path: '/route/:id*',
-      component: () => import('@/views/RoutePage.vue'),
+      component: () => import('@/views/route/RoutePage.vue'),
     },
+
+    // 文档
     {
       name: '文档',
       path: '/docs',
@@ -42,6 +47,8 @@ const router = createRouter({
         },
       ],
     },
+
+    // 关于
     {
       name: '关于',
       path: '/about',

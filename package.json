@@ -36,14 +36,15 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vue-tsc && vite build",
+    "preview": "vite preview",
     "lint": "pnpm lint:eslint && pnpm lint:stylelint",
     "lint:eslint": "pnpm exec eslint",
     "lint:stylelint": "pnpm exec stylelint",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest --coverage",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
-    "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",

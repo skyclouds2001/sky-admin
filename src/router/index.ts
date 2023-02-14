@@ -102,23 +102,20 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  const route = pick(to, ['path', 'name'])
-  const matched = to.matched.map((v) => pick(v, ['path', 'name']) as Page)
-
-  // 自动修改 Tab
+  // 自动修改 tabsStore 内的 tabs 数据
   const tabsStore = useTabsStore()
   tabsStore.$patch((state) => {
     if (tabsStore.tabs.findIndex((v) => v.path === to.path) === -1) {
-      state.tabs.push(route as Tab)
+      state.tabs.push(pick(to, ['path', 'name']) as Tab)
     }
     state.currentTab = to.path
   })
 
-  // 自动更新 Page
+  // 自动更新 pagesStore 内的 pages 数据
   const pagesStore = usePagesStore()
   pagesStore.$patch((state) => {
-    state.pages = matched
-    if (route.path !== '/') {
+    state.pages = to.matched.map((v) => pick(v, ['path', 'name']) as Page)
+    if (to.path !== '/') {
       state.pages.unshift({
         name: '首页',
         path: '/',

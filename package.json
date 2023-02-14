@@ -28,7 +28,7 @@
     "skyclouds2001"
   ],
   "main": "src/main.ts",
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@7.27.0",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
@@ -105,7 +105,7 @@
     "jsdom": "^21.1.0",
     "less": "^4.1.3",
     "lint-staged": "^13.1.2",
-    "pnpm": "7.25.0",
+    "pnpm": "7.27.0",
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "postcss-import": "^15.1.0",

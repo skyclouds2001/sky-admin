@@ -74,6 +74,10 @@ watch(
             <el-icon><Menu /></el-icon>
             <span>嵌套菜单-2-2-2</span>
           </el-menu-item>
+          <el-menu-item index="/route/2/2/3">
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-2-3</span>
+          </el-menu-item>
         </el-sub-menu>
         <el-menu-item index="/route/2/3">
           <el-icon><Menu /></el-icon>

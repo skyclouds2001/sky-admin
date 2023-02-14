@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
+// import { onBeforeMount } from 'vue'
 import { ElSpace } from 'element-plus'
 import { DEMO_PDF_SRC } from '@/config'
-import { renderPDF } from '@/util/pdf-preview'
+// import { renderPDF } from '@/util/pdf-preview'
 
-onBeforeMount(() => {
-  renderPDF(DEMO_PDF_SRC, document.getElementById('pdf-preview') as HTMLCanvasElement)
-})
+// onBeforeMount(() => {
+//   renderPDF(DEMO_PDF_SRC, document.getElementById('pdf-preview') as HTMLCanvasElement)
+// })
 </script>
 
 <template>
@@ -27,8 +27,8 @@ onBeforeMount(() => {
 <style scoped lang="scss">
 .pdf-preview {
   width: 100%;
-  height: 100%;
   min-width: 1000px;
+  height: 100%;
   min-height: 1200px;
 }
 </style>

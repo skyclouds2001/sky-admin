@@ -68,7 +68,6 @@ specifiers:
   sass: ^1.58.1
   stylelint: ^15.1.0
   stylelint-config-html: ^1.1.0
-  stylelint-config-prettier: ^9.0.5
   stylelint-config-prettier-scss: ^0.0.1
   stylelint-config-rational-order: ^0.1.2
   stylelint-config-recommended-less: ^1.0.4
@@ -76,7 +75,6 @@ specifiers:
   stylelint-config-standard-scss: ^7.0.1
   stylelint-config-standard-vue: ^1.0.0
   stylelint-order: ^6.0.2
-  stylelint-prettier: ^2.0.0
   stylelint-stylus: ^0.18.0
   stylus: ^0.59.0
   sugarss: ^4.0.1
@@ -164,7 +162,6 @@ devDependencies:
   sass: 1.58.1
   stylelint: 15.1.0
   stylelint-config-html: 1.1.0_qaaem4ytw5dycdgwcgrc5pmjki
-  stylelint-config-prettier: 9.0.5_stylelint@15.1.0
   stylelint-config-prettier-scss: 0.0.1_stylelint@15.1.0
   stylelint-config-rational-order: 0.1.2
   stylelint-config-recommended-less: 1.0.4
@@ -172,7 +169,6 @@ devDependencies:
   stylelint-config-standard-scss: 7.0.1_6kmz6pqyyc6yqevihcpt7hoegq
   stylelint-config-standard-vue: 1.0.0_qaaem4ytw5dycdgwcgrc5pmjki
   stylelint-order: 6.0.2_stylelint@15.1.0
-  stylelint-prettier: 2.0.0_td3e22n6o6gf67slppaayadvha
   stylelint-stylus: 0.18.0_stylelint@15.1.0
   stylus: 0.59.0
   sugarss: 4.0.1_postcss@8.4.21
@@ -9675,18 +9671,6 @@ packages:
     dependencies:
       postcss: 8.4.21
       postcss-sorting: 8.0.1_postcss@8.4.21
-      stylelint: 15.1.0
-    dev: true
-
-  /stylelint-prettier/2.0.0_td3e22n6o6gf67slppaayadvha:
-    resolution: {integrity: sha512-jvT3G+9lopkeB0ARmDPszyfaOnvnIF+30QCjZxyt7E6fynI1T9mOKgYDNb9bXX17M7PXMZaX3j/26wqakjp1tw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      prettier: '>=2.0.0'
-      stylelint: '>=14.0.0'
-    dependencies:
-      prettier: 2.8.4
-      prettier-linter-helpers: 1.0.0
       stylelint: 15.1.0
     dev: true
 

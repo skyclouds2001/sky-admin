@@ -5,7 +5,6 @@ specifiers:
   '@commitlint/config-conventional': ^17.4.3
   '@element-plus/icons-vue': ^2.0.10
   '@playwright/test': ^1.30.0
-  '@stylelint/postcss-css-in-js': ^0.38.0
   '@tailwindcss/aspect-ratio': ^0.4.2
   '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/line-clamp': ^0.4.2
@@ -64,7 +63,6 @@ specifiers:
   postcss-markdown: ^1.2.0
   postcss-preset-env: ^8.0.1
   postcss-sass: ^0.5.0
-  postcss-syntax: ^0.36.2
   prettier: ^2.8.4
   qs: ^6.11.0
   sass: ^1.58.1
@@ -112,7 +110,6 @@ devDependencies:
   '@commitlint/cli': 17.4.3
   '@commitlint/config-conventional': 17.4.3
   '@playwright/test': 1.30.0
-  '@stylelint/postcss-css-in-js': 0.38.0_64375vj2stjdn6gyt55zwvoboa
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.6
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.6
@@ -163,7 +160,6 @@ devDependencies:
   postcss-markdown: 1.2.0
   postcss-preset-env: 8.0.1_postcss@8.4.21
   postcss-sass: 0.5.0
-  postcss-syntax: 0.36.2_2grdega7tvpb3xgqu4tyuawp2a
   prettier: 2.8.4
   sass: 1.58.1
   stylelint: 15.1.0
@@ -177,7 +173,7 @@ devDependencies:
   stylelint-config-standard-vue: 1.0.0_qaaem4ytw5dycdgwcgrc5pmjki
   stylelint-order: 6.0.2_stylelint@15.1.0
   stylelint-prettier: 2.0.0_td3e22n6o6gf67slppaayadvha
-  stylelint-stylus: 0.18.0_owyn5ytiroibhvrcsjikgja4xm
+  stylelint-stylus: 0.18.0_stylelint@15.1.0
   stylus: 0.59.0
   sugarss: 4.0.1_postcss@8.4.21
   tailwindcss: 3.2.6_postcss@8.4.21
@@ -2244,20 +2240,6 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-    dev: true
-
-  /@stylelint/postcss-css-in-js/0.38.0_64375vj2stjdn6gyt55zwvoboa:
-    resolution: {integrity: sha512-XOz5CAe49kS95p5yRd+DAIWDojTjfmyAQ4bbDlXMdbZTQ5t0ThjSLvWI6JI2uiS7MFurVBkZ6zUqcimzcLTBoQ==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-    peerDependencies:
-      postcss: '>=7.0.0'
-      postcss-syntax: '>=0.36.2'
-    dependencies:
-      '@babel/core': 7.20.12
-      postcss: 8.4.21
-      postcss-syntax: 0.36.2_2grdega7tvpb3xgqu4tyuawp2a
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@sxzz/popperjs-es/2.11.7:
@@ -8570,33 +8552,6 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /postcss-syntax/0.36.2_2grdega7tvpb3xgqu4tyuawp2a:
-    resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
-    peerDependencies:
-      postcss: '>=5.0.0'
-      postcss-html: '*'
-      postcss-jsx: '*'
-      postcss-less: '*'
-      postcss-markdown: '*'
-      postcss-scss: '*'
-    peerDependenciesMeta:
-      postcss-html:
-        optional: true
-      postcss-jsx:
-        optional: true
-      postcss-less:
-        optional: true
-      postcss-markdown:
-        optional: true
-      postcss-scss:
-        optional: true
-    dependencies:
-      postcss: 8.4.21
-      postcss-html: 1.5.0
-      postcss-less: 6.0.0_postcss@8.4.21
-      postcss-markdown: 1.2.0
-    dev: true
-
   /postcss-syntax/0.36.2_sbwcdikydvvxbbxnj56wt2n5dq:
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
@@ -9748,7 +9703,7 @@ packages:
       stylelint: 15.1.0
     dev: true
 
-  /stylelint-stylus/0.18.0_owyn5ytiroibhvrcsjikgja4xm:
+  /stylelint-stylus/0.18.0_stylelint@15.1.0:
     resolution: {integrity: sha512-n3zjLFLonPOUYY3UIUtSKzZzPB9GQo+BvtmcEQfI+4QHiNsHpfr9QrznkWT8sUB+S11dr3JRCzZ45K9lRQviSg==}
     engines: {node: ^12 || >=14}
     peerDependencies:
@@ -9765,7 +9720,6 @@ packages:
       postcss-media-query-parser: 0.2.3
       postcss-selector-parser: 6.0.11
       postcss-styl: 0.12.3
-      postcss-syntax: 0.36.2_2grdega7tvpb3xgqu4tyuawp2a
       style-search: 0.1.0
       stylelint: 15.1.0
       stylelint-config-html: 1.1.0_qaaem4ytw5dycdgwcgrc5pmjki

@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link } from '@element-plus/icons-vue'
 import { useTabsStore } from '@/store'
 
 const route = useRoute()
@@ -111,6 +111,22 @@ watch(
       <el-menu-item index="/docs/pdf-preview">
         <el-icon><Document /></el-icon>
         <span>PDF 预览</span>
+      </el-menu-item>
+    </el-sub-menu>
+
+    <!-- 外链 -->
+    <el-sub-menu index="/">
+      <template #title>
+        <el-icon><Link /></el-icon>
+        <span>外链</span>
+      </template>
+      <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
+        <el-icon><Link /></el-icon>
+        <span>Github 仓库</span>
+      </el-menu-item>
+      <el-menu-item index="https://juejin.cn/user/814058986548567">
+        <el-icon><Link /></el-icon>
+        <span>掘金主页</span>
       </el-menu-item>
     </el-sub-menu>
 

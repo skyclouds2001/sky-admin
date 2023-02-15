@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { pick } from 'lodash-es'
 import { useTabsStore, usePagesStore, type Tab, type Page } from '@/store'
+import { openNewPage } from '@/util'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -102,6 +103,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
+  // 检测是否为外链
+  if (/http/.test(to.path)) {
+    console.log(to.path)
+    openNewPage(to.path.slice(1))
+    return false
+  }
+
   // 自动修改 tabsStore 内的 tabs 数据
   const tabsStore = useTabsStore()
   tabsStore.$patch((state) => {

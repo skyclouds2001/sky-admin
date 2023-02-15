@@ -7,8 +7,8 @@ GlobalWorkerOptions.workerSrc = pdfjsWorker
 /**
  * 渲染 PDF 方法
  *
- * @param url pdf 文件 url
- * @param canvas 渲染 canvas 元素目标容器
+ * @param url - PDF 文件 url
+ * @param canvas - 渲染 canvas 元素目标容器
  */
 export const renderPDF = async (url: string, canvas: HTMLCanvasElement) => {
   if (!url || !canvas) return

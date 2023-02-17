@@ -104,7 +104,7 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   // 检测是否为外链
-  if (/http/.test(to.path)) {
+  if (to.path.includes('http')) {
     console.log(to.path)
     openNewPage(to.path.slice(1))
     return false

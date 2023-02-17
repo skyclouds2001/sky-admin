@@ -10,9 +10,7 @@ GlobalWorkerOptions.workerSrc = pdfjsWorker
  * @param url - PDF 文件 url
  * @param canvas - 渲染 canvas 元素目标容器
  */
-export const renderPDF = async (url: string, canvas: HTMLCanvasElement) => {
-  if (!url || !canvas) return
-
+export const renderPDF = async (url: string, canvas: HTMLCanvasElement): Promise<void> => {
   try {
     const pdf = await getDocument(url).promise
 
@@ -20,15 +18,15 @@ export const renderPDF = async (url: string, canvas: HTMLCanvasElement) => {
     const viewport = page.getViewport({
       scale: 1.5,
     })
-    const outputScale = window.devicePixelRatio || 1
+    const outputScale = window.devicePixelRatio
 
     const context = canvas.getContext('2d') as CanvasRenderingContext2D
 
     if (!Number.isNaN(viewport.width) && !Number.isNaN(viewport.height)) {
       canvas.width = viewport.width * outputScale
       canvas.height = viewport.height * outputScale
-      canvas.style.width = viewport.width + 'px'
-      canvas.style.height = viewport.height + 'px'
+      canvas.style.width = `${viewport.width}px`
+      canvas.style.height = `${viewport.height}px`
     } else {
       canvas.style.width = '100%'
       canvas.style.height = '100%'
@@ -40,7 +38,7 @@ export const renderPDF = async (url: string, canvas: HTMLCanvasElement) => {
 
     page.render({
       canvasContext: context,
-      viewport: viewport,
+      viewport,
       transform: transform as number[],
     })
   } catch (error) {

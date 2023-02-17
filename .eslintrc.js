@@ -25,6 +25,8 @@ module.exports = {
   globals: {},
   rules: {
     'n/no-missing-import': 'off',
+    'import/named': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
   },
   settings: {
     'import/parsers': {
@@ -42,6 +44,14 @@ module.exports = {
       files: ['**/tests/**/*.[jt]s?(x)'],
       extends: ['plugin:testing-library/vue', 'plugin:playwright/playwright-test'],
       plugins: ['vitest'],
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'jsdoc/require-param-type': 'off',
+        'jsdoc/require-property-type': 'off',
+        'jsdoc/require-returns-type': 'off',
+      },
     },
   ],
 }

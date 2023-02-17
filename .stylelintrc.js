@@ -7,6 +7,7 @@ module.exports = {
         ignoreAtRules: ['tailwind', 'layer', 'apply', 'variants', 'responsive', 'screen'],
       },
     ],
+    'no-empty-source': null,
   },
   plugins: ['stylelint-order'],
   overrides: [

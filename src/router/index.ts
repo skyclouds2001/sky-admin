@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { pick } from 'lodash-es'
 import { useTabsStore, usePagesStore, type Tab, type Page } from '@/store'
-import { openNewPage } from '@/util'
+import { openNewPageInNewTab } from '@/util'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -105,8 +105,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   // 检测是否为外链
   if (to.path.includes('http')) {
-    console.log(to.path)
-    openNewPage(to.path.slice(1))
+    openNewPageInNewTab(to.path.slice(1))
     return false
   }
 

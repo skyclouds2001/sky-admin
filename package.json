@@ -125,7 +125,6 @@
     "stylelint-config-standard": "^30.0.1",
     "stylelint-config-standard-scss": "^7.0.1",
     "stylelint-config-standard-vue": "^1.0.0",
-    "stylelint-order": "^6.0.2",
     "stylelint-stylus": "^0.18.0",
     "stylus": "^0.59.0",
     "sugarss": "^4.0.1",

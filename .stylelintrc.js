@@ -9,7 +9,7 @@ module.exports = {
     ],
     'no-empty-source': null,
   },
-  plugins: ['stylelint-order'],
+  plugins: [],
   overrides: [
     {
       files: ['**/*.md'],

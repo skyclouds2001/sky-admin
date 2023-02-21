@@ -7,9 +7,9 @@ export default defineConfig({
     timeout: 5 * 1000,
   },
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  forbidOnly: process.env.CI !== undefined,
+  retries: process.env.CI !== undefined ? 2 : 0,
+  workers: process.env.CI !== undefined ? 1 : undefined,
   reporter: 'html',
   use: {
     actionTimeout: 0,

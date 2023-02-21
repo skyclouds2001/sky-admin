@@ -1,7 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { DEMO_PPT_SRC } from '@/config'
+
+const PREVIEW_PPT_SRC = `https://view.officeapps.live.com/op/view.aspx?src=${DEMO_PPT_SRC}`
+</script>
 
 <template>
-  <div>ppt-preview</div>
+  <iframe class="ppt-preview" name="ppt-preview" title="ppt-preview" referrerpolicy="no-referrer" :src="PREVIEW_PPT_SRC"></iframe>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.pdf-preview {
+  width: 100%;
+  height: 100%;
+  min-width: 1000px;
+  min-height: 1500px;
+}
+</style>

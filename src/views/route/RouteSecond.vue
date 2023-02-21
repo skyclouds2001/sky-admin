@@ -1,7 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>about page</div>
+  <div>route second</div>
+  <router-view />
 </template>
 
 <style scoped lang="scss"></style>

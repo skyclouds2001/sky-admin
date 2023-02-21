@@ -13,7 +13,7 @@ const store = useTabsStore()
 /**
  * 切换 Tab 方法
  *
- * @param path 待切换 tab 对应页面路径
+ * @param path - 待切换 tab 对应页面路径
  */
 const switchTab = (path: string) => {
   router.push(path)
@@ -22,7 +22,7 @@ const switchTab = (path: string) => {
 /**
  * 移除 Tab 方法
  *
- * @param path 该 tab 对应页面路径
+ * @param path - 该 tab 对应页面路径
  */
 const removeTab = (path: string) => {
   const index = store.tabs.findIndex((v) => v.path === path)

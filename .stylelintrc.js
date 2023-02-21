@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-rational-order', 'stylelint-prettier/recommended'],
+  extends: ['stylelint-config-standard', 'stylelint-config-rational-order'],
   rules: {
     'at-rule-no-unknown': [
       true,
@@ -7,8 +7,9 @@ module.exports = {
         ignoreAtRules: ['tailwind', 'layer', 'apply', 'variants', 'responsive', 'screen'],
       },
     ],
+    'no-empty-source': null,
   },
-  plugins: ['stylelint-order'],
+  plugins: [],
   overrides: [
     {
       files: ['**/*.md'],
@@ -42,10 +43,6 @@ module.exports = {
     {
       files: ['**/*.sss'],
       customSyntax: 'sugarss',
-    },
-    {
-      files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
-      customSyntax: '@stylelint/postcss-css-in-js',
     },
   ],
 }

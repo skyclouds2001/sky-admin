@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 import { echarts, type EchartsOptions } from '@/lib'
 
 onMounted(() => {
@@ -66,6 +66,10 @@ onMounted(() => {
         },
       ],
     })
+})
+
+onBeforeUnmount(() => {
+  echarts.getInstanceByDom(document.getElementById('simple-bar-chart') as HTMLDivElement)?.dispose()
 })
 </script>
 

@@ -16,9 +16,8 @@ import PageTabs from './PageTabs.vue'
         <page-header />
       </el-header>
       <el-main class="p-0">
-        <page-tabs>
-          <slot />
-        </page-tabs>
+        <page-tabs />
+        <slot />
       </el-main>
       <el-footer class="border-t">
         <page-footer />

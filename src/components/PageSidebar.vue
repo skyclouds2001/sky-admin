@@ -60,6 +60,10 @@ watch(
         <el-icon><Histogram /></el-icon>
         <span>饼图</span>
       </el-menu-item>
+      <el-menu-item index="/chart/scatter">
+        <el-icon><Histogram /></el-icon>
+        <span>散点图</span>
+      </el-menu-item>
     </el-sub-menu>
 
     <!-- 嵌套菜单 -->

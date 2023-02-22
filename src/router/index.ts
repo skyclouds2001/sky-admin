@@ -34,6 +34,11 @@ const router = createRouter({
           path: '/chart/pie',
           component: () => import('@/views/chart/PieChart.vue'),
         },
+        {
+          name: '散点图',
+          path: '/chart/scatter',
+          component: () => import('@/views/chart/ScatterChart.vue'),
+        },
       ],
     },
 

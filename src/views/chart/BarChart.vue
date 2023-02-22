@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import SimpleBarChart from '@/components/chart/SimpleBarChart.vue'
+import BasicBarChart from '@/components/chart/BasicBarChart.vue'
 </script>
 
 <template>
   <el-space direction="vertical">
-    <simple-bar-chart />
+    <basic-bar-chart />
   </el-space>
 </template>
 

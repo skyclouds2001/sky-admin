@@ -15,6 +15,12 @@ onMounted(() => {
         left: 'center',
         top: 'top',
       },
+      legend: {
+        show: true,
+        data: ['data'],
+        left: 'right',
+        top: 'bottom',
+      },
       grid: {
         show: true,
         top: '5%',
@@ -51,6 +57,7 @@ onMounted(() => {
       series: [
         {
           type: 'bar',
+          name: 'data',
           showBackground: true,
           backgroundStyle: {
             color: 'rgba(180, 180, 180, 0.2)',

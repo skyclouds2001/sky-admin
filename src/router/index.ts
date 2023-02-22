@@ -13,55 +13,75 @@ const router = createRouter({
       component: () => import('@/views/HomePage.vue'),
     },
 
-    // 嵌套菜单
+    // 图表
     {
-      name: '嵌套菜单-1',
-      path: '/route/1',
-      component: () => import('@/views/route/RouteFirst.vue'),
-    },
-    {
-      name: '嵌套菜单-2',
-      path: '/route/2',
-      component: () => import('@/views/route/RouteSecond.vue'),
+      name: '图表',
+      path: '/chart',
+      redirect: '/chart/bar',
       children: [
         {
-          name: '嵌套菜单-2-1',
-          path: '/route/2/1',
-          component: () => import('@/views/route/RouteSecondFirst.vue'),
+          name: '柱状图',
+          path: '/chart/bar',
+          component: () => import('@/views/chart/BarChart.vue'),
+        },
+      ],
+    },
+
+    // 嵌套菜单
+    {
+      name: '嵌套菜单',
+      path: '/route',
+      children: [
+        {
+          name: '嵌套菜单-1',
+          path: '/route/1',
+          component: () => import('@/views/route/RouteFirst.vue'),
         },
         {
-          name: '嵌套菜单-2-2',
-          path: '/route/2/2',
-          component: () => import('@/views/route/RouteSecondSecond.vue'),
+          name: '嵌套菜单-2',
+          path: '/route/2',
+          component: () => import('@/views/route/RouteSecond.vue'),
           children: [
             {
-              name: '嵌套菜单-2-2-1',
-              path: '/route/2/2/1',
-              component: () => import('@/views/route/RouteSecondSecondFirst.vue'),
+              name: '嵌套菜单-2-1',
+              path: '/route/2/1',
+              component: () => import('@/views/route/RouteSecondFirst.vue'),
             },
             {
-              name: '嵌套菜单-2-2-2',
-              path: '/route/2/2/2',
-              component: () => import('@/views/route/RouteSecondSecondSecond.vue'),
+              name: '嵌套菜单-2-2',
+              path: '/route/2/2',
+              component: () => import('@/views/route/RouteSecondSecond.vue'),
+              children: [
+                {
+                  name: '嵌套菜单-2-2-1',
+                  path: '/route/2/2/1',
+                  component: () => import('@/views/route/RouteSecondSecondFirst.vue'),
+                },
+                {
+                  name: '嵌套菜单-2-2-2',
+                  path: '/route/2/2/2',
+                  component: () => import('@/views/route/RouteSecondSecondSecond.vue'),
+                },
+                {
+                  name: '嵌套菜单-2-2-3',
+                  path: '/route/2/2/3',
+                  component: () => import('@/views/route/RouteSecondSecondThird.vue'),
+                },
+              ],
             },
             {
-              name: '嵌套菜单-2-2-3',
-              path: '/route/2/2/3',
-              component: () => import('@/views/route/RouteSecondSecondThird.vue'),
+              name: '嵌套菜单-2-3',
+              path: '/route/2/3',
+              component: () => import('@/views/route/RouteSecondThird.vue'),
             },
           ],
         },
         {
-          name: '嵌套菜单-2-3',
-          path: '/route/2/3',
-          component: () => import('@/views/route/RouteSecondThird.vue'),
+          name: '嵌套菜单-3',
+          path: '/route/3',
+          component: () => import('@/views/route/RouteThird.vue'),
         },
       ],
-    },
-    {
-      name: '嵌套菜单-3',
-      path: '/route/3',
-      component: () => import('@/views/route/RouteThird.vue'),
     },
 
     // 文档

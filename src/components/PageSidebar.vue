@@ -52,6 +52,10 @@ watch(
         <el-icon><Histogram /></el-icon>
         <span>柱状图</span>
       </el-menu-item>
+      <el-menu-item index="/chart/line">
+        <el-icon><Histogram /></el-icon>
+        <span>折线图</span>
+      </el-menu-item>
       <el-menu-item index="/chart/pie">
         <el-icon><Histogram /></el-icon>
         <span>饼图</span>

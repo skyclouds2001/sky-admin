@@ -2,6 +2,7 @@
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import packageConfig from '~/package.json'
 import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR, PROJECT_REPOSITORY } from '@/config'
+import { generateNpmLink } from '@/util'
 </script>
 
 <template>
@@ -74,7 +75,7 @@ import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PR
           <template #label>
             <span class="font-bold">{{ item[0] }}</span>
           </template>
-          <el-link type="primary" :href="`https://www.npmjs.com/package/${item[0]}`" target="_blank" :underline="false">{{ item[1] }}</el-link>
+          <el-link type="primary" :href="generateNpmLink(item[0])" target="_blank" :underline="false">{{ item[1] }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

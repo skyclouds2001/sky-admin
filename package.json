@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
-  "description": "An admin system demo built by vue.",
+  "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
   "keywords": [
     "admin",
     "management",

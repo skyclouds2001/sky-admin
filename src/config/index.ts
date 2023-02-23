@@ -1,8 +1,28 @@
+import packageConfig from '~/package.json'
+
 /** 项目名称 */
-export const APPLICATION_NAME = 'sky-admin'
+export const PROJECT_NAME = packageConfig.name
+
+/** 项目描述 */
+export const PROJECT_DESCRIPTION = packageConfig.description
+
+/** 项目关键词 */
+export const PROJECT_KEYWORDS = packageConfig.keywords
 
 /** 项目版本 */
-export const APPLICATION_VERSION = '0.0.0'
+export const PROJECT_VERSION = packageConfig.version
+
+/** 项目许可证 */
+export const PROJECT_LICENSE = packageConfig.license
+
+/** 项目仓库地址 */
+export const PROJECT_REPOSITORY = packageConfig.repository.url.replace(/git\+|.git/g, '')
+
+/** 项目作者 */
+export const PROJECT_AUTHOR = packageConfig.author.name
+
+/** 项目贡献者 */
+export const PROJECT_CONTRIBUTORS = packageConfig.contributors
 
 /** 服务器 HOST */
 export const SERVER_HOST = 'http://localhost:8080'

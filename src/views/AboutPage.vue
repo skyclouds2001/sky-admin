@@ -84,7 +84,7 @@ import { generateNpmLink } from '@/util'
 
 <style scoped lang="scss">
 .title {
-  @apply text-left font-bold;
+  @apply text-left text-base font-bold;
 }
 
 .content {

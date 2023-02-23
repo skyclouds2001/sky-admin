@@ -14,7 +14,7 @@ onBeforeMount(() => {
 <template>
   <el-config-provider :locale="zhCn">
     <layout-container>
-      <router-view></router-view>
+      <router-view />
     </layout-container>
   </el-config-provider>
 </template>

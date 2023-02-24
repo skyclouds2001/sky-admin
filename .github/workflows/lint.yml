@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
       - name: install global package manager
-        run: npm install pnpm@7.25.0 -g
+        run: npm install pnpm@7.27.0 -g
       - name: install dependencies
         run: pnpm install
       - name: run lint

@@ -43,7 +43,7 @@
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest --coverage",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {

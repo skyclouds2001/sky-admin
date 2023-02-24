@@ -25,10 +25,16 @@ module.exports = {
   globals: {},
   rules: {
     'n/no-missing-import': 'off',
-    'import/named': 'off',
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['package.json'],
+      },
+    ],
     '@typescript-eslint/promise-function-async': 'off',
   },
   settings: {
+    'import/core-modules': ['element-plus'],
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
@@ -46,7 +52,7 @@ module.exports = {
       plugins: ['vitest'],
     },
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts', '*.tsx', '*.vue'],
       rules: {
         'jsdoc/require-param-type': 'off',
         'jsdoc/require-property-type': 'off',

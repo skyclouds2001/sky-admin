@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import { echarts, type EchartsOptions } from '@/lib'
+import { generateFakeData } from '@/util'
+
+const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
@@ -48,7 +51,7 @@ onMounted(() => {
         axisTick: {
           alignWithLabel: true,
         },
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: data.map((v) => v.name),
       },
       yAxis: {
         show: true,
@@ -62,7 +65,7 @@ onMounted(() => {
           backgroundStyle: {
             color: 'rgba(180, 180, 180, 0.2)',
           },
-          data: [120, 200, 150, 80, 70, 110, 130],
+          data: data.map((v) => v.value),
         },
       ],
     })

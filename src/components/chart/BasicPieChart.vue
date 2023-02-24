@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import { echarts, type EchartsOptions } from '@/lib'
+import { generateFakeData } from '@/util'
+
+const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
@@ -54,13 +57,7 @@ onMounted(() => {
               shadowColor: 'rgba(0, 0, 0, 0.5)',
             },
           },
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' },
-          ],
+          data,
         },
       ],
     })

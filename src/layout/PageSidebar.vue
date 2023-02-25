@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
+import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
@@ -32,137 +32,139 @@ watch(
 </script>
 
 <template>
-  <el-menu router :default-active="defaultActive" :collapse="menuStore.isCollapse" :class="['page-sidebar', menuStore.isCollapse ? 'w-16' : 'w-[18rem]']">
-    <!-- 首页 -->
-    <el-menu-item index="/">
-      <el-icon><HomeFilled /></el-icon>
-      <span>首页</span>
-    </el-menu-item>
+  <el-scrollbar wrap-class="wrap" view-class="view">
+    <el-menu router :default-active="defaultActive" :collapse="menuStore.isCollapse" :class="['page-sidebar', menuStore.isCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
+      <!-- 首页 -->
+      <el-menu-item index="/">
+        <el-icon><HomeFilled /></el-icon>
+        <span>首页</span>
+      </el-menu-item>
 
-    <!-- 图表 -->
-    <el-sub-menu index="/chart">
-      <template #title>
-        <el-icon><Histogram /></el-icon>
-        <span>图表</span>
-      </template>
-      <el-menu-item index="/chart/bar">
-        <el-icon><Histogram /></el-icon>
-        <span>柱状图</span>
-      </el-menu-item>
-      <el-menu-item index="/chart/line">
-        <el-icon><Histogram /></el-icon>
-        <span>折线图</span>
-      </el-menu-item>
-      <el-menu-item index="/chart/pie">
-        <el-icon><Histogram /></el-icon>
-        <span>饼图</span>
-      </el-menu-item>
-      <el-menu-item index="/chart/scatter">
-        <el-icon><Histogram /></el-icon>
-        <span>散点图</span>
-      </el-menu-item>
-    </el-sub-menu>
-
-    <!-- 嵌套菜单 -->
-    <el-sub-menu index="/route">
-      <template #title>
-        <el-icon><Menu /></el-icon>
-        <span>嵌套菜单</span>
-      </template>
-      <el-menu-item index="/route/1">
-        <el-icon><Menu /></el-icon>
-        <span>嵌套菜单-1</span>
-      </el-menu-item>
-      <el-sub-menu index="/route/2">
+      <!-- 图表 -->
+      <el-sub-menu index="/chart">
         <template #title>
-          <el-icon><Menu /></el-icon>
-          <span>嵌套菜单-2</span>
+          <el-icon><Histogram /></el-icon>
+          <span>图表</span>
         </template>
-        <el-menu-item index="/route/2/1">
-          <el-icon><Menu /></el-icon>
-          <span>嵌套菜单-2-1</span>
+        <el-menu-item index="/chart/bar">
+          <el-icon><Histogram /></el-icon>
+          <span>柱状图</span>
         </el-menu-item>
-        <el-sub-menu index="/route/2/2">
-          <template #title>
-            <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-2</span>
-          </template>
-          <el-menu-item index="/route/2/2/1">
-            <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-2-1</span>
-          </el-menu-item>
-          <el-menu-item index="/route/2/2/2">
-            <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-2-2</span>
-          </el-menu-item>
-          <el-menu-item index="/route/2/2/3">
-            <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-2-3</span>
-          </el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="/route/2/3">
-          <el-icon><Menu /></el-icon>
-          <span>嵌套菜单-2-3</span>
+        <el-menu-item index="/chart/line">
+          <el-icon><Histogram /></el-icon>
+          <span>折线图</span>
+        </el-menu-item>
+        <el-menu-item index="/chart/pie">
+          <el-icon><Histogram /></el-icon>
+          <span>饼图</span>
+        </el-menu-item>
+        <el-menu-item index="/chart/scatter">
+          <el-icon><Histogram /></el-icon>
+          <span>散点图</span>
         </el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="/route/3">
-        <el-icon><Menu /></el-icon>
-        <span>嵌套菜单-3</span>
-      </el-menu-item>
-    </el-sub-menu>
 
-    <!-- 文档 -->
-    <el-sub-menu index="/docs">
-      <template #title>
-        <el-icon><Document /></el-icon>
-        <span>预览文档</span>
-      </template>
-      <el-menu-item index="/docs/word-preview">
-        <el-icon><Document /></el-icon>
-        <span>Word 预览</span>
-      </el-menu-item>
-      <el-menu-item index="/docs/excel-preview">
-        <el-icon><Document /></el-icon>
-        <span>Excel 预览</span>
-      </el-menu-item>
-      <el-menu-item index="/docs/ppt-preview">
-        <el-icon><Document /></el-icon>
-        <span>PPT 预览</span>
-      </el-menu-item>
-      <el-menu-item index="/docs/pdf-preview">
-        <el-icon><Document /></el-icon>
-        <span>PDF 预览</span>
-      </el-menu-item>
-    </el-sub-menu>
+      <!-- 嵌套菜单 -->
+      <el-sub-menu index="/route">
+        <template #title>
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单</span>
+        </template>
+        <el-menu-item index="/route/1">
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单-1</span>
+        </el-menu-item>
+        <el-sub-menu index="/route/2">
+          <template #title>
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2</span>
+          </template>
+          <el-menu-item index="/route/2/1">
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-1</span>
+          </el-menu-item>
+          <el-sub-menu index="/route/2/2">
+            <template #title>
+              <el-icon><Menu /></el-icon>
+              <span>嵌套菜单-2-2</span>
+            </template>
+            <el-menu-item index="/route/2/2/1">
+              <el-icon><Menu /></el-icon>
+              <span>嵌套菜单-2-2-1</span>
+            </el-menu-item>
+            <el-menu-item index="/route/2/2/2">
+              <el-icon><Menu /></el-icon>
+              <span>嵌套菜单-2-2-2</span>
+            </el-menu-item>
+            <el-menu-item index="/route/2/2/3">
+              <el-icon><Menu /></el-icon>
+              <span>嵌套菜单-2-2-3</span>
+            </el-menu-item>
+          </el-sub-menu>
+          <el-menu-item index="/route/2/3">
+            <el-icon><Menu /></el-icon>
+            <span>嵌套菜单-2-3</span>
+          </el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="/route/3">
+          <el-icon><Menu /></el-icon>
+          <span>嵌套菜单-3</span>
+        </el-menu-item>
+      </el-sub-menu>
 
-    <!-- 外链 -->
-    <el-sub-menu index="/link">
-      <template #title>
-        <el-icon><Link /></el-icon>
-        <span>外链</span>
-      </template>
-      <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
-        <el-icon><Link /></el-icon>
-        <span>Github 仓库</span>
-      </el-menu-item>
-      <el-menu-item index="https://juejin.cn/user/814058986548567">
-        <el-icon><Link /></el-icon>
-        <span>掘金主页</span>
-      </el-menu-item>
-    </el-sub-menu>
+      <!-- 文档 -->
+      <el-sub-menu index="/docs">
+        <template #title>
+          <el-icon><Document /></el-icon>
+          <span>预览文档</span>
+        </template>
+        <el-menu-item index="/docs/word-preview">
+          <el-icon><Document /></el-icon>
+          <span>Word 预览</span>
+        </el-menu-item>
+        <el-menu-item index="/docs/excel-preview">
+          <el-icon><Document /></el-icon>
+          <span>Excel 预览</span>
+        </el-menu-item>
+        <el-menu-item index="/docs/ppt-preview">
+          <el-icon><Document /></el-icon>
+          <span>PPT 预览</span>
+        </el-menu-item>
+        <el-menu-item index="/docs/pdf-preview">
+          <el-icon><Document /></el-icon>
+          <span>PDF 预览</span>
+        </el-menu-item>
+      </el-sub-menu>
 
-    <!-- 关于 -->
-    <el-menu-item index="/about">
-      <el-icon><InfoFilled /></el-icon>
-      <span>关于</span>
-    </el-menu-item>
+      <!-- 外链 -->
+      <el-sub-menu index="/link">
+        <template #title>
+          <el-icon><Link /></el-icon>
+          <span>外链</span>
+        </template>
+        <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
+          <el-icon><Link /></el-icon>
+          <span>Github 仓库</span>
+        </el-menu-item>
+        <el-menu-item index="https://juejin.cn/user/814058986548567">
+          <el-icon><Link /></el-icon>
+          <span>掘金主页</span>
+        </el-menu-item>
+      </el-sub-menu>
 
-    <!-- 菜单伸缩状态控制 -->
-    <div class="collapse-controller" @click="handleCollapse">
-      <el-icon v-if="menuStore.isCollapse"><Expand /></el-icon>
-      <el-icon v-else><Fold /></el-icon>
-    </div>
-  </el-menu>
+      <!-- 关于 -->
+      <el-menu-item index="/about">
+        <el-icon><InfoFilled /></el-icon>
+        <span>关于</span>
+      </el-menu-item>
+
+      <!-- 菜单伸缩状态控制 -->
+      <div class="collapse-controller" @click="handleCollapse">
+        <el-icon v-if="menuStore.isCollapse"><Expand /></el-icon>
+        <el-icon v-else><Fold /></el-icon>
+      </div>
+    </el-menu>
+  </el-scrollbar>
 </template>
 
 <style scoped lang="scss">

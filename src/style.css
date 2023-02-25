@@ -14,13 +14,18 @@
   color-scheme: light dark;
 }
 
-body {
-  display: flex;
+html {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-  place-items: center;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 #app {
@@ -28,5 +33,18 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  text-align: center;
+}
+
+.light {
+  --title-text-color: #111;
+  --desc-text-color: #333;
+  --page-bg-color: #ddd;
+  --container-bg-color: #fff;
+}
+
+.dark {
+  --title-text-color: #eee;
+  --desc-text-color: #ccc;
+  --page-bg-color: #000;
+  --container-bg-color: #222;
 }

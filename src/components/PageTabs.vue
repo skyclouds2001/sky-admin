@@ -39,7 +39,9 @@ onBeforeMount(() => {
 
 <template>
   <el-tabs v-model="store.currentTab" type="border-card" class="tabs" @tab-change="switchTab" @tab-remove="removeTab">
-    <el-tab-pane v-for="item in store.tabs" :key="item.path" :label="item.name" :name="item.path" lazy :closable="item.path !== '/'" />
+    <el-tab-pane v-for="item in store.tabs" :key="item.path" :label="item.name" :name="item.path" lazy :closable="item.path !== '/'">
+      <slot v-if="item.path === store.currentTab" />
+    </el-tab-pane>
   </el-tabs>
 </template>
 

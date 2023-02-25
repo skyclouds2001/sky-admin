@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
+import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElScrollbar, ElBacktop } from 'element-plus'
 import PageSidebar from './PageSidebar.vue'
 import PageHeader from './PageHeader.vue'
 import PageFooter from './PageFooter.vue'
@@ -15,9 +15,12 @@ import PageTabs from './PageTabs.vue'
       <el-header>
         <page-header />
       </el-header>
-      <el-main class="p-0">
-        <page-tabs />
-        <slot />
+      <el-main class="content-container p-0">
+        <page-tabs>
+          <el-scrollbar>
+            <slot />
+          </el-scrollbar>
+        </page-tabs>
       </el-main>
       <el-footer class="border-t">
         <page-footer />

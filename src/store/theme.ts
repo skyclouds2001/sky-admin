@@ -64,8 +64,32 @@ export const useThemeStore = defineStore('theme', () => {
     toggleThemeClass(current)
   }
 
+  /**
+   * 判断是否为亮色主题
+   *
+   * @returns 判断结果
+   */
+  const isLight = (): boolean => theme.value === Theme.Light
+
+  /**
+   * 判断是否为暗色主题
+   *
+   * @returns 判断结果
+   */
+  const isDark = (): boolean => theme.value === Theme.DARK
+
+  /**
+   * 切换 Theme 方法
+   */
+  const toggleTheme = (): void => {
+    setTheme(theme.value === Theme.Light ? Theme.DARK : Theme.Light)
+  }
+
   return {
-    getTheme,
+    theme: getTheme,
     setTheme,
+    isLight,
+    isDark,
+    toggleTheme,
   }
 })

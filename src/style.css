@@ -30,17 +30,3 @@ body {
   padding: 0;
   text-align: center;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #fff;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: rgb(255 255 255 / 87%);
-    background-color: #242424;
-  }
-}

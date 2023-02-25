@@ -6,7 +6,7 @@ import { generateNpmLink } from '@/util'
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large">
+  <el-space direction="vertical" fill size="large" class="pt-4">
     <el-card shadow="always">
       <template #header>
         <div class="title">关于</div>

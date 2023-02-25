@@ -1,8 +1,9 @@
+import { startCase } from 'lodash-es'
 import packageConfig from '~/package.json'
 import avatar from '@/assets/avatar.jpg'
 
 /** 项目名称 */
-export const PROJECT_NAME = packageConfig.name
+export const PROJECT_NAME = startCase(packageConfig.name)
 
 /** 项目描述 */
 export const PROJECT_DESCRIPTION = packageConfig.description

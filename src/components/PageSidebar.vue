@@ -3,22 +3,19 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram } from '@element-plus/icons-vue'
-import { useTabsStore } from '@/store'
+import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
 
 const tabsStore = useTabsStore()
 
-/**
- * 控制 Sidebar 伸缩状态
- */
-const isCollapse = ref(false)
+const menuStore = useMenuStore()
 
 /**
  * 切换 Sidebar 伸缩状态方法
  */
 const handleCollapse = () => {
-  isCollapse.value = !isCollapse.value
+  menuStore.isCollapse = !menuStore.isCollapse
 }
 
 /**
@@ -35,7 +32,7 @@ watch(
 </script>
 
 <template>
-  <el-menu router :default-active="defaultActive" :collapse="isCollapse" :class="['page-sidebar', isCollapse ? 'w-16' : 'w-[18rem]']">
+  <el-menu router :default-active="defaultActive" :collapse="menuStore.isCollapse" :class="['page-sidebar', menuStore.isCollapse ? 'w-16' : 'w-[18rem]']">
     <!-- 首页 -->
     <el-menu-item index="/">
       <el-icon><HomeFilled /></el-icon>
@@ -162,7 +159,7 @@ watch(
 
     <!-- 菜单伸缩状态控制 -->
     <div class="collapse-controller" @click="handleCollapse">
-      <el-icon v-if="isCollapse"><Expand /></el-icon>
+      <el-icon v-if="menuStore.isCollapse"><Expand /></el-icon>
       <el-icon v-else><Fold /></el-icon>
     </div>
   </el-menu>

@@ -6,7 +6,7 @@ import legacy from '@vitejs/plugin-legacy'
 import ElementPlus from 'unplugin-element-plus/vite'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
-import { visualizer } from 'rollup-plugin-visualizer'
+import visualizer from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   plugins: [

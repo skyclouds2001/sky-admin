@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import packageConfig from '~/package.json'
-import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR, PROJECT_REPOSITORY } from '@/config'
+import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR_NAME, PROJECT_REPOSITORY } from '@/config'
 import { generateNpmLink } from '@/util'
 </script>
 
@@ -41,7 +41,7 @@ import { generateNpmLink } from '@/util'
           <template #label>
             <span class="font-bold">作者</span>
           </template>
-          <el-tag>{{ PROJECT_AUTHOR }}</el-tag>
+          <el-tag>{{ PROJECT_AUTHOR_NAME }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>

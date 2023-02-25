@@ -1,4 +1,5 @@
 import packageConfig from '~/package.json'
+import avatar from '@/assets/avatar.jpg'
 
 /** 项目名称 */
 export const PROJECT_NAME = packageConfig.name
@@ -19,7 +20,10 @@ export const PROJECT_LICENSE = packageConfig.license
 export const PROJECT_REPOSITORY = packageConfig.repository.url.replace(/git\+|.git/g, '')
 
 /** 项目作者 */
-export const PROJECT_AUTHOR = packageConfig.author.name
+export const PROJECT_AUTHOR_NAME = packageConfig.author.name
+
+/** 项目作者头像链接 */
+export const PROJECT_AUTHOR_AVATAR = avatar
 
 /** 项目贡献者 */
 export const PROJECT_CONTRIBUTORS = packageConfig.contributors

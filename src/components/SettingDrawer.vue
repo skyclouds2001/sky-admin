@@ -1,8 +1,27 @@
 <script setup lang="ts">
-import { inject, type Ref } from 'vue'
-import { ElDrawer } from 'element-plus'
+import { inject, ref, type Ref } from 'vue'
+import { ElDrawer, ElDivider, ElSwitch } from 'element-plus'
+import { Sunny, Moon } from '@element-plus/icons-vue'
+import { Theme } from '@/enum'
+import { useThemeStore } from '@/store'
+
+const themeStore = useThemeStore()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
+
+/**
+ * 主题
+ */
+const theme = ref<Theme>(themeStore.theme.value)
+
+/**
+ * 主题开关变化事件
+ *
+ * @param theme 当前主题
+ */
+const handleThemeChange = (theme: Theme): void => {
+  themeStore.setTheme(theme)
+}
 </script>
 
 <template>
@@ -10,6 +29,9 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
     <template #header>
       <h1 class="text-base font-bold text-black">设置</h1>
     </template>
+
+    <el-divider class="text-bold">主题</el-divider>
+    <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.Light" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
   </el-drawer>
 </template>
 

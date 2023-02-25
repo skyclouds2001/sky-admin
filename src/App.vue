@@ -3,7 +3,7 @@ import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
-import LayoutContainer from '@/components/LayoutContainer.vue'
+import LayoutContainer from '@/layout/LayoutContainer.vue'
 
 locale('zh-cn')
 </script>

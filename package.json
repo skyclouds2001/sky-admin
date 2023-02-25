@@ -117,6 +117,7 @@
     "postcss-preset-env": "^8.0.1",
     "postcss-sass": "^0.5.0",
     "prettier": "^2.8.4",
+    "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.58.1",
     "stylelint": "^15.1.0",
     "stylelint-config-html": "^1.1.0",

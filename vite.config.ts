@@ -6,6 +6,7 @@ import legacy from '@vitejs/plugin-legacy'
 import ElementPlus from 'unplugin-element-plus/vite'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   plugins: [
@@ -20,6 +21,13 @@ export default defineConfig({
     stylelint({
       cache: true,
       cacheLocation: 'node_modules/.vite/.stylelintcache',
+    }),
+    visualizer({
+      filename: 'report.html',
+      title: 'report',
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
     }),
   ],
   css: {

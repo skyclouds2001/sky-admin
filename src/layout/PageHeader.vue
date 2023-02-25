@@ -1,11 +1,22 @@
 <script setup lang="ts">
-import { ElBreadcrumb, ElBreadcrumbItem, ElImage } from 'element-plus'
+import { inject, type Ref } from 'vue'
+import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
+import { Setting } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
 import { usePagesStore } from '@/store'
 
 const store = usePagesStore()
 
-const avatar: string = PROJECT_AUTHOR_AVATAR
+const isShowSettingDrawer = inject<Ref<boolean>>('setting')
+
+/**
+ * 控制展示设置窗口
+ */
+const showSettingDrawer = () => {
+  if (isShowSettingDrawer) {
+    isShowSettingDrawer.value = true
+  }
+}
 </script>
 
 <template>
@@ -16,9 +27,12 @@ const avatar: string = PROJECT_AUTHOR_AVATAR
 
     <div class="control-bar">
       <div class="avatar">
-        <el-image :src="avatar" fit="cover" loading="lazy" lazy alt="avatar" />
+        <el-image :src="PROJECT_AUTHOR_AVATAR" fit="cover" loading="lazy" lazy alt="avatar" />
       </div>
       <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
+      <div class="settings" @click="showSettingDrawer">
+        <el-icon :size="20"><Setting /></el-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +62,10 @@ const avatar: string = PROJECT_AUTHOR_AVATAR
 
     .username {
       @apply cursor-default select-none;
+    }
+
+    .settings {
+      @apply flex justify-center items-center;
     }
   }
 }

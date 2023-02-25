@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
 import { useMenuStore } from '@/store'
+import SettingDrawer from '@/components/SettingDrawer.vue'
 import PageSidebar from './PageSidebar.vue'
 import PageHeader from './PageHeader.vue'
 import PageFooter from './PageFooter.vue'
 import PageTabs from './PageTabs.vue'
 
 const menuStore = useMenuStore()
+
+/**
+ * 控制设置窗口是否展示
+ */
+const isShowSettingDrawer = ref(false)
+
+provide<Ref<boolean>>('setting', isShowSettingDrawer)
 </script>
 
 <template>
@@ -28,6 +37,8 @@ const menuStore = useMenuStore()
       </el-footer>
     </el-container>
   </el-container>
+
+  <setting-drawer />
 
   <el-backtop />
 </template>

@@ -6,6 +6,7 @@ specifiers:
   '@element-plus/icons-vue': ^2.0.10
   '@playwright/test': ^1.30.0
   '@tailwindcss/aspect-ratio': ^0.4.2
+  '@tailwindcss/container-queries': ^0.1.0
   '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/line-clamp': ^0.4.2
   '@tailwindcss/typography': ^0.5.9
@@ -118,6 +119,7 @@ devDependencies:
   '@commitlint/config-conventional': 17.4.3
   '@playwright/test': 1.30.0
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.6
+  '@tailwindcss/container-queries': 0.1.0_tailwindcss@3.2.6
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.6
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
@@ -2271,6 +2273,14 @@ packages:
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.6_postcss@8.4.21
+    dev: true
+
+  /@tailwindcss/container-queries/0.1.0_tailwindcss@3.2.6:
+    resolution: {integrity: sha512-t1GeJ9P8ual160BvKy6Y1sG7bjChArMaK6iRXm3ZYjZGN2FTzmqb5ztsTDb9AsTSJD4NMHtsnaI2ielrXEk+hw==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0'
     dependencies:
       tailwindcss: 3.2.6_postcss@8.4.21
     dev: true

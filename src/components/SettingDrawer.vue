@@ -27,10 +27,12 @@ const handleThemeChange = (theme: Theme): void => {
 <template>
   <el-drawer v-model="isShowSettingDrawer" size="20%">
     <template #header>
-      <h1 class="text-base font-bold text-black">设置</h1>
+      <h1 class="text-base font-bold" style="color: var(--title-text-color)">设置</h1>
     </template>
 
-    <el-divider class="text-bold">主题</el-divider>
+    <el-divider>
+      <h4 class="font-bold">主题</h4>
+    </el-divider>
     <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
   </el-drawer>
 </template>

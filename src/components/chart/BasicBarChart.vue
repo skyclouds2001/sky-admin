@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import { echarts, type EchartsOptions } from '@/lib'
+import { useThemeStore } from '@/store'
 import { generateFakeData } from '@/util'
+
+const themeStore = useThemeStore()
 
 const data = generateFakeData(10, 100)
 
@@ -17,12 +20,18 @@ onMounted(() => {
         text: 'Simple Bar Chart',
         left: 'center',
         top: 'top',
+        textStyle: {
+          color: themeStore.isLight() ? '#333' : '#ccc',
+        },
       },
       legend: {
         show: true,
         data: ['data'],
         left: 'right',
         top: 'bottom',
+        textStyle: {
+          color: themeStore.isLight() ? '#333' : '#ccc',
+        },
       },
       grid: {
         show: true,

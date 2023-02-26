@@ -17,15 +17,15 @@ const initialTheme = (): Theme => {
   themeMedia.addEventListener('change', (e) => {
     const themeStore = useThemeStore()
     if (e.matches) {
-      themeStore.setTheme(Theme.Light)
+      themeStore.setTheme(Theme.LIGHT)
     } else {
       themeStore.setTheme(Theme.DARK)
     }
   })
 
-  toggleThemeClass(themeMedia.matches ? Theme.Light : Theme.DARK)
+  toggleThemeClass(themeMedia.matches ? Theme.LIGHT : Theme.DARK)
 
-  return themeMedia.matches ? Theme.Light : Theme.DARK
+  return themeMedia.matches ? Theme.LIGHT : Theme.DARK
 }
 
 /**
@@ -34,12 +34,12 @@ const initialTheme = (): Theme => {
  * @param current 当前主题
  */
 const toggleThemeClass = (current: Theme): void => {
-  if (current === Theme.Light) {
-    document.documentElement.classList.add(Theme.Light)
+  if (current === Theme.LIGHT) {
+    document.documentElement.classList.add(Theme.LIGHT)
     document.documentElement.classList.remove(Theme.DARK)
   } else {
     document.documentElement.classList.add(Theme.DARK)
-    document.documentElement.classList.remove(Theme.Light)
+    document.documentElement.classList.remove(Theme.LIGHT)
   }
 }
 
@@ -69,7 +69,7 @@ export const useThemeStore = defineStore('theme', () => {
    *
    * @returns 判断结果
    */
-  const isLight = (): boolean => theme.value === Theme.Light
+  const isLight = (): boolean => theme.value === Theme.LIGHT
 
   /**
    * 判断是否为暗色主题
@@ -82,7 +82,7 @@ export const useThemeStore = defineStore('theme', () => {
    * 切换 Theme 方法
    */
   const toggleTheme = (): void => {
-    setTheme(theme.value === Theme.Light ? Theme.DARK : Theme.Light)
+    setTheme(theme.value === Theme.LIGHT ? Theme.DARK : Theme.LIGHT)
   }
 
   return {

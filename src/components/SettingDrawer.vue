@@ -31,7 +31,7 @@ const handleThemeChange = (theme: Theme): void => {
     </template>
 
     <el-divider class="text-bold">主题</el-divider>
-    <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.Light" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
+    <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
   </el-drawer>
 </template>
 

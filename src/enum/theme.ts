@@ -3,7 +3,7 @@
  */
 export enum Theme {
   /** 亮 */
-  Light = 'light',
+  LIGHT = 'light',
   /** 暗 */
   DARK = 'dark',
 }

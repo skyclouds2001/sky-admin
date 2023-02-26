@@ -7,7 +7,7 @@ import { viteMockServe as mock } from 'vite-plugin-mock'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), ElementPlus()],
+  plugins: [vue(), vueJsx(), legacy(), mock(), ElementPlus({})],
   css: {
     postcss: 'postcss.config.js',
     devSourcemap: true,

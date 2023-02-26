@@ -15,7 +15,7 @@ export default defineConfig({
     vueJsx(),
     legacy(),
     mock(),
-    ElementPlus(),
+    ElementPlus({}),
     eslint({
       cache: true,
       cacheLocation: 'node_modules/.vite/.eslintcache',

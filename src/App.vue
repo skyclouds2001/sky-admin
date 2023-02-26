@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
-import LayoutContainer from '@/components/LayoutContainer.vue'
+import LayoutContainer from '@/layout/LayoutContainer.vue'
 
-onBeforeMount(() => {
-  locale('zh-cn')
-})
+locale('zh-cn')
 </script>
 
 <template>
   <el-config-provider :locale="zhCn">
     <layout-container>
-      <router-view></router-view>
+      <router-view />
     </layout-container>
   </el-config-provider>
 </template>

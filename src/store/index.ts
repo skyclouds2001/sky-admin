@@ -7,3 +7,7 @@ export default pinia
 export * from './pages'
 
 export * from './tabs'
+
+export * from './menu'
+
+export * from './theme'

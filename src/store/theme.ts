@@ -86,7 +86,7 @@ export const useThemeStore = defineStore('theme', () => {
   }
 
   return {
-    theme: getTheme,
+    getTheme,
     setTheme,
     isLight,
     isDark,

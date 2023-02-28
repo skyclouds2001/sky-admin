@@ -14,7 +14,7 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 /**
  * 主题
  */
-const theme = ref<Theme>(themeStore.theme.value)
+const theme = ref<Theme>(themeStore.getTheme.value)
 
 /**
  * 主题开关变化事件
@@ -46,6 +46,7 @@ const handleLangChange = (lang: Lang): void => {
       <h1 class="text-base font-bold drawer" style="color: var(--title-text-color)">设置</h1>
     </template>
 
+    <!-- 主题控件 -->
     <el-divider>
       <h4 class="font-bold">主题</h4>
     </el-divider>
@@ -53,6 +54,7 @@ const handleLangChange = (lang: Lang): void => {
       <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
     </div>
 
+    <!-- 国际化控件 -->
     <el-divider>
       <h4 class="font-bold">国际化</h4>
     </el-divider>

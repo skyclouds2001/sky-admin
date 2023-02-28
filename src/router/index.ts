@@ -46,6 +46,7 @@ const router = createRouter({
     {
       name: '嵌套菜单',
       path: '/route',
+      redirect: '/route/1',
       children: [
         {
           name: '嵌套菜单-1',
@@ -124,6 +125,25 @@ const router = createRouter({
           name: 'PDF 预览',
           path: '/docs/pdf-preview',
           component: () => import('@/views/docs/PDFPreview.vue'),
+        },
+      ],
+    },
+
+    // 功能
+    {
+      name: '功能',
+      path: '/feature',
+      redirect: '/feature/bar-code',
+      children: [
+        {
+          name: '条形码',
+          path: '/feature/bar-code',
+          component: () => import('@/views/feature/BarCode.vue'),
+        },
+        {
+          name: '二维码',
+          path: '/feature/qrcode',
+          component: () => import('@/views/feature/QrCode.vue'),
         },
       ],
     },

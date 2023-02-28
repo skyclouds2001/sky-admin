@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
@@ -133,6 +133,22 @@ watch(
         <el-menu-item index="/docs/pdf-preview">
           <el-icon><Document /></el-icon>
           <span>PDF 预览</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 功能 -->
+      <el-sub-menu index="/feature">
+        <template #title>
+          <el-icon><Service /></el-icon>
+          <span>功能</span>
+        </template>
+        <el-menu-item index="/feature/bar-code">
+          <el-icon><Service /></el-icon>
+          <span>条形码</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/qrcode">
+          <el-icon><Service /></el-icon>
+          <span>二维码</span>
         </el-menu-item>
       </el-sub-menu>
 

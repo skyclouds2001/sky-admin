@@ -139,6 +139,11 @@ const router = createRouter({
           path: '/feature/bar-code',
           component: () => import('@/views/feature/BarCode.vue'),
         },
+        {
+          name: '二维码',
+          path: '/feature/qrcode',
+          component: () => import('@/views/feature/QrCode.vue'),
+        },
       ],
     },
 

@@ -146,6 +146,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>条形码</span>
         </el-menu-item>
+        <el-menu-item index="/feature/qrcode">
+          <el-icon><Service /></el-icon>
+          <span>二维码</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 外链 -->

@@ -11,3 +11,5 @@ export * from './tabs'
 export * from './menu'
 
 export * from './theme'
+
+export * from './lang'

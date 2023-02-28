@@ -133,6 +133,7 @@ const router = createRouter({
     {
       name: '功能',
       path: '/feature',
+      redirect: '/feature/bar-code',
       children: [
         {
           name: '条形码',

@@ -6,12 +6,12 @@ import { generateNpmLink } from '@/util'
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="pt-4">
+  <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
       <template #header>
         <div class="title">关于</div>
       </template>
-      <div class="content">{{ PROJECT_DESCRIPTION }}</div>
+      <div class="text-left">{{ PROJECT_DESCRIPTION }}</div>
     </el-card>
 
     <el-card shadow="always">
@@ -85,9 +85,5 @@ import { generateNpmLink } from '@/util'
 <style scoped lang="scss">
 .title {
   @apply text-left text-base font-bold;
-}
-
-.content {
-  @apply text-left;
 }
 </style>

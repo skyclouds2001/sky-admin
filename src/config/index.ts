@@ -20,8 +20,14 @@ export const PROJECT_LICENSE = packageConfig.license
 /** 项目仓库地址 */
 export const PROJECT_REPOSITORY = packageConfig.repository.url.replace(/git\+|.git/g, '')
 
-/** 项目作者 */
+/** 项目作者名称 */
 export const PROJECT_AUTHOR_NAME = packageConfig.author.name
+
+/** 项目作者邮箱 */
+export const PROJECT_AUTHOR_EMAIL = packageConfig.author.email
+
+/** 项目作者个人网站主页 */
+export const PROJECT_AUTHOR_HOME_PAGE = packageConfig.author.url
 
 /** 项目作者头像链接 */
 export const PROJECT_AUTHOR_AVATAR = avatar

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { pick } from 'lodash-es'
-import { useTabsStore, usePagesStore, type Tab, type Page } from '@/store'
+import type { Tab, Page } from '@/model'
+import { useTabsStore, usePagesStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
 
 const router = createRouter({

@@ -1,14 +1,5 @@
 import { defineStore } from 'pinia'
-
-/**
- * 数据结构
- */
-export interface Page {
-  /** 页面名称 */
-  name: string
-  /** 页面路径 */
-  path: string
-}
+import type { Page } from '@/model'
 
 const usePagesStore = defineStore('pages', {
   state() {

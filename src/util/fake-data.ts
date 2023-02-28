@@ -1,15 +1,9 @@
+import type { Data } from '@/model'
+
 /**
  * 产生的名称方式
  */
 const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-
-/**
- * 虚拟数据数据结构
- */
-interface Data {
-  name: string
-  value: number
-}
 
 /**
  * 生成虚拟数据方法

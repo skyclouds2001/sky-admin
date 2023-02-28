@@ -1,3 +1,3 @@
-export * from './theme'
+export { default as Theme } from './theme'
 
-export * from './lang'
+export { default as Lang } from './lang'

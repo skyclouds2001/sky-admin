@@ -43,7 +43,7 @@ const toggleThemeClass = (current: Theme): void => {
   }
 }
 
-export const useThemeStore = defineStore('theme', () => {
+const useThemeStore = defineStore('theme', () => {
   /**
    * 主题值
    */
@@ -93,3 +93,5 @@ export const useThemeStore = defineStore('theme', () => {
     toggleTheme,
   }
 })
+
+export default useThemeStore

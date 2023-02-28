@@ -10,7 +10,7 @@ export interface Tab {
   path: string
 }
 
-export const useTabsStore = defineStore('tabs', {
+const useTabsStore = defineStore('tabs', {
   state() {
     return {
       /** 标签页 */
@@ -25,3 +25,5 @@ export const useTabsStore = defineStore('tabs', {
     }
   },
 })
+
+export default useTabsStore

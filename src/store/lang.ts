@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Lang } from '@/enum'
 
-export const useLangStore = defineStore('lang', () => {
+const useLangStore = defineStore('lang', () => {
   const i18n = useI18n()
 
   /**
@@ -31,3 +31,5 @@ export const useLangStore = defineStore('lang', () => {
     setLang,
   }
 })
+
+export default useLangStore

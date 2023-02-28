@@ -19,13 +19,22 @@ onMounted(() => {
 <template>
   <el-space size="large" class="w-full p-4">
     <el-card shadow="always">
+      <template #header>
+        <div class="text-center text-base font-bold">基础条形码</div>
+      </template>
       <canvas id="simple-bar-code"></canvas>
     </el-card>
     <el-card shadow="always">
-      <canvas id="colorful-bar-code"></canvas>
+      <template #header>
+        <div class="text-center text-base font-bold">条形码大小</div>
+      </template>
+      <canvas id="font-bar-code"></canvas>
     </el-card>
     <el-card shadow="always">
-      <canvas id="font-bar-code"></canvas>
+      <template #header>
+        <div class="text-center text-base font-bold">条形码样式</div>
+      </template>
+      <canvas id="colorful-bar-code"></canvas>
     </el-card>
   </el-space>
 </template>

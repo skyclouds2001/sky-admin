@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-space size="large" alignment="start" class="w-full p-4">
+  <el-space size="large" class="w-full p-4">
     <el-card shadow="always">
       <template #header>
         <div class="text-center text-base font-bold">基础二维码</div>
@@ -34,7 +34,7 @@ onMounted(() => {
       <template #header>
         <div class="text-center text-base font-bold">图片二维码</div>
       </template>
-      <img id="img-qrcode" alt="" />
+      <img id="img-qrcode" src="" alt="" />
     </el-card>
     <el-card shadow="always">
       <template #header>

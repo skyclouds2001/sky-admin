@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { inject, ref, type Ref } from 'vue'
-import { ElDrawer, ElDivider, ElSwitch } from 'element-plus'
+import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import { Theme } from '@/enum'
-import { useThemeStore } from '@/store'
+import { Theme, Lang } from '@/enum'
+import { useThemeStore, useLangStore } from '@/store'
 
 const themeStore = useThemeStore()
+
+const langStore = useLangStore()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -22,6 +24,20 @@ const theme = ref<Theme>(themeStore.theme.value)
 const handleThemeChange = (theme: Theme): void => {
   themeStore.setTheme(theme)
 }
+
+/**
+ * 语言
+ */
+const lang = ref<Lang>(langStore.getLang.value)
+
+/**
+ * 语言变化事件
+ *
+ * @param lang 当前语言
+ */
+const handleLangChange = (lang: Lang): void => {
+  langStore.setLang(lang)
+}
 </script>
 
 <template>
@@ -35,6 +51,15 @@ const handleThemeChange = (theme: Theme): void => {
     </el-divider>
     <div class="w-full text-center">
       <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
+    </div>
+
+    <el-divider>
+      <h4 class="font-bold">国际化</h4>
+    </el-divider>
+    <div class="w-full text-center">
+      <el-select v-model="lang" name="lang" placeholder="" @change="handleLangChange">
+        <el-option v-for="item in Lang" :key="item" :label="item" :value="item" />
+      </el-select>
     </div>
   </el-drawer>
 </template>

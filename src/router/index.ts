@@ -154,8 +154,19 @@ const router = createRouter({
       name: '关于',
       path: '/about',
       component: () => import('@/views/AboutPage.vue'),
+      meta: { title: '' },
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition !== null) {
+      return savedPosition
+    } else {
+      return {
+        top: 0,
+        behavior: 'smooth',
+      }
+    }
+  },
 })
 
 router.beforeEach((to) => {

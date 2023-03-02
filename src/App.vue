@@ -16,7 +16,11 @@ dayjs.locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 <template>
   <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en">
     <layout-container>
-      <router-view />
+      <router-view v-slot="{ Component, route }">
+        <transition name="fade">
+          <component :is="Component" :key="route.path" />
+        </transition>
+      </router-view>
     </layout-container>
   </el-config-provider>
 </template>

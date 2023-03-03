@@ -5,5 +5,3 @@ export * from './generate-link'
 export * from './fake-data'
 
 export * from './browser-info'
-
-export * from './router-name'

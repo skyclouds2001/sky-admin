@@ -1,6 +1,8 @@
+import layout from './layout'
 import home from './home'
 
 const zhCN = {
+  layout,
   home,
 }
 

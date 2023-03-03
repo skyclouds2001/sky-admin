@@ -150,6 +150,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>二维码</span>
         </el-menu-item>
+        <el-menu-item index="/feature/image-editor">
+          <el-icon><Service /></el-icon>
+          <span>图片编辑器</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 外链 -->

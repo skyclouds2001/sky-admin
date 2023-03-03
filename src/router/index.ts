@@ -169,6 +169,12 @@ const router = createRouter({
           component: () => import('@/views/feature/QrCode.vue'),
           meta: { title: '二维码' },
         },
+        {
+          name: Symbol('/feature/image-editor'),
+          path: '/feature/image-editor',
+          component: () => import('@/views/feature/ImageEditor.vue'),
+          meta: { title: '图片编辑器' },
+        },
       ],
     },
 

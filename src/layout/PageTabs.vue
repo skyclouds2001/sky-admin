@@ -28,7 +28,7 @@ const removeTab = (path: string) => {
   const index = store.tabs.findIndex((v) => v.path === path)
   store.tabs.splice(index, 1)
   if (store.currentTab === path) {
-    store.currentTab = store.tabs[0].path
+    store.currentTab = store.tabs.at(index < store.tabs.length ? index : -1)?.path ?? 'Unknown'
   }
 }
 

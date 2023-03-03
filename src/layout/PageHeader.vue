@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { inject, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
 import { Setting } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
 import { usePagesStore } from '@/store'
+
+const i18n = useI18n()
 
 const store = usePagesStore()
 
@@ -22,7 +25,7 @@ const showSettingDrawer = () => {
 <template>
   <div class="page-header">
     <el-breadcrumb>
-      <el-breadcrumb-item v-for="item in store.pages" :key="item.name" :to="item.path">{{ item.name }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in store.pages" :key="item.name" :to="item.path">{{ i18n.t(`router.${item.path}`) }}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <div class="control-bar">

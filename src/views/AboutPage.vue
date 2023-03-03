@@ -1,60 +1,63 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import packageConfig from '~/package.json'
 import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR_NAME, PROJECT_REPOSITORY } from '@/config'
 import { generateNpmLink } from '@/util'
+
+const i18n = useI18n()
 </script>
 
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
       <template #header>
-        <div class="title">关于</div>
+        <div class="title">{{ i18n.t('about.title') }}</div>
       </template>
       <div class="text-left">{{ PROJECT_DESCRIPTION }}</div>
     </el-card>
 
     <el-card shadow="always">
       <template #header>
-        <div class="title">项目信息</div>
+        <div class="title">{{ i18n.t('about.project.title') }}</div>
       </template>
       <el-descriptions border>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">名称</span>
+            <span class="font-bold">{{ i18n.t('about.project.name') }}</span>
           </template>
           <el-tag>{{ PROJECT_NAME }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">版本</span>
+            <span class="font-bold">{{ i18n.t('about.project.version') }}</span>
           </template>
           <el-tag>{{ PROJECT_VERSION }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">许可证</span>
+            <span class="font-bold">{{ i18n.t('about.project.license') }}</span>
           </template>
           <el-tag>{{ PROJECT_LICENSE }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">作者</span>
+            <span class="font-bold">{{ i18n.t('about.project.author') }}</span>
           </template>
           <el-tag>{{ PROJECT_AUTHOR_NAME }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">GitHub</span>
+            <span class="font-bold">{{ i18n.t('about.project.github') }}</span>
           </template>
-          <el-link type="primary" :href="PROJECT_REPOSITORY" target="_blank" :underline="false">GitHub</el-link>
+          <el-link type="primary" :href="PROJECT_REPOSITORY" target="_blank" :underline="false">{{ i18n.t('about.project.github') }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
 
     <el-card shadow="always">
       <template #header>
-        <div class="title">生产环境依赖</div>
+        <div class="title">{{ i18n.t('about.dependencies') }}</div>
       </template>
       <el-descriptions border>
         <el-descriptions-item v-for="item in Object.entries(packageConfig.dependencies)" :key="item[0]">
@@ -68,7 +71,7 @@ import { generateNpmLink } from '@/util'
 
     <el-card shadow="always">
       <template #header>
-        <div class="title">开发环境依赖</div>
+        <div class="title">{{ i18n.t('about.devDependencies') }}</div>
       </template>
       <el-descriptions border>
         <el-descriptions-item v-for="item in Object.entries(packageConfig.devDependencies)" :key="item[0]">

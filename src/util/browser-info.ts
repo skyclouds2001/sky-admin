@@ -64,7 +64,7 @@ export const generateBrowserInfo = (): BrowserInfo => {
   const platform = ['windows', 'macos', 'linux'].includes(system) ? 'desktop' : ['android', 'ios'].includes(system) || /mobile/g.test(userAgent) ? 'mobile' : 'unknown'
 
   // 内核和载体
-  const [engine = 'unknow', supporter = 'unknow'] = new Map([
+  const [engine = 'unknown', supporter = 'unknown'] = new Map([
     [
       /applewebkit/g.test(userAgent),
       [
@@ -174,7 +174,7 @@ export const generateBrowserInfo = (): BrowserInfo => {
     ]).get(supporter) ?? 'unknown'
 
   // 外壳和外壳版本
-  const [shell = 'none', shellVs = 'unknown'] = new Map([
+  const [shell = 'unknown', shellVs = 'unknown'] = new Map([
     [
       /micromessenger/g.test(userAgent),
       [
@@ -208,7 +208,7 @@ export const generateBrowserInfo = (): BrowserInfo => {
           .replace(/_/g, '.'),
       ],
     ], // [UC浏览器,]
-    [/qihu 360se/g.test(userAgent), ['360', 'unknow']], // [360浏览器(无版本),]
+    [/qihu 360se/g.test(userAgent), ['360', 'unknown']], // [360浏览器(无版本),]
     [
       /2345explorer/g.test(userAgent),
       [
@@ -233,7 +233,7 @@ export const generateBrowserInfo = (): BrowserInfo => {
           .replace(/_/g, '.'),
       ],
     ], // [遨游浏览器,]
-  ]).get(true) ?? ['none', 'unknown']
+  ]).get(true) ?? ['unknown', 'unknown']
 
   return {
     system,

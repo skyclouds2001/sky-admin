@@ -1,12 +1,14 @@
 import layout from './layout'
-import home from './home'
-import about from './about'
 import router from './router'
+import home from './home'
+import feature from './feature'
+import about from './about'
 
 const zhCN = {
   layout,
   router,
   home,
+  feature,
   about,
 }
 

@@ -19,60 +19,60 @@ onBeforeMount(() => {
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
       <template #header>
-        <div class="text-left text-base font-bold">系统信息</div>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.system.title') }}</div>
       </template>
       <el-descriptions border>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">系统</span>
+            <span class="font-bold">{{ i18n.t('home.system.system') }}</span>
           </template>
           <el-tag>{{ browserInfo.system ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">系统版本</span>
+            <span class="font-bold">{{ i18n.t('home.system.systemVs') }}</span>
           </template>
           <el-tag>{{ browserInfo.systemVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">平台</span>
+            <span class="font-bold">{{ i18n.t('home.system.platform') }}</span>
           </template>
           <el-tag>{{ browserInfo.platform ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">内核</span>
+            <span class="font-bold">{{ i18n.t('home.system.engine') }}</span>
           </template>
           <el-tag>{{ browserInfo.engine ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">内核版本</span>
+            <span class="font-bold">{{ i18n.t('home.system.engineVs') }}</span>
           </template>
           <el-tag>{{ browserInfo.engineVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">载体</span>
+            <span class="font-bold">{{ i18n.t('home.system.supporter') }}</span>
           </template>
           <el-tag>{{ browserInfo.supporter ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">载体版本</span>
+            <span class="font-bold">{{ i18n.t('home.system.supporterVs') }}</span>
           </template>
           <el-tag>{{ browserInfo.supporterVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">外壳</span>
+            <span class="font-bold">{{ i18n.t('home.system.shell') }}</span>
           </template>
           <el-tag>{{ browserInfo.shell ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">外壳版本</span>
+            <span class="font-bold">{{ i18n.t('home.system.shellVs') }}</span>
           </template>
           <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
         </el-descriptions-item>
@@ -81,24 +81,24 @@ onBeforeMount(() => {
 
     <el-card shadow="always">
       <template #header>
-        <div class="text-left text-base font-bold">{{ i18n.t('home.author') }}</div>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.author.title') }}</div>
       </template>
       <el-descriptions border>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.name') }}</span>
+            <span class="font-bold">{{ i18n.t('home.author.name') }}</span>
           </template>
           <el-tag>{{ PROJECT_AUTHOR_NAME }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.email') }}</span>
+            <span class="font-bold">{{ i18n.t('home.author.email') }}</span>
           </template>
           <el-tag>{{ PROJECT_AUTHOR_EMAIL }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.website') }}</span>
+            <span class="font-bold">{{ i18n.t('home.author.website') }}</span>
           </template>
           <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ i18n.t('home.website') }}</el-link>
         </el-descriptions-item>

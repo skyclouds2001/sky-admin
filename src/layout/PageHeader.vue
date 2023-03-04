@@ -35,12 +35,12 @@ const showSettingDrawer = () => {
       <div class="fullscreen" @click="toggleFullscreen">
         <el-icon :size="20"><FullScreen /></el-icon>
       </div>
-      <div class="avatar">
-        <el-image :src="PROJECT_AUTHOR_AVATAR" fit="cover" loading="lazy" lazy alt="avatar" />
-      </div>
-      <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
       <div class="settings" @click="showSettingDrawer">
         <el-icon :size="20"><Setting /></el-icon>
+      </div>
+      <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
+      <div class="avatar">
+        <el-image :src="PROJECT_AUTHOR_AVATAR" fit="cover" loading="lazy" lazy alt="avatar" />
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@ import { useThemeStore, useLangStore } from '@/store'
 
 const i18n = useI18n()
 
-const { isGrayMode, toggleGrayMode } = useGrayMode()
+const { isGrayMode } = useGrayMode()
 
 const { isColorWeakness } = useColorWeakness()
 
@@ -77,7 +77,7 @@ const handleLangChange = (lang: Lang): void => {
       <h4 class="font-bold">灰色模式</h4>
     </el-divider>
     <div class="w-full text-center">
-      <el-switch v-model="isGrayMode" inline-prompt name="grey-mode" @change="toggleGrayMode" />
+      <el-switch v-model="isGrayMode" inline-prompt name="grey-mode" />
     </div>
 
     <!-- 色弱模式控件 -->

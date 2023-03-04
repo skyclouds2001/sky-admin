@@ -1,22 +1,17 @@
-import { ref, computed, type ComputedRef } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
 const useGrayMode = (): {
-  isGrayMode: ComputedRef<boolean>
-  toggleGrayMode: () => void
+  isGrayMode: Ref<boolean>
 } => {
   const initial = document.querySelector('html')?.classList.contains('grey-mode') ?? false
-  const status = ref(initial)
+  const isGrayMode = ref(initial)
 
-  const isGrayMode = computed(() => status.value)
-
-  const toggleGrayMode = (): void => {
-    status.value = !status.value
+  watch(isGrayMode, () => {
     document.querySelector('html')?.classList.toggle('grey-mode')
-  }
+  })
 
   return {
     isGrayMode,
-    toggleGrayMode,
   }
 }
 

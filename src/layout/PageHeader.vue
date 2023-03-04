@@ -2,13 +2,16 @@
 import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
-import { Setting } from '@element-plus/icons-vue'
+import { Setting, FullScreen } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
+import { useFullscreen } from '@/hook'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()
 
 const store = usePagesStore()
+
+const { toggleFullscreen } = useFullscreen()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -29,6 +32,9 @@ const showSettingDrawer = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
+      <div class="fullscreen" @click="toggleFullscreen">
+        <el-icon :size="20"><FullScreen /></el-icon>
+      </div>
       <div class="avatar">
         <el-image :src="PROJECT_AUTHOR_AVATAR" fit="cover" loading="lazy" lazy alt="avatar" />
       </div>
@@ -51,6 +57,10 @@ const showSettingDrawer = () => {
 
     > * {
       @apply mx-1;
+    }
+
+    .fullscreen {
+      @apply flex justify-center items-center;
     }
 
     .avatar {

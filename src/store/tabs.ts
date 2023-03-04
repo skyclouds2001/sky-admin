@@ -1,16 +1,7 @@
 import { defineStore } from 'pinia'
+import type { Tab } from '@/model'
 
-/**
- * 标签页数据结构
- */
-export interface Tab {
-  /** 页面名称 */
-  name: string
-  /** 页面路径 */
-  path: string
-}
-
-export const useTabsStore = defineStore('tabs', {
+const useTabsStore = defineStore('tabs', {
   state() {
     return {
       /** 标签页 */
@@ -25,3 +16,5 @@ export const useTabsStore = defineStore('tabs', {
     }
   },
 })
+
+export default useTabsStore

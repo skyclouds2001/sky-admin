@@ -18,7 +18,7 @@ export const PROJECT_VERSION = packageConfig.version
 export const PROJECT_LICENSE = packageConfig.license
 
 /** 项目仓库地址 */
-export const PROJECT_REPOSITORY = packageConfig.repository.url.replace(/git\+|.git/g, '')
+export const PROJECT_REPOSITORY = packageConfig.repository.url.replace(/git\+|\.git/g, '')
 
 /** 项目作者名称 */
 export const PROJECT_AUTHOR_NAME = packageConfig.author.name

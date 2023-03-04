@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
+
+const i18n = useI18n()
 
 const tabsStore = useTabsStore()
 
@@ -37,30 +40,42 @@ watch(
       <!-- 首页 -->
       <el-menu-item index="/">
         <el-icon><HomeFilled /></el-icon>
-        <span>首页</span>
+        <span>{{ i18n.t('router./') }}</span>
       </el-menu-item>
+
+      <!-- 表单 -->
+      <el-sub-menu index="/form">
+        <template #title>
+          <el-icon><Calendar /></el-icon>
+          <span>{{ i18n.t('router./form') }}</span>
+        </template>
+        <el-menu-item index="/form/base">
+          <el-icon><Calendar /></el-icon>
+          <span>{{ i18n.t('router./form/base') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
 
       <!-- 图表 -->
       <el-sub-menu index="/chart">
         <template #title>
           <el-icon><Histogram /></el-icon>
-          <span>图表</span>
+          <span>{{ i18n.t('router./chart') }}</span>
         </template>
         <el-menu-item index="/chart/bar">
           <el-icon><Histogram /></el-icon>
-          <span>柱状图</span>
+          <span>{{ i18n.t('router./chart/bar') }}</span>
         </el-menu-item>
         <el-menu-item index="/chart/line">
           <el-icon><Histogram /></el-icon>
-          <span>折线图</span>
+          <span>{{ i18n.t('router./chart/line') }}</span>
         </el-menu-item>
         <el-menu-item index="/chart/pie">
           <el-icon><Histogram /></el-icon>
-          <span>饼图</span>
+          <span>{{ i18n.t('router./chart/pie') }}</span>
         </el-menu-item>
         <el-menu-item index="/chart/scatter">
           <el-icon><Histogram /></el-icon>
-          <span>散点图</span>
+          <span>{{ i18n.t('router./chart/scatter') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -68,47 +83,47 @@ watch(
       <el-sub-menu index="/route">
         <template #title>
           <el-icon><Menu /></el-icon>
-          <span>嵌套菜单</span>
+          <span>{{ i18n.t('router./route') }}</span>
         </template>
         <el-menu-item index="/route/1">
           <el-icon><Menu /></el-icon>
-          <span>嵌套菜单-1</span>
+          <span>{{ i18n.t('router./route/1') }}</span>
         </el-menu-item>
         <el-sub-menu index="/route/2">
           <template #title>
             <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2</span>
+            <span>{{ i18n.t('router./route/2') }}</span>
           </template>
           <el-menu-item index="/route/2/1">
             <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-1</span>
+            <span>{{ i18n.t('router./route/2/1') }}</span>
           </el-menu-item>
           <el-sub-menu index="/route/2/2">
             <template #title>
               <el-icon><Menu /></el-icon>
-              <span>嵌套菜单-2-2</span>
+              <span>{{ i18n.t('router./route/2/2') }}</span>
             </template>
             <el-menu-item index="/route/2/2/1">
               <el-icon><Menu /></el-icon>
-              <span>嵌套菜单-2-2-1</span>
+              <span>{{ i18n.t('router./route/2/2/1') }}</span>
             </el-menu-item>
             <el-menu-item index="/route/2/2/2">
               <el-icon><Menu /></el-icon>
-              <span>嵌套菜单-2-2-2</span>
+              <span>{{ i18n.t('router./route/2/2/2') }}</span>
             </el-menu-item>
             <el-menu-item index="/route/2/2/3">
               <el-icon><Menu /></el-icon>
-              <span>嵌套菜单-2-2-3</span>
+              <span>{{ i18n.t('router./route/2/2/3') }}</span>
             </el-menu-item>
           </el-sub-menu>
           <el-menu-item index="/route/2/3">
             <el-icon><Menu /></el-icon>
-            <span>嵌套菜单-2-3</span>
+            <span>{{ i18n.t('router./route/2/3') }}</span>
           </el-menu-item>
         </el-sub-menu>
         <el-menu-item index="/route/3">
           <el-icon><Menu /></el-icon>
-          <span>嵌套菜单-3</span>
+          <span>{{ i18n.t('router./route/3') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -116,23 +131,23 @@ watch(
       <el-sub-menu index="/docs">
         <template #title>
           <el-icon><Document /></el-icon>
-          <span>预览文档</span>
+          <span>{{ i18n.t('router./docs') }}</span>
         </template>
         <el-menu-item index="/docs/word-preview">
           <el-icon><Document /></el-icon>
-          <span>Word 预览</span>
+          <span>{{ i18n.t('router./docs/word-preview') }}</span>
         </el-menu-item>
         <el-menu-item index="/docs/excel-preview">
           <el-icon><Document /></el-icon>
-          <span>Excel 预览</span>
+          <span>{{ i18n.t('router./docs/excel-preview') }}</span>
         </el-menu-item>
         <el-menu-item index="/docs/ppt-preview">
           <el-icon><Document /></el-icon>
-          <span>PPT 预览</span>
+          <span>{{ i18n.t('router./docs/ppt-preview') }}</span>
         </el-menu-item>
         <el-menu-item index="/docs/pdf-preview">
           <el-icon><Document /></el-icon>
-          <span>PDF 预览</span>
+          <span>{{ i18n.t('router./docs/pdf-preview') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -140,15 +155,19 @@ watch(
       <el-sub-menu index="/feature">
         <template #title>
           <el-icon><Service /></el-icon>
-          <span>功能</span>
+          <span>{{ i18n.t('router./feature') }}</span>
         </template>
         <el-menu-item index="/feature/bar-code">
           <el-icon><Service /></el-icon>
-          <span>条形码</span>
+          <span>{{ i18n.t('router./feature/bar-code') }}</span>
         </el-menu-item>
         <el-menu-item index="/feature/qrcode">
           <el-icon><Service /></el-icon>
-          <span>二维码</span>
+          <span>{{ i18n.t('router./feature/qrcode') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/image-editor">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/image-editor') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -156,22 +175,30 @@ watch(
       <el-sub-menu index="/link">
         <template #title>
           <el-icon><Link /></el-icon>
-          <span>外链</span>
+          <span>{{ i18n.t('router./link') }}</span>
         </template>
         <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
           <el-icon><Link /></el-icon>
-          <span>Github 仓库</span>
+          <span>{{ i18n.t('router./link/github') }}</span>
         </el-menu-item>
         <el-menu-item index="https://juejin.cn/user/814058986548567">
           <el-icon><Link /></el-icon>
-          <span>掘金主页</span>
+          <span>{{ i18n.t('router./link/juejin') }}</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router./link/vite') }}</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router./link/vue') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
       <!-- 关于 -->
       <el-menu-item index="/about">
         <el-icon><InfoFilled /></el-icon>
-        <span>关于</span>
+        <span>{{ i18n.t('router./about') }}</span>
       </el-menu-item>
 
       <!-- 菜单伸缩状态控制 -->

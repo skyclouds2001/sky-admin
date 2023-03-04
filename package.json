@@ -30,8 +30,10 @@
   "main": "src/main.ts",
   "packageManager": "pnpm@7.27.0",
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=16.0.0",
+    "npm": ">=9.0.0",
+    "yarn": "=1.22.19",
+    "pnpm": "=7.27.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -63,6 +65,7 @@
     "qrcode": "^1.5.1",
     "qs": "^6.11.0",
     "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

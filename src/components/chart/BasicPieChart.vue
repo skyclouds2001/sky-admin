@@ -17,7 +17,7 @@ onMounted(() => {
     .setOption<EchartsOptions>({
       title: {
         show: true,
-        text: 'Referer of a Website',
+        text: 'Simple Pie Chart',
         left: 'center',
         top: 'top',
         textStyle: {

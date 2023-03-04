@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard } from 'element-plus'
 import QrCode from 'qrcode'
+
+const i18n = useI18n()
 
 onMounted(() => {
   QrCode.toCanvas(document.getElementById('simple-qrcode'), '0123456789')
@@ -23,28 +26,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-space size="large" alignment="start" class="w-full p-4">
+  <el-space size="large" class="w-full p-4">
     <el-card shadow="always">
       <template #header>
-        <div class="text-center text-base font-bold">基础二维码</div>
+        <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.base') }}</div>
       </template>
       <canvas id="simple-qrcode"></canvas>
     </el-card>
     <el-card shadow="always">
       <template #header>
-        <div class="text-center text-base font-bold">图片二维码</div>
+        <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.image') }}</div>
       </template>
-      <img id="img-qrcode" alt="" />
+      <img id="img-qrcode" src="" alt="" />
     </el-card>
     <el-card shadow="always">
       <template #header>
-        <div class="text-center text-base font-bold">二维码大小</div>
+        <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.size') }}</div>
       </template>
       <canvas id="qrcode-size"></canvas>
     </el-card>
     <el-card shadow="always">
       <template #header>
-        <div class="text-center text-base font-bold">二维码样式</div>
+        <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.style') }}</div>
       </template>
       <canvas id="qrcode-style"></canvas>
     </el-card>

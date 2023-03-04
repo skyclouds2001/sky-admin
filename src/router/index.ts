@@ -194,6 +194,14 @@ const router = createRouter({
       ],
     },
 
+    // 外链
+    {
+      name: Symbol('/link/:to'),
+      path: '/link/:to',
+      component: () => import('@/views/link/LinkPage.vue'),
+      meta: { title: '外链' },
+    },
+
     // 关于
     {
       name: Symbol('/about'),
@@ -215,8 +223,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  // 检测是否为外链
-  if (to.path.includes('http')) {
+  // 检测是否为外链（非内链）
+  if (to.path.includes('https://')) {
     openNewPageInNewTab(to.path.slice(1))
     return false
   }

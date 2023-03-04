@@ -1,5 +1,7 @@
 const router = {
   '/': '首页',
+  '/form': '表单',
+  '/form/base': '基础表单',
   '/chart': '图表',
   '/chart/bar': '柱状图',
   '/chart/line': '折线图',

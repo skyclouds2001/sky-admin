@@ -14,6 +14,22 @@ const router = createRouter({
       meta: { title: '首页' },
     },
 
+    // 表单
+    {
+      name: Symbol('/form'),
+      path: '/form',
+      redirect: '/form/base',
+      meta: { title: '表单' },
+      children: [
+        {
+          name: Symbol('/form/base'),
+          path: '/form/base',
+          component: () => import('@/views/form/BaseForm.vue'),
+          meta: { title: '基础表单' },
+        },
+      ],
+    },
+
     // 图表
     {
       name: Symbol('/chart'),

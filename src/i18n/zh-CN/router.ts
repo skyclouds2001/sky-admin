@@ -26,9 +26,20 @@ const router = {
   '/feature/bar-code': '条形码',
   '/feature/qrcode': '二维码',
   '/feature/image-editor': '图片编辑器',
-  '/link': '外链',
-  '/link/github': 'GitHub',
-  '/link/juejin': '掘金',
+  '/link': '链接',
+  '/link/github': 'GitHub (外链)',
+  '/link/juejin': '掘金 (外链)',
+  '/link/vite': 'Vite (内链)',
+  '/link/vue': 'Vue (内链)',
+  '/link/:to': '内链',
+  '/link/https%3A%2F%2Fcn': {
+    vitejs: {
+      'dev%2F': 'Vite',
+    },
+    vuejs: {
+      'org%2F': 'Vue',
+    },
+  },
   '/about': '关于',
 }
 

@@ -194,12 +194,20 @@ const router = createRouter({
       ],
     },
 
-    // 外链
+    // 链接
     {
-      name: Symbol('/link/:to'),
-      path: '/link/:to',
-      component: () => import('@/views/link/LinkPage.vue'),
-      meta: { title: '外链' },
+      name: Symbol('/link'),
+      path: '/link',
+      redirect: '/',
+      meta: { title: '链接' },
+      children: [
+        {
+          name: Symbol('/link/:to'),
+          path: '/link/:to',
+          component: () => import('@/views/link/LinkPage.vue'),
+          meta: { title: '链接' },
+        },
+      ],
     },
 
     // 关于

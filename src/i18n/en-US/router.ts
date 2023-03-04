@@ -27,8 +27,19 @@ const router = {
   '/feature/qrcode': 'QRCode',
   '/feature/image-editor': 'Image Editor',
   '/link': 'Link',
-  '/link/github': 'GitHub',
-  '/link/juejin': 'JueJin',
+  '/link/github': 'GitHub (External Link)',
+  '/link/juejin': 'JueJin (External Link)',
+  '/link/vite': 'Vite (Internal Link)',
+  '/link/vue': 'Vue (Internal Link)',
+  '/link/:to': 'Internal Link',
+  '/link/https%3A%2F%2Fcn': {
+    vitejs: {
+      'dev%2F': 'Vite',
+    },
+    vuejs: {
+      'org%2F': 'Vue',
+    },
+  },
   '/about': 'About',
 }
 

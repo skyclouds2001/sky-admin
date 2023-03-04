@@ -185,13 +185,13 @@ watch(
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/juejin') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://vitejs.dev/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}`">
           <el-icon><Link /></el-icon>
-          <span>Vite(内链)</span>
+          <span>{{ i18n.t('router./link/vite') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://vuejs.org/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}`">
           <el-icon><Link /></el-icon>
-          <span>Vue(内链)</span>
+          <span>{{ i18n.t('router./link/vue') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

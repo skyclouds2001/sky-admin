@@ -47,11 +47,11 @@ watch(
       <el-sub-menu index="/form">
         <template #title>
           <el-icon><Calendar /></el-icon>
-          <span>表单</span>
+          <span>{{ i18n.t('router./form') }}</span>
         </template>
         <el-menu-item index="/form/base">
           <el-icon><Calendar /></el-icon>
-          <span>基础表单</span>
+          <span>{{ i18n.t('router./form/base') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

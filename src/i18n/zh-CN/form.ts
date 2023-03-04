@@ -1,0 +1,32 @@
+const form = {
+  basic: {
+    name: '姓名',
+    name_placeholder: '请填写姓名',
+    sex: '性别',
+    sex_male: '男',
+    sex_female: '女',
+    age: '年龄',
+    age_placeholder: '请填写年龄',
+    area: '地区',
+    area_placeholder: '请选择所在地区',
+    area_beijing: '北京',
+    area_shanghai: '上海',
+    date_time: '日期时间',
+    date: '日期',
+    date_placeholder: '请选择日期',
+    time: '时间',
+    time_placeholder: '请选择时间',
+    rate: '星级',
+    score: '分数',
+    choice: '选项',
+    choice_service: '服务到位',
+    choice_device: '设备良好',
+    choice_environment: '环境优异',
+    private: '保密',
+    color: '颜色',
+    note: '备注',
+    note_placeholder: '请填写备注',
+  },
+}
+
+export default form

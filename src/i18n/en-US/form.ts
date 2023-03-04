@@ -1,0 +1,32 @@
+const form = {
+  basic: {
+    name: 'Name',
+    name_placeholder: 'Please input name',
+    sex: 'Sex',
+    sex_male: 'Male',
+    sex_female: 'Female',
+    age: 'Age',
+    age_placeholder: 'Please input age',
+    area: 'Area',
+    area_placeholder: 'Please select area',
+    area_beijing: 'Beijing',
+    area_shanghai: 'Shanghai',
+    date_time: 'Date & Time',
+    date: 'Date',
+    date_placeholder: 'Please select date',
+    time: 'Time',
+    time_placeholder: 'Please select time',
+    rate: 'Rate',
+    score: 'Score',
+    choice: 'Choice',
+    choice_service: 'Great Service',
+    choice_device: 'Great Device',
+    choice_environment: 'Great Environment',
+    private: 'Private',
+    color: 'Color',
+    note: 'Note',
+    note_placeholder: 'Please input note',
+  },
+}
+
+export default form

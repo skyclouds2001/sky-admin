@@ -4,9 +4,12 @@ import { useI18n } from 'vue-i18n'
 import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
+import { useGrayMode } from '@/hook'
 import { useThemeStore, useLangStore } from '@/store'
 
 const i18n = useI18n()
+
+const { isGrayMode, toggleGrayMode } = useGrayMode()
 
 const themeStore = useThemeStore()
 
@@ -65,6 +68,14 @@ const handleLangChange = (lang: Lang): void => {
       <el-select v-model="lang" name="lang" placeholder="" @change="handleLangChange">
         <el-option v-for="item in Lang" :key="item" :label="item" :value="item" />
       </el-select>
+    </div>
+
+    <!-- 灰色模式控件 -->
+    <el-divider>
+      <h4 class="font-bold">灰色模式</h4>
+    </el-divider>
+    <div class="w-full text-center">
+      <el-switch v-model="isGrayMode" inline-prompt name="grey-mode" @change="toggleGrayMode" />
     </div>
   </el-drawer>
 </template>

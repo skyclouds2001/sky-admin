@@ -6,13 +6,20 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'get',
     statusCode: 200,
-    response: {
-      success: true,
-      code: 0,
-      message: 'success',
-      data: {
-        articles,
-      },
+    response: ({ query: { page, size } }: { query: Record<'page' | 'size', string> }) => {
+      const p = parseInt(page)
+      const s = parseInt(size)
+      return {
+        success: true,
+        code: 0,
+        message: 'success',
+        data: {
+          articles: articles.slice((p - 1) * s, s),
+          total: articles.length,
+          page: p,
+          size: s,
+        },
+      }
     },
   },
 ]

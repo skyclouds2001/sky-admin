@@ -9,4 +9,4 @@ import type { Response, Article } from '@/model'
  * @param data.size 页面容量
  * @returns 文章列表数据
  */
-export const getArticles = ({ page, size }: { page: number; size: number }): Promise<Response<{ articles: Article[] }>> => http.get(`/api/article?page=${page}&size=${size}`).then((res) => res.data)
+export const getArticles = ({ page, size }: { page: number; size: number }): Promise<Response<{ articles: Article[]; total: number }>> => http.get(`/api/article?page=${page}&size=${size}`).then((res) => res.data)

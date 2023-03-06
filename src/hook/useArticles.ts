@@ -4,10 +4,13 @@ import type { Article } from '@/model'
 
 const useArticles = (): {
   articles: Ref<Article[]>
+  total: Ref<number>
   page: Ref<number>
   size: Ref<number>
 } => {
   const articles = ref<Article[]>([])
+
+  const total = ref(0)
 
   const page = ref(1)
 
@@ -23,6 +26,7 @@ const useArticles = (): {
         })
         if (res.success) {
           articles.value = res.data.articles
+          total.value = res.data.total
         } else {
           console.error(res.code, res.message)
         }
@@ -37,6 +41,7 @@ const useArticles = (): {
 
   return {
     articles,
+    total,
     page,
     size,
   }

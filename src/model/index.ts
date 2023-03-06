@@ -6,4 +6,6 @@ export type { default as Data } from './data'
 
 export type { default as BrowserInfo } from './browser-info'
 
+export type { default as Response } from './response'
+
 export type { default as Article } from './article'

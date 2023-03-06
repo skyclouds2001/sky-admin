@@ -1,8 +1,9 @@
 import type { MockMethod as Mock } from 'vite-plugin-mock'
+import { articles } from '@/data'
 
 const mocks: Mock[] = [
   {
-    url: '/api/test',
+    url: '/api/article',
     method: 'get',
     statusCode: 200,
     response: {
@@ -10,7 +11,7 @@ const mocks: Mock[] = [
       code: 0,
       message: 'success',
       data: {
-        name: 'hello',
+        articles,
       },
     },
   },

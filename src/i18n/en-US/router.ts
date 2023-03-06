@@ -1,5 +1,7 @@
 const router = {
   '/': 'Home',
+  '/table': 'Table',
+  '/table/base': 'Base Table',
   '/form': 'Form',
   '/form/base': 'Base Form',
   '/chart': 'Chart',

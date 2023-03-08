@@ -31,7 +31,7 @@ const removeArticle = (id: number) => {
     <el-table-column prop="read" label="阅读数" width="100" align="center" />
     <el-table-column prop="star" label="星级" width="100" align="center">
       <template #default="scope">
-        <el-rate v-model="scope.row.star" allow-half disabled />
+        <el-rate v-model="scope.row.star" disabled />
       </template>
     </el-table-column>
     <el-table-column prop="status" label="状态" width="100" align="center">

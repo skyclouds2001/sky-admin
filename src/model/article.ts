@@ -15,7 +15,7 @@ interface Article {
   /** 文章审核人 */
   reviewer: string
   /** 文章星级 */
-  star: number
+  star: 0 | 1 | 2 | 3 | 4 | 5
   /** 文章阅读量 */
   read: number
   /** 文章状态 */

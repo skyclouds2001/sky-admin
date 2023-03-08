@@ -6,18 +6,17 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'get',
     statusCode: 200,
-    response: ({ query: { page, size } }: { query: Record<'page' | 'size', string> }) => {
-      const p = parseInt(page)
-      const s = parseInt(size)
+    response: ({ query: { page, size, name } }: { query: Record<'page' | 'size' | 'name', string> }) => {
+      const data = articles.filter((v) => v.title.includes(name))
       return {
         success: true,
         code: 0,
         message: 'success',
         data: {
-          articles: articles.slice((p - 1) * s, s),
-          total: articles.length,
-          page: p,
-          size: s,
+          articles: data.slice((parseInt(page) - 1) * parseInt(size), parseInt(size)),
+          total: data.length,
+          page: parseInt(page),
+          size: parseInt(size),
         },
       }
     },

@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { ElSpace, ElPagination } from 'element-plus'
 import ArticleTable from '@/components/table/ArticleTable.vue'
+import ArticleSearch from '@/components/table/ArticleSearch.vue'
 import { useArticles } from '@/hook'
 
-const { articles, page, size } = useArticles()
-
-const total = computed(() => articles.value.length)
+const { articles, page, size, total, handleSearch } = useArticles()
 </script>
 
 <template>
   <el-space direction="vertical" fill size="large" class="base-table-space p-5">
     <!-- 搜索框部分 -->
-    <div>search</div>
+    <article-search @search="handleSearch" />
 
     <!-- 表格部分 -->
     <article-table :articles="articles" />

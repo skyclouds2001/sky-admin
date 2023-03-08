@@ -8,9 +8,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  (config) => {
-    return config
-  },
+  (config) => config,
   (error) => Promise.reject(error)
 )
 

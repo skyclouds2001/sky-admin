@@ -1,15 +1,12 @@
 <script setup lang="ts">
 /**
- * 图片编辑器预览地址
- *
  * @see https://github.com/nihaojob/vue-fabric-editor
  * @see https://juejin.cn/user/3843548383549214
  */
-const ImageEditorUrl = 'https://nihaojob.github.io/vue-fabric-editor/'
 </script>
 
 <template>
-  <iframe class="image-editor" name="image-editor" title="image-editor" referrerpolicy="no-referrer" :src="ImageEditorUrl"></iframe>
+  <iframe class="image-editor" name="image-editor" title="image-editor" referrerpolicy="no-referrer" src="https://nihaojob.github.io/vue-fabric-editor/"></iframe>
 </template>
 
 <style scoped lang="scss">

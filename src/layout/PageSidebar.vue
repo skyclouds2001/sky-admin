@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
@@ -42,6 +42,18 @@ watch(
         <el-icon><HomeFilled /></el-icon>
         <span>{{ i18n.t('router./') }}</span>
       </el-menu-item>
+
+      <!-- 表格 -->
+      <el-sub-menu index="/table">
+        <template #title>
+          <el-icon><List /></el-icon>
+          <span>{{ i18n.t('router./table') }}</span>
+        </template>
+        <el-menu-item index="/table/base">
+          <el-icon><List /></el-icon>
+          <span>{{ i18n.t('router./table/base') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
 
       <!-- 表单 -->
       <el-sub-menu index="/form">

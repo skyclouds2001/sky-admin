@@ -34,25 +34,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.light {
-  --title-text-color: #111;
-  --desc-text-color: #333;
-  --page-bg-color: #ddd;
-  --container-bg-color: #fff;
-}
-
-.dark {
-  --title-text-color: #eee;
-  --desc-text-color: #ccc;
-  --page-bg-color: #000;
-  --container-bg-color: #222;
-}
-
-.grey-mode {
-  filter: grayscale(100%) !important;
-}
-
-.color-weakness {
-  filter: invert(80%) !important;
-}

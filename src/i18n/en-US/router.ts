@@ -28,6 +28,8 @@ const router = {
   '/feature/bar-code': 'Bar Code',
   '/feature/qrcode': 'QRCode',
   '/feature/image-editor': 'Image Editor',
+  '/feature/encode-decode': 'Encode',
+  '/feature/encrypt-decrypt': 'Crypto',
   '/link': 'Link',
   '/link/github': 'GitHub (External Link)',
   '/link/juejin': 'JueJin (External Link)',

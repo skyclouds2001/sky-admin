@@ -181,6 +181,14 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/image-editor') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/encode-decode">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/encode-decode') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/encrypt-decrypt">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/encrypt-decrypt') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 外链 -->

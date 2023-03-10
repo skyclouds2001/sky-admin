@@ -207,6 +207,18 @@ const router = createRouter({
           component: () => import('@/views/feature/ImageEditor.vue'),
           meta: { title: '图片编辑器' },
         },
+        {
+          name: Symbol('/feature/encode-decode'),
+          path: '/feature/encode-decode',
+          component: () => import('@/views/feature/EncodeDecode.vue'),
+          meta: { title: '编码' },
+        },
+        {
+          name: Symbol('/feature/encrypt-decrypt'),
+          path: '/feature/encrypt-decrypt',
+          component: () => import('@/views/feature/EncryptDecrypt.vue'),
+          meta: { title: '密码' },
+        },
       ],
     },
 

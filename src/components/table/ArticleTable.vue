@@ -26,13 +26,13 @@ const removeArticle = (id: number) => {
   <el-table :data="props.articles" stripe border flexible>
     <el-table-column type="selection" width="50" align="center" fixed />
     <el-table-column prop="id" :label="i18n.t('table.table.id')" width="100" align="center" />
-    <el-table-column prop="title" :label="i18n.t('table.table.title')" width="150" align="center" />
+    <el-table-column prop="title" :label="i18n.t('table.table.title')" width="200" align="center" />
     <el-table-column prop="author" :label="i18n.t('table.table.author')" width="100" align="center" />
     <el-table-column prop="country" :label="i18n.t('table.table.country')" width="100" align="center" />
     <el-table-column prop="reviewer" :label="i18n.t('table.table.reviewer')" width="100" align="center" />
     <el-table-column prop="time" :label="i18n.t('table.table.time')" width="200" align="center" />
     <el-table-column prop="read" :label="i18n.t('table.table.read')" width="100" align="center" />
-    <el-table-column prop="star" :label="i18n.t('table.table.star')" width="100" align="center">
+    <el-table-column prop="star" :label="i18n.t('table.table.star')" width="150" align="center">
       <template #default="scope">
         <el-rate v-model="scope.row.star" disabled />
       </template>
@@ -43,7 +43,7 @@ const removeArticle = (id: number) => {
         <el-tag v-if="scope.row.status === 'published'" type="success">{{ i18n.t('table.table.status_published') }}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column :label="i18n.t('table.table.operate')" width="250" align="center" fixed="right">
+    <el-table-column :label="i18n.t('table.table.operate')" width="300" align="center" fixed="right">
       <template #default="scope">
         <el-button type="primary" @click="editArticle(scope.row.id)">{{ i18n.t('table.table.operate_edit') }}</el-button>
         <el-button v-if="scope.row.status === 'drafted'" type="success" @click="toggleArticleStatus(scope.row.id)">{{ i18n.t('table.table.operate_published') }}</el-button>

@@ -42,12 +42,12 @@ const decodeHex = () => {
       <div class="text-left text-base font-bold">Hex</div>
     </template>
     <el-space size="large">
-      <el-input v-model="rawHex" type="textarea" :rows="5" resize="none" placeholder="请输入待编码的Hex原文" name="rawBase64" label="rawBase64" />
+      <el-input v-model="rawHex" type="textarea" :rows="5" resize="none" placeholder="请输入待编码的Hex原文" name="rawHex" label="rawHex" />
       <el-space direction="vertical" size="large">
         <el-button @click="encodeHex">编码</el-button>
         <el-button @click="decodeHex">解密</el-button>
       </el-space>
-      <el-input v-model="cipherHex" type="textarea" :rows="5" resize="none" placeholder="请输入待解码的Hex密文" name="cipherBase64" label="cipherBase64" />
+      <el-input v-model="cipherHex" type="textarea" :rows="5" resize="none" placeholder="请输入待解码的Hex密文" name="cipherHex" label="cipherHex" />
     </el-space>
   </el-card>
 </template>

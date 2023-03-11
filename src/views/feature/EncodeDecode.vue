@@ -3,6 +3,7 @@ import { ElSpace } from 'element-plus'
 import EncoderDecoder from '@/components/feature/EncoderDecoder.vue'
 import HashAlgorithm from '@/components/feature/HashAlgorithm.vue'
 import HMACAlgorithm from '@/components/feature/HMACAlgorithm.vue'
+import PBKDF2Algorithm from '@/components/feature/PBKDF2Algorithm.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import HMACAlgorithm from '@/components/feature/HMACAlgorithm.vue'
     <encoder-decoder />
     <hash-algorithm />
     <h-m-a-c-algorithm />
+    <p-b-k-d-f2-algorithm />
   </el-space>
 </template>
 

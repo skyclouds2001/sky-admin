@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { ElSpace, ElCard, ElInput, ElButton, ElSelect, ElOption } from 'element-plus'
 import CryptoJS from 'crypto-js'
 
-const types = Object.keys(CryptoJS).filter((v) => /^(MD|SHA)/.test(v)) as Array<Extract<keyof typeof CryptoJS, `MD${number}` | `SHA${number}` | `RIPEMD${number}`>>
+const types = Object.keys(CryptoJS).filter((v) => /^(MD|SHA|RIPEMD)/.test(v)) as Array<Extract<keyof typeof CryptoJS, `MD${number}` | `SHA${number}` | `RIPEMD${number}`>>
 
 /**
  * 原文

@@ -6,6 +6,7 @@ const about = {
     version: 'Version',
     license: 'License',
     author: 'Author',
+    'build-time': 'Build Time',
     github: 'GitHub',
   },
   dependencies: 'Dependencies',

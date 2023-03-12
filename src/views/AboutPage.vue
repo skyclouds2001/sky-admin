@@ -6,6 +6,8 @@ import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PR
 import { generateNpmLink } from '@/util'
 
 const i18n = useI18n()
+
+const BUILD_TIME = window.__BUILD_TIME__
 </script>
 
 <template>
@@ -45,6 +47,12 @@ const i18n = useI18n()
             <span class="font-bold">{{ i18n.t('about.project.author') }}</span>
           </template>
           <el-tag>{{ PROJECT_AUTHOR_NAME }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('about.project.build-time') }}</span>
+          </template>
+          <el-tag>{{ BUILD_TIME }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>

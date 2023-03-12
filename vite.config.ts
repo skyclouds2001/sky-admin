@@ -9,6 +9,8 @@ import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
 
+import generateBuildTime from './plugin/generate-build-time'
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -31,6 +33,7 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
     }),
+    generateBuildTime(),
   ],
   css: {
     postcss: 'postcss.config.js',

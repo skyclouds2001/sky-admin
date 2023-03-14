@@ -6,6 +6,7 @@ const about = {
     version: '版本',
     license: '许可证',
     author: '作者',
+    'build-time': '构建时间',
     github: 'GitHub',
   },
   dependencies: '生产环境依赖',

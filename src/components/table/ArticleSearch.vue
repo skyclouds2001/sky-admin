@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
 import { Search, Download } from '@element-plus/icons-vue'
+
+const i18n = useI18n()
 
 const emits = defineEmits<{
   (e: 'search', search: { name: string }): void
@@ -24,11 +27,11 @@ const handleExport = () => {
 <template>
   <el-form :model="search" inline>
     <el-form-item label="">
-      <el-input v-model="search.name" name="name" label="名称" placeholder="请输入书籍名称" clearable />
+      <el-input v-model="search.name" name="name" :label="i18n.t('table.search.name_label')" :placeholder="i18n.t('table.search.name_placeholder')" clearable />
     </el-form-item>
     <el-form-item label="">
-      <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-      <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
+      <el-button type="primary" :icon="Search" @click="handleSearch">{{ i18n.t('table.search.search') }}</el-button>
+      <el-button type="primary" :icon="Download" @click="handleExport">{{ i18n.t('table.search.export') }}</el-button>
     </el-form-item>
   </el-form>
 </template>

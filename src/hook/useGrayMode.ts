@@ -3,11 +3,14 @@ import { ref, watch, type Ref } from 'vue'
 const useGrayMode = (): {
   isGrayMode: Ref<boolean>
 } => {
-  const initial = document.querySelector('html')?.classList.contains('grey-mode') ?? false
-  const isGrayMode = ref(initial)
+  const isGrayMode = ref(document.documentElement.classList.contains('grey-mode'))
 
-  watch(isGrayMode, () => {
-    document.querySelector('html')?.classList.toggle('grey-mode')
+  watch(isGrayMode, (current) => {
+    if (current) {
+      document.documentElement.classList.add('grey-mode')
+    } else {
+      document.documentElement.classList.remove('grey-mode')
+    }
   })
 
   return {

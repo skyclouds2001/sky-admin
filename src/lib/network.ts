@@ -1,3 +1,5 @@
+/* eslint-disable promise/no-promise-in-callback */
+
 import axios from 'axios'
 import { SERVER_HOST } from '@/config'
 

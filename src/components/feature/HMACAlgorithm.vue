@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElInput, ElButton, ElSelect, ElOption, ElForm, ElFormItem } from 'element-plus'
 import CryptoJS from 'crypto-js'
+
+const i18n = useI18n()
 
 const types = Object.keys(CryptoJS).filter((v) => /^Hmac/.test(v)) as Array<Extract<keyof typeof CryptoJS, `Hmac${string}`>>
 
@@ -47,31 +50,31 @@ const hash = () => {
 <template>
   <el-card shadow="always">
     <template #header>
-      <div class="text-left text-base font-bold">密钥哈希</div>
+      <div class="text-left text-base font-bold">{{ i18n.t('feature.hmac.title') }}</div>
     </template>
     <el-space size="large">
       <el-space direction="vertical" size="large">
-        <el-input v-model="raw" type="textarea" :rows="8" resize="none" placeholder="请输入待计算哈希的原文" name="raw" label="raw" />
-        <el-input v-model="key" placeholder="请输入密钥" name="key" label="key" />
+        <el-input v-model="raw" type="textarea" :rows="8" resize="none" :placeholder="i18n.t('feature.hmac.raw_placeholder')" name="raw" label="raw" />
+        <el-input v-model="key" :placeholder="i18n.t('feature.hmac.key_placeholder')" name="key" label="key" />
       </el-space>
       <el-space direction="vertical" size="large">
         <el-form>
-          <el-form-item label="哈希类型">
-            <el-select v-model="type" name="type" placeholder="请选择密钥哈希类型">
+          <el-form-item :label="i18n.t('feature.hmac.type')">
+            <el-select v-model="type" name="type" :placeholder="i18n.t('feature.hmac.type_placeholder')">
               <el-option v-for="item in types" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
-          <el-form-item label="编码方式">
-            <el-select v-model="encode" name="encode" placeholder="请选择编码方式">
+          <el-form-item :label="i18n.t('feature.hmac.encode')">
+            <el-select v-model="encode" name="encode" :placeholder="i18n.t('feature.hmac.encode_placeholder')">
               <el-option v-for="item in encodes" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="hash">计算</el-button>
+            <el-button @click="hash">{{ i18n.t('feature.hmac.operate') }}</el-button>
           </el-form-item>
         </el-form>
       </el-space>
-      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" placeholder="点击计算按钮以显示哈希值" name="cipher" label="cipher" readonly />
+      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.hmac.cipher_placeholder')" name="cipher" label="cipher" readonly />
     </el-space>
   </el-card>
 </template>

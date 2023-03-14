@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElInput, ElButton, ElSelect, ElOption, ElForm, ElFormItem } from 'element-plus'
 import CryptoJS from 'crypto-js'
+
+const i18n = useI18n()
 
 const types = Object.keys(CryptoJS.enc) as Array<keyof typeof CryptoJS.enc>
 
@@ -46,26 +49,26 @@ const encode = () => {
 <template>
   <el-card shadow="always">
     <template #header>
-      <div class="text-left text-base font-bold">编码与解码</div>
+      <div class="text-left text-base font-bold">{{ i18n.t('feature.encode.title') }}</div>
     </template>
     <el-space size="large">
-      <el-input v-model="raw" type="textarea" :rows="10" resize="none" placeholder="请输入待编码的原文" name="raw" label="raw" />
+      <el-input v-model="raw" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.encode.raw_placeholder')" name="raw" label="raw" />
       <el-space direction="vertical" size="large">
         <el-form>
-          <el-form-item label="编码类型">
-            <el-select v-model="type" name="type" placeholder="请选择编码类型">
+          <el-form-item :label="i18n.t('feature.encode.type')">
+            <el-select v-model="type" name="type" :placeholder="i18n.t('feature.encode.type_placeholder')">
               <el-option v-for="item in types" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="encode">编码</el-button>
+            <el-button @click="encode">{{ i18n.t('feature.encode.encode') }}</el-button>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="decode">解码</el-button>
+            <el-button @click="decode">{{ i18n.t('feature.encode.decode') }}</el-button>
           </el-form-item>
         </el-form>
       </el-space>
-      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" placeholder="请输入待解码的密文" name="cipher" label="cipher" />
+      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.encode.cipher_placeholder')" name="cipher" label="cipher" />
     </el-space>
   </el-card>
 </template>

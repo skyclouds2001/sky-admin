@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElInput, ElButton, ElSelect, ElOption, ElForm, ElFormItem } from 'element-plus'
 import CryptoJS from 'crypto-js'
+
+const i18n = useI18n()
 
 const types = ['AES', 'DES', 'TripleDES', 'Rabbit', 'RC4', 'RC4Drop'] as const
 
@@ -64,36 +67,36 @@ const decrypt = () => {
 <template>
   <el-card shadow="always">
     <template #header>
-      <div class="text-left text-base font-bold">密码</div>
+      <div class="text-left text-base font-bold">{{ i18n.t('feature.crypto.title') }}</div>
     </template>
     <el-space size="large">
-      <el-input v-model="raw" type="textarea" :rows="10" resize="none" placeholder="请输入待加密的原文" name="raw" label="raw" />
+      <el-input v-model="raw" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.crypto.raw_placeholder')" name="raw" label="raw" />
       <el-space direction="vertical" size="large">
         <el-form>
-          <el-form-item label="类型">
-            <el-select v-model="type" name="type" placeholder="请选择密码类型">
+          <el-form-item :label="i18n.t('feature.crypto.type')">
+            <el-select v-model="type" name="type" :placeholder="i18n.t('feature.crypto.type_placeholder')">
               <el-option v-for="item in types" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
-          <el-form-item label="模式">
-            <el-select v-model="mode" name="mode" placeholder="请选择密码模式">
+          <el-form-item :label="i18n.t('feature.crypto.mode')">
+            <el-select v-model="mode" name="mode" :placeholder="i18n.t('feature.crypto.mode_placeholder')">
               <el-option v-for="item in modes" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
-          <el-form-item label="填充方案">
-            <el-select v-model="pad" name="pad" placeholder="请选择密码填充方案">
+          <el-form-item :label="i18n.t('feature.crypto.pad')">
+            <el-select v-model="pad" name="pad" :placeholder="i18n.t('feature.crypto.pad_placeholder')">
               <el-option v-for="item in pads" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="encrypt">加密</el-button>
+            <el-button @click="encrypt">{{ i18n.t('feature.crypto.encrypt') }}</el-button>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="decrypt">解密</el-button>
+            <el-button @click="decrypt">{{ i18n.t('feature.crypto.decrypt') }}</el-button>
           </el-form-item>
         </el-form>
       </el-space>
-      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" placeholder="请输入待解密的密文" name="cipher" label="cipher" />
+      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.crypto.cipher_placeholder')" name="cipher" label="cipher" />
     </el-space>
   </el-card>
 </template>

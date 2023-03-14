@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElInput, ElButton, ElSelect, ElOption, ElForm, ElFormItem } from 'element-plus'
 import CryptoJS from 'crypto-js'
+
+const i18n = useI18n()
 
 const types = Object.keys(CryptoJS).filter((v) => /^(MD|SHA|RIPEMD)/.test(v)) as Array<Extract<keyof typeof CryptoJS, `MD${number}` | `SHA${number}` | `RIPEMD${number}`>>
 
@@ -42,28 +45,28 @@ const hash = () => {
 <template>
   <el-card shadow="always">
     <template #header>
-      <div class="text-left text-base font-bold">哈希</div>
+      <div class="text-left text-base font-bold">{{ i18n.t('feature.hash.title') }}</div>
     </template>
     <el-space size="large">
-      <el-input v-model="raw" type="textarea" :rows="10" resize="none" placeholder="请输入计算哈希的原文" name="hash" label="hash" />
+      <el-input v-model="raw" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.hash.raw_placeholder')" name="hash" label="hash" />
       <el-space direction="vertical" size="large">
         <el-form>
-          <el-form-item label="哈希类型">
-            <el-select v-model="type" name="type" placeholder="请选择哈希类型">
+          <el-form-item :label="i18n.t('feature.hash.type')">
+            <el-select v-model="type" name="type" :placeholder="i18n.t('feature.hash.type_placeholder')">
               <el-option v-for="item in types" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
-          <el-form-item label="编码方式">
-            <el-select v-model="encode" name="encode" placeholder="请选择编码方式">
+          <el-form-item :label="i18n.t('feature.hash.encode')">
+            <el-select v-model="encode" name="encode" :placeholder="i18n.t('feature.hash.encode_placeholder')">
               <el-option v-for="item in encodes" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
           <el-form-item label="">
-            <el-button @click="hash">计算</el-button>
+            <el-button @click="hash">{{ i18n.t('feature.hash.operate') }}</el-button>
           </el-form-item>
         </el-form>
       </el-space>
-      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" placeholder="点击计算以显示原文哈希值" name="cipher" label="cipher" readonly />
+      <el-input v-model="cipher" type="textarea" :rows="10" resize="none" :placeholder="i18n.t('feature.hash.cipher_placeholder')" name="cipher" label="cipher" readonly />
     </el-space>
   </el-card>
 </template>

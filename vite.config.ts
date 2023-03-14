@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
+import mkcert from 'vite-plugin-mkcert'
 import ElementPlus from 'unplugin-element-plus/vite'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
@@ -17,6 +18,7 @@ export default defineConfig({
     vueJsx(),
     legacy(),
     mock(),
+    mkcert(),
     ElementPlus({}),
     eslint({
       cache: true,
@@ -35,14 +37,18 @@ export default defineConfig({
     }),
     generateBuildTime(),
   ],
-  css: {
-    postcss: 'postcss.config.js',
-    devSourcemap: true,
-  },
   resolve: {
     alias: {
       '~': __dirname,
       '@': path.resolve(__dirname, './src/'),
     },
+  },
+  css: {
+    devSourcemap: true,
+  },
+  server: {
+    strictPort: true,
+    https: true,
+    open: true,
   },
 })

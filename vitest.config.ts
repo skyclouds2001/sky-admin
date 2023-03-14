@@ -4,19 +4,24 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
+import mkcert from 'vite-plugin-mkcert'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), ElementPlus({})],
-  css: {
-    postcss: 'postcss.config.js',
-    devSourcemap: true,
-  },
+  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), ElementPlus({})],
   resolve: {
     alias: {
       '~': __dirname,
       '@': path.resolve(__dirname, './src/'),
     },
+  },
+  css: {
+    devSourcemap: true,
+  },
+  server: {
+    strictPort: true,
+    https: true,
+    open: true,
   },
   test: {
     root: '.',

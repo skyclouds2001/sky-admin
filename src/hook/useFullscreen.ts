@@ -1,33 +1,51 @@
-import { ref, computed, type ComputedRef } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
 
 const useFullscreen = (): {
   enabledFullscreen: boolean
   isFullscreen: ComputedRef<boolean>
+  openFullscreen: () => void
+  exitFullscreen: () => void
   toggleFullscreen: () => void
 } => {
-  const initial = document.fullscreenElement !== null
-  const status = ref(initial)
+  const status = ref(document.fullscreenElement !== null)
 
   const enabledFullscreen = document.fullscreenEnabled
 
   const isFullscreen = computed(() => status.value)
 
+  const openFullscreen = (): void => {
+    void document.documentElement.requestFullscreen()
+  }
+
+  const exitFullscreen = (): void => {
+    void document.exitFullscreen()
+  }
+
   const toggleFullscreen = (): void => {
-    status.value = !status.value
-    if (status.value) {
+    if (!status.value) {
       void document.documentElement.requestFullscreen()
     } else {
       void document.exitFullscreen()
     }
   }
 
-  document.addEventListener('fullscreenchange', (e) => {
-    console.log(e)
+  const handleFullscreenStatusChange = (): void => {
+    status.value = document.fullscreenElement !== null
+  }
+
+  onMounted(() => {
+    document.addEventListener('fullscreenchange', handleFullscreenStatusChange)
+  })
+
+  onBeforeUnmount(() => {
+    document.removeEventListener('fullscreenchange', handleFullscreenStatusChange)
   })
 
   return {
     enabledFullscreen,
     isFullscreen,
+    openFullscreen,
+    exitFullscreen,
     toggleFullscreen,
   }
 }

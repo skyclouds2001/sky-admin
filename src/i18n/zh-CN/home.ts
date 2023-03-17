@@ -16,6 +16,9 @@ const home = {
     supporterVs: '载体版本',
     shell: '外壳',
     shellVs: '外壳版本',
+    net: '网络情况',
+    online: '在线',
+    offline: '离线',
   },
 }
 

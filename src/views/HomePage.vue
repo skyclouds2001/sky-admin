@@ -3,12 +3,15 @@ import { shallowRef, onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
+import { useOnline } from '@/hook'
 import type { BrowserInfo } from '@/model'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
 
 const browserInfo = shallowRef<BrowserInfo | null>(null)
+
+const { isOnline } = useOnline()
 
 onBeforeMount(() => {
   browserInfo.value = generateBrowserInfo()
@@ -75,6 +78,12 @@ onBeforeMount(() => {
             <span class="font-bold">{{ i18n.t('home.system.shellVs') }}</span>
           </template>
           <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.net') }}</span>
+          </template>
+          <el-tag>{{ isOnline ? i18n.t('home.system.online') : i18n.t('home.system.offline') }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

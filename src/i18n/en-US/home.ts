@@ -16,6 +16,9 @@ const home = {
     supporterVs: 'Supporter Version',
     shell: 'Shell',
     shellVs: 'Shell Version',
+    net: 'Net Status',
+    online: 'Online',
+    offline: 'Offline',
   },
 }
 

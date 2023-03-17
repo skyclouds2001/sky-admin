@@ -7,3 +7,5 @@ export { default as useGrayMode } from './useGrayMode'
 export { default as useColorWeakness } from './useColorWeakness'
 
 export { default as useOnline } from './useOnline'
+
+export { default as useBattery } from './useBattery'

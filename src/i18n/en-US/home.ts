@@ -16,6 +16,15 @@ const home = {
     supporterVs: 'Supporter Version',
     shell: 'Shell',
     shellVs: 'Shell Version',
+    net: 'Net Status',
+    online: 'Online',
+    offline: 'Offline',
+    charge: 'Battery Status',
+    charging: 'Charging',
+    discharging: 'DisCharging',
+    chargingTime: 'Charging Time',
+    dischargingTime: 'DisCharging Time',
+    level: 'Battery Level',
   },
 }
 

@@ -1,4 +1,5 @@
 import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
+import { ElMessage } from 'element-plus'
 
 const useFullscreen = (): {
   enabledFullscreen: boolean
@@ -33,12 +34,23 @@ const useFullscreen = (): {
     status.value = document.fullscreenElement !== null
   }
 
+  const handleFullscreenError = (): void => {
+    ElMessage({
+      message: '使用全屏模式失败',
+      type: 'error',
+      showClose: true,
+      center: true,
+    })
+  }
+
   onMounted(() => {
     document.addEventListener('fullscreenchange', handleFullscreenStatusChange)
+    document.addEventListener('fullscreenerror', handleFullscreenError)
   })
 
   onBeforeUnmount(() => {
     document.removeEventListener('fullscreenchange', handleFullscreenStatusChange)
+    document.removeEventListener('fullscreenerror', handleFullscreenError)
   })
 
   return {

@@ -16,6 +16,15 @@ const home = {
     supporterVs: '载体版本',
     shell: '外壳',
     shellVs: '外壳版本',
+    net: '网络情况',
+    online: '在线',
+    offline: '离线',
+    charge: '电池充电状态',
+    charging: '充电',
+    discharging: '未充电',
+    chargingTime: '电池充电时间',
+    dischargingTime: '电池续航时间',
+    level: '电池电量',
   },
 }
 

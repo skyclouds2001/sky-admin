@@ -47,6 +47,9 @@
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest --coverage",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
+    "clean": "npx rimraf node_modules && npx rimraf dist",
+    "changeset": "changeset",
+    "bump": "changeset version",
     "commit": "npx cz",
     "prepare": "npx husky install",
     "preinstall": "npx only-allow pnpm"
@@ -139,6 +142,7 @@
     "postcss-preset-env": "^8.0.1",
     "postcss-sass": "^0.5.0",
     "prettier": "^2.8.4",
+    "rimraf": "^4.4.0",
     "rollup": "^3.18.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.58.3",

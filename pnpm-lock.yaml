@@ -71,7 +71,7 @@ specifiers:
   mockjs: ^1.1.0
   only-allow: ^1.1.1
   pinia: ^2.0.33
-  pnpm: 7.27.0
+  pnpm: 7.30.0
   postcss: ^8.4.21
   postcss-html: ^1.5.0
   postcss-import: ^15.1.0
@@ -192,7 +192,7 @@ devDependencies:
   markdownlint: 0.27.0
   markdownlint-cli: 0.33.0
   only-allow: 1.1.1
-  pnpm: 7.27.0
+  pnpm: 7.30.0
   postcss: 8.4.21
   postcss-html: 1.5.0
   postcss-import: 15.1.0_postcss@8.4.21
@@ -8896,8 +8896,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /pnpm/7.27.0:
-    resolution: {integrity: sha512-nvxGrxgu3oYyw7zg7DdotEnqp9r/c0/iLZHr6QewJPEkVFGSPdsxrm0HFKBkOqwCInoutFzz/mtGx+pbYV8UCw==}
+  /pnpm/7.30.0:
+    resolution: {integrity: sha512-6SUdrWSZ4qvQ4uBVg7smnabVKOFrT7DgSz2NfViG54nRii4ODB395qmHprBiv5WBdlC/jZYBn99fSfmzIMI3WQ==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true

@@ -28,12 +28,12 @@
     "skyclouds2001"
   ],
   "main": "src/main.ts",
-  "packageManager": "pnpm@7.27.0",
+  "packageManager": "pnpm@7.30.0",
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=9.0.0",
     "yarn": "=1.22.19",
-    "pnpm": "=7.27.0"
+    "pnpm": "=7.30.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -133,7 +133,7 @@
     "markdownlint": "^0.27.0",
     "markdownlint-cli": "^0.33.0",
     "only-allow": "^1.1.1",
-    "pnpm": "7.27.0",
+    "pnpm": "7.30.0",
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "postcss-import": "^15.1.0",

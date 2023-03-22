@@ -47,12 +47,12 @@
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest --coverage",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
-    "clean": "npx rimraf node_modules && npx rimraf dist",
+    "clean": "rimraf node_modules && rimraf dist",
     "changeset": "changeset",
     "bump": "changeset version",
-    "commit": "npx cz",
-    "prepare": "npx is-ci || npx husky install",
-    "preinstall": "npx only-allow pnpm"
+    "commit": "cz",
+    "prepare": "is-ci || husky install",
+    "preinstall": "only-allow pnpm"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

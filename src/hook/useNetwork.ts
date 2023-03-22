@@ -1,4 +1,4 @@
-import { ref, type Ref, onMounted, onUnmounted } from 'vue'
+import { ref, readonly, onMounted, onUnmounted } from 'vue'
 
 interface NavigatorWithConnection extends Navigator {
   connection?: NetworkInformation
@@ -28,12 +28,14 @@ type NetworkEffectiveType = 'slow-2g' | '2g' | '3g' | '4g' | undefined
 
 const useNetwork = (): {
   isSupported: boolean
-  downlink: Ref<number | undefined>
-  downlinkMax: Ref<number | undefined>
-  type: Ref<NetworkType | undefined>
-  effectiveType: Ref<NetworkEffectiveType | undefined>
-  rtt: Ref<number | undefined>
-  saveData: Ref<boolean | undefined>
+  connection: Readonly<{
+    downlink?: number
+    downlinkMax?: number
+    type?: NetworkType
+    effectiveType?: NetworkEffectiveType
+    rtt?: number
+    saveData?: boolean
+  }>
 } => {
   /**
    * 标记 Navigator.connection 是否支持
@@ -69,6 +71,18 @@ const useNetwork = (): {
    * 用户是否设定减少数据使用
    */
   const saveData = ref<boolean>()
+
+  /**
+   * 网络连接数据
+   */
+  const connection = readonly({
+    downlink,
+    downlinkMax,
+    type,
+    effectiveType,
+    rtt,
+    saveData,
+  })
 
   /**
    * 更新网络连接状态
@@ -109,12 +123,7 @@ const useNetwork = (): {
 
   return {
     isSupported,
-    downlink,
-    downlinkMax,
-    type,
-    effectiveType,
-    rtt,
-    saveData,
+    connection,
   }
 }
 

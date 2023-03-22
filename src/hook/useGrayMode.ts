@@ -3,6 +3,9 @@ import { ref, watch, type Ref } from 'vue'
 const useGrayMode = (): {
   isGrayMode: Ref<boolean>
 } => {
+  /**
+   * 是否使用灰色模式
+   */
   const isGrayMode = ref(document.documentElement.classList.contains('grey-mode'))
 
   watch(isGrayMode, (current) => {

@@ -20,3 +20,4 @@
 - support for gray mode and color weakness support
 - add table example
 - add crypto feature
+- add code highlight feature

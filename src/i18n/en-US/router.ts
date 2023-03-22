@@ -30,6 +30,7 @@ const router = {
   '/feature/image-editor': 'Image Editor',
   '/feature/encode-decode': 'Encode',
   '/feature/encrypt-decrypt': 'Crypto',
+  '/feature/code-highlight': 'Code Highlight',
   '/link': 'Link',
   '/link/github': 'GitHub (External Link)',
   '/link/juejin': 'JueJin (External Link)',

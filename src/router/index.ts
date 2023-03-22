@@ -219,6 +219,12 @@ const router = createRouter({
           component: () => import('@/views/feature/EncryptDecrypt.vue'),
           meta: { title: '密码' },
         },
+        {
+          name: Symbol('/feature/code-highlight'),
+          path: '/feature/code-highlight',
+          component: () => import('@/views/feature/CodeHighlight.vue'),
+          meta: { title: '代码高亮' },
+        },
       ],
     },
 

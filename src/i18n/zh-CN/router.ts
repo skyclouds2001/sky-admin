@@ -30,6 +30,7 @@ const router = {
   '/feature/image-editor': '图片编辑器',
   '/feature/encode-decode': '编码',
   '/feature/encrypt-decrypt': '密码',
+  '/feature/code-highlight': '代码高亮',
   '/link': '链接',
   '/link/github': 'GitHub (外链)',
   '/link/juejin': '掘金 (外链)',

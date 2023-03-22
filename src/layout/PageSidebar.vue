@@ -189,6 +189,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/encrypt-decrypt') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/code-highlight">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/code-highlight') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 外链 -->

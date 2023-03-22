@@ -18,13 +18,23 @@ interface BatteryManager extends EventTarget {
 }
 
 const useBattery = (): {
-  battery: Readonly<Pick<BatteryManager, 'charging' | 'chargingTime' | 'dischargingTime' | 'level'>>
   isSupported: boolean
+  battery: Readonly<{
+    charging?: boolean
+    chargingTime?: number
+    dischargingTime?: number
+    level?: number
+  }>
 } => {
   /**
    * 电池信息
    */
-  const battery = reactive<Pick<BatteryManager, 'charging' | 'chargingTime' | 'dischargingTime' | 'level'>>({
+  const battery = reactive<{
+    charging?: boolean
+    chargingTime?: number
+    dischargingTime?: number
+    level?: number
+  }>({
     charging: false,
     chargingTime: 0,
     dischargingTime: 0,
@@ -46,11 +56,11 @@ const useBattery = (): {
    *
    * @param batteryManager 电池信息管理器
    */
-  const updateBatteryInfo = (batteryManager: BatteryManager): void => {
-    battery.charging = batteryManager.charging
-    battery.chargingTime = batteryManager.chargingTime
-    battery.dischargingTime = batteryManager.dischargingTime
-    battery.level = batteryManager.level * 100
+  const updateBatteryInfo = (batteryManager?: BatteryManager): void => {
+    battery.charging = batteryManager?.charging
+    battery.chargingTime = batteryManager?.chargingTime
+    battery.dischargingTime = batteryManager?.dischargingTime
+    battery.level = batteryManager?.level !== undefined ? batteryManager.level * 100 : batteryManager?.level
   }
 
   /**
@@ -63,23 +73,23 @@ const useBattery = (): {
   }
 
   onMounted(async () => {
-    const batteryManager: BatteryManager = await (window.navigator as NavigatorWithBattery).getBattery()
+    const batteryManager: BatteryManager = await (window.navigator as NavigatorWithBattery).getBattery?.()
 
     updateBatteryInfo(batteryManager)
 
-    batteryManager.addEventListener('chargingchange', handleBatteryInfoChange)
-    batteryManager.addEventListener('levelchange', handleBatteryInfoChange)
-    batteryManager.addEventListener('chargingtimechange', handleBatteryInfoChange)
-    batteryManager.addEventListener('dischargingtimechange', handleBatteryInfoChange)
+    batteryManager?.addEventListener('chargingchange', handleBatteryInfoChange)
+    batteryManager?.addEventListener('levelchange', handleBatteryInfoChange)
+    batteryManager?.addEventListener('chargingtimechange', handleBatteryInfoChange)
+    batteryManager?.addEventListener('dischargingtimechange', handleBatteryInfoChange)
   })
 
   onBeforeUnmount(async () => {
-    const batteryManager: BatteryManager = await (navigator as NavigatorWithBattery).getBattery()
+    const batteryManager: BatteryManager = await (navigator as NavigatorWithBattery).getBattery?.()
 
-    batteryManager.removeEventListener('chargingchange', handleBatteryInfoChange)
-    batteryManager.removeEventListener('levelchange', handleBatteryInfoChange)
-    batteryManager.removeEventListener('chargingtimechange', handleBatteryInfoChange)
-    batteryManager.removeEventListener('dischargingtimechange', handleBatteryInfoChange)
+    batteryManager?.removeEventListener('chargingchange', handleBatteryInfoChange)
+    batteryManager?.removeEventListener('levelchange', handleBatteryInfoChange)
+    batteryManager?.removeEventListener('chargingtimechange', handleBatteryInfoChange)
+    batteryManager?.removeEventListener('dischargingtimechange', handleBatteryInfoChange)
   })
 
   return {

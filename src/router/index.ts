@@ -228,6 +228,28 @@ const router = createRouter({
       ],
     },
 
+    // 异常
+    {
+      name: Symbol('/error'),
+      path: '/error',
+      redirect: '/error/403',
+      children: [
+        {
+          name: Symbol('/error/403'),
+          path: '/error/403',
+          component: () => import('@/views/error/PermissionDenied.vue'),
+          meta: { title: '403' },
+        },
+        {
+          name: Symbol('/error/404'),
+          path: '/error/404',
+          component: () => import('@/views/error/NotFound.vue'),
+          meta: { title: '404' },
+        },
+      ],
+      meta: { name: '异常' },
+    },
+
     // 链接
     {
       name: Symbol('/link'),

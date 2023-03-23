@@ -21,3 +21,4 @@
 - add table example
 - add crypto feature
 - add code highlight feature
+- add error page

@@ -4,12 +4,11 @@ import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
 import { useBattery, useOnline, useNetwork } from '@/hook'
-import type { BrowserInfo } from '@/model'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
 
-const browserInfo = shallowRef<BrowserInfo>(generateBrowserInfo())
+const browserInfo = shallowRef(generateBrowserInfo())
 
 const { isOnline } = useOnline()
 

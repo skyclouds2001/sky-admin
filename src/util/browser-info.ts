@@ -1,3 +1,7 @@
+interface NavigatorWithMemory extends Navigator {
+  deviceMemory: number
+}
+
 /**
  * 获取浏览器及平台信息方法
  *
@@ -22,6 +26,16 @@ export const generateBrowserInfo = (): {
   shell: string
   /** 外壳版本 */
   shellVs: string
+  /** Cookie 启用状态 */
+  cookie: boolean
+  /** PDF 预览支持情况 */
+  pdf: boolean
+  /** 内存大小 */
+  memory: number
+  /** 逻辑处理器数 */
+  processors: number
+  /** 最大支持触摸点数 */
+  touchPoints: number
 } => {
   const userAgent = navigator.userAgent.toLowerCase()
 
@@ -252,6 +266,21 @@ export const generateBrowserInfo = (): {
     ], // [遨游浏览器,]
   ]).get(true) ?? ['unknown', 'unknown']
 
+  // Cookie 启用状态
+  const cookie = navigator.cookieEnabled
+
+  // PDF 预览支持情况
+  const pdf = navigator.pdfViewerEnabled
+
+  // 内存大小
+  const memory = (navigator as NavigatorWithMemory).deviceMemory ?? 0
+
+  // 逻辑处理器数
+  const processors = navigator.hardwareConcurrency
+
+  // 最大支持触摸点数
+  const touchPoints = navigator.maxTouchPoints
+
   return {
     system,
     systemVs,
@@ -262,5 +291,10 @@ export const generateBrowserInfo = (): {
     supporterVs,
     shell,
     shellVs,
+    cookie,
+    pdf,
+    memory,
+    processors,
+    touchPoints,
   }
 }

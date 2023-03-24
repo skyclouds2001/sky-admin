@@ -106,6 +106,38 @@ const { isSupported: isSupportedConnection, connection } = useNetwork()
 
         <el-descriptions-item>
           <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.processor') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.processors }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.memory') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.memory }}GiB</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.touchPoint') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.touchPoints }}</el-tag>
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.cookie') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.cookie ? i18n.t('home.system.enabled') : i18n.t('home.system.disabled') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.pdf') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.pdf ? i18n.t('home.system.supported') : i18n.t('home.system.unsupported') }}</el-tag>
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template #label>
             <span class="font-bold">{{ i18n.t('home.system.net') }}</span>
           </template>
           <el-tag>{{ isOnline ? i18n.t('home.system.online') : i18n.t('home.system.offline') }}</el-tag>

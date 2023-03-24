@@ -30,6 +30,15 @@ const home = {
     downlink: 'Network Bandwidth',
     downlinkMax: 'Network Max Bandwidth',
     rtt: 'RTT',
+    processor: 'Logical Processors Number',
+    memory: 'Memory Size',
+    touchPoint: 'Maximum Number of Touch Points',
+    cookie: 'Cookie Status',
+    pdf: 'PDF Preview Feature support',
+    enabled: 'Enabled',
+    disabled: 'Disabled',
+    supported: 'Supported',
+    unsupported: 'Unsupported',
   },
 }
 

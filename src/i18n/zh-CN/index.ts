@@ -4,6 +4,7 @@ import home from './home'
 import table from './table'
 import form from './form'
 import feature from './feature'
+import error from './error'
 import about from './about'
 
 const zhCN = {
@@ -13,6 +14,7 @@ const zhCN = {
   table,
   form,
   feature,
+  error,
   about,
 }
 

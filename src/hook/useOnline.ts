@@ -7,10 +7,21 @@ interface EventTargetWithOnline extends EventTarget {
 const useOnline = (): {
   isOnline: ComputedRef<boolean>
 } => {
+  /**
+   * 网络状态
+   */
   const online = ref(window.navigator.onLine)
 
+  /**
+   * 网络状态（只读）
+   */
   const isOnline = computed(() => online.value)
 
+  /**
+   * 网络状态改变回调方法
+   *
+   * @param e 回调事件
+   */
   const handleStatusChange = (e: Event): void => {
     online.value = (e.target as EventTargetWithOnline)?.online
   }

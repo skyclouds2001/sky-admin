@@ -25,6 +25,11 @@ const home = {
     chargingTime: 'Charging Time',
     dischargingTime: 'DisCharging Time',
     level: 'Battery Level',
+    type: 'Network Type',
+    effectiveType: 'Network Effective Type',
+    downlink: 'Network Bandwidth',
+    downlinkMax: 'Network Max Bandwidth',
+    rtt: 'RTT',
   },
 }
 

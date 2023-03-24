@@ -9,3 +9,5 @@ export { default as useColorWeakness } from './useColorWeakness'
 export { default as useOnline } from './useOnline'
 
 export { default as useBattery } from './useBattery'
+
+export { default as useNetwork } from './useNetwork'

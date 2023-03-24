@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import { shallowRef, onBeforeMount } from 'vue'
+import { shallowRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useOnline } from '@/hook'
+import { useBattery, useOnline, useNetwork } from '@/hook'
 import type { BrowserInfo } from '@/model'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
 
-const browserInfo = shallowRef<BrowserInfo | null>(null)
+const browserInfo = shallowRef<BrowserInfo>(generateBrowserInfo())
 
 const { isOnline } = useOnline()
 
-const { battery, isSupported } = useBattery()
+const { battery, isSupported: isSupportedBattery } = useBattery()
 
-onBeforeMount(() => {
-  browserInfo.value = generateBrowserInfo()
-})
+const { isSupported: isSupportedConnection, connection } = useNetwork()
 </script>
 
 <template>
@@ -81,35 +79,68 @@ onBeforeMount(() => {
           </template>
           <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
         </el-descriptions-item>
+
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.charge') }}</span>
+          </template>
+          <el-tag>{{ battery.charging ? i18n.t('home.system.charging') : i18n.t('home.system.discharging') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.chargingTime') }}</span>
+          </template>
+          <el-tag>{{ battery.chargingTime !== Infinity ? `${battery.chargingTime}s` : battery.chargingTime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.dischargingTime') }}</span>
+          </template>
+          <el-tag>{{ battery.dischargingTime !== Infinity ? `${battery.dischargingTime}s` : battery.dischargingTime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.level') }}</span>
+          </template>
+          <el-tag>{{ battery.level }}%</el-tag>
+        </el-descriptions-item>
+
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.net') }}</span>
           </template>
           <el-tag>{{ isOnline ? i18n.t('home.system.online') : i18n.t('home.system.offline') }}</el-tag>
         </el-descriptions-item>
-        <el-descriptions-item v-if="isSupported">
+
+        <el-descriptions-item v-if="isSupportedConnection && connection.type">
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.charge') }}</span>
+            <span class="font-bold">{{ i18n.t('home.system.type') }}</span>
           </template>
-          <el-tag>{{ battery.charging ? i18n.t('home.system.charging') : i18n.t('home.system.discharging') }}</el-tag>
+          <el-tag>{{ connection.type }}</el-tag>
         </el-descriptions-item>
-        <el-descriptions-item v-if="isSupported">
+        <el-descriptions-item v-if="isSupportedConnection && connection.effectiveType">
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.chargingTime') }}</span>
+            <span class="font-bold">{{ i18n.t('home.system.effectiveType') }}</span>
           </template>
-          <el-tag>{{ battery.chargingTime }}</el-tag>
+          <el-tag>{{ connection.effectiveType }}</el-tag>
         </el-descriptions-item>
-        <el-descriptions-item v-if="isSupported">
+        <el-descriptions-item v-if="isSupportedConnection && connection.downlink">
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.dischargingTime') }}</span>
+            <span class="font-bold">{{ i18n.t('home.system.downlink') }}</span>
           </template>
-          <el-tag>{{ battery.dischargingTime }}</el-tag>
+          <el-tag>{{ connection.downlink }}Mb/s</el-tag>
         </el-descriptions-item>
-        <el-descriptions-item v-if="isSupported">
+        <el-descriptions-item v-if="isSupportedConnection && connection.downlinkMax">
           <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.level') }}</span>
+            <span class="font-bold">{{ i18n.t('home.system.downlinkMax') }}</span>
           </template>
-          <el-tag>{{ battery.level }}</el-tag>
+          <el-tag>{{ connection.downlinkMax }}Mb/s</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection && connection.rtt">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.rtt') }}</span>
+          </template>
+          <el-tag>{{ connection.rtt }}s</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

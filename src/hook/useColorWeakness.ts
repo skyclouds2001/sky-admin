@@ -3,6 +3,9 @@ import { ref, watch, type Ref } from 'vue'
 const useColorWeakness = (): {
   isColorWeakness: Ref<boolean>
 } => {
+  /**
+   * 是否使用色弱模式
+   */
   const isColorWeakness = ref(document.documentElement.classList.contains('color-weakness'))
 
   watch(isColorWeakness, (current) => {

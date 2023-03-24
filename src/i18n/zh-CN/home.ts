@@ -20,11 +20,16 @@ const home = {
     online: '在线',
     offline: '离线',
     charge: '电池充电状态',
-    charging: '充电',
+    charging: '充电中',
     discharging: '未充电',
     chargingTime: '电池充电时间',
     dischargingTime: '电池续航时间',
     level: '电池电量',
+    type: '网络类型',
+    effectiveType: '网络有效类型',
+    downlink: '网络带宽',
+    downlinkMax: '网络最大带宽',
+    rtt: '网络往返时延',
   },
 }
 

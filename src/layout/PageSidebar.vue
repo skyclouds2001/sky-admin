@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
@@ -188,6 +188,26 @@ watch(
         <el-menu-item index="/feature/encrypt-decrypt">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/encrypt-decrypt') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/code-highlight">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/code-highlight') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 异常 -->
+      <el-sub-menu index="/error">
+        <template #title>
+          <el-icon><Warning /></el-icon>
+          <span>{{ i18n.t('router./error') }}</span>
+        </template>
+        <el-menu-item index="/error/403">
+          <el-icon><Warning /></el-icon>
+          <span>{{ i18n.t('router./error/403') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/error/404">
+          <el-icon><Warning /></el-icon>
+          <span>{{ i18n.t('router./error/404') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

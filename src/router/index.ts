@@ -219,7 +219,35 @@ const router = createRouter({
           component: () => import('@/views/feature/EncryptDecrypt.vue'),
           meta: { title: '密码' },
         },
+        {
+          name: Symbol('/feature/code-highlight'),
+          path: '/feature/code-highlight',
+          component: () => import('@/views/feature/CodeHighlight.vue'),
+          meta: { title: '代码高亮' },
+        },
       ],
+    },
+
+    // 异常
+    {
+      name: Symbol('/error'),
+      path: '/error',
+      redirect: '/error/403',
+      children: [
+        {
+          name: Symbol('/error/403'),
+          path: '/error/403',
+          component: () => import('@/views/error/PermissionDenied.vue'),
+          meta: { title: '403' },
+        },
+        {
+          name: Symbol('/error/404'),
+          path: '/error/404',
+          component: () => import('@/views/error/NotFound.vue'),
+          meta: { title: '404' },
+        },
+      ],
+      meta: { name: '异常' },
     },
 
     // 链接

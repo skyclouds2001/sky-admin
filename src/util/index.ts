@@ -7,3 +7,5 @@ export * from './fake-data'
 export * from './browser-info'
 
 export * from './export-excel'
+
+export * from './record-camera'

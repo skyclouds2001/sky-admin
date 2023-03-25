@@ -22,3 +22,4 @@
 - add crypto feature
 - add code highlight feature
 - add error page
+- add record camera support

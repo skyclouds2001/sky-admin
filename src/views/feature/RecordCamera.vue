@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { initStream, initDevices, captureScreenshot } from '@/util'
+import { initCameraStream, initDevices, captureScreenshot } from '@/util'
 
 /**
  * 当前设备
@@ -14,7 +14,7 @@ const devices = ref<MediaDeviceInfo[]>([])
 
 watch(device, (current) => {
   if (current !== '') {
-    initStream(document.getElementById('video') as HTMLVideoElement, current)
+    initCameraStream(document.getElementById('video') as HTMLVideoElement, current)
   } else {
     const el = document.getElementById('video') as HTMLVideoElement
     el.srcObject = null

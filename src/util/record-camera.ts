@@ -6,7 +6,7 @@ import { ElMessage } from 'element-plus'
  * @param el Video 标签元素
  * @param id Device 设备 ID
  */
-export const initStream = async (el: HTMLVideoElement, id: string): Promise<void> => {
+export const initCameraStream = async (el: HTMLVideoElement, id: string): Promise<void> => {
   try {
     el.srcObject = await navigator.mediaDevices.getUserMedia({
       audio: false,

@@ -225,6 +225,12 @@ const router = createRouter({
           component: () => import('@/views/feature/CodeHighlight.vue'),
           meta: { title: '代码高亮' },
         },
+        {
+          name: Symbol('/feature/camera-record'),
+          path: '/feature/camera-record',
+          component: () => import('@/views/feature/RecordCamera.vue'),
+          meta: { title: '视频录制' },
+        },
       ],
     },
 
@@ -274,6 +280,7 @@ const router = createRouter({
       meta: { title: '关于' },
     },
   ],
+
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition !== null) {
       return savedPosition

@@ -193,6 +193,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/code-highlight') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/camera-record">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/camera-record') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->

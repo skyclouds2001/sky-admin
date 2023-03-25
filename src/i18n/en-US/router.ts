@@ -31,6 +31,7 @@ const router = {
   '/feature/encode-decode': 'Encode',
   '/feature/encrypt-decrypt': 'Crypto',
   '/feature/code-highlight': 'Code Highlight',
+  '/feature/camera-record': 'Video Recorder',
   '/error': 'Error',
   '/error/403': '403',
   '/error/404': '404',

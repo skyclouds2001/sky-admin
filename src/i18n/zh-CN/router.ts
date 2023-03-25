@@ -32,6 +32,7 @@ const router = {
   '/feature/encrypt-decrypt': '密码',
   '/feature/code-highlight': '代码高亮',
   '/feature/camera-record': '视频录制',
+  '/feature/screen-record': '屏幕录制',
   '/error': '异常',
   '/error/403': '403',
   '/error/404': '404',

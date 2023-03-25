@@ -231,6 +231,12 @@ const router = createRouter({
           component: () => import('@/views/feature/RecordCamera.vue'),
           meta: { title: '视频录制' },
         },
+        {
+          name: Symbol('/feature/screen-record'),
+          path: '/feature/screen-record',
+          component: () => import('@/views/feature/RecordScreen.vue'),
+          meta: { title: '屏幕录制' },
+        },
       ],
     },
 

@@ -1,11 +1,42 @@
-import type { BrowserInfo } from '@/model'
+interface NavigatorWithMemory extends Navigator {
+  deviceMemory: number
+}
 
 /**
  * 获取浏览器及平台信息方法
  *
  * @returns 浏览器及平台信息
  */
-export const generateBrowserInfo = (): BrowserInfo => {
+export const generateBrowserInfo = (): {
+  /** 系统 */
+  system: string
+  /** 系统版本 */
+  systemVs: string
+  /** 平台 */
+  platform: string
+  /** 内核 */
+  engine: string
+  /** 内核版本 */
+  engineVs: string
+  /** 载体 */
+  supporter: string
+  /** 载体版本 */
+  supporterVs: string
+  /** 外壳 */
+  shell: string
+  /** 外壳版本 */
+  shellVs: string
+  /** Cookie 启用状态 */
+  cookie: boolean
+  /** PDF 预览支持情况 */
+  pdf: boolean
+  /** 内存大小 */
+  memory: number
+  /** 逻辑处理器数 */
+  processors: number
+  /** 最大支持触摸点数 */
+  touchPoints: number
+} => {
   const userAgent = navigator.userAgent.toLowerCase()
 
   // 系统
@@ -235,6 +266,21 @@ export const generateBrowserInfo = (): BrowserInfo => {
     ], // [遨游浏览器,]
   ]).get(true) ?? ['unknown', 'unknown']
 
+  // Cookie 启用状态
+  const cookie = navigator.cookieEnabled
+
+  // PDF 预览支持情况
+  const pdf = navigator.pdfViewerEnabled
+
+  // 内存大小
+  const memory = (navigator as NavigatorWithMemory).deviceMemory ?? 0
+
+  // 逻辑处理器数
+  const processors = navigator.hardwareConcurrency
+
+  // 最大支持触摸点数
+  const touchPoints = navigator.maxTouchPoints
+
   return {
     system,
     systemVs,
@@ -245,5 +291,10 @@ export const generateBrowserInfo = (): BrowserInfo => {
     supporterVs,
     shell,
     shellVs,
+    cookie,
+    pdf,
+    memory,
+    processors,
+    touchPoints,
   }
 }

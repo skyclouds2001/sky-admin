@@ -30,6 +30,15 @@ const home = {
     downlink: '网络带宽',
     downlinkMax: '网络最大带宽',
     rtt: '网络往返时延',
+    processor: '逻辑处理器数',
+    memory: '内存大小',
+    touchPoint: '最大支持触摸点数',
+    cookie: 'Cookie 状态',
+    pdf: 'PDF 预览功能支持情况',
+    enabled: '启用',
+    disabled: '未启用',
+    supported: '支持',
+    unsupported: '不支持',
   },
 }
 

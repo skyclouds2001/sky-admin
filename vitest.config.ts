@@ -25,12 +25,17 @@ export default defineConfig({
   },
   test: {
     root: '.',
+    watch: false,
     environment: 'jsdom',
     include: ['tests/{unit,components}/**/*.{test,spec}.{js,jsx,ts,tsx}'],
     reporters: ['default', 'html'],
     coverage: {
       provider: 'c8',
-      reporter: ['text', 'html'],
+      enabled: true,
     },
+    deps: {
+      inline: ['element-plus', 'echarts'],
+    },
+    cache: {},
   },
 })

@@ -45,7 +45,7 @@
     "lint:stylelint": "pnpm exec stylelint --fix",
     "lint:markdownlint": "pnpm exec markdownlint **/*.md --fix",
     "test": "pnpm test:unit && pnpm test:e2e",
-    "test:unit": "cross-env NODE_ENV=test vitest --coverage",
+    "test:unit": "cross-env NODE_ENV=test vitest",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
     "clean": "rimraf node_modules && rimraf dist",
     "changeset": "changeset",

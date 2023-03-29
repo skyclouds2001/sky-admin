@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { inject, ref, type Ref } from 'vue'
+import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
-import { useGrayMode, useColorWeakness, useTheme } from '@/hook'
-import { useLangStore } from '@/store'
+import { useGrayMode, useColorWeakness, useTheme, useLang } from '@/hook'
 
 const i18n = useI18n()
 
@@ -15,23 +14,9 @@ const { isColorWeakness } = useColorWeakness()
 
 const { theme } = useTheme()
 
-const langStore = useLangStore()
+const { lang } = useLang()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
-
-/**
- * 语言
- */
-const lang = ref<Lang>(langStore.getLang.value)
-
-/**
- * 语言变化事件
- *
- * @param lang 当前语言
- */
-const handleLangChange = (lang: Lang): void => {
-  langStore.setLang(lang)
-}
 </script>
 
 <template>
@@ -53,7 +38,7 @@ const handleLangChange = (lang: Lang): void => {
       <h4 class="font-bold">{{ i18n.t('layout.setting.i18n') }}</h4>
     </el-divider>
     <div class="w-full text-center">
-      <el-select v-model="lang" name="lang" placeholder="" @change="handleLangChange">
+      <el-select v-model="lang" name="lang" placeholder="">
         <el-option v-for="item in Lang" :key="item" :label="item" :value="item" />
       </el-select>
     </div>

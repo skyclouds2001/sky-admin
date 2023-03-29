@@ -87,6 +87,11 @@ const useTheme = (): {
     }
   )
 
+  /**
+   * 主题存储变化回调方法
+   *
+   * @param e 存储事件
+   */
   const handleThemeStorageChange = (e: StorageEvent): void => {
     if (e.key === 'theme') {
       theme.value = stringToTheme(e.newValue)
@@ -94,8 +99,6 @@ const useTheme = (): {
   }
 
   onMounted(() => {
-    theme.value = stringToTheme(window.localStorage.getItem('theme'))
-
     window.addEventListener('storage', handleThemeStorageChange)
   })
 

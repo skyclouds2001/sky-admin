@@ -11,3 +11,5 @@ export { default as useOnline } from './useOnline'
 export { default as useBattery } from './useBattery'
 
 export { default as useNetwork } from './useNetwork'
+
+export { default as useTheme } from './useTheme'

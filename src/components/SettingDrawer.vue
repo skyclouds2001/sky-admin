@@ -4,8 +4,8 @@ import { useI18n } from 'vue-i18n'
 import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
-import { useGrayMode, useColorWeakness } from '@/hook'
-import { useThemeStore, useLangStore } from '@/store'
+import { useGrayMode, useColorWeakness, useTheme } from '@/hook'
+import { useLangStore } from '@/store'
 
 const i18n = useI18n()
 
@@ -13,25 +13,11 @@ const { isGrayMode } = useGrayMode()
 
 const { isColorWeakness } = useColorWeakness()
 
-const themeStore = useThemeStore()
+const { theme } = useTheme()
 
 const langStore = useLangStore()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
-
-/**
- * 主题
- */
-const theme = ref<Theme>(themeStore.getTheme.value)
-
-/**
- * 主题开关变化事件
- *
- * @param theme 当前主题
- */
-const handleThemeChange = (theme: Theme): void => {
-  themeStore.setTheme(theme)
-}
 
 /**
  * 语言
@@ -59,7 +45,7 @@ const handleLangChange = (lang: Lang): void => {
       <h4 class="font-bold">{{ i18n.t('layout.setting.theme') }}</h4>
     </el-divider>
     <div class="w-full text-center">
-      <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" @change="handleThemeChange" />
+      <el-switch v-model="theme" inline-prompt :active-icon="Sunny" :active-value="Theme.LIGHT" :inactive-icon="Moon" :inactive-value="Theme.DARK" name="theme" />
     </div>
 
     <!-- 国际化控件 -->

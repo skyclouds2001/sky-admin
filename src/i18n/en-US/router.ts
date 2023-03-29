@@ -4,6 +4,8 @@ const router = {
   '/table/base': 'Base Table',
   '/form': 'Form',
   '/form/base': 'Base Form',
+  '/component': 'Component',
+  '/component/icon': 'Icon',
   '/chart': 'Chart',
   '/chart/bar': 'Bar Chart',
   '/chart/line': 'line Chart',

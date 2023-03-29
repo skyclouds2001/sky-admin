@@ -4,6 +4,8 @@ const router = {
   '/table/base': '基础表格',
   '/form': '表单',
   '/form/base': '基础表单',
+  '/component': '组件',
+  '/component/icon': '图标',
   '/chart': '图表',
   '/chart/bar': '柱状图',
   '/chart/line': '折线图',

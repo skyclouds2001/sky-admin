@@ -46,6 +46,21 @@ const router = createRouter({
       ],
     },
 
+    // 组件
+    {
+      name: Symbol('/component'),
+      path: '/component',
+      meta: { title: '组件' },
+      children: [
+        {
+          name: Symbol('/component/icon'),
+          path: '/component/icon',
+          component: () => import('@/views/component/IconList.vue'),
+          meta: { title: '图标组件' },
+        },
+      ],
+    },
+
     // 图表
     {
       name: Symbol('/chart'),

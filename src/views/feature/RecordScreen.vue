@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, shallowRef, triggerRef, onMounted } from 'vue'
+import { ref, shallowRef, triggerRef } from 'vue'
 import { ElButton, ElMessage, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { initScreenStream, getSupportedMimeTypes, captureScreenshot } from '@/util'
 
@@ -10,7 +10,8 @@ const el = ref<HTMLVideoElement | null>(null)
 /**
  * 当前使用的 MIME TYPE
  */
-const mimeType = ref('')
+const mimeType = ref<string>()
+
 /**
  * 支持的 MIME TYPE 列表
  */
@@ -20,14 +21,17 @@ const mimeTypes = ref(getSupportedMimeTypes())
  * 执行截图操作
  */
 const handleScreenshot = () => {
-  captureScreenshot(document.getElementById('video') as HTMLVideoElement)
+  captureScreenshot(el.value as HTMLVideoElement)
 }
 
 /**
  * 开始录制
  */
-const handleStartRecode = () => {
+const handleStartRecode = async () => {
+  await initScreenStream(el.value as HTMLVideoElement)
+
   const stream = el.value?.captureStream()
+
   mediaRecorder.value = new MediaRecorder(stream, {
     audioBitsPerSecond: 128000,
     videoBitsPerSecond: 2500000,
@@ -90,13 +94,8 @@ const handleOpen = () => {
  * 关闭视频流
  */
 const handleClose = () => {
-  const video = el.value as HTMLVideoElement
-  video.srcObject = null
+  ;(el.value as HTMLVideoElement).srcObject = null
 }
-
-onMounted(() => {
-  initScreenStream(el.value as HTMLVideoElement)
-})
 </script>
 
 <template>

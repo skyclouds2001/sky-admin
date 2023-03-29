@@ -1,53 +1,47 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { initCameraStream, initDevices, captureScreenshot } from '@/util'
+
+onMounted(() => {
+  initDevices((data) => {
+    devices.value = data
+  })
+})
+
+const el = ref<HTMLVideoElement | null>(null)
 
 /**
  * 当前设备
  */
-const device = ref('')
+const device = ref<string>()
+
 /**
  * 设备列表
  */
 const devices = ref<MediaDeviceInfo[]>([])
 
-watch(device, (current) => {
-  if (current !== '') {
-    initCameraStream(document.getElementById('video') as HTMLVideoElement, current)
-  } else {
-    const el = document.getElementById('video') as HTMLVideoElement
-    el.srcObject = null
-  }
-})
-
 /**
  * 执行截图操作
  */
 const handleScreenshot = () => {
-  captureScreenshot(document.getElementById('video') as HTMLVideoElement)
+  captureScreenshot(el.value as HTMLVideoElement)
 }
 
 /**
  * 启动视频流
  */
 const handleOpen = () => {
-  device.value = devices.value[0].deviceId
+  initCameraStream(el.value as HTMLVideoElement, device.value)
 }
 
 /**
  * 关闭视频流
  */
 const handleClose = () => {
-  device.value = ''
+  ;(el.value as HTMLVideoElement).srcObject = null
+  device.value = undefined
 }
-
-onMounted(() => {
-  initDevices((data) => {
-    devices.value = data
-    device.value = data[0].deviceId
-  })
-})
 </script>
 
 <template>
@@ -60,7 +54,7 @@ onMounted(() => {
       <el-button type="primary" @click="handleOpen">开启</el-button>
       <el-button type="primary" @click="handleClose">关闭</el-button>
     </el-space>
-    <video id="video" width="800" height="600" autoplay playsinline />
+    <video id="video" ref="el" width="800" height="600" autoplay playsinline />
   </el-space>
 </template>
 

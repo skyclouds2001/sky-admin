@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, shallowRef, triggerRef } from 'vue'
-import { ElButton, ElMessage, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { initScreenStream, getSupportedMimeTypes, captureScreenshot } from '@/util'
+import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
+import { initScreenStream, getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
 
 const mediaRecorder = shallowRef<MediaRecorder | null>(null)
 
@@ -30,33 +30,10 @@ const handleScreenshot = () => {
 const handleStartRecode = async () => {
   await initScreenStream(el.value as HTMLVideoElement)
 
-  const stream = el.value?.captureStream()
-
-  mediaRecorder.value = new MediaRecorder(stream, {
-    audioBitsPerSecond: 128000,
-    videoBitsPerSecond: 2500000,
-    mimeType: mimeType.value,
-  })
-
-  mediaRecorder.value?.addEventListener('dataavailable', (e) => {
-    const blob = new Blob([e.data], { type: 'video/mp4' })
-    const link = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = link
-    a.download = '录制'
-    a.target = '_blank'
-    a.hidden = true
-    a.style.display = 'none'
-    a.click()
-  })
-
-  mediaRecorder.value?.addEventListener('error', () => {
-    ElMessage.error({
-      message: '录屏失败',
-    })
-  })
+  mediaRecorder.value = initVideoRecorderStream(el.value as HTMLVideoElement, mimeType.value)
 
   mediaRecorder.value?.start()
+  triggerRef(mediaRecorder)
 }
 
 /**

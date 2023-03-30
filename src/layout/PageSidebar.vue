@@ -213,6 +213,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/screen-record') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/web-rtc">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/web-rtc') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->

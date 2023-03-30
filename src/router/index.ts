@@ -252,6 +252,12 @@ const router = createRouter({
           component: () => import('@/views/feature/RecordScreen.vue'),
           meta: { title: '屏幕录制' },
         },
+        {
+          name: Symbol('/feature/web-rtc'),
+          path: '/feature/web-rtc',
+          component: () => import('@/views/feature/WebRTC.vue'),
+          meta: { title: '网络实时通信' },
+        },
       ],
     },
 

@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
       - name: install global package manager
-        run: npm install pnpm@7.30.0 -g
+        run: npm install pnpm@8.1.0 -g
       - name: install dependencies
         run: pnpm install
       - name: install playwright browsers

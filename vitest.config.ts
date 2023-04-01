@@ -5,11 +5,13 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
-import ElementPlus from 'unplugin-element-plus/vite'
 import svgLoader from 'vite-svg-loader'
+import ElementPlus from 'unplugin-element-plus/vite'
+
+import generateBuildTime from './plugin/generate-build-time'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({})],
+  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), generateBuildTime()],
   resolve: {
     alias: {
       '~': __dirname,

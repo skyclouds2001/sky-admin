@@ -6,6 +6,7 @@ import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
 import ElementPlus from 'unplugin-element-plus/vite'
+import svgLoader from 'vite-svg-loader'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
@@ -19,6 +20,7 @@ export default defineConfig({
     legacy(),
     mock(),
     mkcert(),
+    svgLoader(),
     ElementPlus({}),
     eslint({
       cache: true,

@@ -169,6 +169,7 @@
     "vite-plugin-mkcert": "^1.13.3",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-stylelint": "^4.3.0",
+    "vite-svg-loader": "^4.0.0",
     "vitest": "^0.29.7",
     "vue-tsc": "^1.2.0"
   }

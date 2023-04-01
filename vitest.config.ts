@@ -6,9 +6,10 @@ import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
 import ElementPlus from 'unplugin-element-plus/vite'
+import svgLoader from 'vite-svg-loader'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), ElementPlus({})],
+  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({})],
   resolve: {
     alias: {
       '~': __dirname,

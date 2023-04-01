@@ -10,6 +10,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
+import inspect from 'vite-plugin-inspect'
 
 import generateBuildTime from './plugin/generate-build-time'
 
@@ -37,6 +38,7 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
     }),
+    inspect(),
     generateBuildTime(),
   ],
   resolve: {

@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection } from '@element-plus/icons-vue'
 import { useTabsStore, useMenuStore } from '@/store'
 
 const route = useRoute()
@@ -64,6 +64,18 @@ watch(
         <el-menu-item index="/form/base">
           <el-icon><Calendar /></el-icon>
           <span>{{ i18n.t('router./form/base') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 组件 -->
+      <el-sub-menu index="/component">
+        <template #title>
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component') }}</span>
+        </template>
+        <el-menu-item index="/component/icon">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/icon') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -200,6 +212,10 @@ watch(
         <el-menu-item index="/feature/screen-record">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/screen-record') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/web-rtc">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/web-rtc') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

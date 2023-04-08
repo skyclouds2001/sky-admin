@@ -9,16 +9,22 @@ const props = defineProps<{
   articles: Article[]
 }>()
 
+const emits = defineEmits<{
+  (e: 'edit', id: number): void
+  (e: 'toggle', id: number): void
+  (e: 'remove', id: number): void
+}>()
+
 const editArticle = (id: number) => {
-  console.log(id)
+  emits('edit', id)
 }
 
 const toggleArticleStatus = (id: number) => {
-  console.log(id)
+  emits('toggle', id)
 }
 
 const removeArticle = (id: number) => {
-  console.log(id)
+  emits('remove', id)
 }
 </script>
 

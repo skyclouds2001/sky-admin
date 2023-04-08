@@ -36,7 +36,7 @@ export const PROJECT_AUTHOR_AVATAR = avatar
 export const PROJECT_CONTRIBUTORS = packageConfig.contributors
 
 /** 服务器 HOST */
-export const SERVER_HOST = 'http://localhost:5173'
+export const SERVER_HOST = 'https://localhost:5173'
 
 /** 示例 word 文件地址 */
 export const DEMO_WORD_SRC = ''

@@ -46,6 +46,21 @@ const router = createRouter({
       ],
     },
 
+    // 组件
+    {
+      name: Symbol('/component'),
+      path: '/component',
+      meta: { title: '组件' },
+      children: [
+        {
+          name: Symbol('/component/icon'),
+          path: '/component/icon',
+          component: () => import('@/views/component/IconList.vue'),
+          meta: { title: '图标组件' },
+        },
+      ],
+    },
+
     // 图表
     {
       name: Symbol('/chart'),
@@ -236,6 +251,12 @@ const router = createRouter({
           path: '/feature/screen-record',
           component: () => import('@/views/feature/RecordScreen.vue'),
           meta: { title: '屏幕录制' },
+        },
+        {
+          name: Symbol('/feature/web-rtc'),
+          path: '/feature/web-rtc',
+          component: () => import('@/views/feature/WebRTC.vue'),
+          meta: { title: '网络实时通信' },
         },
       ],
     },

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import { echarts, type EchartsOptions } from '@/lib'
-import { useThemeStore } from '@/store'
+import { useTheme } from '@/hook'
 import { generateFakeData } from '@/util'
 
-const themeStore = useThemeStore()
+const { isLight, isDark } = useTheme()
 
 const data = generateFakeData(10, 100)
 
@@ -21,7 +21,7 @@ onMounted(() => {
         left: 'center',
         top: 'top',
         textStyle: {
-          color: themeStore.isLight() ? '#333' : '#ccc',
+          color: isLight() ? '#333' : isDark() ? '#ccc' : '#333',
         },
       },
       legend: {
@@ -30,7 +30,7 @@ onMounted(() => {
         left: 'right',
         top: 'bottom',
         textStyle: {
-          color: themeStore.isLight() ? '#333' : '#ccc',
+          color: isLight() ? '#333' : isDark() ? '#ccc' : '#333',
         },
       },
       grid: {

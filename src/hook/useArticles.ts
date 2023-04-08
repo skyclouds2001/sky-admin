@@ -12,6 +12,7 @@ const useArticles = (): {
   search: {
     name: string
   }
+  refresh: () => void
   handleSearch: (search: { name: string }) => void
 } => {
   const articles = ref<Article[]>([])
@@ -32,32 +33,45 @@ const useArticles = (): {
     search.name = s.name
   }
 
+  const refresh = (): void => {
+    void loadArticles(page.value, size.value, search)
+  }
+
+  const loadArticles = async (page: number, size: number, search: Record<'name', string>): Promise<void> => {
+    try {
+      loading.value = true
+      const res = await getArticles({
+        page,
+        size,
+        search,
+      })
+      if (res.success) {
+        articles.value = res.data.articles
+        total.value = res.data.total
+      } else {
+        ElMessage.error({
+          message: `加载失败：${res.code}: ${res.message}`,
+          showClose: true,
+          center: true,
+          grouping: true,
+        })
+      }
+    } catch {
+      ElMessage.error({
+        message: '加载失败',
+        showClose: true,
+        center: true,
+        grouping: true,
+      })
+    } finally {
+      loading.value = false
+    }
+  }
+
   watch(
     [page, size, search],
-    async ([currentPage, currentSize, currentSearch]) => {
-      loading.value = true
-      try {
-        const res = await getArticles({
-          page: currentPage,
-          size: currentSize,
-          search: currentSearch,
-        })
-        if (res.success) {
-          articles.value = res.data.articles
-          total.value = res.data.total
-        } else {
-          ElMessage.error({
-            message: `ERROR ${res.code}: ${res.message}`,
-            showClose: true,
-            center: true,
-            grouping: true,
-          })
-        }
-      } catch (error) {
-        console.error(error)
-      } finally {
-        loading.value = false
-      }
+    ([currentPage, currentSize, currentSearch]) => {
+      void loadArticles(currentPage, currentSize, currentSearch)
     },
     {
       immediate: true,
@@ -71,6 +85,7 @@ const useArticles = (): {
     size,
     loading,
     search,
+    refresh,
     handleSearch,
   }
 }

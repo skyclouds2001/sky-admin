@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, shallowRef, triggerRef, onMounted } from 'vue'
-import { ElButton, ElMessage, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { initScreenStream, getSupportedMimeTypes, captureScreenshot } from '@/util'
+import { ref, shallowRef, triggerRef } from 'vue'
+import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
+import { initScreenStream, getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
 
 const mediaRecorder = shallowRef<MediaRecorder | null>(null)
 
@@ -10,7 +10,8 @@ const el = ref<HTMLVideoElement | null>(null)
 /**
  * 当前使用的 MIME TYPE
  */
-const mimeType = ref('')
+const mimeType = ref<string>()
+
 /**
  * 支持的 MIME TYPE 列表
  */
@@ -20,39 +21,19 @@ const mimeTypes = ref(getSupportedMimeTypes())
  * 执行截图操作
  */
 const handleScreenshot = () => {
-  captureScreenshot(document.getElementById('video') as HTMLVideoElement)
+  captureScreenshot(el.value as HTMLVideoElement)
 }
 
 /**
  * 开始录制
  */
-const handleStartRecode = () => {
-  const stream = el.value?.captureStream()
-  mediaRecorder.value = new MediaRecorder(stream, {
-    audioBitsPerSecond: 128000,
-    videoBitsPerSecond: 2500000,
-    mimeType: mimeType.value,
-  })
+const handleStartRecode = async () => {
+  await initScreenStream(el.value as HTMLVideoElement)
 
-  mediaRecorder.value?.addEventListener('dataavailable', (e) => {
-    const blob = new Blob([e.data], { type: 'video/mp4' })
-    const link = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = link
-    a.download = '录制'
-    a.target = '_blank'
-    a.hidden = true
-    a.style.display = 'none'
-    a.click()
-  })
-
-  mediaRecorder.value?.addEventListener('error', () => {
-    ElMessage.error({
-      message: '录屏失败',
-    })
-  })
+  mediaRecorder.value = initVideoRecorderStream(el.value as HTMLVideoElement, mimeType.value)
 
   mediaRecorder.value?.start()
+  triggerRef(mediaRecorder)
 }
 
 /**
@@ -90,13 +71,8 @@ const handleOpen = () => {
  * 关闭视频流
  */
 const handleClose = () => {
-  const video = el.value as HTMLVideoElement
-  video.srcObject = null
+  ;(el.value as HTMLVideoElement).srcObject = null
 }
-
-onMounted(() => {
-  initScreenStream(el.value as HTMLVideoElement)
-})
 </script>
 
 <template>

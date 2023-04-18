@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/promise-function-async': 'off',
+    'promise/always-return': 'off',
   },
   settings: {
     'import/core-modules': ['element-plus'],

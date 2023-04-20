@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, shallowRef, triggerRef } from 'vue'
+import { usei18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { initScreenStream, getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
+
+const i18n = usei18n()
 
 const mediaRecorder = shallowRef<MediaRecorder | null>(null)
 
@@ -78,16 +81,16 @@ const handleClose = () => {
 <template>
   <el-space size="large" class="w-full p-5">
     <el-space size="large" direction="vertical">
-      <el-button type="primary" @click="handleScreenshot">截图</el-button>
+      <el-button type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
       <el-select v-model="mimeType" name="device">
         <el-option v-for="item in mimeTypes" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-button :disabled="mediaRecorder !== null" type="primary" @click="handleStartRecode">开始录制</el-button>
-      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'paused'" type="primary" @click="handleParseRecord">暂停录制</el-button>
-      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'recording'" type="primary" @click="handleResumeRecord">继续录制</el-button>
-      <el-button :disabled="mediaRecorder === null" type="primary" @click="handleEndRecord">结束录制</el-button>
-      <el-button type="primary" @click="handleOpen">开启</el-button>
-      <el-button type="primary" @click="handleClose">关闭</el-button>
+      <el-button :disabled="mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
+      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'paused'" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
+      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'recording'" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
+      <el-button :disabled="mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
+      <el-button type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
+      <el-button type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
     </el-space>
     <video id="video" ref="el" width="800" height="600" autoplay playsinline />
   </el-space>

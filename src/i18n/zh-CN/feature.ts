@@ -65,6 +65,17 @@ const feature = {
     operate: '计算',
     cipher_placeholder: '点击计算按钮以显示计算值',
   },
+  open: '开启',
+  close: '关闭',
+  screenshot: '截图',
+  open_record: '开始录制',
+  pause_record: '暂停录制',
+  resume_record: '继续录制',
+  stop_record: '结束录制',
+  initialization: '初始化',
+  create_offer: '创建 Offer',
+  create_answer: '创建 Answer',
+  add_answer: '添加 Answer',
 }
 
 export default feature

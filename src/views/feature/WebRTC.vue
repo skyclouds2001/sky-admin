@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElButton, ElCard, ElForm, ElFormItem, ElInput, ElSpace } from 'element-plus'
+
+const i18n = useI18n()
 
 const pc = new RTCPeerConnection()
 
@@ -76,11 +79,11 @@ const addAnswer = () => {
       <video id="remote" ref="el" width="800" height="600" autoplay playsinline muted />
     </el-space>
     <el-space size="large" direction="vertical">
-      <el-button type="primary" @click="handleInitWebRTC">初始化</el-button>
+      <el-button type="primary" @click="handleInitWebRTC">{{ i18n.t('feature.initialization') }}</el-button>
       <el-card header="用户A">
         <el-form>
           <el-form-item>
-            <el-button type="primary" @click="createOffer">创建Offer</el-button>
+            <el-button type="primary" @click="createOffer">{{ i18n.t('feature.create_offer') }}</el-button>
           </el-form-item>
           <el-form-item>
             <el-input v-model="offerSdp" />
@@ -90,7 +93,7 @@ const addAnswer = () => {
       <el-card header="用户B">
         <el-form>
           <el-form-item>
-            <el-button type="primary" @click="createAnswer">创建Answer</el-button>
+            <el-button type="primary" @click="createAnswer">{{ i18n.t('feature.create_answer') }}</el-button>
           </el-form-item>
           <el-form-item>
             <el-input v-model="answerSdp" />
@@ -99,7 +102,7 @@ const addAnswer = () => {
       </el-card>
       <el-card header="用户A">
         <el-form-item>
-          <el-button type="primary" @click="addAnswer">添加Answer</el-button>
+          <el-button type="primary" @click="addAnswer">{{ i18n.t('feature.add_answer') }}</el-button>
         </el-form-item>
       </el-card>
     </el-space>

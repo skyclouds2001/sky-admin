@@ -19,7 +19,9 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
     <layout-container>
       <router-view v-slot="{ Component }">
         <keep-alive>
-          <component :is="Component" />
+          <suspense>
+            <component :is="Component" />
+          </suspense>
         </keep-alive>
       </router-view>
     </layout-container>

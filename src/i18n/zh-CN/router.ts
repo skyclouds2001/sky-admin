@@ -6,6 +6,7 @@ const router = {
   '/form/base': '基础表单',
   '/component': '组件',
   '/component/icon': '图标',
+  '/component/terminal': '终端',
   '/chart': '图表',
   '/chart/bar': '柱状图',
   '/chart/line': '折线图',

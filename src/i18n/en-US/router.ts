@@ -6,6 +6,7 @@ const router = {
   '/form/base': 'Base Form',
   '/component': 'Component',
   '/component/icon': 'Icon',
+  '/component/terminal': 'Terminal',
   '/chart': 'Chart',
   '/chart/bar': 'Bar Chart',
   '/chart/line': 'line Chart',

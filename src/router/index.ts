@@ -58,6 +58,12 @@ const router = createRouter({
           component: () => import('@/views/component/IconList.vue'),
           meta: { title: '图标组件' },
         },
+        {
+          name: Symbol('/component/terminal'),
+          path: '/component/terminal',
+          component: () => import('@/views/component/WebTerminal.vue'),
+          meta: { title: '图标组件' },
+        },
       ],
     },
 

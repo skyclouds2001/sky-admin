@@ -77,6 +77,10 @@ watch(
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router./component/icon') }}</span>
         </el-menu-item>
+        <el-menu-item index="/component/terminal">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/terminal') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 图表 -->

@@ -33,6 +33,7 @@ const router = {
   '/feature/encode-decode': 'Encode',
   '/feature/encrypt-decrypt': 'Crypto',
   '/feature/code-highlight': 'Code Highlight',
+  '/feature/geo-position': 'Geographical Position',
   '/feature/camera-record': 'Video Recorder',
   '/feature/screen-record': 'Screen Recorder',
   '/feature/web-rtc': 'Web Real-Time Communications',

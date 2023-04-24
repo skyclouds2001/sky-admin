@@ -241,6 +241,12 @@ const router = createRouter({
           meta: { title: '代码高亮' },
         },
         {
+          name: Symbol('/feature/geo-position'),
+          path: '/feature/geo-position',
+          component: () => import('@/views/feature/GeographicalPosition.vue'),
+          meta: { title: '地理位置' },
+        },
+        {
           name: Symbol('/feature/camera-record'),
           path: '/feature/camera-record',
           component: () => import('@/views/feature/RecordCamera.vue'),

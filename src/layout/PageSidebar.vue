@@ -205,6 +205,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/code-highlight') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/geo-position">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/geo-position') }}</span>
+        </el-menu-item>
         <el-menu-item index="/feature/camera-record">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/camera-record') }}</span>

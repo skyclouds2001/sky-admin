@@ -33,6 +33,7 @@ const router = {
   '/feature/encode-decode': '编码',
   '/feature/encrypt-decrypt': '密码',
   '/feature/code-highlight': '代码高亮',
+  '/feature/geo-position': '地理位置',
   '/feature/camera-record': '视频录制',
   '/feature/screen-record': '屏幕录制',
   '/feature/web-rtc': '网络实时通信',

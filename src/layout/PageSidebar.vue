@@ -291,6 +291,7 @@ watch(
 
   @apply h-full;
   @apply relative;
+  @apply select-none;
 
   .el-menu-item.is-active {
     background-color: #4091f7 !important;

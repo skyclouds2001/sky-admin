@@ -27,7 +27,7 @@ const showSettingDrawer = () => {
 
 <template>
   <div class="page-header">
-    <el-breadcrumb>
+    <el-breadcrumb class="breadcrumb">
       <el-breadcrumb-item v-for="item in store.pages" :key="item.name" :to="item.path">{{ i18n.t(`router.${item.path}`) }}</el-breadcrumb-item>
     </el-breadcrumb>
 
@@ -52,6 +52,10 @@ const showSettingDrawer = () => {
 
   height: 100%;
 
+  .breadcrumb {
+    @apply select-none;
+  }
+
   .control-bar {
     @apply flex justify-center items-center;
 
@@ -70,6 +74,7 @@ const showSettingDrawer = () => {
       :deep(img) {
         @apply w-8 h-8;
         @apply rounded-full;
+        @apply select-none;
       }
     }
 

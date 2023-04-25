@@ -8,7 +8,7 @@ import mkcert from 'vite-plugin-mkcert'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 
-import generateBuildTime from './plugin/generate-build-time'
+import generateBuildTime from './plugin/generate-env'
 
 export default defineConfig({
   plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), generateBuildTime()],

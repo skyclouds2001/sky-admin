@@ -77,6 +77,10 @@ watch(
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router./component/icon') }}</span>
         </el-menu-item>
+        <el-menu-item index="/component/terminal">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/terminal') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 图表 -->
@@ -205,6 +209,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/code-highlight') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/geo-position">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/geo-position') }}</span>
+        </el-menu-item>
         <el-menu-item index="/feature/camera-record">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/camera-record') }}</span>
@@ -283,6 +291,7 @@ watch(
 
   @apply h-full;
   @apply relative;
+  @apply select-none;
 
   .el-menu-item.is-active {
     background-color: #4091f7 !important;

@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/promise-function-async': 'off',
+    'promise/always-return': 'off',
   },
   settings: {
     'import/core-modules': ['element-plus'],
@@ -48,8 +49,7 @@ module.exports = {
   overrides: [
     {
       files: ['**/tests/**/*.[jt]s?(x)'],
-      extends: ['plugin:testing-library/vue', 'plugin:playwright/playwright-test'],
-      plugins: ['vitest'],
+      extends: ['plugin:testing-library/vue', 'plugin:playwright/playwright-test', 'plugin:vitest/recommended'],
     },
     {
       files: ['*.ts', '*.tsx', '*.vue'],

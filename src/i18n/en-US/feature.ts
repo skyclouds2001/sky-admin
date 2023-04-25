@@ -65,6 +65,26 @@ const feature = {
     operate: 'Calculate',
     cipher_placeholder: 'Click calculate to see the result',
   },
+  geo: {
+    longitude: 'Longitude',
+    latitude: 'Latitude',
+    accuracy: 'Longitude & Latitude Accuracy',
+    altitude: 'Altitude',
+    altitudeAccuracy: 'Altitude Accuracy',
+    heading: 'Device Heading',
+    speed: 'Device Speed',
+  },
+  open: 'Open',
+  close: 'Close',
+  screenshot: 'Capture Screenshot',
+  open_record: 'Start Record',
+  pause_record: 'Pause Record',
+  resume_record: 'Continue Record',
+  stop_record: 'Stop Record',
+  initialization: 'Initialization',
+  create_offer: 'Create Offer',
+  create_answer: 'Create Answer',
+  add_answer: 'Add Answer',
 }
 
 export default feature

@@ -17,7 +17,17 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 <template>
   <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en">
     <layout-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <template v-if="Component">
+          <transition mode="out-in">
+            <keep-alive>
+              <suspense>
+                <component :is="Component" />
+              </suspense>
+            </keep-alive>
+          </transition>
+        </template>
+      </router-view>
     </layout-container>
   </el-config-provider>
 </template>

@@ -54,6 +54,7 @@ onBeforeMount(() => {
 .tabs {
   @apply w-full h-full;
   @apply border-0;
+  @apply select-none;
 
   .tab {
     width: 100%;

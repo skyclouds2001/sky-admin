@@ -8,6 +8,8 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   themeConfig: {
+    logo: 'logo.svg',
+    siteTitle: 'SkyAdmin',
     nav: [
       {
         text: 'Home',
@@ -18,7 +20,6 @@ export default defineConfig({
         link: '/docs',
       },
     ],
-    sidebar: {},
     editLink: {
       pattern: 'https://github.com/skyclouds2001/SkyAdmin/edit/main/docs/:path',
       text: 'Edit this page on GitHub',

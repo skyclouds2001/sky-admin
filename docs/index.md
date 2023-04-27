@@ -8,6 +8,7 @@ hero:
   name: SkyAdmin
   text: A Background Management System
   tagline: Great, overall and excellent. All you've wanted.
+  image: '/logo.png'
   actions:
     - theme: brand
       text: Get Started
@@ -17,10 +18,13 @@ hero:
       link: https://github.com/skyclouds2001/SkyAdmin
 
 features:
-  - title: Feature A
-    details: xxx
-    #icon: x
-  - title: Feature B
-    details: xxx
-    #icon: x
+  - title: Up-to-date Dev Stack
+    details: Using advanced front-end technology
+    icon: 💡
+  - title: Best Practice
+    details: Good and overall engineering practice
+    icon: 👋
+  - title: Feature-rich
+    details: Enterprise applications and various components
+    icon: 🤙
 ---

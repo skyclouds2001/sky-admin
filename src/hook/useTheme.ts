@@ -1,17 +1,16 @@
-import { onBeforeUnmount, onMounted, ref, type Ref, watch } from 'vue'
+import { computed, type ComputedRef, onBeforeUnmount, onMounted, ref, type Ref, watch } from 'vue'
 import { Theme } from '@/enum'
 
 const useTheme = (): {
   theme: Ref<Theme>
-  isLight: () => boolean
-  isDark: () => boolean
+  isLight: ComputedRef<boolean>
+  isDark: ComputedRef<boolean>
   toLight: () => void
   toDark: () => void
   toggleTheme: () => void
 } => {
   /**
    * 主题字符串转主题枚举方法
-   *
    * @param theme - 主题字符串
    * @returns - 主题枚举
    */
@@ -33,17 +32,15 @@ const useTheme = (): {
 
   /**
    * 判断是否为亮色主题
-   *
    * @returns - 判断结果
    */
-  const isLight = (): boolean => theme.value === Theme.LIGHT
+  const isLight = computed(() => theme.value === Theme.LIGHT)
 
   /**
    * 判断是否为暗色主题
-   *
    * @returns - 判断结果
    */
-  const isDark = (): boolean => theme.value === Theme.DARK
+  const isDark = computed(() => theme.value === Theme.DARK)
 
   /**
    * 转换为亮色主题
@@ -89,7 +86,6 @@ const useTheme = (): {
 
   /**
    * 主题存储变化回调方法
-   *
    * @param e 存储事件
    */
   const handleThemeStorageChange = (e: StorageEvent): void => {

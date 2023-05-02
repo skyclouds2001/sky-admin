@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* eslint-disable import/named */
-import { onMounted, onBeforeMount } from 'vue'
+import { onBeforUnmount, onMounted } from 'vue'
 import { ElSpace, ElCard } from 'element-plus'
 import { Terminal } from 'xterm'
 import 'xterm/css/xterm.css'
@@ -28,7 +28,7 @@ onMounted(() => {
   }, 1000)
 })
 
-onBeforeMount(() => {
+onBeforUnmount(() => {
   clearInterval(id)
   terminal.dispose()
 })

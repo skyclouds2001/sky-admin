@@ -3,18 +3,11 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: daily
     open-pull-requests-limit: 10
-    versioning-strategy: lockfile-only
-    labels:
-      - "dependencies"
-      - "npm"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: weekly
     open-pull-requests-limit: 10
-    versioning-strategy: lockfile-only
-    labels:
-      - "dependencies"
-      - "github-actions"
+ 

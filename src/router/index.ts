@@ -64,6 +64,24 @@ const router = createRouter({
           component: () => import('@/views/component/WebTerminal.vue'),
           meta: { title: '图标组件' },
         },
+        {
+          name: Symbol('/component/draggable'),
+          path: '/component/draggable',
+          component: () => import('@/views/component/DraggableComponent.vue'),
+          meta: { title: '拖拽组件' },
+        },
+        {
+          name: Symbol('/component/scalable'),
+          path: '/component/scalable',
+          component: () => import('@/views/component/ScalableComponent.vue'),
+          meta: { title: '缩放组件' },
+        },
+        {
+          name: Symbol('/component/rotatable'),
+          path: '/component/rotatable',
+          component: () => import('@/views/component/RotatableComponent.vue'),
+          meta: { title: '旋转组件' },
+        },
       ],
     },
 

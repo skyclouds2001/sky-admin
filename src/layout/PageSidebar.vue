@@ -81,6 +81,18 @@ watch(
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router./component/terminal') }}</span>
         </el-menu-item>
+        <el-menu-item index="/component/draggable">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/draggable') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/component/scalable">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/scalable') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/component/rotatable">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/rotatable') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 图表 -->

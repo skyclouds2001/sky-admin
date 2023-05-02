@@ -1,18 +1,24 @@
-# Environment Variable Files
+# Environment Variable File
 .env.local
 .env.development.local
 .env.production.local
 .env.test.local
 
-# Project Build Output
+# Dependency Directory
+node_modules/
+
+# Vite Build Output
 dist/
 
-# Dependency directories
-node_modules/
+# Vitepress Dev Cache
+docs/.vitepress/cache
+
+# Vitepress Build Output
+docs/.vitepress/dist
 
 # Visual Studio Code
 .vscode/
 
-# JetBrains
+# JetBrains IDE
 .idea/
 .fleet/

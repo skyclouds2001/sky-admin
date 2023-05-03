@@ -1,25 +1,23 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
 
-const el = ref<HTMLDivElement | null>(null)
-
 const isActive = ref(false)
 
 const position = reactive({
-  top: 40,
-  left: -40,
+  top: '80px',
+  left: '-80px',
 })
 
-const handleMouseDown = () => {
-  if (!isActive.value) {
+const handleMouseDown = (e: MouseEvent) => {
+  if ((e.target as HTMLDivElement).classList.contains('draggable-item') && !isActive.value) {
     isActive.value = true
   }
 }
 
 const handleMouseMove = (e: MouseEvent) => {
   if (isActive.value) {
-    position.left = position.left + e.movementX
-    position.top = position.top + e.movementY
+    position.left = `${parseInt(position.left) + e.movementX}px`
+    position.top = `${parseInt(position.top) + e.movementY}px`
   }
 }
 
@@ -30,21 +28,21 @@ const handleMouseUp = () => {
 }
 
 onMounted(() => {
-  el.value?.addEventListener('mousedown', handleMouseDown)
-  el.value?.addEventListener('mousemove', handleMouseMove)
-  el.value?.addEventListener('mouseup', handleMouseUp)
+  document.addEventListener('mousedown', handleMouseDown)
+  document.addEventListener('mousemove', handleMouseMove)
+  document.addEventListener('mouseup', handleMouseUp)
 })
 
 onBeforeUnmount(() => {
-  el.value?.removeEventListener('mousedown', handleMouseDown)
-  el.value?.removeEventListener('mousemove', handleMouseMove)
-  el.value?.removeEventListener('mouseup', handleMouseUp)
+  document.removeEventListener('mousedown', handleMouseDown)
+  document.removeEventListener('mousemove', handleMouseMove)
+  document.removeEventListener('mouseup', handleMouseUp)
 })
 </script>
 
 <template>
   <div class="draggable-box">
-    <div ref="el" :class="['draggable-item', isActive ? 'active' : '']" :style="{ top: `${position.top}px`, left: `${position.left}px` }">draggable component</div>
+    <div :class="['draggable-item', isActive ? 'active' : '']" :style="position">draggable component</div>
   </div>
 </template>
 
@@ -54,7 +52,8 @@ onBeforeUnmount(() => {
 
   .draggable-item {
     @apply w-40 h-40;
-    @apply absolute z-[999] top-10 -left-10;
+    @apply absolute z-[999] top-20 -left-20;
+    @apply flex justify-center items-center;
     @apply shadow-xl;
     @apply cursor-grab;
 

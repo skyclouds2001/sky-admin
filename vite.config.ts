@@ -12,7 +12,7 @@ import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
 
-import generateBuildTime from './plugin/generate-env'
+import generateEnv from './plugin/generate-env'
 
 export default defineConfig({
   plugins: [
@@ -39,7 +39,7 @@ export default defineConfig({
       brotliSize: true,
     }),
     inspect(),
-    generateBuildTime(),
+    generateEnv(),
   ],
   resolve: {
     alias: {

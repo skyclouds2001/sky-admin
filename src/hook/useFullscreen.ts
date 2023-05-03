@@ -1,5 +1,6 @@
 import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
 import { ElMessage } from 'element-plus'
+import { useEventListener } from '@/hook'
 
 const useFullscreen = (): {
   enabledFullscreen: boolean
@@ -67,15 +68,8 @@ const useFullscreen = (): {
     })
   }
 
-  onMounted(() => {
-    document.addEventListener('fullscreenchange', handleFullscreenStatusChange)
-    document.addEventListener('fullscreenerror', handleFullscreenError)
-  })
-
-  onBeforeUnmount(() => {
-    document.removeEventListener('fullscreenchange', handleFullscreenStatusChange)
-    document.removeEventListener('fullscreenerror', handleFullscreenError)
-  })
+  useEventListener(document, 'fullscreenchange', handleFullscreenStatusChange)
+  useEventListener(document, 'fullscreenerror', handleFullscreenError)
 
   return {
     enabledFullscreen,

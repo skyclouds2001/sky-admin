@@ -1,5 +1,6 @@
-import { computed, type ComputedRef, onBeforeUnmount, onMounted, ref, type Ref, watch } from 'vue'
+import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 import { Theme } from '@/enum'
+import { useEventListener } from '@/hook'
 
 const useTheme = (): {
   theme: Ref<Theme>
@@ -94,13 +95,7 @@ const useTheme = (): {
     }
   }
 
-  onMounted(() => {
-    window.addEventListener('storage', handleThemeStorageChange)
-  })
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('storage', handleThemeStorageChange)
-  })
+  useEventListener(window, 'storage', handleThemeStorageChange)
 
   return {
     theme,

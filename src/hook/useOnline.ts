@@ -1,4 +1,5 @@
-import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
+import { ref, computed, type ComputedRef } from 'vue'
+import { useEventListener } from '@/hook'
 
 const useOnline = (): {
   isOnline: ComputedRef<boolean>
@@ -22,15 +23,8 @@ const useOnline = (): {
     online.value = false
   }
 
-  onMounted(() => {
-    window.addEventListener('online', handleOnline)
-    window.addEventListener('offline', handleOffline)
-  })
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('online', handleOnline)
-    window.removeEventListener('offline', handleOffline)
-  })
+  useEventListener(window, 'online', handleOnline)
+  useEventListener(window, 'offline', handleOffline)
 
   return {
     isOnline: computed(() => online.value),

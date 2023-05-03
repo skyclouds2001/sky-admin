@@ -1,12 +1,14 @@
 <script setup lang="ts">
 /* eslint-disable import/named */
-import { onBeforUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { ElSpace, ElCard } from 'element-plus'
 import { Terminal } from 'xterm'
 import 'xterm/css/xterm.css'
 import { WebLinksAddon } from 'xterm-addon-web-links'
 import { FitAddon } from 'xterm-addon-fit'
 import { SearchAddon } from 'xterm-addon-search'
+
+const el = ref<HTMLDivElement | null>(null)
 
 const terminal = new Terminal()
 const webLicksAddon = new WebLinksAddon()
@@ -20,7 +22,7 @@ terminal.loadAddon(searchAddon)
 let id
 
 onMounted(() => {
-  terminal.open(document.getElementById('terminal'))
+  terminal.open(el.value)
   fitAddon.fit()
 
   id = setInterval(() => {
@@ -28,7 +30,7 @@ onMounted(() => {
   }, 1000)
 })
 
-onBeforUnmount(() => {
+onBeforeUnmount(() => {
   clearInterval(id)
   terminal.dispose()
 })
@@ -37,7 +39,7 @@ onBeforUnmount(() => {
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
-      <div id="terminal"></div>
+      <div ref="el"></div>
     </el-card>
   </el-space>
 </template>

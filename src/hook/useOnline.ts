@@ -1,9 +1,5 @@
 import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
 
-interface EventTargetWithOnline extends EventTarget {
-  online: boolean
-}
-
 const useOnline = (): {
   isOnline: ComputedRef<boolean>
 } => {
@@ -13,30 +9,31 @@ const useOnline = (): {
   const online = ref(window.navigator.onLine)
 
   /**
-   * 网络状态（只读）
+   * 网络状态连接事件回调方法
    */
-  const isOnline = computed(() => online.value)
+  const handleOnline = (): void => {
+    online.value = true
+  }
 
   /**
-   * 网络状态改变回调方法
-   * @param e 回调事件
+   * 网络状态断开事件回调方法
    */
-  const handleStatusChange = (e: Event): void => {
-    online.value = (e.target as EventTargetWithOnline)?.online
+  const handleOffline = (): void => {
+    online.value = false
   }
 
   onMounted(() => {
-    window.addEventListener('online', handleStatusChange)
-    window.addEventListener('offline', handleStatusChange)
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener('online', handleStatusChange)
-    window.removeEventListener('offline', handleStatusChange)
+    window.removeEventListener('online', handleOnline)
+    window.removeEventListener('offline', handleOffline)
   })
 
   return {
-    isOnline,
+    isOnline: computed(() => online.value),
   }
 }
 

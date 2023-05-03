@@ -7,11 +7,12 @@ import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 import generateEnv from './plugin/generate-env'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), generateEnv()],
+  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), VueI18nPlugin({}), generateEnv()],
   resolve: {
     alias: {
       '~': __dirname,

@@ -7,6 +7,7 @@ import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
@@ -23,6 +24,7 @@ export default defineConfig({
     mkcert(),
     svgLoader(),
     ElementPlus({}),
+    VueI18nPlugin({}),
     eslint({
       cache: true,
       cacheLocation: 'node_modules/.eslint/.eslintcache',

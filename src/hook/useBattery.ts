@@ -42,11 +42,6 @@ const useBattery = (): {
   })
 
   /**
-   * 电池信息（只读）
-   */
-  const batteryInfo = readonly(battery)
-
-  /**
    * 是否支持电池API
    */
   const isSupported = 'getBattery' in navigator
@@ -91,7 +86,7 @@ const useBattery = (): {
   })
 
   return {
-    battery: batteryInfo,
+    battery: readonly(battery),
     isSupported,
   }
 }

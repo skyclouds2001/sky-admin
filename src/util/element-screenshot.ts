@@ -1,6 +1,5 @@
 /**
  * 生成视频截图
- *
  * @param video Video 标签元素
  */
 export const captureScreenshot = (video: HTMLVideoElement): void => {

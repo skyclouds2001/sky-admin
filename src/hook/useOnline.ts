@@ -19,7 +19,6 @@ const useOnline = (): {
 
   /**
    * 网络状态改变回调方法
-   *
    * @param e 回调事件
    */
   const handleStatusChange = (e: Event): void => {

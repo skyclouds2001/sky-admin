@@ -53,7 +53,6 @@ const useBattery = (): {
 
   /**
    * 更新电池信息方法
-   *
    * @param batteryManager 电池信息管理器
    */
   const updateBatteryInfo = (batteryManager?: BatteryManager): void => {
@@ -65,7 +64,6 @@ const useBattery = (): {
 
   /**
    * 电池状态改变回调方法
-   *
    * @param e 回调事件
    */
   const handleBatteryInfoChange: EventListener = (e) => {

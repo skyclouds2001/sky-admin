@@ -86,7 +86,6 @@ const useNetwork = (): {
 
   /**
    * 更新网络连接状态
-   *
    * @param connection 网络连接对象
    */
   const updateConnectionStatus = (connection?: NetworkInformation): void => {
@@ -100,7 +99,6 @@ const useNetwork = (): {
 
   /**
    * 网络连接状态改变回调方法
-   *
    * @param e 回调事件
    */
   const handleConnectionChange: EventListener = (e) => {

@@ -7,7 +7,6 @@ const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 /**
  * 生成虚拟数据方法
- *
  * @param len 待生成数据长度（小于 52）
  * @param range 生成数据范围（为正整数）
  * @returns 生成的虚拟数据

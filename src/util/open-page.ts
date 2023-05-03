@@ -1,6 +1,5 @@
 /**
  * 在新标签页打开目标页面方法
- *
  * @param href - 目标页面 URL
  */
 export const openNewPageInNewTab = (href: string): void => {
@@ -13,7 +12,6 @@ export const openNewPageInNewTab = (href: string): void => {
 
 /**
  * 在当前标签页打开目标页面方法
- *
  * @param href - 目标页面 URL
  */
 export const openNewPageInCurrentTab = (href: string): void => {

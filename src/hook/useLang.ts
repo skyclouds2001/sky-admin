@@ -10,7 +10,6 @@ const useLang = (): {
 
   /**
    * 语言字符串转语言枚举方法
-   *
    * @param lang - 语言字符串
    * @returns - 语言枚举
    */
@@ -53,7 +52,6 @@ const useLang = (): {
 
   /**
    * 语言存储变化回调方法
-   *
    * @param e 存储事件
    */
   const handleLangStorageChange = (e: StorageEvent): void => {

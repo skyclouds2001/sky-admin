@@ -4,7 +4,6 @@ interface NavigatorWithMemory extends Navigator {
 
 /**
  * 获取浏览器及平台信息方法
- *
  * @returns 浏览器及平台信息
  */
 export const generateBrowserInfo = (): {

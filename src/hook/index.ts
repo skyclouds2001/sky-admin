@@ -17,3 +17,5 @@ export { default as useGeolocation } from './useGeolocation'
 export { default as useTheme } from './useTheme'
 
 export { default as useLang } from './useLang'
+
+export { default as useEventListener } from './useEventListener'

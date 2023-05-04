@@ -12,31 +12,22 @@ const useOnline = (): {
   /**
    * 网络连接时间
    */
-  const onlineAt: Ref<number | undefined> = ref(undefined)
+  const onlineAt: Ref<number | undefined> = ref(online.value ? Date.now() : undefined)
 
   /**
    * 网络断开时间
    */
-  const offlineAt: Ref<number | undefined> = ref(undefined)
+  const offlineAt: Ref<number | undefined> = ref(online.value ? undefined : Date.now())
 
-  /**
-   * 网络状态连接事件回调方法
-   */
-  const handleOnline = (): void => {
+  useEventListener(window, 'online', () => {
     online.value = true
     onlineAt.value = online.value ? Date.now() : undefined
-  }
+  })
 
-  /**
-   * 网络状态断开事件回调方法
-   */
-  const handleOffline = (): void => {
+  useEventListener(window, 'offline', () => {
     online.value = false
     offlineAt.value = online.value ? undefined : Date.now()
-  }
-
-  useEventListener(window, 'online', handleOnline)
-  useEventListener(window, 'offline', handleOffline)
+  })
 
   return {
     isOnline: computed(() => online.value),

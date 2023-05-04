@@ -65,10 +65,12 @@ const useBattery = (): {
     updateBatteryInfo(e.target as BatteryManager)
   }
 
+  void (window.navigator as NavigatorWithBattery).getBattery?.().then((batteryManager) => {
+    updateBatteryInfo(batteryManager)
+  })
+
   onMounted(async () => {
     const batteryManager: BatteryManager = await (window.navigator as NavigatorWithBattery).getBattery?.()
-
-    updateBatteryInfo(batteryManager)
 
     batteryManager?.addEventListener('chargingchange', handleBatteryInfoChange)
     batteryManager?.addEventListener('levelchange', handleBatteryInfoChange)

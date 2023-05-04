@@ -1,4 +1,4 @@
-import { ref, readonly, onMounted, onUnmounted } from 'vue'
+import { ref, readonly } from 'vue'
 import { useEventListener } from '@/hook'
 
 interface NavigatorWithConnection extends Navigator {
@@ -86,19 +86,13 @@ const useNetwork = (): {
     saveData.value = connection?.saveData
   }
 
-  /**
-   * 网络连接状态改变回调方法
-   * @param e 回调事件
-   */
-  const handleConnectionChange: EventListener = (e) => {
-    updateConnectionStatus(e.target as NetworkInformation)
-  }
-
   const connection = (navigator as NavigatorWithConnection).connection
 
   updateConnectionStatus(connection)
 
-  useEventListener(connection as NetworkInformation, 'change', handleConnectionChange)
+  useEventListener(connection as NetworkInformation, 'change', (e) => {
+    updateConnectionStatus(e.target as NetworkInformation)
+  })
 
   return {
     isSupported,

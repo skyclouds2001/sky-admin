@@ -49,27 +49,18 @@ const useFullscreen = (): {
     }
   }
 
-  /**
-   * 全屏状态改变回调方法
-   */
-  const handleFullscreenStatusChange = (): void => {
+  useEventListener(document, 'fullscreenchange', () => {
     status.value = document.fullscreenElement !== null
-  }
+  })
 
-  /**
-   * 改变全屏状态错误回调方法
-   */
-  const handleFullscreenError = (): void => {
+  useEventListener(document, 'fullscreenerror', () => {
     ElMessage({
       message: '进入全屏模式失败',
       type: 'error',
       showClose: true,
       center: true,
     })
-  }
-
-  useEventListener(document, 'fullscreenchange', handleFullscreenStatusChange)
-  useEventListener(document, 'fullscreenerror', handleFullscreenError)
+  })
 
   return {
     enabledFullscreen,

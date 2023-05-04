@@ -85,17 +85,11 @@ const useTheme = (): {
     }
   )
 
-  /**
-   * 主题存储变化回调方法
-   * @param e 存储事件
-   */
-  const handleThemeStorageChange = (e: StorageEvent): void => {
+  useEventListener(window, 'storage', (e) => {
     if (e.key === 'theme') {
       theme.value = stringToTheme(e.newValue)
     }
-  }
-
-  useEventListener(window, 'storage', handleThemeStorageChange)
+  })
 
   return {
     theme,

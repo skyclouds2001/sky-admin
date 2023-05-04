@@ -51,17 +51,11 @@ const useLang = (): {
     }
   )
 
-  /**
-   * 语言存储变化回调方法
-   * @param e 存储事件
-   */
-  const handleLangStorageChange = (e: StorageEvent): void => {
+  useEventListener(window, 'storage', (e: StorageEvent) => {
     if (e.key === 'lang') {
       lang.value = stringToLang(e.newValue)
     }
-  }
-
-  useEventListener(window, 'storage', handleLangStorageChange)
+  })
 
   return {
     lang,

@@ -1,4 +1,5 @@
 import { ref, readonly, onMounted, onUnmounted } from 'vue'
+import { useEventListener } from '@/hook'
 
 interface NavigatorWithConnection extends Navigator {
   connection?: NetworkInformation
@@ -73,18 +74,6 @@ const useNetwork = (): {
   const saveData = ref<boolean>()
 
   /**
-   * 网络连接数据
-   */
-  const connection = readonly({
-    downlink,
-    downlinkMax,
-    type,
-    effectiveType,
-    rtt,
-    saveData,
-  })
-
-  /**
    * 更新网络连接状态
    * @param connection 网络连接对象
    */
@@ -105,23 +94,22 @@ const useNetwork = (): {
     updateConnectionStatus(e.target as NetworkInformation)
   }
 
-  onMounted(() => {
-    const connection = (navigator as NavigatorWithConnection).connection
+  const connection = (navigator as NavigatorWithConnection).connection
 
-    updateConnectionStatus(connection)
+  updateConnectionStatus(connection)
 
-    connection?.addEventListener('change', handleConnectionChange)
-  })
-
-  onUnmounted(() => {
-    const connection = (navigator as NavigatorWithConnection).connection
-
-    connection?.removeEventListener('change', handleConnectionChange)
-  })
+  useEventListener(connection as NetworkInformation, 'change', handleConnectionChange)
 
   return {
     isSupported,
-    connection,
+    connection: readonly({
+      downlink,
+      downlinkMax,
+      type,
+      effectiveType,
+      rtt,
+      saveData,
+    }),
   }
 }
 

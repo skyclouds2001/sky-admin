@@ -55,6 +55,8 @@ onBeforeMount(() => {
   @apply select-none;
 
   .tab {
+    @apply select-text;
+
     width: 100%;
     height: calc(100vh - 60px * 2 - 40px);
   }

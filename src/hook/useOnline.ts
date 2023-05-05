@@ -1,8 +1,10 @@
-import { ref, computed, type ComputedRef, type Ref } from 'vue'
+import { computed, type ComputedRef, type Ref, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const useOnline = (): {
   isOnline: ComputedRef<boolean>
+  onlineAt: Ref<number | undefined>
+  offlineAt: Ref<number | undefined>
 } => {
   /**
    * 网络状态
@@ -12,12 +14,12 @@ const useOnline = (): {
   /**
    * 网络连接时间
    */
-  const onlineAt: Ref<number | undefined> = ref(online.value ? Date.now() : undefined)
+  const onlineAt = ref(online.value ? Date.now() : undefined)
 
   /**
    * 网络断开时间
    */
-  const offlineAt: Ref<number | undefined> = ref(online.value ? undefined : Date.now())
+  const offlineAt = ref(online.value ? undefined : Date.now())
 
   useEventListener(window, 'online', () => {
     online.value = true
@@ -31,6 +33,8 @@ const useOnline = (): {
 
   return {
     isOnline: computed(() => online.value),
+    onlineAt,
+    offlineAt,
   }
 }
 

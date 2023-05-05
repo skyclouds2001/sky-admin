@@ -4,31 +4,21 @@ import { locale } from 'dayjs'
 import { Lang } from '@/enum'
 import { useEventListener } from '@/hook'
 
+const isLang = (lang: unknown): lang is Lang => {
+  return typeof lang === 'string' && ['zh-CN', 'en-US'].includes(lang)
+}
+
 const useLang = (): {
   lang: Ref<Lang>
 } => {
   const i18n = useI18n()
 
-  /**
-   * 语言字符串转语言枚举方法
-   * @param lang - 语言字符串
-   * @returns - 语言枚举
-   */
-  const stringToLang = (lang: string | null): Lang => {
-    switch (lang) {
-      case 'zh-CN':
-        return Lang.zhCN
-      case 'en-US':
-        return Lang.enUS
-      default:
-        return Lang.zhCN
-    }
-  }
+  const val = window.localStorage.getItem('lang')
 
   /**
    * 语言
    */
-  const lang = ref<Lang>(stringToLang(window.localStorage.getItem('lang')))
+  const lang = ref(isLang(val) ? val : Lang.zhCN)
 
   watch(
     lang,
@@ -51,9 +41,9 @@ const useLang = (): {
     }
   )
 
-  useEventListener(window, 'storage', (e: StorageEvent) => {
+  useEventListener(window, 'storage', (e) => {
     if (e.key === 'lang') {
-      lang.value = stringToLang(e.newValue)
+      lang.value = isLang(e.newValue) ? e.newValue : Lang.zhCN
     }
   })
 

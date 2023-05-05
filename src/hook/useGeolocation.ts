@@ -1,74 +1,60 @@
-import { onMounted, onBeforeUnmount, reactive, readonly } from 'vue'
+import { onBeforeUnmount, onMounted, ref, type Ref, shallowRef, type ShallowRef } from 'vue'
 
-type Geolocation = {
-  -readonly [K in keyof GeolocationCoordinates]: GeolocationCoordinates[K]
-}
-
-const useGeolocation = (): {
-  geolocation: Readonly<Geolocation>
+const useGeolocation = ({ enableHighAccuracy = true, maximumAge = 30000, timeout = 27000 } = {}): {
+  isSupported: boolean
+  geolocation: Ref<GeolocationCoordinates>
+  locatedAt: Ref<number | null>
+  error: ShallowRef<GeolocationPositionError | null>
 } => {
-  const geolocation = navigator.geolocation
+  const isSupported = 'geolocation' in navigator
 
-  const location = reactive<Geolocation>({
-    latitude: 0,
-    longitude: 0,
-    altitude: 0,
+  const location = ref<GeolocationCoordinates>({
     accuracy: 0,
-    altitudeAccuracy: 0,
-    heading: 0,
-    speed: 0,
+    latitude: Infinity,
+    longitude: Infinity,
+    altitude: null,
+    altitudeAccuracy: null,
+    heading: null,
+    speed: null,
   })
 
-  let id: number
+  const locatedAt = ref<number | null>(null)
+
+  const error = shallowRef<GeolocationPositionError | null>(null)
+
+  let watcher: number | null = null
 
   onMounted(() => {
-    id = geolocation.watchPosition(
-      (geo) => {
-        location.latitude = geo.coords.latitude
-        location.longitude = geo.coords.longitude
-        location.altitude = geo.coords.altitude
-        location.accuracy = geo.coords.accuracy
-        location.altitudeAccuracy = geo.coords.altitudeAccuracy
-        location.heading = geo.coords.heading
-        location.speed = geo.coords.speed
-      },
-      (error) => {
-        console.error(`ERROR(${error.code}): ${error.message}`)
-      },
-      {
-        enableHighAccuracy: true,
-        maximumAge: 30000,
-        timeout: 30000,
-      }
-    )
-
-    geolocation.getCurrentPosition(
-      (geo) => {
-        location.latitude = geo.coords.latitude
-        location.longitude = geo.coords.longitude
-        location.altitude = geo.coords.altitude
-        location.accuracy = geo.coords.accuracy
-        location.altitudeAccuracy = geo.coords.altitudeAccuracy
-        location.heading = geo.coords.heading
-        location.speed = geo.coords.speed
-      },
-      (error) => {
-        console.error(`ERROR(${error.code}): ${error.message}`)
-      },
-      {
-        enableHighAccuracy: true,
-        maximumAge: 30000,
-        timeout: 30000,
-      }
-    )
+    if (isSupported) {
+      watcher = window.navigator.geolocation.watchPosition(
+        (geo) => {
+          location.value = geo.coords
+          error.value = null
+          locatedAt.value = geo.timestamp
+        },
+        (err) => {
+          error.value = err
+        },
+        {
+          enableHighAccuracy,
+          maximumAge,
+          timeout,
+        }
+      )
+    }
   })
 
   onBeforeUnmount(() => {
-    geolocation.clearWatch(id)
+    if (isSupported && watcher !== null) {
+      window.navigator.geolocation.clearWatch(watcher)
+    }
   })
 
   return {
-    geolocation: readonly(location),
+    isSupported,
+    geolocation: location,
+    locatedAt,
+    error,
   }
 }
 

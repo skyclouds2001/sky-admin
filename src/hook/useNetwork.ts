@@ -1,8 +1,8 @@
-import { ref, readonly } from 'vue'
+import { readonly, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
-interface NavigatorWithConnection extends Navigator {
-  connection?: NetworkInformation
+type NavigatorWithConnection = Navigator & {
+  connection: NetworkInformation
 }
 
 interface NetworkInformation extends EventTarget {
@@ -12,9 +12,6 @@ interface NetworkInformation extends EventTarget {
   saveData: boolean
   type: NetworkType
   downlinkMax: number
-  onchange: EventListenerOrEventListenerObject
-  addEventListener: (type: 'change', callback: EventListenerOrEventListenerObject | null, options?: AddEventListenerOptions | boolean) => void
-  removeEventListener: (type: 'change', callback: EventListenerOrEventListenerObject | null, options?: EventListenerOptions | boolean) => void
 }
 
 /**
@@ -29,14 +26,7 @@ type NetworkEffectiveType = 'slow-2g' | '2g' | '3g' | '4g' | undefined
 
 const useNetwork = (): {
   isSupported: boolean
-  connection: Readonly<{
-    downlink?: number
-    downlinkMax?: number
-    type?: NetworkType
-    effectiveType?: NetworkEffectiveType
-    rtt?: number
-    saveData?: boolean
-  }>
+  connection: Readonly<Partial<NetworkInformation>>
 } => {
   /**
    * 标记 Navigator.connection 是否支持
@@ -77,22 +67,24 @@ const useNetwork = (): {
    * 更新网络连接状态
    * @param connection 网络连接对象
    */
-  const updateConnectionStatus = (connection?: NetworkInformation): void => {
-    downlink.value = connection?.downlink
-    downlinkMax.value = connection?.downlinkMax
-    type.value = connection?.type
-    effectiveType.value = connection?.effectiveType
-    rtt.value = connection?.rtt !== undefined ? connection.rtt * 0.025 : undefined
-    saveData.value = connection?.saveData
+  const updateConnectionStatus = (connection: NetworkInformation): void => {
+    downlink.value = connection.downlink
+    downlinkMax.value = connection.downlinkMax
+    type.value = connection.type
+    effectiveType.value = connection.effectiveType
+    rtt.value = connection.rtt * 0.025
+    saveData.value = connection.saveData
   }
 
-  const connection = (navigator as NavigatorWithConnection).connection
+  if (isSupported) {
+    const connection = (window.navigator as NavigatorWithConnection).connection
 
-  updateConnectionStatus(connection)
+    updateConnectionStatus(connection)
 
-  useEventListener(connection as NetworkInformation, 'change', (e) => {
-    updateConnectionStatus(e.target as NetworkInformation)
-  })
+    useEventListener(connection, 'change', (e) => {
+      updateConnectionStatus(e.target as NetworkInformation)
+    })
+  }
 
   return {
     isSupported,

@@ -2,33 +2,30 @@ import { ref, computed, type ComputedRef } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useEventListener } from '@/hook'
 
-const useFullscreen = (): {
-  enabledFullscreen: boolean
+const useFullscreen = (
+  target: HTMLElement = document.documentElement
+): {
+  isSupported: boolean
   isFullscreen: ComputedRef<boolean>
-  openFullscreen: () => void
+  enterFullscreen: () => void
   exitFullscreen: () => void
   toggleFullscreen: () => void
 } => {
   /**
-   * 当前全屏状态
-   */
-  const status = ref(document.fullscreenElement !== null)
-
-  /**
    * 标记用户是否启用全屏功能
    */
-  const enabledFullscreen = document.fullscreenEnabled
+  const isSupported = document.fullscreenEnabled && 'fullscreenElement' in document && 'requestFullscreen' in HTMLElement && 'exitFullscreen' in document
 
   /**
-   * 当前全屏状态（只读）
+   * 当前全屏状态
    */
-  const isFullscreen = computed(() => status.value)
+  const isFullscreen = ref(document.fullscreenElement !== null)
 
   /**
    * 进入全屏状态方法
    */
-  const openFullscreen = (): void => {
-    void document.documentElement.requestFullscreen()
+  const enterFullscreen = (): void => {
+    void target.requestFullscreen()
   }
 
   /**
@@ -42,15 +39,15 @@ const useFullscreen = (): {
    * 切换全屏状态方法
    */
   const toggleFullscreen = (): void => {
-    if (!status.value) {
-      void document.documentElement.requestFullscreen()
+    if (!isFullscreen.value) {
+      enterFullscreen()
     } else {
-      void document.exitFullscreen()
+      exitFullscreen()
     }
   }
 
   useEventListener(document, 'fullscreenchange', () => {
-    status.value = document.fullscreenElement !== null
+    isFullscreen.value = document.fullscreenElement !== null
   })
 
   useEventListener(document, 'fullscreenerror', () => {
@@ -63,9 +60,9 @@ const useFullscreen = (): {
   })
 
   return {
-    enabledFullscreen,
-    isFullscreen,
-    openFullscreen,
+    isSupported,
+    isFullscreen: computed(() => isFullscreen.value),
+    enterFullscreen,
     exitFullscreen,
     toggleFullscreen,
   }

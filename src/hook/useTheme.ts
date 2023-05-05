@@ -2,6 +2,10 @@ import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 import { Theme } from '@/enum'
 import { useEventListener } from '@/hook'
 
+const isTheme = (theme: unknown): theme is Theme => {
+  return typeof theme === 'string' && ['light', 'dark'].includes(theme)
+}
+
 const useTheme = (): {
   theme: Ref<Theme>
   isLight: ComputedRef<boolean>
@@ -10,26 +14,12 @@ const useTheme = (): {
   toDark: () => void
   toggleTheme: () => void
 } => {
-  /**
-   * 主题字符串转主题枚举方法
-   * @param theme - 主题字符串
-   * @returns - 主题枚举
-   */
-  const stringToTheme = (theme: string | null): Theme => {
-    switch (theme) {
-      case 'light':
-        return Theme.LIGHT
-      case 'dark':
-        return Theme.DARK
-      default:
-        return Theme.LIGHT
-    }
-  }
+  const val = window.localStorage.getItem('theme')
 
   /**
    * 主题
    */
-  const theme = ref<Theme>(stringToTheme(window.localStorage.getItem('theme')))
+  const theme = ref(isTheme(val) ? val : Theme.LIGHT)
 
   /**
    * 判断是否为亮色主题
@@ -87,7 +77,7 @@ const useTheme = (): {
 
   useEventListener(window, 'storage', (e) => {
     if (e.key === 'theme') {
-      theme.value = stringToTheme(e.newValue)
+      theme.value = isTheme(e.newValue) ? e.newValue : Theme.LIGHT
     }
   })
 

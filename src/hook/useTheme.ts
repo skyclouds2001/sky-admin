@@ -1,6 +1,6 @@
 import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 import { Theme } from '@/enum'
-import { useEventListener } from '@/hook'
+import { useEventListener, usePreferredTheme } from '@/hook'
 
 const isTheme = (theme: unknown): theme is Theme => {
   return typeof theme === 'string' && ['light', 'dark'].includes(theme)
@@ -19,7 +19,7 @@ const useTheme = (): {
   /**
    * 主题
    */
-  const theme = ref(isTheme(val) ? val : Theme.LIGHT)
+  const theme = ref(isTheme(val) ? val : usePreferredTheme())
 
   /**
    * 判断是否为亮色主题

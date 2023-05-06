@@ -20,6 +20,8 @@ export { default as useNetwork } from './useNetwork'
 
 export { default as useOnline } from './useOnline'
 
+export { default as usePreferredLang } from './usePreferredLang'
+
 export { default as usePreferredTheme } from './usePreferredTheme'
 
 export { default as useTheme } from './useTheme'

@@ -14,6 +14,8 @@ export { default as useGrayMode } from './useGrayMode'
 
 export { default as useLang } from './useLang'
 
+export { default as useMediaQuery } from './useMediaQuery'
+
 export { default as useNetwork } from './useNetwork'
 
 export { default as useOnline } from './useOnline'

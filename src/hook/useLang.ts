@@ -3,10 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
 import { Lang } from '@/enum'
 import { useEventListener, usePreferredLang } from '@/hook'
-
-const isLang = (lang: unknown): lang is Lang => {
-  return typeof lang === 'string' && ['zh-CN', 'en-US'].includes(lang)
-}
+import { isLang } from '@/util'
 
 const useLang = (): {
   lang: Ref<Lang>

@@ -14,7 +14,7 @@ const useMediaQuery = (
   const matches = ref(mediaQuery.matches)
 
   useEventListener(mediaQuery, 'change', (e) => {
-    matches.value = (e as MediaQueryListEvent).matches
+    matches.value = e.matches
   })
 
   return {

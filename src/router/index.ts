@@ -50,6 +50,7 @@ const router = createRouter({
     {
       name: Symbol('/component'),
       path: '/component',
+      redirect: '/component/icon',
       meta: { title: '组件' },
       children: [
         {

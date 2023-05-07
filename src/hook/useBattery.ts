@@ -1,4 +1,5 @@
-import { onMounted, onBeforeUnmount, reactive, readonly } from 'vue'
+import { reactive, readonly } from 'vue'
+import { useEventListener } from '@/hook'
 
 type NavigatorWithBattery = Navigator & {
   getBattery: () => Promise<BatteryManager>
@@ -41,41 +42,24 @@ const useBattery = (): {
     battery.level = batteryManager.level * 100
   }
 
-  /**
-   * 电池状态改变回调方法
-   * @param e 回调事件
-   */
-  const handleBatteryInfoChange: EventListener = (e) => {
-    updateBatteryInfo(e.target as BatteryManager)
-  }
-
   if (isSupported) {
     void (window.navigator as NavigatorWithBattery).getBattery().then((batteryManager) => {
       updateBatteryInfo(batteryManager)
+
+      useEventListener(batteryManager, 'chargingchange', (e) => {
+        updateBatteryInfo(e.target as BatteryManager)
+      })
+      useEventListener(batteryManager, 'levelchange', (e) => {
+        updateBatteryInfo(e.target as BatteryManager)
+      })
+      useEventListener(batteryManager, 'chargingtimechange', (e) => {
+        updateBatteryInfo(e.target as BatteryManager)
+      })
+      useEventListener(batteryManager, 'dischargingtimechange', (e) => {
+        updateBatteryInfo(e.target as BatteryManager)
+      })
     })
   }
-
-  onMounted(async () => {
-    if (isSupported) {
-      const batteryManager = await (window.navigator as NavigatorWithBattery).getBattery()
-
-      batteryManager.addEventListener('chargingchange', handleBatteryInfoChange)
-      batteryManager.addEventListener('levelchange', handleBatteryInfoChange)
-      batteryManager.addEventListener('chargingtimechange', handleBatteryInfoChange)
-      batteryManager.addEventListener('dischargingtimechange', handleBatteryInfoChange)
-    }
-  })
-
-  onBeforeUnmount(async () => {
-    if (isSupported) {
-      const batteryManager = await (navigator as NavigatorWithBattery).getBattery()
-
-      batteryManager.removeEventListener('chargingchange', handleBatteryInfoChange)
-      batteryManager.removeEventListener('levelchange', handleBatteryInfoChange)
-      batteryManager.removeEventListener('chargingtimechange', handleBatteryInfoChange)
-      batteryManager.removeEventListener('dischargingtimechange', handleBatteryInfoChange)
-    }
-  })
 
   return {
     battery: readonly(battery),

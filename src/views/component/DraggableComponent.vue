@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
+import { useEventListener } from '@/hook'
 
 const isActive = ref(false)
 
@@ -8,35 +9,23 @@ const position = reactive({
   left: '-80px',
 })
 
-const handleMouseDown = (e: MouseEvent) => {
+useEventListener(window, 'mousedown', (e) => {
   if ((e.target as HTMLDivElement).classList.contains('draggable-item') && !isActive.value) {
     isActive.value = true
   }
-}
+})
 
-const handleMouseMove = (e: MouseEvent) => {
+useEventListener(window, 'mousemove', (e) => {
   if (isActive.value) {
     position.left = `${parseInt(position.left) + e.movementX}px`
     position.top = `${parseInt(position.top) + e.movementY}px`
   }
-}
+})
 
-const handleMouseUp = () => {
+useEventListener(window, 'mouseup', () => {
   if (isActive.value) {
     isActive.value = false
   }
-}
-
-onMounted(() => {
-  document.addEventListener('mousedown', handleMouseDown)
-  document.addEventListener('mousemove', handleMouseMove)
-  document.addEventListener('mouseup', handleMouseUp)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousedown', handleMouseDown)
-  document.removeEventListener('mousemove', handleMouseMove)
-  document.removeEventListener('mouseup', handleMouseUp)
 })
 </script>
 

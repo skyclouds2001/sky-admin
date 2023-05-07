@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
+import { useEventListener } from '@/hook'
 
 const current = ref(0)
 
@@ -10,17 +11,17 @@ const box = reactive({
   left: '-80px',
 })
 
-const handleMouseDown = (e: MouseEvent) => {
+useEventListener(window, 'mousedown', (e) => {
   const {
     localName: name,
     dataset: { id },
-  } = e.target as HTMLElement
+  } = e.target
   if (current.value === 0 && name === 'i' && id) {
     current.value = parseInt(id)
   }
-}
+})
 
-const handleMouseMove = (e: MouseEvent) => {
+useEventListener(window, 'mousemove', (e) => {
   if (current.value !== 0) {
     switch (current.value) {
       case 1:
@@ -63,24 +64,12 @@ const handleMouseMove = (e: MouseEvent) => {
         break
     }
   }
-}
+})
 
-const handleMouseUp = () => {
+useEventListener(window, 'mouseup', () => {
   if (current.value !== 0) {
     current.value = 0
   }
-}
-
-onMounted(() => {
-  document.addEventListener('mousedown', handleMouseDown)
-  document.addEventListener('mousemove', handleMouseMove)
-  document.addEventListener('mouseup', handleMouseUp)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousedown', handleMouseDown)
-  document.removeEventListener('mousemove', handleMouseMove)
-  document.removeEventListener('mouseup', handleMouseUp)
 })
 </script>
 

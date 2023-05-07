@@ -2,6 +2,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { ElIcon } from 'element-plus'
 import { RefreshRight } from '@element-plus/icons-vue'
+import { useEventListener } from '@/hook'
 
 const el = ref<HTMLDivElement | null>(null)
 
@@ -14,39 +15,31 @@ const center = {
   y: 0,
 }
 
-const handleMouseDown = (e: MouseEvent) => {
+useEventListener(window, 'mousedown', (e) => {
   if (!isActive.value && (e.target as SVGSVGElement).tagName === 'svg') {
     isActive.value = true
   }
-}
+})
 
-const handleMouseMove = (e: MouseEvent) => {
+useEventListener(window, 'mousemove', (e) => {
   if (isActive.value) {
     rotate.value = (Math.atan2(center.y - e.clientY, center.x - e.clientX) * 180) / Math.PI - 90
   }
-}
+})
 
-const handleMouseUp = () => {
+useEventListener(window, 'mouseup', () => {
   if (isActive.value) {
     isActive.value = false
   }
-}
+})
 
 onMounted(() => {
-  document.addEventListener('mousedown', handleMouseDown)
-  document.addEventListener('mousemove', handleMouseMove)
-  document.addEventListener('mouseup', handleMouseUp)
-
   const rect = el.value.getBoundingClientRect()
   center.x = rect.left + rect.width / 2
   center.y = rect.top + rect.height / 2
 })
 
 onBeforeUnmount(() => {
-  document.removeEventListener('mousedown', handleMouseDown)
-  document.removeEventListener('mousemove', handleMouseMove)
-  document.removeEventListener('mouseup', handleMouseUp)
-
   center.x = 0
   center.y = 0
 })

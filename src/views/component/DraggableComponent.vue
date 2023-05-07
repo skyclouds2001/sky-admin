@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
     @apply w-40 h-40;
     @apply absolute z-[999] top-20 -left-20;
     @apply flex justify-center items-center;
-    @apply shadow-xl;
+    @apply shadow-xl border border-blue-600;
     @apply cursor-grab;
 
     &.active {

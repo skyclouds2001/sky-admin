@@ -24,4 +24,6 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
+export { default as useStorage } from './useStorage'
+
 export { default as useTheme } from './useTheme'

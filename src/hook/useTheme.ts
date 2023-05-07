@@ -1,6 +1,6 @@
 import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 import { Theme } from '@/enum'
-import { useEventListener, usePreferredTheme } from '@/hook'
+import { usePreferredTheme, useStorage } from '@/hook'
 import { isTheme } from '@/util'
 
 const useTheme = (): {
@@ -11,12 +11,12 @@ const useTheme = (): {
   toDark: () => void
   toggleTheme: () => void
 } => {
-  const val = window.localStorage.getItem('theme')
+  const { data } = useStorage('theme')
 
   /**
    * 主题
    */
-  const theme = ref(isTheme(val) ? val : usePreferredTheme())
+  const theme = ref(isTheme(data.value) ? (data as Ref<Theme>) : usePreferredTheme())
 
   /**
    * 判断是否为亮色主题
@@ -56,12 +56,12 @@ const useTheme = (): {
     (current) => {
       switch (current) {
         case Theme.LIGHT:
-          window.localStorage.setItem('theme', Theme.LIGHT)
+          data.value = Theme.LIGHT
           document.documentElement.classList.add(Theme.LIGHT)
           document.documentElement.classList.remove(Theme.DARK)
           break
         case Theme.DARK:
-          window.localStorage.setItem('theme', Theme.DARK)
+          data.value = Theme.DARK
           document.documentElement.classList.add(Theme.DARK)
           document.documentElement.classList.remove(Theme.LIGHT)
           break
@@ -71,12 +71,6 @@ const useTheme = (): {
       immediate: true,
     }
   )
-
-  useEventListener(window, 'storage', (e) => {
-    if (e.key === 'theme') {
-      theme.value = isTheme(e.newValue) ? e.newValue : Theme.LIGHT
-    }
-  })
 
   return {
     theme,

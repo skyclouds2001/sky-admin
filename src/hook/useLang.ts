@@ -2,7 +2,7 @@ import { ref, type Ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
 import { Lang } from '@/enum'
-import { useEventListener, usePreferredLang } from '@/hook'
+import { usePreferredLang, useStorage } from '@/hook'
 import { isLang } from '@/util'
 
 const useLang = (): {
@@ -10,12 +10,12 @@ const useLang = (): {
 } => {
   const i18n = useI18n()
 
-  const val = window.localStorage.getItem('lang')
+  const { data } = useStorage('lang')
 
   /**
    * 语言
    */
-  const lang = ref(isLang(val) ? val : usePreferredLang())
+  const lang = ref(isLang(data.value) ? (data as Ref<Lang>) : usePreferredLang())
 
   watch(
     lang,
@@ -24,12 +24,12 @@ const useLang = (): {
         case Lang.zhCN:
           i18n.locale.value = Lang.zhCN
           locale('zh-cn')
-          window.localStorage.setItem('lang', Lang.zhCN)
+          data.value = Lang.zhCN
           break
         case Lang.enUS:
           i18n.locale.value = Lang.enUS
           locale('en')
-          window.localStorage.setItem('lang', Lang.enUS)
+          data.value = Lang.enUS
           break
       }
     },
@@ -37,12 +37,6 @@ const useLang = (): {
       immediate: true,
     }
   )
-
-  useEventListener(window, 'storage', (e) => {
-    if (e.key === 'lang') {
-      lang.value = isLang(e.newValue) ? e.newValue : Lang.zhCN
-    }
-  })
 
   return {
     lang,

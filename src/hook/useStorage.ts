@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ref, type Ref, type UnwrapRef, watch } from 'vue'
 import { name, version } from '~/package.json'
 import { useEventListener } from '@/hook'

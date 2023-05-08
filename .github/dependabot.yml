@@ -9,7 +9,6 @@ updates:
     ignore:
       - dependency-name: "pnpm"
     labels:
-      - "npm"
       - "dependencies"
     open-pull-requests-limit: 10
     pull-request-branch-name:
@@ -22,7 +21,6 @@ updates:
     allow:
       - dependency-type: "all"
     labels:
-      - "github-actions"
       - "dependencies"
     open-pull-requests-limit: 10
     pull-request-branch-name:

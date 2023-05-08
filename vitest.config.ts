@@ -7,11 +7,12 @@ import { viteMockServe as mock } from 'vite-plugin-mock'
 import mkcert from 'vite-plugin-mkcert'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
-import generateBuildTime from './plugin/generate-env'
+import generateEnv from './plugin/generate-env'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), generateBuildTime()],
+  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), VueI18nPlugin({}), generateEnv()],
   resolve: {
     alias: {
       '~': __dirname,
@@ -22,6 +23,15 @@ export default defineConfig({
     devSourcemap: true,
   },
   server: {
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: true,
+    https: true,
+    open: true,
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
     strictPort: true,
     https: true,
     open: true,

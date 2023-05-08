@@ -2,7 +2,6 @@ import { ElMessage } from 'element-plus'
 
 /**
  * 初始化视频流方法
- *
  * @param el Video 标签元素
  * @param id Device 设备 ID
  */
@@ -25,7 +24,6 @@ export const initCameraStream = async (el: HTMLVideoElement, id?: string): Promi
 
 /**
  * 初始化视频输入类型方法
- *
  * @param fn 获取设备列表信息回调方法
  */
 export const initDevices = async (fn: (devices: MediaDeviceInfo[]) => void): Promise<void> => {

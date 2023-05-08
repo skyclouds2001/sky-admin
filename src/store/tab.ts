@@ -9,8 +9,9 @@ const useTabsStore = defineStore('tabs', {
         {
           name: '首页',
           path: '/',
+          isView: true,
         },
-      ] as Tab[],
+      ] as Array<Tab & { isView: boolean }>,
       /** 当前标签页 */
       currentTab: '/',
     }

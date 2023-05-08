@@ -2,7 +2,6 @@ import { ElMessage } from 'element-plus'
 
 /**
  * 初始化视频流方法
- *
  * @param el Video 标签元素
  */
 export const initScreenStream = async (el: HTMLVideoElement): Promise<void> => {
@@ -20,7 +19,6 @@ export const initScreenStream = async (el: HTMLVideoElement): Promise<void> => {
 
 /**
  * 获取支持的 MIME TYPE
- *
  * @returns 支持的 MIME TYPE 列表
  */
 export const getSupportedMimeTypes = (): string[] => {

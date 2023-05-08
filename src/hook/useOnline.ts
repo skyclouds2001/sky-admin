@@ -1,11 +1,10 @@
-import { ref, computed, onMounted, onBeforeUnmount, type ComputedRef } from 'vue'
-
-interface EventTargetWithOnline extends EventTarget {
-  online: boolean
-}
+import { computed, type ComputedRef, type Ref, ref } from 'vue'
+import { useEventListener } from '@/hook'
 
 const useOnline = (): {
   isOnline: ComputedRef<boolean>
+  onlineAt: Ref<number | undefined>
+  offlineAt: Ref<number | undefined>
 } => {
   /**
    * 网络状态
@@ -13,31 +12,29 @@ const useOnline = (): {
   const online = ref(window.navigator.onLine)
 
   /**
-   * 网络状态（只读）
+   * 网络连接时间
    */
-  const isOnline = computed(() => online.value)
+  const onlineAt = ref(online.value ? Date.now() : undefined)
 
   /**
-   * 网络状态改变回调方法
-   *
-   * @param e 回调事件
+   * 网络断开时间
    */
-  const handleStatusChange = (e: Event): void => {
-    online.value = (e.target as EventTargetWithOnline)?.online
-  }
+  const offlineAt = ref(online.value ? undefined : Date.now())
 
-  onMounted(() => {
-    window.addEventListener('online', handleStatusChange)
-    window.addEventListener('offline', handleStatusChange)
+  useEventListener(window, 'online', () => {
+    online.value = true
+    onlineAt.value = online.value ? Date.now() : undefined
   })
 
-  onBeforeUnmount(() => {
-    window.removeEventListener('online', handleStatusChange)
-    window.removeEventListener('offline', handleStatusChange)
+  useEventListener(window, 'offline', () => {
+    online.value = false
+    offlineAt.value = online.value ? undefined : Date.now()
   })
 
   return {
-    isOnline,
+    isOnline: computed(() => online.value),
+    onlineAt,
+    offlineAt,
   }
 }
 

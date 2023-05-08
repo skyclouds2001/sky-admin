@@ -1,7 +1,8 @@
-import { ref, readonly, onMounted, onUnmounted } from 'vue'
+import { readonly, ref } from 'vue'
+import { useEventListener } from '@/hook'
 
-interface NavigatorWithConnection extends Navigator {
-  connection?: NetworkInformation
+type NavigatorWithConnection = Navigator & {
+  connection: NetworkInformation
 }
 
 interface NetworkInformation extends EventTarget {
@@ -11,9 +12,6 @@ interface NetworkInformation extends EventTarget {
   saveData: boolean
   type: NetworkType
   downlinkMax: number
-  onchange: EventListenerOrEventListenerObject
-  addEventListener: (type: 'change', callback: EventListenerOrEventListenerObject | null, options?: AddEventListenerOptions | boolean) => void
-  removeEventListener: (type: 'change', callback: EventListenerOrEventListenerObject | null, options?: EventListenerOptions | boolean) => void
 }
 
 /**
@@ -28,14 +26,7 @@ type NetworkEffectiveType = 'slow-2g' | '2g' | '3g' | '4g' | undefined
 
 const useNetwork = (): {
   isSupported: boolean
-  connection: Readonly<{
-    downlink?: number
-    downlinkMax?: number
-    type?: NetworkType
-    effectiveType?: NetworkEffectiveType
-    rtt?: number
-    saveData?: boolean
-  }>
+  connection: Readonly<Partial<NetworkInformation>>
 } => {
   /**
    * 标记 Navigator.connection 是否支持
@@ -73,57 +64,38 @@ const useNetwork = (): {
   const saveData = ref<boolean>()
 
   /**
-   * 网络连接数据
-   */
-  const connection = readonly({
-    downlink,
-    downlinkMax,
-    type,
-    effectiveType,
-    rtt,
-    saveData,
-  })
-
-  /**
    * 更新网络连接状态
-   *
    * @param connection 网络连接对象
    */
-  const updateConnectionStatus = (connection?: NetworkInformation): void => {
-    downlink.value = connection?.downlink
-    downlinkMax.value = connection?.downlinkMax
-    type.value = connection?.type
-    effectiveType.value = connection?.effectiveType
-    rtt.value = connection?.rtt !== undefined ? connection.rtt * 0.025 : undefined
-    saveData.value = connection?.saveData
+  const updateConnectionStatus = (connection: NetworkInformation): void => {
+    downlink.value = connection.downlink
+    downlinkMax.value = connection.downlinkMax
+    type.value = connection.type
+    effectiveType.value = connection.effectiveType
+    rtt.value = connection.rtt * 0.025
+    saveData.value = connection.saveData
   }
 
-  /**
-   * 网络连接状态改变回调方法
-   *
-   * @param e 回调事件
-   */
-  const handleConnectionChange: EventListener = (e) => {
-    updateConnectionStatus(e.target as NetworkInformation)
-  }
-
-  onMounted(() => {
-    const connection = (navigator as NavigatorWithConnection).connection
+  if (isSupported) {
+    const connection = (window.navigator as NavigatorWithConnection).connection
 
     updateConnectionStatus(connection)
 
-    connection?.addEventListener('change', handleConnectionChange)
-  })
-
-  onUnmounted(() => {
-    const connection = (navigator as NavigatorWithConnection).connection
-
-    connection?.removeEventListener('change', handleConnectionChange)
-  })
+    useEventListener(connection, 'change', (e) => {
+      updateConnectionStatus(e.target as NetworkInformation)
+    })
+  }
 
   return {
     isSupported,
-    connection,
+    connection: readonly({
+      downlink,
+      downlinkMax,
+      type,
+      effectiveType,
+      rtt,
+      saveData,
+    }),
   }
 }
 

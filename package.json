@@ -28,12 +28,12 @@
     "skyclouds2001"
   ],
   "main": "src/main.ts",
-  "packageManager": "pnpm@8.2.0",
+  "packageManager": "pnpm@8.4.0",
   "engines": {
     "node": "=18.13.0",
     "npm": "=9.6.4",
     "yarn": "=1.22.19",
-    "pnpm": "=8.2.0"
+    "pnpm": "=8.4.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -42,11 +42,12 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint && pnpm lint:markdownlint",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint && pnpm lint:markdownlint && pnpm lint:type",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write",
     "lint:stylelint": "stylelint --fix",
     "lint:markdownlint": "markdownlint **/*.md --fix",
+    "lint:type": "tsc --noEmit",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest",
     "test:e2e": "cross-env NODE_ENV=test playwright test",
@@ -89,6 +90,7 @@
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
     "@iconify/vue": "^4.1.1",
+    "@intlify/unplugin-vue-i18n": "^0.10.0",
     "@playwright/test": "^1.33.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -142,7 +144,7 @@
     "markdownlint": "^0.28.2",
     "markdownlint-cli": "^0.34.0",
     "only-allow": "^1.1.1",
-    "pnpm": "8.2.0",
+    "pnpm": "8.4.0",
     "postcss": "^8.4.23",
     "postcss-html": "^1.5.0",
     "postcss-import": "^15.1.0",

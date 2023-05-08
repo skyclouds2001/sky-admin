@@ -2,7 +2,6 @@ import { ElMessage } from 'element-plus'
 
 /**
  * 初始化视频控制流方法
- *
  * @param el 视频元素
  * @param mimeType MIMETYPE
  * @returns MediaRecorder 对象

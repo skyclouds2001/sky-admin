@@ -1,12 +1,27 @@
 import { getCurrentScope, onScopeDispose } from 'vue'
 
-const useEventListener = <ET extends EventTarget = EventTarget, T extends string = ET extends Window ? keyof WindowEventMap : ET extends Document ? keyof DocumentEventMap : string, E extends Event = ET extends Window ? (T extends keyof WindowEventMap ? WindowEventMap[T] : never) : ET extends Document ? (T extends keyof DocumentEventMap ? DocumentEventMap[T] : never) : Event>(target: ET, type: T, callback: (this: ET, evt: E) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void => {
+function useEventListener<E extends keyof WindowEventMap>(target: Window, event: E, listener: (this: Window, e: WindowEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+function useEventListener<E extends keyof DocumentEventMap>(target: Document, event: E, listener: (this: Document, e: DocumentEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+function useEventListener<E extends keyof ShadowRootEventMap>(target: ShadowRoot, event: E, listener: (this: ShadowRoot, e: ShadowRootEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+function useEventListener<E extends keyof MediaQueryListEventMap>(target: MediaQueryList, event: E, listener: (this: MediaQueryList, e: MediaQueryListEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+function useEventListener<E extends string>(target: EventTarget, event: E, listener: (this: EventTarget, e: Event) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+/**
+ * 自动在组件绑定时注册事件回调并在组件卸载时移除事件回调方法
+ * @param target 事件目标对象
+ * @param event 事件名称
+ * @param listener 事件回调方法
+ * @param options 事件选项
+ */
+function useEventListener(target: EventTarget, event: string, listener: (this: EventTarget, e: Event) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void {
+  target.addEventListener(event, listener, options)
   if (getCurrentScope() !== undefined) {
-    // @ts-expect-error todo
-    target.addEventListener(type, callback, options)
     onScopeDispose(() => {
-      // @ts-expect-error todo
-      target.removeEventListener(type, callback, options)
+      target.removeEventListener(event, listener, options)
     })
   }
 }

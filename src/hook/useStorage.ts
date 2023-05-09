@@ -81,11 +81,16 @@ const parse = <T extends StorageDataType>(data: string): T => {
 
 const useStorage = <T extends number | string | boolean | object | null>(
   key: string,
-  storage: Storage = window.localStorage
+  storage: Storage = window.localStorage,
+  options: {
+    prefix: boolean | string
+  }
 ): {
   data: Ref<UnwrapRef<T> | null>
 } => {
-  const storageKey = `${name}-${version}-${key}`
+  const { prefix } = options
+
+  const storageKey = `${typeof prefix === 'string' ? prefix : prefix ? `${name}-${version}` : ''}-${key}`
 
   const storeValue = storage.getItem(storageKey)
 

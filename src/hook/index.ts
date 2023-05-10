@@ -14,6 +14,8 @@ export { default as useGrayMode } from './useGrayMode'
 
 export { default as useLang } from './useLang'
 
+export { default as useLocalStorage } from './useLocalStorage'
+
 export { default as useMediaQuery } from './useMediaQuery'
 
 export { default as useNetwork } from './useNetwork'
@@ -23,6 +25,8 @@ export { default as useOnline } from './useOnline'
 export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
+
+export { default as useSessionStorage } from './useSessionStorage'
 
 export { default as useStorage } from './useStorage'
 

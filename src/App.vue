@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { ElConfigProvider } from 'element-plus'
+// @ts-expect-error no definition file existed
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+// @ts-expect-error no definition file existed
 import en from 'element-plus/dist/locale/en.mjs'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'

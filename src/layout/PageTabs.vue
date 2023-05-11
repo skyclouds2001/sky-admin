@@ -17,15 +17,15 @@ const store = useTabsStore()
  * 切换 Tab 方法
  * @param path - 待切换 tab 对应页面路径
  */
-const switchTab = (path: string) => {
-  router.push(path)
+const switchTab: InstanceType<typeof ElTabs>['onTabChange'] = (path) => {
+  router.push(path as string)
 }
 
 /**
  * 移除 Tab 方法
  * @param path - 该 tab 对应页面路径
  */
-const removeTab = (path: string) => {
+const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
   const index = store.tabs.findIndex((v) => v.path === path)
   store.tabs.splice(index, 1)
   if (store.currentTab === path) {

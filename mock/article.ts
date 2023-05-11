@@ -1,6 +1,5 @@
 import type { MockMethod as Mock } from 'vite-plugin-mock'
 import { articles as data } from '@/data'
-import type { Article } from '@/model'
 
 let articles = [...data]
 
@@ -9,7 +8,8 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'get',
     statusCode: 200,
-    response: ({ query: { page = '1', size = '10', name = '' } }: { query: Record<'page' | 'size' | 'name', string> }) => {
+    response: ({ query }) => {
+      const { page, size, name } = query
       const data = articles.filter((v) => v.title.includes(name))
       return {
         success: true,
@@ -28,10 +28,10 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'post',
     statusCode: 200,
-    response: ({ body: { article } }: { body: Record<'article', Omit<Article, 'id'>> }) => {
-      const a = article as Article
-      a.id = articles.reduce((pre, cur) => (cur.id > pre ? cur.id : pre), 0)
-      articles.push(a)
+    response: ({ body }) => {
+      const { article } = body
+      article.id = articles.reduce((pre, cur) => (cur.id > pre ? cur.id : pre), 0)
+      articles.push(article)
       return {
         success: true,
         code: 0,
@@ -44,10 +44,12 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'put',
     statusCode: 200,
-    response: ({ body: { article } }: { body: Record<'article', Partial<Omit<Article, 'id'>> & { id: Article['id'] }> }) => {
+    response: ({ body }) => {
+      const { article } = body
+      const a = articles.find((v) => v.id === article.id)
       const index = articles.findIndex((v) => v.id === article.id)
-      if (index !== -1) {
-        articles[index] = { ...articles[index], ...article }
+      if (index !== -1 && a !== undefined) {
+        articles.splice(index, 1, { ...a, ...article })
         return {
           success: true,
           code: 0,
@@ -68,7 +70,8 @@ const mocks: Mock[] = [
     url: '/api/article',
     method: 'delete',
     statusCode: 200,
-    response: ({ body: { id } }: { body: Record<'id', string> }) => {
+    response: ({ body }) => {
+      const { id } = body
       const data = articles.filter((v) => v.id !== parseInt(id))
       if (data.length !== articles.length) {
         articles = data

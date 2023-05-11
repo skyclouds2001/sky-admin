@@ -15,7 +15,7 @@ useEventListener(window, 'mousedown', (e) => {
   const {
     localName: name,
     dataset: { id },
-  } = e.target
+  } = e.target as HTMLElement
   if (current.value === 0 && name === 'i' && id) {
     current.value = parseInt(id)
   }

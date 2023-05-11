@@ -19,19 +19,21 @@ terminal.loadAddon(webLicksAddon)
 terminal.loadAddon(fitAddon)
 terminal.loadAddon(searchAddon)
 
-let id
+let id: number
 
 onMounted(() => {
-  terminal.open(el.value)
+  if (!el.value) return
+
+  terminal.open(el.value as HTMLDivElement)
   fitAddon.fit()
 
-  id = setInterval(() => {
+  id = window.setInterval(() => {
     terminal.writeln(`${new Date().getTime()}: hello`)
   }, 1000)
 })
 
 onBeforeUnmount(() => {
-  clearInterval(id)
+  window.clearInterval(id)
   terminal.dispose()
 })
 </script>

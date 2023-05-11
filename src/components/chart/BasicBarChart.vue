@@ -21,7 +21,7 @@ onMounted(() => {
         left: 'center',
         top: 'top',
         textStyle: {
-          color: isLight() ? '#333' : isDark() ? '#ccc' : '#333',
+          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
         },
       },
       legend: {
@@ -30,7 +30,7 @@ onMounted(() => {
         left: 'right',
         top: 'bottom',
         textStyle: {
-          color: isLight() ? '#333' : isDark() ? '#ccc' : '#333',
+          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
         },
       },
       grid: {

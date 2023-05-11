@@ -7,6 +7,7 @@ import { generateNpmLink } from '@/util'
 
 const i18n = useI18n()
 
+// @ts-expect-error global define variable
 const BUILD_TIME = window.__BUILD_TIME__
 </script>
 

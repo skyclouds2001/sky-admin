@@ -1,4 +1,6 @@
 <script setup lang="ts">
+/* eslint-disable import/no-named-as-default-member */
+
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard } from 'element-plus'

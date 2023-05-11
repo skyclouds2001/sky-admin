@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { usei18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { initCameraStream, initDevices, captureScreenshot } from '@/util'
 
-const i18n = usei18n()
+const i18n = useI18n()
 
 onMounted(() => {
   initDevices((data) => {

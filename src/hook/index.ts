@@ -31,3 +31,5 @@ export { default as useSessionStorage } from './useSessionStorage'
 export { default as useStorage } from './useStorage'
 
 export { default as useTheme } from './useTheme'
+
+export { default as useTimestamp } from './useTimestamp'

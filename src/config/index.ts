@@ -35,6 +35,9 @@ export const PROJECT_AUTHOR_AVATAR = avatar
 /** 项目贡献者 */
 export const PROJECT_CONTRIBUTORS = packageConfig.contributors
 
+/** 项目构建时间 */
+export const BUILD_TIME = __BUILD_TIME__
+
 /** 服务器 HOST */
 export const SERVER_HOST = 'https://localhost:5173'
 

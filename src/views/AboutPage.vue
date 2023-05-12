@@ -2,13 +2,10 @@
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import packageConfig from '~/package.json'
-import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR_NAME, PROJECT_REPOSITORY } from '@/config'
+import { PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION, PROJECT_LICENSE, PROJECT_AUTHOR_NAME, PROJECT_REPOSITORY, BUILD_TIME } from '@/config'
 import { generateNpmLink } from '@/util'
 
 const i18n = useI18n()
-
-// @ts-expect-error global define variable
-const BUILD_TIME = window.__BUILD_TIME__
 </script>
 
 <template>

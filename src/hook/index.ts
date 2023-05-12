@@ -1,3 +1,5 @@
+export { default as useAnimationFrame } from './useAnimationFrame'
+
 export { default as useArticles } from './useArticles'
 
 export { default as useBattery } from './useBattery'

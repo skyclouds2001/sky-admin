@@ -1,5 +1,7 @@
 export * from './browser-info'
 
+export * from './debounce-throttle'
+
 export * from './element-screenshot'
 
 export * from './export-excel'

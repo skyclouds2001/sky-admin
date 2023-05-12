@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose, ref, type Ref } from 'vue'
+import { getCurrentScope, onScopeDispose, readonly, ref, type Ref } from 'vue'
 
 const useAnimationFrame = (
   fn: (time: DOMHighResTimeStamp) => void,
@@ -27,6 +27,7 @@ const useAnimationFrame = (
     if (isActive.value && id !== null) {
       isActive.value = false
       window.cancelAnimationFrame(id)
+      id = null
     }
   }
 
@@ -39,7 +40,7 @@ const useAnimationFrame = (
   }
 
   return {
-    isActive,
+    isActive: readonly(isActive),
     resume,
     parse,
   }

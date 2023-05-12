@@ -1,24 +1,29 @@
-import { getCurrentScope, onScopeDispose, ref, type Ref } from 'vue'
+import { ref, type Ref } from 'vue'
+import { useInterval, useAnimationFrame } from '@/hook'
 
 const useTimestamp = (
   options: {
     offset?: number
+    immediate?: boolean
+    mode?: 'AnimationFrame' | 'Interval'
+    interval?: number
   } = {}
 ): {
   timestamp: Ref<number>
 } => {
-  const { offset = 0 } = options
+  const { offset = 0, immediate = true, mode = 'AnimationFrame', interval = 0 } = options
 
   const timestamp = ref(Date.now() + offset)
 
-  const id = window.requestAnimationFrame(() => {
+  const update = (): void => {
     timestamp.value = Date.now() + offset
-  })
+  }
 
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(() => {
-      window.cancelAnimationFrame(id)
-    })
+  if (mode === 'AnimationFrame') {
+    useAnimationFrame(update, { immediate })
+  }
+  if (mode === 'Interval') {
+    useInterval(update, interval, { immediate })
   }
 
   return {

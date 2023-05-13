@@ -87,9 +87,7 @@ const useStorage = <T extends number | string | boolean | object | null>(
     shallow?: boolean
     deep?: boolean
   } = {}
-): {
-  data: Ref<UnwrapRef<T> | null> | ShallowRef<T | null>
-} => {
+): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
   const { prefix = true, shallow = true, deep = false } = options
 
   const storageKey = `${typeof prefix === 'string' ? prefix : prefix ? `${name}-${version}` : ''}-${key}`
@@ -109,15 +107,14 @@ const useStorage = <T extends number | string | boolean | object | null>(
     },
     { deep }
   )
+
   useEventListener(window, 'storage', (e) => {
     if (e.key === storageKey) {
       data.value = e.newValue !== null ? (parse<T>(e.newValue) as UnwrapRef<T>) : null
     }
   })
 
-  return {
-    data,
-  }
+  return data
 }
 
 export default useStorage

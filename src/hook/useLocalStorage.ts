@@ -7,14 +7,8 @@ const useLocalStorage = <T extends number | string | boolean | object | null>(
     prefix?: boolean | string
     shallow?: boolean
   } = {}
-): {
-  data: Ref<UnwrapRef<T> | null> | ShallowRef<T | null>
-} => {
-  const { data } = useStorage<T>(key, window.localStorage, options)
-
-  return {
-    data,
-  }
+): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
+  return useStorage<T>(key, window.localStorage, options)
 }
 
 export default useLocalStorage

@@ -6,9 +6,7 @@ const useNow = (
     mode?: 'AnimationFrame' | 'Interval'
     interval?: number
   } = {}
-): {
-  now: Ref<Date>
-} => {
+): Ref<Date> => {
   const { mode = 'AnimationFrame', interval = 0 } = options
 
   const now = ref(new Date())
@@ -24,9 +22,7 @@ const useNow = (
     useInterval(update, interval)
   }
 
-  return {
-    now,
-  }
+  return now
 }
 
 export default useNow

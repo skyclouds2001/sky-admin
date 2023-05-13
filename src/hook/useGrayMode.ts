@@ -1,8 +1,6 @@
 import { ref, type Ref, watch } from 'vue'
 
-const useGrayMode = (): {
-  isGrayMode: Ref<boolean>
-} => {
+const useGrayMode = (): Ref<boolean> => {
   /**
    * 是否使用灰色模式
    */
@@ -16,9 +14,7 @@ const useGrayMode = (): {
     }
   })
 
-  return {
-    isGrayMode,
-  }
+  return isGrayMode
 }
 
 export default useGrayMode

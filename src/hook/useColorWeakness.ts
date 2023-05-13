@@ -1,8 +1,6 @@
 import { ref, type Ref, watch } from 'vue'
 
-const useColorWeakness = (): {
-  isColorWeakness: Ref<boolean>
-} => {
+const useColorWeakness = (): Ref<boolean> => {
   /**
    * 是否使用色弱模式
    */
@@ -16,9 +14,7 @@ const useColorWeakness = (): {
     }
   })
 
-  return {
-    isColorWeakness,
-  }
+  return isColorWeakness
 }
 
 export default useColorWeakness

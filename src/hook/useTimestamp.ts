@@ -8,9 +8,7 @@ const useTimestamp = (
     mode?: 'AnimationFrame' | 'Interval'
     interval?: number
   } = {}
-): {
-  timestamp: Ref<number>
-} => {
+): Ref<number> => {
   const { offset = 0, immediate = true, mode = 'AnimationFrame', interval = 0 } = options
 
   const timestamp = ref(Date.now() + offset)
@@ -26,9 +24,7 @@ const useTimestamp = (
     useInterval(update, interval, { immediate })
   }
 
-  return {
-    timestamp,
-  }
+  return timestamp
 }
 
 export default useTimestamp

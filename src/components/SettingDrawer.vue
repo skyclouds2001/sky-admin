@@ -8,9 +8,9 @@ import { useGrayMode, useColorWeakness, useTheme, useLang } from '@/hook'
 
 const i18n = useI18n()
 
-const { isGrayMode } = useGrayMode()
+const isGrayMode = useGrayMode()
 
-const { isColorWeakness } = useColorWeakness()
+const isColorWeakness = useColorWeakness()
 
 const { theme } = useTheme()
 

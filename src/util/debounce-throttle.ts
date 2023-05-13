@@ -34,7 +34,3 @@ export const throttle = (fn: () => void, delay: number): (() => void) => {
     }
   }
 }
-
-const f = throttle(() => {
-  //
-}, 0)

@@ -11,7 +11,7 @@ const i18n = useI18n()
 
 const store = usePagesStore()
 
-const { toggleFullscreen } = useFullscreen()
+const { toggle } = useFullscreen()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -32,7 +32,7 @@ const showSettingDrawer = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
-      <div class="fullscreen" @click="toggleFullscreen">
+      <div class="fullscreen" @click="toggle">
         <el-icon :size="20"><FullScreen /></el-icon>
       </div>
       <div class="settings" @click="showSettingDrawer">

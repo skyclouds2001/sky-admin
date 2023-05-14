@@ -28,7 +28,7 @@ onMounted(() => {
   fitAddon.fit()
 
   id = window.setInterval(() => {
-    terminal.writeln(`${new Date().getTime()}: hello`)
+    terminal.writeln(`${Date.now()}: hello`)
   }, 1000)
 })
 

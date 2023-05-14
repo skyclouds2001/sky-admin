@@ -10,6 +10,7 @@ const router = {
   '/component/draggable': '拖拽组件',
   '/component/scalable': '缩放组件',
   '/component/rotatable': '旋转组件',
+  '/component/rich-text-editor': '富文本编辑器',
   '/chart': '图表',
   '/chart/bar': '柱状图',
   '/chart/line': '折线图',

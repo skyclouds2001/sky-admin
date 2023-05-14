@@ -10,6 +10,7 @@ const router = {
   '/component/draggable': 'Draggable Component',
   '/component/scalable': 'Scalable Component',
   '/component/rotatable': 'Rotatable Component',
+  '/component/rich-text-editor': 'RichText Editor',
   '/chart': 'Chart',
   '/chart/bar': 'Bar Chart',
   '/chart/line': 'line Chart',

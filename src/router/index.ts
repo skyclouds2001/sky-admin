@@ -112,6 +112,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/component/rich-text-editor'),
+          path: '/component/rich-text-editor',
+          component: () => import('@/views/component/RichTextEditor.vue'),
+          meta: {
+            title: '富文本编辑器',
+            isView: true,
+          },
+        },
       ],
     },
 

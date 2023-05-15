@@ -30,6 +30,8 @@ export { default as useOnline } from './useOnline'
 
 export { default as usePictureInPicture } from './usePictureInPicture'
 
+export { default as usePointerLock } from './usePointerLock'
+
 export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'

@@ -1,9 +1,9 @@
 import type { Plugin } from 'vite'
 import dayjs from 'dayjs'
 
-const GenerateBuildTime = (): Plugin => {
+const GenerateEnv = (): Plugin => {
   return {
-    name: 'build-time',
+    name: 'generate-env',
     config: () => ({
       define: {
         __BUILD_TIME__: `'${dayjs().format('YYYY-MM-DD HH:mm:ss')}'`,
@@ -13,4 +13,4 @@ const GenerateBuildTime = (): Plugin => {
   }
 }
 
-export default GenerateBuildTime
+export default GenerateEnv

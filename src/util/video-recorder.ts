@@ -7,7 +7,8 @@ import { ElMessage } from 'element-plus'
  * @returns MediaRecorder 对象
  */
 export const initVideoRecorderStream = (el: HTMLVideoElement, mimeType?: string): MediaRecorder => {
-  const stream = el?.captureStream()
+  // @ts-expect-error captureStream method has not apply on typescript dom definition file
+  const stream = el.captureStream()
 
   const mediaRecorder = new MediaRecorder(stream, {
     audioBitsPerSecond: 128000,

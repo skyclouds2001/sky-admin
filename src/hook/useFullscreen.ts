@@ -1,70 +1,63 @@
-import { ref, computed, type ComputedRef } from 'vue'
-import { ElMessage } from 'element-plus'
+import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const useFullscreen = (
-  target: HTMLElement = document.documentElement
+  target: HTMLElement = document.documentElement,
+  options?: FullscreenOptions
 ): {
   isSupported: boolean
   isFullscreen: ComputedRef<boolean>
-  enterFullscreen: () => void
-  exitFullscreen: () => void
-  toggleFullscreen: () => void
+  enter: () => void
+  exit: () => void
+  toggle: () => void
 } => {
   /**
    * 标记用户是否启用全屏功能
    */
-  const isSupported = document.fullscreenEnabled && 'fullscreenElement' in document && 'requestFullscreen' in HTMLElement && 'exitFullscreen' in document
+  const isSupported = 'fullscreenElement' in document && 'requestFullscreen' in HTMLElement.prototype && 'exitFullscreen' in document && document.fullscreenEnabled
 
   /**
    * 当前全屏状态
    */
-  const isFullscreen = ref(document.fullscreenElement !== null)
+  const isFullscreen = ref(document.fullscreenElement === target)
 
   /**
    * 进入全屏状态方法
    */
-  const enterFullscreen = (): void => {
-    void target.requestFullscreen()
+  const enter = (): void => {
+    if (!isSupported) return
+
+    void target.requestFullscreen(options)
+    isFullscreen.value = true
   }
 
   /**
    * 退出全屏状态方法
    */
-  const exitFullscreen = (): void => {
+  const exit = (): void => {
+    if (!isSupported) return
+
     void document.exitFullscreen()
+    isFullscreen.value = false
   }
 
   /**
    * 切换全屏状态方法
    */
-  const toggleFullscreen = (): void => {
-    if (!isFullscreen.value) {
-      enterFullscreen()
-    } else {
-      exitFullscreen()
-    }
+  const toggle = (): void => {
+    isFullscreen.value ? exit() : enter()
   }
 
   useEventListener(document, 'fullscreenchange', () => {
-    isFullscreen.value = document.fullscreenElement !== null
-  })
-
-  useEventListener(document, 'fullscreenerror', () => {
-    ElMessage({
-      message: '进入全屏模式失败',
-      type: 'error',
-      showClose: true,
-      center: true,
-    })
+    isFullscreen.value = document.fullscreenElement === target
   })
 
   return {
     isSupported,
     isFullscreen: computed(() => isFullscreen.value),
-    enterFullscreen,
-    exitFullscreen,
-    toggleFullscreen,
+    enter,
+    exit,
+    toggle,
   }
 }
 

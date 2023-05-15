@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, shallowRef, triggerRef } from 'vue'
-import { usei18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { initScreenStream, getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
 
-const i18n = usei18n()
+const i18n = useI18n()
 
 const mediaRecorder = shallowRef<MediaRecorder | null>(null)
 

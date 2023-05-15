@@ -11,7 +11,7 @@ const useTheme = (): {
   toDark: () => void
   toggleTheme: () => void
 } => {
-  const { data } = useStorage('theme')
+  const data = useStorage('theme')
 
   /**
    * 主题

@@ -4,6 +4,7 @@ import { useMediaQuery } from '@/hook'
 
 const usePreferredTheme = (): Ref<Theme> => {
   const mediaQuery = useMediaQuery('(prefers-color-scheme: dark)')
+
   return ref(mediaQuery.isSupported && mediaQuery.matchMediaQuery.value ? Theme.DARK : Theme.LIGHT)
 }
 

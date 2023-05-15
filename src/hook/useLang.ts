@@ -10,7 +10,7 @@ const useLang = (): {
 } => {
   const i18n = useI18n()
 
-  const { data } = useStorage('lang')
+  const data = useStorage('lang')
 
   /**
    * 语言

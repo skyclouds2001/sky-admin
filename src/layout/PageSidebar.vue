@@ -93,6 +93,10 @@ watch(
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router./component/rotatable') }}</span>
         </el-menu-item>
+        <el-menu-item index="/component/rich-text-editor">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/rich-text-editor') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 图表 -->

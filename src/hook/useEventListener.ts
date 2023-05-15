@@ -6,6 +6,8 @@ function useEventListener<E extends keyof DocumentEventMap>(target: Document, ev
 
 function useEventListener<E extends keyof ShadowRootEventMap>(target: ShadowRoot, event: E, listener: (this: ShadowRoot, e: ShadowRootEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
 
+function useEventListener<E extends keyof HTMLVideoElementEventMap>(target: HTMLVideoElement, event: E, listener: (this: HTMLVideoElement, e: HTMLVideoElementEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
 function useEventListener<E extends keyof MediaQueryListEventMap>(target: MediaQueryList, event: E, listener: (this: MediaQueryList, e: MediaQueryListEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
 
 function useEventListener<E extends string>(target: EventTarget, event: E, listener: (this: EventTarget, e: Event) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void

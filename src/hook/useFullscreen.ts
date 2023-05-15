@@ -14,7 +14,7 @@ const useFullscreen = (
   /**
    * 标记用户是否启用全屏功能
    */
-  const isSupported = 'fullscreenElement' in document && 'requestFullscreen' in HTMLElement && 'exitFullscreen' in document && document.fullscreenEnabled
+  const isSupported = 'fullscreenElement' in document && 'requestFullscreen' in HTMLElement.prototype && 'exitFullscreen' in document && document.fullscreenEnabled
 
   /**
    * 当前全屏状态

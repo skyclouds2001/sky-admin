@@ -4,6 +4,8 @@ export { default as useArticles } from './useArticles'
 
 export { default as useBattery } from './useBattery'
 
+export { default as useClipboard } from './useClipboard'
+
 export { default as useColorWeakness } from './useColorWeakness'
 
 export { default as useEventBus } from './useEventBus'

@@ -12,6 +12,8 @@ export { default as useEventBus } from './useEventBus'
 
 export { default as useEventListener } from './useEventListener'
 
+export { default as useEyeDropper } from './useEyeDropper'
+
 export { default as useFullscreen } from './useFullscreen'
 
 export { default as useGeolocation } from './useGeolocation'

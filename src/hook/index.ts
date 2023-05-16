@@ -42,6 +42,8 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
+export { default as useWakeLock } from './useWakeLock'
+
 export { default as useSessionStorage } from './useSessionStorage'
 
 export { default as useStorage } from './useStorage'

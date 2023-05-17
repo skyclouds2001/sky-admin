@@ -44,8 +44,6 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
-export { default as useWakeLock } from './useWakeLock'
-
 export { default as useSessionStorage } from './useSessionStorage'
 
 export { default as useStorage } from './useStorage'
@@ -55,3 +53,7 @@ export { default as useTheme } from './useTheme'
 export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
+
+export { default as useVibrate } from './useVibrate'
+
+export { default as useWakeLock } from './useWakeLock'

@@ -30,6 +30,8 @@ export { default as useMediaQuery } from './useMediaQuery'
 
 export { default as useNetwork } from './useNetwork'
 
+export { default as useNotification } from './useNotification'
+
 export { default as useNow } from './useNow'
 
 export { default as useOnline } from './useOnline'

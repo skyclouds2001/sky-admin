@@ -6,11 +6,9 @@ function useEventListener<E extends keyof DocumentEventMap>(target: Document, ev
 
 function useEventListener<E extends keyof ShadowRootEventMap>(target: ShadowRoot, event: E, listener: (this: ShadowRoot, e: ShadowRootEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
 
-function useEventListener<E extends keyof HTMLVideoElementEventMap>(target: HTMLVideoElement, event: E, listener: (this: HTMLVideoElement, e: HTMLVideoElementEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
-
-function useEventListener<E extends keyof MediaQueryListEventMap>(target: MediaQueryList, event: E, listener: (this: MediaQueryList, e: MediaQueryListEventMap[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
-
 function useEventListener<E extends string>(target: EventTarget, event: E, listener: (this: EventTarget, e: Event) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
+
+function useEventListener<T extends EventTarget, M extends Record<string, any>, E extends keyof M>(target: T, event: E, listener: (this: T, e: M[E]) => void, options?: AddEventListenerOptions | EventListenerOptions | boolean): void
 
 /**
  * 自动在组件绑定时注册事件回调并在组件卸载时移除事件回调方法

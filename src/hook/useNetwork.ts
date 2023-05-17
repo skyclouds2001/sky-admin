@@ -24,6 +24,10 @@ type NetworkType = 'bluetooth' | 'cellular' | 'ethernet' | 'none' | 'wifi' | 'wi
  */
 type NetworkEffectiveType = 'slow-2g' | '2g' | '3g' | '4g' | undefined
 
+interface NetworkInformationEventMap {
+  change: Event
+}
+
 const useNetwork = (): {
   isSupported: boolean
   connection: Readonly<Partial<NetworkInformation>>
@@ -81,7 +85,7 @@ const useNetwork = (): {
 
     updateConnectionStatus(connection)
 
-    useEventListener(connection, 'change', (e) => {
+    useEventListener<NetworkInformation, NetworkInformationEventMap, 'change'>(connection, 'change', (e) => {
       updateConnectionStatus(e.target as NetworkInformation)
     })
   }

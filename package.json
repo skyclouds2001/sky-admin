@@ -47,7 +47,7 @@
     "lint:prettier": "prettier --write --cache --cache-location \"./node_modules/.prettier/.prettiercache\" .",
     "lint:stylelint": "stylelint --fix --cache --cache-location \"./node_modules/.stylelint/.stylelintcache\"",
     "lint:markdownlint": "markdownlint --fix **/*.md",
-    "lint:type": "tsc --noEmit",
+    "lint:type": "vue-tsc --noEmit",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest",
     "test:e2e": "cross-env NODE_ENV=test playwright test",

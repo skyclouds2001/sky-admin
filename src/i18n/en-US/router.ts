@@ -42,6 +42,7 @@ const router = {
   '/feature/camera-record': 'Video Recorder',
   '/feature/screen-record': 'Screen Recorder',
   '/feature/web-rtc': 'Web Real-Time Communications',
+  '/feature/notification': 'Web Notification',
   '/error': 'Error',
   '/error/403': '403',
   '/error/404': '404',

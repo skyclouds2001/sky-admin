@@ -416,6 +416,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/feature/notification'),
+          path: '/feature/notification',
+          component: () => import('@/views/feature/WebNotification.vue'),
+          meta: {
+            title: '通知',
+            isView: true,
+          },
+        },
       ],
     },
 

@@ -25,8 +25,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (!el.value) {
-    el.value.destory()
+  if (el.value) {
+    el.value.destroy()
   }
 })
 </script>

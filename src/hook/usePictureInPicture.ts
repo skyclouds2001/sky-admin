@@ -37,11 +37,11 @@ const usePictureInPicture = (
     isPictureInPicture.value ? exit() : enter()
   }
 
-  useEventListener(target, 'enterpictureinpicture', () => {
+  useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {
     isPictureInPicture.value = document.pictureInPictureElement === target
   })
 
-  useEventListener(target, 'leavepictureinpicture', () => {
+  useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(target, 'leavepictureinpicture', () => {
     isPictureInPicture.value = document.pictureInPictureElement === target
   })
 

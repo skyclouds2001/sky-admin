@@ -13,7 +13,7 @@ const useMediaQuery = (
 
   const matches = ref(mediaQuery.matches)
 
-  useEventListener(mediaQuery, 'change', (e) => {
+  useEventListener<MediaQueryList, MediaQueryListEventMap, 'change'>(mediaQuery, 'change', (e) => {
     matches.value = e.matches
   })
 

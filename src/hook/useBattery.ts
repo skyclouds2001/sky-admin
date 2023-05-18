@@ -12,6 +12,13 @@ interface BatteryManager extends EventTarget {
   level: number
 }
 
+interface BatteryManagerEventMap {
+  chargingchange: Event
+  chargingtimechange: Event
+  dischargingtimechange: Event
+  levelchange: Event
+}
+
 const useBattery = (): {
   isSupported: boolean
   battery: Readonly<Partial<BatteryManager>>
@@ -46,16 +53,16 @@ const useBattery = (): {
     void (window.navigator as NavigatorWithBattery).getBattery().then((batteryManager) => {
       updateBatteryInfo(batteryManager)
 
-      useEventListener(batteryManager, 'chargingchange', (e) => {
+      useEventListener<BatteryManager, BatteryManagerEventMap, 'chargingchange'>(batteryManager, 'chargingchange', (e) => {
         updateBatteryInfo(e.target as BatteryManager)
       })
-      useEventListener(batteryManager, 'levelchange', (e) => {
+      useEventListener<BatteryManager, BatteryManagerEventMap, 'levelchange'>(batteryManager, 'levelchange', (e) => {
         updateBatteryInfo(e.target as BatteryManager)
       })
-      useEventListener(batteryManager, 'chargingtimechange', (e) => {
+      useEventListener<BatteryManager, BatteryManagerEventMap, 'chargingtimechange'>(batteryManager, 'chargingtimechange', (e) => {
         updateBatteryInfo(e.target as BatteryManager)
       })
-      useEventListener(batteryManager, 'dischargingtimechange', (e) => {
+      useEventListener<BatteryManager, BatteryManagerEventMap, 'dischargingtimechange'>(batteryManager, 'dischargingtimechange', (e) => {
         updateBatteryInfo(e.target as BatteryManager)
       })
     })

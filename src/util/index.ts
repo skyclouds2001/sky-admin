@@ -4,6 +4,8 @@ export * from './debounce-throttle'
 
 export * from './element-screenshot'
 
+export * from './event-bus'
+
 export * from './export-excel'
 
 export * from './fake-data'

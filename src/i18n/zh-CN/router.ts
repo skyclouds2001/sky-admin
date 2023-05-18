@@ -42,6 +42,8 @@ const router = {
   '/feature/camera-record': '视频录制',
   '/feature/screen-record': '屏幕录制',
   '/feature/web-rtc': '网络实时通信',
+  '/feature/notification': '通知',
+  '/feature/vibrate': '振动',
   '/error': '异常',
   '/error/403': '403',
   '/error/404': '404',

@@ -10,6 +10,7 @@ function useEventListener<E extends keyof ShadowRootEventMap>(target: ShadowRoot
 
 function useEventListener<E extends string>(target: EventTarget, event: E, listener: (this: EventTarget, e: Event) => void, options?: UseEventListenerOptions): void
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useEventListener<T extends EventTarget, M extends Record<string, any>, E extends keyof M>(target: T, event: E, listener: (this: T, e: M[E]) => void, options?: UseEventListenerOptions): void
 
 /**

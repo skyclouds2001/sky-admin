@@ -1,7 +1,9 @@
 import { getCurrentScope, onScopeDispose } from 'vue'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const events = new Map<string | number | symbol, Set<any>>()
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useEventBus = <const T extends string | number | symbol, P = any>(
   key: T
 ): {

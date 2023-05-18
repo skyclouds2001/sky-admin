@@ -8,9 +8,11 @@ const { isSupported, show, close } = useNotification('Notification')
 <template>
   <el-space size="large" class="w-full p-4">
     <el-card shadow="always">
-      <el-text v-if="!isSupported">当前浏览器不支持 Notification API</el-text>
-      <el-button type="primary" @click="show()">发送通知</el-button>
-      <el-button type="primary" @click="close()">关闭通知</el-button>
+      <div class="pb-4">
+        <el-text v-if="!isSupported" size="small">当前浏览器不支持 Notification API</el-text>
+      </div>
+      <el-button type="primary" :disabled="!isSupported" @click="show()">发送通知</el-button>
+      <el-button type="primary" :disabled="!isSupported" @click="close()">关闭通知</el-button>
     </el-card>
   </el-space>
 </template>

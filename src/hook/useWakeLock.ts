@@ -43,6 +43,8 @@ const useWakeLock = (): {
 
     if (wakeLockSentinel === null) return
 
+    if (document.visibilityState === 'hidden') return
+
     void navigator.wakeLock.request('screen').then((wakeLock) => {
       isActive.value = wakeLock.released === false
     })

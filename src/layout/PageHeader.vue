@@ -2,9 +2,9 @@
 import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
-import { Setting, FullScreen } from '@element-plus/icons-vue'
+import { Setting, FullScreen, Lock, Unlock } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { useFullscreen } from '@/hook'
+import { useFullscreen, useWakeLock } from '@/hook'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()
@@ -12,6 +12,8 @@ const i18n = useI18n()
 const store = usePagesStore()
 
 const { toggle } = useFullscreen()
+
+const { isSupported: isSupportedWakeLock, isActive, toggle: toggleWakeLock } = useWakeLock()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -32,6 +34,12 @@ const showSettingDrawer = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
+      <div v-if="isSupportedWakeLock" class="wake-lock" @click="toggleWakeLock">
+        <el-icon :size="20">
+          <Lock v-if="isActive" />
+          <Unlock v-else />
+        </el-icon>
+      </div>
       <div class="fullscreen" @click="toggle">
         <el-icon :size="20"><FullScreen /></el-icon>
       </div>
@@ -61,6 +69,10 @@ const showSettingDrawer = () => {
 
     > * {
       @apply mx-1;
+    }
+
+    .wake-lock {
+      @apply flex justify-center items-center;
     }
 
     .fullscreen {

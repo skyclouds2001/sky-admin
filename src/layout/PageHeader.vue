@@ -11,9 +11,9 @@ const i18n = useI18n()
 
 const store = usePagesStore()
 
-const { toggle } = useFullscreen()
+const { isSupported: isSupportedFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
-const { isSupported: isSupportedWakeLock, isActive, toggle: toggleWakeLock } = useWakeLock()
+const { isSupported: isSupportedWakeLock, isActive: isWakeLock, toggle: toggleWakeLock } = useWakeLock()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -36,11 +36,11 @@ const showSettingDrawer = () => {
     <div class="control-bar">
       <div v-if="isSupportedWakeLock" class="wake-lock" @click="toggleWakeLock">
         <el-icon :size="20">
-          <Lock v-if="isActive" />
-          <Unlock v-else />
+          <Unlock v-if="isWakeLock" />
+          <Lock v-else />
         </el-icon>
       </div>
-      <div class="fullscreen" @click="toggle">
+      <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
         <el-icon :size="20"><FullScreen /></el-icon>
       </div>
       <div class="settings" @click="showSettingDrawer">

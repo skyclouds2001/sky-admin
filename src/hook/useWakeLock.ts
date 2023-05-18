@@ -1,27 +1,12 @@
 import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
-interface NavigatorWithWakeLock extends Navigator {
-  wakeLock: WakeLock
-}
-
-interface WakeLock {
-  request: (type: WakeLockType) => Promise<WakeLockSentinel>
-}
-
-interface WakeLockSentinel extends EventTarget {
-  released: boolean
-  type: WakeLockType
-  release: () => Promise<void>
-}
-
-type WakeLockType = 'screen'
-
 const useWakeLock = (): {
   isSupported: boolean
   isActive: ComputedRef<boolean>
   request: () => void
   release: () => void
+  toggle: () => void
 } => {
   const isSupported = 'wakeLock' in navigator
 
@@ -32,9 +17,9 @@ const useWakeLock = (): {
   const request = (): void => {
     if (!isSupported) return
 
-    void (navigator as NavigatorWithWakeLock).wakeLock.request('screen').then((wakeLock) => {
+    void navigator.wakeLock.request('screen').then((wakeLock) => {
       wakeLockSentinel = wakeLock
-      isActive.value = !wakeLockSentinel.released
+      isActive.value = wakeLockSentinel.released === false
     })
   }
 
@@ -44,9 +29,13 @@ const useWakeLock = (): {
     if (wakeLockSentinel === null) return
 
     void wakeLockSentinel.release().then(() => {
-      isActive.value = wakeLockSentinel !== null ? !wakeLockSentinel.released : false
+      isActive.value = wakeLockSentinel !== null ? wakeLockSentinel.released === false : false
       wakeLockSentinel = null
     })
+  }
+
+  const toggle = (): void => {
+    isActive.value ? release() : request()
   }
 
   useEventListener(document, 'visibilitychange', () => {
@@ -54,8 +43,8 @@ const useWakeLock = (): {
 
     if (wakeLockSentinel === null) return
 
-    void (navigator as NavigatorWithWakeLock).wakeLock.request('screen').then((wakeLock) => {
-      isActive.value = !wakeLock.released
+    void navigator.wakeLock.request('screen').then((wakeLock) => {
+      isActive.value = wakeLock.released === false
     })
   })
 
@@ -64,6 +53,7 @@ const useWakeLock = (): {
     isActive: computed(() => isActive.value),
     request,
     release,
+    toggle,
   }
 }
 

@@ -13,7 +13,19 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import generateEnv from './plugin/generate-env'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), legacy(), mock(), mkcert(), svgLoader(), ElementPlus({}), VueI18nPlugin({}), generateEnv()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    legacy(),
+    mock(),
+    mkcert(),
+    svgLoader(),
+    ElementPlus({}),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, './src/locale/**'),
+    }),
+    generateEnv(),
+  ],
   resolve: {
     alias: {
       '~': __dirname,

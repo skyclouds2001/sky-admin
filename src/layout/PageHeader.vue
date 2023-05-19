@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
 import { Setting, FullScreen, Lock, Unlock } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { useFullscreen, useWakeLock } from '@/hook'
+import { useFullscreen, usePointerLock } from '@/hook'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()
@@ -13,7 +13,7 @@ const store = usePagesStore()
 
 const { isSupported: isSupportedFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
-const { isSupported: isSupportedWakeLock, isActive: isWakeLock, toggle: toggleWakeLock } = useWakeLock()
+const { isSupported: isSupportedPointerLock, isPointerLock, trigger } = usePointerLock()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
@@ -34,9 +34,9 @@ const showSettingDrawer = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
-      <div v-if="isSupportedWakeLock" class="wake-lock" @click="toggleWakeLock">
+      <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
         <el-icon :size="20">
-          <Unlock v-if="isWakeLock" />
+          <Unlock v-if="isPointerLock" />
           <Lock v-else />
         </el-icon>
       </div>
@@ -71,7 +71,7 @@ const showSettingDrawer = () => {
       @apply mx-1;
     }
 
-    .wake-lock {
+    .pointer-lock {
       @apply flex justify-center items-center;
     }
 

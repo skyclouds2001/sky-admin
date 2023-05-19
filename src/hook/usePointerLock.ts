@@ -2,7 +2,7 @@ import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const usePointerLock = (
-  target: HTMLElement
+  target: HTMLElement = document.documentElement
 ): {
   isSupported: boolean
   isPointerLock: ComputedRef<boolean>

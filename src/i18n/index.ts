@@ -3,7 +3,7 @@ import { Lang } from '@/enum'
 import zh_CN from '@/locale/zh-CN'
 import en_US from '@/locale/en-US'
 
-const i18n = createI18n({
+const i18n = createI18n<[typeof zh_CN, typeof en_US], 'zh-CN' | 'en-US', false>({
   legacy: false,
   globalInjection: false,
   locale: Lang.zhCN,

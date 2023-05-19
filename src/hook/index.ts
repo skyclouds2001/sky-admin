@@ -14,6 +14,8 @@ export { default as useEventListener } from './useEventListener'
 
 export { default as useEyeDropper } from './useEyeDropper'
 
+export { default as useFileDialog } from './useFileDialog'
+
 export { default as useFullscreen } from './useFullscreen'
 
 export { default as useGeolocation } from './useGeolocation'

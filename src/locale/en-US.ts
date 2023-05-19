@@ -35,7 +35,7 @@ export default {
       memory: 'Memory Size',
       touchPoint: 'Maximum Number of Touch Points',
       cookie: 'Cookie Status',
-      pdf: 'PDF Preview Feature support',
+      pdf: 'PDF Preview Feature Support',
       enabled: 'Enabled',
       disabled: 'Disabled',
       supported: 'Supported',

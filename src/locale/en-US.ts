@@ -209,7 +209,9 @@ export default {
     setting: {
       title: 'Setting',
       theme: 'Theme',
-      i18n: 'I18n',
+      i18n: 'Language',
+      gray_mode: 'Gray Mode',
+      color_weakness: 'Color Weak',
     },
   },
   router: {

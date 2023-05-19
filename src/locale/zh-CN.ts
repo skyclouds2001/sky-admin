@@ -209,7 +209,9 @@ export default {
     setting: {
       title: '设置',
       theme: '主题',
-      i18n: '国际化',
+      i18n: '语言',
+      gray_mode: '灰色模式',
+      color_weakness: '色弱模式',
     },
   },
   router: {

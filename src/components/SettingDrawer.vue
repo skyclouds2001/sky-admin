@@ -45,7 +45,7 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
     <!-- 灰色模式控件 -->
     <el-divider>
-      <h4 class="font-bold">灰色模式</h4>
+      <h4 class="font-bold">{{ i18n.t('layout.setting.gray_mode') }}</h4>
     </el-divider>
     <div class="w-full text-center">
       <el-switch v-model="isGrayMode" inline-prompt name="grey-mode" />
@@ -53,7 +53,7 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
     <!-- 色弱模式控件 -->
     <el-divider>
-      <h4 class="font-bold">色弱模式</h4>
+      <h4 class="font-bold">{{ i18n.t('layout.setting.color_weakness') }}</h4>
     </el-divider>
     <div class="w-full text-center">
       <el-switch v-model="isColorWeakness" inline-prompt name="color-weakness" />

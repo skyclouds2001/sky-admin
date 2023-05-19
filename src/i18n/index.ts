@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n'
 import { Lang } from '@/enum'
-import zhCN from './zh-CN'
-import enUS from './en-US'
+import zh_CN from './zh-CN'
+import en_US from './en-US'
 
 const i18n = createI18n({
   legacy: false,
@@ -9,12 +9,8 @@ const i18n = createI18n({
   locale: Lang.zhCN,
   fallbackLocale: [Lang.zhCN, Lang.enUS],
   messages: {
-    'zh-CN': {
-      ...zhCN,
-    },
-    'en-US': {
-      ...enUS,
-    },
+    'zh-CN': zh_CN,
+    'en-US': en_US,
   },
 })
 

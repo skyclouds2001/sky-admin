@@ -36,6 +36,8 @@ export { default as useNow } from './useNow'
 
 export { default as useOnline } from './useOnline'
 
+export { default as usePermission } from './usePermission'
+
 export { default as usePictureInPicture } from './usePictureInPicture'
 
 export { default as usePointerLock } from './usePointerLock'

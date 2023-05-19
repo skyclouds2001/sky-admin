@@ -25,7 +25,9 @@ export default defineConfig({
     mkcert(),
     svgLoader(),
     ElementPlus({}),
-    VueI18nPlugin({}),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, './src/locale/**'),
+    }),
     eslint({
       cache: true,
       cacheLocation: 'node_modules/.eslint/.eslintcache',

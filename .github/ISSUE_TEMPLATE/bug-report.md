@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: Bug Report
 labels: ''
 assignees: skyclouds2001
-
 ---
 
 **Describe the bug**

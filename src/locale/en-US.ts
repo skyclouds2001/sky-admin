@@ -40,6 +40,8 @@ export default {
       disabled: 'Disabled',
       supported: 'Supported',
       unsupported: 'Unsupported',
+      now: 'Current Time',
+      timestamp: 'Current Timestamp',
     },
   },
   table: {

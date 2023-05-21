@@ -48,6 +48,8 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
+export { default as useScreenOrientation } from './useScreenOrientation'
+
 export { default as useSelection } from './useSelection'
 
 export { default as useSessionStorage } from './useSessionStorage'

@@ -164,7 +164,7 @@
     "sass": "^1.62.1",
     "stylelint": "^15.6.0",
     "stylelint-config-html": "^1.1.0",
-    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-recommended-less": "^1.0.4",
     "stylelint-config-standard": "^33.0.0",

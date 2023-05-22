@@ -1,4 +1,4 @@
-import { getCurrentInstance, getCurrentScope, onMounted, onScopeDispose, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
+import { getCurrentScope, onScopeDispose, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const useNotification = (
@@ -45,14 +45,6 @@ const useNotification = (
         notification.value?.close()
       }
     })
-
-    if (getCurrentInstance() !== null) {
-      onMounted(() => {
-        void requestPermission()
-      })
-    } else {
-      void requestPermission()
-    }
 
     if (getCurrentScope() !== undefined) {
       onScopeDispose(() => {

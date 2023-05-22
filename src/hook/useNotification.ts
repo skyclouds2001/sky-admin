@@ -1,8 +1,8 @@
-import { getCurrentInstance, getCurrentScope, onMounted, onScopeDispose, shallowRef, type ShallowRef } from 'vue'
+import { getCurrentInstance, getCurrentScope, onMounted, onScopeDispose, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const useNotification = (
-  title: string,
+  title: string | Ref<string>,
   options: NotificationOptions = {}
 ): {
   isSupported: boolean
@@ -22,12 +22,12 @@ const useNotification = (
     }
   }
 
-  const show = async (overrides: NotificationOptions = {}): Promise<void> => {
+  const show = async (overrides: NotificationOptions & { title?: string } = {}): Promise<void> => {
     if (!isSupported) return
 
     await requestPermission()
 
-    notification.value = new window.Notification(title, Object.assign({}, options, overrides))
+    notification.value = new window.Notification(unref(overrides.title ?? title), Object.assign({}, options, overrides))
   }
 
   const close = (): void => {

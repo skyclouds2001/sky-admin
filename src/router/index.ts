@@ -443,6 +443,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/feature/clipboard'),
+          path: '/feature/clipboard',
+          component: () => import('@/views/feature/WebClipboard.vue'),
+          meta: {
+            title: '剪切板',
+            isView: true,
+          },
+        },
       ],
     },
 

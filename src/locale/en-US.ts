@@ -263,6 +263,7 @@ export default {
     '/feature/eye-dropper': 'EyeDropper Tool',
     '/feature/notification': 'Notification',
     '/feature/vibrate': 'Vibrate',
+    '/feature/clipboard': 'Clipboard',
     '/error': 'Error',
     '/error/403': '403',
     '/error/404': '404',

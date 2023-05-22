@@ -263,6 +263,7 @@ export default {
     '/feature/eye-dropper': '吸管工具',
     '/feature/notification': '通知',
     '/feature/vibrate': '振动',
+    '/feature/clipboard': '剪切板',
     '/error': '异常',
     '/error/403': '403',
     '/error/404': '404',

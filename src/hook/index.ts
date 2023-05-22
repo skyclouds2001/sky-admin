@@ -54,6 +54,8 @@ export { default as useSelection } from './useSelection'
 
 export { default as useSessionStorage } from './useSessionStorage'
 
+export { default as useShare } from './useShare'
+
 export { default as useStorage } from './useStorage'
 
 export { default as useTheme } from './useTheme'

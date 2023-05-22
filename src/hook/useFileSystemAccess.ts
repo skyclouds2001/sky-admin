@@ -1,9 +1,9 @@
 import { computed, type ComputedRef, ref, type Ref, unref, watch } from 'vue'
 
-type WindowWithFileSystemAccess = Window & {
+type WindowWithFileSystemAccess = typeof window & {
   showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
   showSaveFilePicker: (options?: ShowSaveFilePickerOptions) => Promise<FileSystemFileHandle>
-} & typeof globalThis
+}
 
 interface ShowOpenFilePickerOptions {
   multiple?: boolean

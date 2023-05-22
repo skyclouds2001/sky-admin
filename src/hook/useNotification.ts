@@ -7,7 +7,7 @@ const useNotification = (
 ): {
   isSupported: boolean
   notification: ShallowRef<Notification | null>
-  show: () => void
+  show: () => Promise<void>
   close: () => void
 } => {
   const isSupported = 'Notification' in window
@@ -22,12 +22,12 @@ const useNotification = (
     }
   }
 
-  const show = (overrides: NotificationOptions = {}): void => {
+  const show = async (overrides: NotificationOptions = {}): Promise<void> => {
     if (!isSupported) return
 
-    void requestPermission().then(() => {
-      notification.value = new window.Notification(title, Object.assign({}, options, overrides))
-    })
+    await requestPermission()
+
+    notification.value = new window.Notification(title, Object.assign({}, options, overrides))
   }
 
   const close = (): void => {

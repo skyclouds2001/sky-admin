@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
+import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import type { IDomEditor } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
@@ -18,16 +18,8 @@ const handleCreated = (e: IDomEditor) => {
   el.value = e
 }
 
-onMounted(() => {
-  setTimeout(() => {
-    context.value = `${Date.now()}: hello`
-  }, 1000)
-})
-
 onBeforeUnmount(() => {
-  if (el.value) {
-    el.value.destroy()
-  }
+  el.value?.destroy()
 })
 </script>
 

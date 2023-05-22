@@ -2,9 +2,9 @@
 import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
-import { Setting, FullScreen, Lock, Unlock } from '@element-plus/icons-vue'
+import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { useFullscreen, usePointerLock } from '@/hook'
+import { useFullscreen, usePointerLock, useShare } from '@/hook'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()
@@ -15,6 +15,8 @@ const { isSupported: isSupportedFullscreen, toggle: toggleFullscreen } = useFull
 
 const { isSupported: isSupportedPointerLock, isPointerLock, trigger } = usePointerLock()
 
+const { isSupported: isSupportedShare, share } = useShare()
+
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 
 /**
@@ -24,6 +26,16 @@ const showSettingDrawer = () => {
   if (isShowSettingDrawer) {
     isShowSettingDrawer.value = true
   }
+}
+
+/**
+ * 分享操作
+ */
+const handleShare = () => {
+  share({
+    title: document.title,
+    url: location.href,
+  })
 }
 </script>
 
@@ -42,6 +54,9 @@ const showSettingDrawer = () => {
       </div>
       <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
         <el-icon :size="20"><FullScreen /></el-icon>
+      </div>
+      <div v-if="isSupportedShare" class="share" @click="handleShare">
+        <el-icon :size="20"><Share /></el-icon>
       </div>
       <div class="settings" @click="showSettingDrawer">
         <el-icon :size="20"><Setting /></el-icon>
@@ -76,6 +91,10 @@ const showSettingDrawer = () => {
     }
 
     .fullscreen {
+      @apply flex justify-center items-center;
+    }
+
+    .share {
       @apply flex justify-center items-center;
     }
 

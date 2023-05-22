@@ -34,6 +34,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="border border-gray-400">
     <Toolbar class="border-b border-gray-400" :editor="el" :default-config="toolbarConfig" mode="default" />
+    <!-- eslint-disable-next-line vue/v-on-event-hyphenation -->
     <Editor v-model="context" class="h-[500px] overflow-y-hidden" :default-config="editorConfig" mode="default" @onCreated="handleCreated" />
   </div>
 </template>

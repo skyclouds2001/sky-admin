@@ -1,5 +1,7 @@
+import { type Ref, unref } from 'vue'
+
 const useVibrate = (
-  pattern: VibratePattern
+  pattern: VibratePattern | Ref<VibratePattern>
 ): {
   isSupported: boolean
   vibrate: () => void
@@ -10,7 +12,7 @@ const useVibrate = (
   const vibrate = (): void => {
     if (!isSupported) return
 
-    navigator.vibrate(pattern)
+    navigator.vibrate(unref(pattern))
   }
 
   const stop = (): void => {

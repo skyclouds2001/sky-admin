@@ -417,6 +417,15 @@ const router = createRouter({
           },
         },
         {
+          name: Symbol('/feature/eye-dropper'),
+          path: '/feature/eye-dropper',
+          component: () => import('@/views/feature/EyeDropper.vue'),
+          meta: {
+            title: '吸管工具',
+            isView: true,
+          },
+        },
+        {
           name: Symbol('/feature/notification'),
           path: '/feature/notification',
           component: () => import('@/views/feature/WebNotification.vue'),
@@ -430,7 +439,16 @@ const router = createRouter({
           path: '/feature/vibrate',
           component: () => import('@/views/feature/WebVibrate.vue'),
           meta: {
-            title: '通知',
+            title: '振动',
+            isView: true,
+          },
+        },
+        {
+          name: Symbol('/feature/clipboard'),
+          path: '/feature/clipboard',
+          component: () => import('@/views/feature/WebClipboard.vue'),
+          meta: {
+            title: '剪切板',
             isView: true,
           },
         },

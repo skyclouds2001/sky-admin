@@ -4,6 +4,8 @@ export { default as useArticles } from './useArticles'
 
 export { default as useBattery } from './useBattery'
 
+export { default as useBroadcastChannel } from './useBroadcastChannel'
+
 export { default as useClipboard } from './useClipboard'
 
 export { default as useColorWeakness } from './useColorWeakness'
@@ -13,6 +15,10 @@ export { default as useEventBus } from './useEventBus'
 export { default as useEventListener } from './useEventListener'
 
 export { default as useEyeDropper } from './useEyeDropper'
+
+export { default as useFileDialog } from './useFileDialog'
+
+export { default as useFileSystemAccess } from './useFileSystemAccess'
 
 export { default as useFullscreen } from './useFullscreen'
 
@@ -46,9 +52,13 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
+export { default as useScreenOrientation } from './useScreenOrientation'
+
 export { default as useSelection } from './useSelection'
 
 export { default as useSessionStorage } from './useSessionStorage'
+
+export { default as useShare } from './useShare'
 
 export { default as useStorage } from './useStorage'
 

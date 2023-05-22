@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
-import { useGrayMode, useColorWeakness, useTheme, useLang } from '@/hook'
+import { useColorWeakness, useGrayMode, useLang, useTheme, useWakeLock } from '@/hook'
 
 const i18n = useI18n()
 
@@ -15,6 +15,8 @@ const isColorWeakness = useColorWeakness()
 const { theme } = useTheme()
 
 const { lang } = useLang()
+
+const { isSupported, isActive, toggle } = useWakeLock()
 
 const isShowSettingDrawer = inject<Ref<boolean>>('setting')
 </script>
@@ -57,6 +59,14 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
     </el-divider>
     <div class="w-full text-center">
       <el-switch v-model="isColorWeakness" inline-prompt name="color-weakness" />
+    </div>
+
+    <!-- 唤醒锁定控件 -->
+    <el-divider v-if="isSupported">
+      <h4 class="font-bold">{{ i18n.t('layout.setting.wake_lock') }}</h4>
+    </el-divider>
+    <div v-if="isSupported" class="w-full text-center">
+      <el-switch v-model="isActive" inline-prompt name="wake-lock" @change="toggle" />
     </div>
   </el-drawer>
 </template>

@@ -8,7 +8,7 @@ import { ElMessage } from 'element-plus'
 export const initCameraStream = async (el: HTMLVideoElement, id?: string): Promise<void> => {
   try {
     el.srcObject = await navigator.mediaDevices.getUserMedia({
-      audio: false,
+      audio: true,
       video: {
         deviceId: {
           exact: id,

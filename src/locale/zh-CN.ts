@@ -40,6 +40,8 @@ export default {
       disabled: '未启用',
       supported: '支持',
       unsupported: '不支持',
+      now: '当前时间',
+      timestamp: '当前时间戳',
     },
   },
   table: {
@@ -212,6 +214,7 @@ export default {
       i18n: '语言',
       gray_mode: '灰色模式',
       color_weakness: '色弱模式',
+      wake_lock: '电源锁',
     },
   },
   router: {
@@ -258,8 +261,10 @@ export default {
     '/feature/camera-record': '视频录制',
     '/feature/screen-record': '屏幕录制',
     '/feature/web-rtc': '网络实时通信',
+    '/feature/eye-dropper': '吸管工具',
     '/feature/notification': '通知',
     '/feature/vibrate': '振动',
+    '/feature/clipboard': '剪切板',
     '/error': '异常',
     '/error/403': '403',
     '/error/404': '404',

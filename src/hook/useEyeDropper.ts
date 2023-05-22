@@ -22,7 +22,7 @@ const useEyeDropper = (
 ): {
   isSupported: boolean
   color: ComputedRef<string | null>
-  open: (options: EyeDropperOpenOptions) => void
+  open: (options?: EyeDropperOpenOptions) => void
 } => {
   const { initial = null } = options
 
@@ -30,7 +30,7 @@ const useEyeDropper = (
 
   const color = ref<string | null>(initial)
 
-  const open = (options: EyeDropperOpenOptions): void => {
+  const open = (options?: EyeDropperOpenOptions): void => {
     if (!isSupported) return
 
     void new (window as WindowWithEyeDropper).EyeDropper().open(options).then(({ sRGBHex }) => {

@@ -85,31 +85,6 @@ const timestamp = useTimestamp()
           <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
         </el-descriptions-item>
 
-        <el-descriptions-item v-if="isSupportedBattery">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.charge') }}</span>
-          </template>
-          <el-tag>{{ battery.charging ? i18n.t('home.system.charging') : i18n.t('home.system.discharging') }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedBattery">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.chargingTime') }}</span>
-          </template>
-          <el-tag>{{ battery.chargingTime !== Infinity ? `${battery.chargingTime}s` : battery.chargingTime }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedBattery">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.dischargingTime') }}</span>
-          </template>
-          <el-tag>{{ battery.dischargingTime !== Infinity ? `${battery.dischargingTime}s` : battery.dischargingTime }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedBattery">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.level') }}</span>
-          </template>
-          <el-tag>{{ battery.level }}%</el-tag>
-        </el-descriptions-item>
-
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.processor') }}</span>
@@ -142,44 +117,6 @@ const timestamp = useTimestamp()
           <el-tag>{{ browserInfo.pdf ? i18n.t('home.system.supported') : i18n.t('home.system.unsupported') }}</el-tag>
         </el-descriptions-item>
 
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.net') }}</span>
-          </template>
-          <el-tag>{{ isOnline ? i18n.t('home.system.online') : i18n.t('home.system.offline') }}</el-tag>
-        </el-descriptions-item>
-
-        <el-descriptions-item v-if="isSupportedConnection && connection.type">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.type') }}</span>
-          </template>
-          <el-tag>{{ connection.type }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedConnection && connection.effectiveType">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.effectiveType') }}</span>
-          </template>
-          <el-tag>{{ connection.effectiveType }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedConnection && connection.downlink">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.downlink') }}</span>
-          </template>
-          <el-tag>{{ connection.downlink }}Mb/s</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedConnection && connection.downlinkMax">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.downlinkMax') }}</span>
-          </template>
-          <el-tag>{{ connection.downlinkMax }}Mb/s</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedConnection && connection.rtt">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.rtt') }}</span>
-          </template>
-          <el-tag>{{ connection.rtt }}s</el-tag>
-        </el-descriptions-item>
-
         <el-descriptions-item v-if="isSupportedScreenOrientation">
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.angel-o') }}</span>
@@ -204,6 +141,82 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.network.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.net') }}</span>
+          </template>
+          <el-tag>{{ isOnline ? i18n.t('home.network.online') : i18n.t('home.network.offline') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.type') }}</span>
+          </template>
+          <el-tag>{{ connection.type ?? '-' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.effectiveType') }}</span>
+          </template>
+          <el-tag>{{ connection.effectiveType ?? '-' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.downlink') }}</span>
+          </template>
+          <el-tag>{{ connection.downlink ? `${connection.downlink}Mb/s` : '-' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.downlinkMax') }}</span>
+          </template>
+          <el-tag>{{ connection.downlinkMax ? `${connection.downlinkMax}Mb/s` : '-' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedConnection">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.network.rtt') }}</span>
+          </template>
+          <el-tag>{{ connection.rtt ? `${connection.rtt}s` : '-' }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.battery.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.battery.charge') }}</span>
+          </template>
+          <el-tag>{{ battery.charging ? i18n.t('home.battery.charging') : i18n.t('home.battery.discharging') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.battery.chargingTime') }}</span>
+          </template>
+          <el-tag>{{ battery.chargingTime !== Infinity ? `${battery.chargingTime}s` : battery.chargingTime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.battery.dischargingTime') }}</span>
+          </template>
+          <el-tag>{{ battery.dischargingTime !== Infinity ? `${battery.dischargingTime}s` : battery.dischargingTime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedBattery">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.battery.level') }}</span>
+          </template>
+          <el-tag>{{ battery.level }}%</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

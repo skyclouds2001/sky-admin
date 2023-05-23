@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
-import { echarts, type EchartsOptions } from '@/lib'
+import * as echarts from 'echarts/core'
+import { PieChart, type PieSeriesOption } from 'echarts/charts'
+import { LabelLayout, UniversalTransition } from 'echarts/features'
+import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
 import { useTheme } from '@/hook'
 import { generateFakeData } from '@/util'
+
+type EchartsOptions = echarts.ComposeOption<PieSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
+
+echarts.use([PieChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
 const { isLight, isDark } = useTheme()
 

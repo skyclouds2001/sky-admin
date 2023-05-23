@@ -17,7 +17,7 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 </script>
 
 <template>
-  <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en">
+  <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en" :button="{ autoInsertSpace: true }" :message="{ max: 5 }">
     <layout-container>
       <router-view v-slot="{ Component }">
         <template v-if="Component">

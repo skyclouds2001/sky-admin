@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts/core'
 import { BarChart, type BarSeriesOption } from 'echarts/charts'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
@@ -12,13 +12,15 @@ type EchartsOptions = echarts.ComposeOption<BarSeriesOption | GridComponentOptio
 
 echarts.use([BarChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
+const el = ref<HTMLDivElement | null>(null)
+
 const { isLight, isDark } = useTheme()
 
 const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
-    .init(document.getElementById('simple-bar-chart') as HTMLDivElement, 'light', {
+    .init(el.value as HTMLDivElement, 'light', {
       width: 1000,
       height: 600,
     })
@@ -89,12 +91,12 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  echarts.getInstanceByDom(document.getElementById('simple-bar-chart') as HTMLDivElement)?.dispose()
+  echarts.getInstanceByDom(el.value as HTMLDivElement)?.dispose()
 })
 </script>
 
 <template>
-  <div id="simple-bar-chart" style="width: 1000px; height: 600px"></div>
+  <div ref="el" style="width: 1000px; height: 600px"></div>
 </template>
 
 <style scoped lang="scss"></style>

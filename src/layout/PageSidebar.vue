@@ -257,6 +257,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/clipboard') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/broadcast-channel">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/broadcast-channel') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->

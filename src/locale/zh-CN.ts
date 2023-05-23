@@ -273,6 +273,7 @@ export default {
     '/feature/notification': '通知',
     '/feature/vibrate': '振动',
     '/feature/clipboard': '剪切板',
+    '/feature/broadcast-channel': '广播频道',
     '/error': '异常',
     '/error/403': '403',
     '/error/404': '404',

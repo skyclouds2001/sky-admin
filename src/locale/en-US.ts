@@ -273,6 +273,7 @@ export default {
     '/feature/notification': 'Notification',
     '/feature/vibrate': 'Vibrate',
     '/feature/clipboard': 'Clipboard',
+    '/feature/broadcast-channel': 'BroadcastChannel',
     '/error': 'Error',
     '/error/403': '403',
     '/error/404': '404',

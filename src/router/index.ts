@@ -452,6 +452,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/feature/broadcast-channel'),
+          path: '/feature/broadcast-channel',
+          component: () => import('@/views/feature/BroadcastChannel.vue'),
+          meta: {
+            title: '广播频道',
+            isView: true,
+          },
+        },
       ],
     },
 

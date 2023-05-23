@@ -1,11 +1,19 @@
 import { onBeforeUnmount, onMounted, ref, type Ref, shallowRef, type ShallowRef } from 'vue'
 
-const useGeolocation = ({ enableHighAccuracy = true, maximumAge = 30000, timeout = 27000 } = {}): {
+const useGeolocation = (
+  options: {
+    enableHighAccuracy?: boolean
+    maximumAge?: number
+    timeout?: number
+  } = {}
+): {
   isSupported: boolean
   geolocation: Ref<GeolocationCoordinates>
   locatedAt: Ref<number | null>
   error: ShallowRef<GeolocationPositionError | null>
 } => {
+  const { enableHighAccuracy = true, maximumAge = 30000, timeout = 27000 } = options
+
   const isSupported = 'geolocation' in navigator
 
   const location = ref<GeolocationCoordinates>({

@@ -7,9 +7,9 @@ const useFullscreen = (
 ): {
   isSupported: boolean
   isFullscreen: ComputedRef<boolean>
-  enter: () => void
-  exit: () => void
-  toggle: () => void
+  enter: () => Promise<void>
+  exit: () => Promise<void>
+  toggle: () => Promise<void>
 } => {
   /**
    * 标记用户是否启用全屏功能
@@ -24,28 +24,29 @@ const useFullscreen = (
   /**
    * 进入全屏状态方法
    */
-  const enter = (): void => {
+  const enter = async (): Promise<void> => {
     if (!isSupported) return
 
-    void target.requestFullscreen(options)
+    await target.requestFullscreen(options)
+
     isFullscreen.value = true
   }
 
   /**
    * 退出全屏状态方法
    */
-  const exit = (): void => {
+  const exit = async (): Promise<void> => {
     if (!isSupported) return
 
-    void document.exitFullscreen()
+    await document.exitFullscreen()
     isFullscreen.value = false
   }
 
   /**
    * 切换全屏状态方法
    */
-  const toggle = (): void => {
-    isFullscreen.value ? exit() : enter()
+  const toggle = async (): Promise<void> => {
+    await (isFullscreen.value ? exit() : enter())
   }
 
   useEventListener(document, 'fullscreenchange', () => {

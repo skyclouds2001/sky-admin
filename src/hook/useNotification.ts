@@ -8,7 +8,7 @@ const useNotification = (
   isSupported: boolean
   notification: ShallowRef<Notification | null>
   show: () => Promise<void>
-  close: () => void
+  close: () => Promise<void>
 } => {
   const isSupported = 'Notification' in window
 
@@ -30,7 +30,7 @@ const useNotification = (
     notification.value = new window.Notification(unref(overrides.title ?? title), Object.assign({}, options, overrides))
   }
 
-  const close = (): void => {
+  const close = async (): Promise<void> => {
     if (!isSupported) return
 
     if (notification.value !== null) {
@@ -48,7 +48,7 @@ const useNotification = (
 
     if (getCurrentScope() !== undefined) {
       onScopeDispose(() => {
-        close()
+        void close()
       })
     }
   }

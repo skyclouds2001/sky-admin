@@ -7,9 +7,9 @@ const usePictureInPicture = (
   isSupported: boolean
   isPictureInPicture: ComputedRef<boolean>
   currentWindow: ShallowRef<PictureInPictureWindow | null>
-  enter: () => void
-  exit: () => void
-  toggle: () => void
+  enter: () => Promise<void>
+  exit: () => Promise<void>
+  toggle: () => Promise<void>
 } => {
   const isSupported = 'pictureInPictureElement' in Document && 'requestPictureInPicture' in HTMLVideoElement && 'exitPictureInPicture' in Document && document.pictureInPictureEnabled && !target.disablePictureInPicture
 
@@ -17,24 +17,25 @@ const usePictureInPicture = (
 
   const wd = shallowRef<PictureInPictureWindow | null>(null)
 
-  const enter = (): void => {
+  const enter = async (): Promise<void> => {
     if (!isSupported) return
 
-    void target.requestPictureInPicture().then((w) => {
-      wd.value = w
-    })
+    const w = await target.requestPictureInPicture()
+    wd.value = w
+
     isPictureInPicture.value = true
   }
 
-  const exit = (): void => {
+  const exit = async (): Promise<void> => {
     if (!isSupported) return
 
-    void document.exitPictureInPicture()
+    await document.exitPictureInPicture()
+
     isPictureInPicture.value = false
   }
 
-  const toggle = (): void => {
-    isPictureInPicture.value ? exit() : enter()
+  const toggle = async (): Promise<void> => {
+    await (isPictureInPicture.value ? exit() : enter())
   }
 
   useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {

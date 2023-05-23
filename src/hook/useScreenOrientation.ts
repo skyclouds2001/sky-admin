@@ -5,19 +5,19 @@ const useScreenOrientation = (): {
   isSupported: boolean
   type: ComputedRef<OrientationType>
   angel: ComputedRef<number>
-  lock: (type: OrientationLockType) => void
-  unlock: () => void
+  lock: (type: OrientationLockType) => Promise<void>
+  unlock: () => Promise<void>
 } => {
   const isSupported = 'screen' in window && 'orientation' in screen
 
   const type = ref<OrientationType>(screen.orientation.type)
   const angel = ref(screen.orientation.angle)
 
-  const lock = (type: OrientationLockType): void => {
-    void screen.orientation.lock(type)
+  const lock = async (type: OrientationLockType): Promise<void> => {
+    await screen.orientation.lock(type)
   }
 
-  const unlock = (): void => {
+  const unlock = async (): Promise<void> => {
     screen.orientation.unlock()
   }
 

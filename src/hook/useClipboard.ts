@@ -10,7 +10,7 @@ const useClipboard = (
   isSupported: boolean
   text: ComputedRef<string>
   isCopied: ComputedRef<boolean>
-  copy: (data: string) => void
+  copy: (data: string) => Promise<void>
 } => {
   const { delay = 2500, listen = true } = options
 
@@ -24,17 +24,17 @@ const useClipboard = (
     isCopied.value = false
   }, delay)
 
-  const copy = (data: string): void => {
+  const copy = async (data: string): Promise<void> => {
     if (!isSupported) return
 
     fn.stop()
     isCopied.value = false
 
-    void navigator.clipboard.writeText(data).then(() => {
-      text.value = data
-      isCopied.value = true
-      fn.start()
-    })
+    await navigator.clipboard.writeText(data)
+
+    text.value = data
+    isCopied.value = true
+    fn.start()
   }
 
   if (isSupported && listen) {

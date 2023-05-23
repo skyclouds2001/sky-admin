@@ -6,30 +6,32 @@ const usePointerLock = (
 ): {
   isSupported: boolean
   isPointerLock: ComputedRef<boolean>
-  lock: () => void
-  unlock: () => void
-  trigger: () => void
+  lock: () => Promise<void>
+  unlock: () => Promise<void>
+  trigger: () => Promise<void>
 } => {
   const isSupported = 'pointerLockElement' in document && 'requestPointerLock' in HTMLElement.prototype && 'exitPointerLock' in document
 
   const isPointerLock = ref(document.pointerLockElement === target)
 
-  const lock = (): void => {
+  const lock = async (): Promise<void> => {
     if (!isSupported) return
 
-    void target.requestPointerLock()
+    await target.requestPointerLock()
+
     isPointerLock.value = true
   }
 
-  const unlock = (): void => {
+  const unlock = async (): Promise<void> => {
     if (!isSupported) return
 
     document.exitPointerLock()
+
     isPointerLock.value = false
   }
 
-  const trigger = (): void => {
-    isPointerLock.value ? unlock() : lock()
+  const trigger = async (): Promise<void> => {
+    await (isPointerLock.value ? unlock() : lock())
   }
 
   if (isSupported) {

@@ -4,9 +4,9 @@ import { useEventListener } from '@/hook'
 const useWakeLock = (): {
   isSupported: boolean
   isActive: ComputedRef<boolean>
-  request: () => void
-  release: () => void
-  toggle: () => void
+  request: () => Promise<void>
+  release: () => Promise<void>
+  toggle: () => Promise<void>
 } => {
   const isSupported = 'wakeLock' in navigator
 
@@ -14,28 +14,28 @@ const useWakeLock = (): {
 
   let wakeLockSentinel: WakeLockSentinel | null = null
 
-  const request = (): void => {
+  const request = async (): Promise<void> => {
     if (!isSupported) return
 
-    void navigator.wakeLock.request('screen').then((wakeLock) => {
-      wakeLockSentinel = wakeLock
-      isActive.value = wakeLockSentinel.released === false
-    })
+    const wakeLock = await navigator.wakeLock.request('screen')
+
+    wakeLockSentinel = wakeLock
+    isActive.value = wakeLockSentinel.released === false
   }
 
-  const release = (): void => {
+  const release = async (): Promise<void> => {
     if (!isSupported) return
 
     if (wakeLockSentinel === null) return
 
-    void wakeLockSentinel.release().then(() => {
-      isActive.value = wakeLockSentinel !== null ? wakeLockSentinel.released === false : false
-      wakeLockSentinel = null
-    })
+    await wakeLockSentinel.release()
+
+    isActive.value = wakeLockSentinel !== null ? wakeLockSentinel.released === false : false
+    wakeLockSentinel = null
   }
 
-  const toggle = (): void => {
-    isActive.value ? release() : request()
+  const toggle = async (): Promise<void> => {
+    await (isActive.value ? release() : request())
   }
 
   useEventListener(document, 'visibilitychange', () => {

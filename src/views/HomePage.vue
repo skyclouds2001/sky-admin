@@ -3,7 +3,7 @@ import { shallowRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useNetwork, useNow, useOnline, useTimestamp } from '@/hook'
+import { useBattery, useNetwork, useNow, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
@@ -15,6 +15,8 @@ const { isOnline } = useOnline()
 const { battery, isSupported: isSupportedBattery } = useBattery()
 
 const { isSupported: isSupportedConnection, connection } = useNetwork()
+
+const { isSupported: isSupportedScreenOrientation, angel, type } = useScreenOrientation()
 
 const now = useNow()
 
@@ -176,6 +178,19 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.system.rtt') }}</span>
           </template>
           <el-tag>{{ connection.rtt }}s</el-tag>
+        </el-descriptions-item>
+
+        <el-descriptions-item v-if="isSupportedScreenOrientation">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.angel-o') }}</span>
+          </template>
+          <el-tag>{{ angel }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedScreenOrientation">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.type-o') }}</span>
+          </template>
+          <el-tag>{{ type }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>

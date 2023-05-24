@@ -6,7 +6,7 @@ import CryptoJS from 'crypto-js'
 
 const i18n = useI18n()
 
-const types = Object.keys(CryptoJS).filter((v) => /^(MD|SHA|RIPEMD)/.test(v)) as Array<Extract<keyof typeof CryptoJS, `MD${number}` | `SHA${number}` | `RIPEMD${number}`>>
+const types = Object.keys(CryptoJS).filter((v) => /^(?:MD|SHA|RIPEMD)/.test(v)) as Array<Extract<keyof typeof CryptoJS, `MD${number}` | `SHA${number}` | `RIPEMD${number}`>>
 
 const encodes = Object.keys(CryptoJS.enc) as Array<keyof typeof CryptoJS.enc>
 

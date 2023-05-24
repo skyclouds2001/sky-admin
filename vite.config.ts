@@ -14,7 +14,8 @@ import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
 
-import generateEnv from './plugin/generate-env'
+import GenerateEnv from './plugin/generate-env'
+import CopyFile from './plugin/copy-file'
 
 export default defineConfig({
   plugins: [
@@ -44,7 +45,8 @@ export default defineConfig({
       brotliSize: true,
     }),
     inspect(),
-    generateEnv(),
+    GenerateEnv(),
+    CopyFile(),
   ],
   resolve: {
     alias: {

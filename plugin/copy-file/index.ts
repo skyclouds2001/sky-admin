@@ -2,12 +2,14 @@ import { createLogger, normalizePath, type Plugin, type ResolvedConfig } from 'v
 import path from 'node:path'
 import fs from 'node:fs'
 
-const CopyFile = (options: {
-  files?: Array<{
-    source: string
-    target: string
-  }>
-}): Plugin => {
+const CopyFile = (
+  options: {
+    files?: Array<{
+      source: string
+      target: string
+    }>
+  } = {}
+): Plugin => {
   const { files = [] } = options
 
   const logger = createLogger()

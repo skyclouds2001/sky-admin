@@ -23,6 +23,33 @@ interface ShowSaveFilePickerOptions {
   }>
 }
 
+interface FileSystemFileHandle extends FileSystemHandle {
+  readonly kind: 'file'
+  createWritable: (options?: FileSystemCreateWritableOptions) => Promise<FileSystemWritableFileStream>
+  getFile: () => Promise<File>
+}
+
+interface FileSystemCreateWritableOptions {
+  keepExistingData?: boolean
+}
+
+interface FileSystemWritableFileStream extends WritableStream {
+  seek: (position: number) => Promise<void>
+  truncate: (size: number) => Promise<void>
+  write: (data: FileSystemWriteChunkType) => Promise<void>
+}
+
+type FileSystemWriteChunkType = BufferSource | Blob | string | WriteParams
+
+interface WriteParams {
+  data?: BufferSource | Blob | string | null
+  position?: number | null
+  size?: number | null
+  type: WriteCommandType
+}
+
+type WriteCommandType = 'seek' | 'truncate' | 'write'
+
 type DataType = 'Text' | 'ArrayBuffer' | 'Blob'
 
 const useFileSystemAccess = (

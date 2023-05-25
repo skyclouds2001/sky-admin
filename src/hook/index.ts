@@ -10,6 +10,8 @@ export { default as useClipboard } from './useClipboard'
 
 export { default as useColorWeakness } from './useColorWeakness'
 
+export { default as useDocumentVisibility } from './useDocumentVisibility'
+
 export { default as useEventBus } from './useEventBus'
 
 export { default as useEventListener } from './useEventListener'

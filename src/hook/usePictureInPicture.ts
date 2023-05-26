@@ -11,7 +11,7 @@ const usePictureInPicture = (
   exit: () => Promise<void>
   toggle: () => Promise<void>
 } => {
-  const isSupported = 'pictureInPictureElement' in Document && 'requestPictureInPicture' in HTMLVideoElement && 'exitPictureInPicture' in Document && document.pictureInPictureEnabled && !target.disablePictureInPicture
+  const isSupported = 'pictureInPictureElement' in document && 'requestPictureInPicture' in HTMLVideoElement.prototype && 'exitPictureInPicture' in document && document.pictureInPictureEnabled && !target.disablePictureInPicture
 
   const isPictureInPicture = ref(document.pictureInPictureElement === target)
 

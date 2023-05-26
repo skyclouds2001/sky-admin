@@ -57,6 +57,7 @@ export default {
       name_label: '名称',
       name_placeholder: '请输入文章名称',
       search: '搜索',
+      add: '添加',
       export: '导出',
     },
     table: {

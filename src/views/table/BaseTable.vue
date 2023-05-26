@@ -17,6 +17,13 @@ const handleExport = () => {
 }
 
 /**
+ * 新增文章信息列表方法
+ */
+const handleAddArticle = () => {
+  console.log(-1)
+}
+
+/**
  * 编辑文章信息方法
  * @param id 文章ID
  */
@@ -87,7 +94,7 @@ const handleRemoveArticle = (id: number) => {
 <template>
   <el-space direction="vertical" fill size="large" class="base-table-space p-5">
     <!-- 搜索框部分 -->
-    <article-search @search="handleSearch" @export="handleExport" />
+    <article-search @search="handleSearch" @add="handleAddArticle" @export="handleExport" />
 
     <!-- 表格部分 -->
     <article-table :articles="articles" @edit="handleEditArticle" @toggle="handleToggleArticleStatus" @remove="handleRemoveArticle" />

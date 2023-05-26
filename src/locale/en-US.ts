@@ -57,6 +57,7 @@ export default {
       name_label: 'Title',
       name_placeholder: 'Please Input Article Title ',
       search: 'Search',
+      add: 'Add',
       export: 'Export',
     },
     table: {

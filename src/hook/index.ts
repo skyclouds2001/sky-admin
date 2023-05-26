@@ -4,6 +4,8 @@ export { default as useArticles } from './useArticles'
 
 export { default as useBattery } from './useBattery'
 
+export { default as useBluetooth } from './useBluetooth'
+
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'

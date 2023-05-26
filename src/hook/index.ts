@@ -12,6 +12,8 @@ export { default as useColorWeakness } from './useColorWeakness'
 
 export { default as useDocumentActiveElement } from './useDocumentActiveElement'
 
+export { default as useDocumentReadyState } from './useDocumentReadyState'
+
 export { default as useDocumentVisibility } from './useDocumentVisibility'
 
 export { default as useEventBus } from './useEventBus'

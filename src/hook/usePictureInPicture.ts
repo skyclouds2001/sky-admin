@@ -6,7 +6,7 @@ const usePictureInPicture = (
 ): {
   isSupported: boolean
   isPictureInPicture: ComputedRef<boolean>
-  currentWindow: ShallowRef<PictureInPictureWindow | null>
+  pictureInPictureWindow: ShallowRef<PictureInPictureWindow | null>
   enter: () => Promise<void>
   exit: () => Promise<void>
   toggle: () => Promise<void>
@@ -15,13 +15,13 @@ const usePictureInPicture = (
 
   const isPictureInPicture = ref(document.pictureInPictureElement === target)
 
-  const wd = shallowRef<PictureInPictureWindow | null>(null)
+  const pictureInPictureWindow = shallowRef<PictureInPictureWindow | null>(null)
 
   const enter = async (): Promise<void> => {
     if (!isSupported) return
 
-    const w = await target.requestPictureInPicture()
-    wd.value = w
+    const window = await target.requestPictureInPicture()
+    pictureInPictureWindow.value = window
 
     isPictureInPicture.value = true
   }
@@ -49,7 +49,7 @@ const usePictureInPicture = (
   return {
     isSupported,
     isPictureInPicture: computed(() => isPictureInPicture.value),
-    currentWindow: wd,
+    pictureInPictureWindow: computed(() => pictureInPictureWindow.value),
     enter,
     exit,
     toggle,

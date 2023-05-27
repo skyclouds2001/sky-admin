@@ -239,6 +239,7 @@ export default {
     '/component/scalable': 'Scalable Component',
     '/component/rotatable': 'Rotatable Component',
     '/component/rich-text-editor': 'RichText Editor',
+    '/component/markdown-editor': 'Markdown Editor',
     '/chart': 'Chart',
     '/chart/bar': 'Bar Chart',
     '/chart/line': 'line Chart',

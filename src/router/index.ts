@@ -121,6 +121,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/component/markdown-editor'),
+          path: '/component/markdown-editor',
+          component: () => import('@/views/component/MarkdownEditor.vue'),
+          meta: {
+            title: 'Markdown 编辑器',
+            isView: true,
+          },
+        },
       ],
     },
 

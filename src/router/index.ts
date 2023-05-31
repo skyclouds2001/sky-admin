@@ -534,6 +534,17 @@ const router = createRouter({
         isView: true,
       },
     },
+
+    // 默认回退页
+    {
+      name: Symbol('*'),
+      path: '/:catchAll(.*)',
+      redirect: '/error/404',
+      meta: {
+        title: '*',
+        isView: false,
+      },
+    },
   ],
 
   scrollBehavior(to, from, savedPosition) {

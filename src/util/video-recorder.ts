@@ -1,5 +1,3 @@
-import { ElMessage } from 'element-plus'
-
 /**
  * 初始化视频控制流方法
  * @param el 视频元素
@@ -28,10 +26,8 @@ export const initVideoRecorderStream = (el: HTMLVideoElement, mimeType?: string)
     a.click()
   })
 
-  mediaRecorder?.addEventListener('error', () => {
-    ElMessage.error({
-      message: '录屏失败',
-    })
+  mediaRecorder?.addEventListener('error', (error) => {
+    console.error(error)
   })
 
   return mediaRecorder

@@ -71,10 +71,8 @@ const isShowSettingDrawer = inject<Ref<boolean>>('setting')
   </el-drawer>
 </template>
 
-<style scoped lang="scss"></style>
-
-<style lang="scss">
-:has(.drawer) {
+<style scoped lang="scss">
+:global(:has(.drawer)) {
   @apply m-0;
 }
 </style>

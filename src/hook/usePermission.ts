@@ -11,19 +11,21 @@ const usePermission = (
 
   const permission = ref<PermissionState | null>(null)
 
+  let permissionStatus: PermissionStatus
+
   const update = (): void => {
-    void navigator.permissions.query({ name }).then((res) => {
-      permission.value = res.state
-    })
+    permission.value = permissionStatus.state
   }
 
-  void navigator.permissions.query({ name }).then((permissionStatus) => {
-    permission.value = permissionStatus.state
+  if (isSupported) {
+    void navigator.permissions.query({ name }).then((status) => {
+      permissionStatus = status
 
-    useEventListener<PermissionStatus, PermissionStatusEventMap, 'change'>(permissionStatus, 'change', () => {
       update()
+
+      useEventListener<PermissionStatus, PermissionStatusEventMap, 'change'>(status, 'change', update)
     })
-  })
+  }
 
   return {
     isSupported,

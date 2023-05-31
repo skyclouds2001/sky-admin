@@ -80,6 +80,8 @@ export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
 
+export { default as useUserMedia } from './useUserMedia'
+
 export { default as useVibrate } from './useVibrate'
 
 export { default as useWakeLock } from './useWakeLock'

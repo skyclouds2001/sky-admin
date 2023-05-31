@@ -12,6 +12,8 @@ export { default as useClipboard } from './useClipboard'
 
 export { default as useColorWeakness } from './useColorWeakness'
 
+export { default as useDevicesList } from './useDevicesList'
+
 export { default as useDisplayMedia } from './useDisplayMedia'
 
 export { default as useDocumentActiveElement } from './useDocumentActiveElement'

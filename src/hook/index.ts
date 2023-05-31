@@ -87,3 +87,5 @@ export { default as useVibrate } from './useVibrate'
 export { default as useWakeLock } from './useWakeLock'
 
 export { default as useWindowFocus } from './useWindowFocus'
+
+export { default as useWindowScroll } from './useWindowScroll'

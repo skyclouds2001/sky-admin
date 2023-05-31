@@ -1,9 +1,11 @@
 import { ref, type Ref, shallowRef, type ShallowRef, watch } from 'vue'
 
-const useDisplayMedia = (options: {
-  audio: boolean
-  video: true
-}): {
+const useDisplayMedia = (
+  options: {
+    audio?: boolean
+    video?: true
+  } = {}
+): {
   isSupported: boolean
   isEnabled: Ref<boolean>
   stream: ShallowRef<MediaStream | null>

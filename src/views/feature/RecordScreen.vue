@@ -98,7 +98,7 @@ const handleClose = async () => {
       </el-select>
       <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
     </el-space>
-    <video id="video" ref="el" width="800" height="600" autoplay playsinline />
+    <video id="video" ref="el" width="800" height="600" autoplay playsinline></video>
   </el-space>
 </template>
 

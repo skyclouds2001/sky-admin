@@ -50,9 +50,13 @@ const handleClose = async () => {
       <el-select v-model="device" name="device">
         <el-option v-for="item in devices" :key="item.deviceId" :label="item.label" :value="item.deviceId" />
       </el-select>
+      <el-button :disabled="!isEnabled || mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null || mediaRecorder.state === 'paused'" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null || mediaRecorder.state === 'recording'" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
       <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
     </el-space>
-    <video id="video" ref="el" width="800" height="600" autoplay playsinline />
+    <video id="video" ref="el" width="800" height="600" autoplay playsinline></video>
   </el-space>
 </template>
 

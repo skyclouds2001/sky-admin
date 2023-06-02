@@ -87,16 +87,16 @@ const handleClose = async () => {
 <template>
   <el-space size="large" class="w-full p-5">
     <el-space size="large" direction="vertical">
-      <el-button type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
+      <el-button :disabled="isEnabled" type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null || mediaRecorder.state === 'paused'" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null || mediaRecorder.state === 'recording'" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
+      <el-button :disabled="!isEnabled || mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
       <el-select v-model="mimeType" name="device">
         <el-option v-for="item in mimeTypes" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-button :disabled="!isEnabled && mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
-      <el-button :disabled="!isEnabled && (mediaRecorder === null || mediaRecorder.state === 'paused')" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
-      <el-button :disabled="!isEnabled && (mediaRecorder === null || mediaRecorder.state === 'recording')" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
-      <el-button :disabled="!isEnabled && mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
-      <el-button type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
-      <el-button type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
     </el-space>
     <video id="video" ref="el" width="800" height="600" autoplay playsinline />
   </el-space>

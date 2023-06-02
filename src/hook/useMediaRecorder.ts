@@ -20,18 +20,18 @@ const useMediaRecorder = (): {
 
     if (mediaRecorder !== null) return
 
-    mediaRecorder = new MediaRecorder(stream, options)
+    mediaRecorder = new window.MediaRecorder(stream, options)
 
     mediaRecorder.start()
 
     state.value = mediaRecorder.state
 
     useEventListener<MediaRecorder, MediaRecorderEventMap, 'dataavailable'>(mediaRecorder, 'dataavailable', (e) => {
-      const blob = new Blob([e.data], { type: 'video/mp4' })
-      const link = URL.createObjectURL(blob)
+      const blob = new window.Blob([e.data], { type: 'video/mp4' })
+      const link = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = link
-      a.download = '录制'
+      a.download = 'record'
       a.target = '_blank'
       a.hidden = true
       a.style.display = 'none'

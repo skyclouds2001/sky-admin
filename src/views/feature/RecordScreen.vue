@@ -2,9 +2,12 @@
 import { ref, shallowRef, triggerRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { initScreenStream, getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
+import { useDisplayMedia } from '@/hook'
+import { getSupportedMimeTypes, captureScreenshot, initVideoRecorderStream } from '@/util'
 
 const i18n = useI18n()
+
+const { isEnabled, stream, start, stop } = useDisplayMedia()
 
 const mediaRecorder = shallowRef<MediaRecorder | null>(null)
 
@@ -31,9 +34,10 @@ const handleScreenshot = () => {
  * 开始录制
  */
 const handleStartRecode = async () => {
-  await initScreenStream(el.value as HTMLVideoElement)
+  // @ts-expect-error captureStream method has not apply on typescript dom definition file
+  const stream = el.value.captureStream() as MediaStream
 
-  mediaRecorder.value = initVideoRecorderStream(el.value as HTMLVideoElement, mimeType.value)
+  mediaRecorder.value = initVideoRecorderStream(stream, mimeType.value)
 
   mediaRecorder.value?.start()
   triggerRef(mediaRecorder)
@@ -66,15 +70,17 @@ const handleEndRecord = () => {
 /**
  * 启动视频流
  */
-const handleOpen = () => {
-  initScreenStream(el.value as HTMLVideoElement)
+const handleOpen = async () => {
+  await start()
+  if (el.value !== null) el.value.srcObject = stream.value
 }
 
 /**
  * 关闭视频流
  */
-const handleClose = () => {
-  ;(el.value as HTMLVideoElement).srcObject = null
+const handleClose = async () => {
+  await stop()
+  if (el.value !== null) el.value.srcObject = null
 }
 </script>
 
@@ -85,10 +91,10 @@ const handleClose = () => {
       <el-select v-model="mimeType" name="device">
         <el-option v-for="item in mimeTypes" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-button :disabled="mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
-      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'paused'" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
-      <el-button :disabled="mediaRecorder === null || mediaRecorder.state === 'recording'" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
-      <el-button :disabled="mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
+      <el-button :disabled="!isEnabled && mediaRecorder !== null" type="primary" @click="handleStartRecode">{{ i18n.t('feature.open_record') }}</el-button>
+      <el-button :disabled="!isEnabled && (mediaRecorder === null || mediaRecorder.state === 'paused')" type="primary" @click="handleParseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
+      <el-button :disabled="!isEnabled && (mediaRecorder === null || mediaRecorder.state === 'recording')" type="primary" @click="handleResumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
+      <el-button :disabled="!isEnabled && mediaRecorder === null" type="primary" @click="handleEndRecord">{{ i18n.t('feature.stop_record') }}</el-button>
       <el-button type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
       <el-button type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
     </el-space>

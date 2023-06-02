@@ -190,7 +190,7 @@ export default {
     screenshot: 'Capture Screenshot',
     open_record: 'Start Record',
     pause_record: 'Pause Record',
-    resume_record: 'Continue Record',
+    resume_record: 'Resume Record',
     stop_record: 'Stop Record',
     initialization: 'Initialization',
     create_offer: 'Create Offer',

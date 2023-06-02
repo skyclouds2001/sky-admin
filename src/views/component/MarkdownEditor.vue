@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import Editor from '@toast-ui/editor'
+import { onMounted, onBeforeUnmount, shallowRef } from 'vue'
+import { Editor } from '@toast-ui/editor'
 import '@toast-ui/editor/dist/i18n/zh-cn'
 import '@toast-ui/editor/dist/toastui-editor.css'
 import chart from '@toast-ui/editor-plugin-chart'
@@ -15,11 +15,13 @@ import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell'
 import '@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css'
 import uml from '@toast-ui/editor-plugin-uml'
 
-const el = ref<HTMLDivElement | null>(null)
+const el = shallowRef<HTMLDivElement | null>(null)
 
-let editor
+let editor: Editor
 
 onMounted(() => {
+  if (el.value === null) return
+
   editor = new Editor({
     el: el.value,
     previewStyle: 'vertical',
@@ -28,6 +30,10 @@ onMounted(() => {
     language: 'zh-CN',
     plugins: [chart, codeSyntaxHighlight, colorSyntax, tableMergedCell, uml],
   })
+})
+
+onBeforeUnmount(() => {
+  editor.destroy()
 })
 </script>
 

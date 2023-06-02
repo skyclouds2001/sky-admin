@@ -1,4 +1,4 @@
-import { ref, type Ref, shallowRef, type ShallowRef, watch } from 'vue'
+import { computed, type ComputedRef, ref, shallowRef, type ShallowRef, watch } from 'vue'
 
 const useUserMedia = (
   options: {
@@ -7,7 +7,7 @@ const useUserMedia = (
   } = {}
 ): {
   isSupported: boolean
-  isEnabled: Ref<boolean>
+  isEnabled: ComputedRef<boolean>
   stream: ShallowRef<MediaStream | null>
   start: () => Promise<void>
   stop: () => Promise<void>
@@ -60,7 +60,7 @@ const useUserMedia = (
 
   return {
     isSupported,
-    isEnabled,
+    isEnabled: computed(() => isEnabled.value),
     stream,
     start,
     stop,

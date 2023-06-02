@@ -27,9 +27,9 @@ const useAppBadge = (
     contents,
     (contents) => {
       if (contents !== 0) {
-        navigator.setAppBadge(contents)
+        void navigator.setAppBadge(contents)
       } else {
-        navigator.clearAppBadge()
+        void navigator.clearAppBadge()
       }
     },
     { immediate: true }

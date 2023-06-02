@@ -12,7 +12,7 @@ const useUserMedia = (
   start: () => Promise<void>
   stop: () => Promise<void>
 } => {
-  const { audio = true, video = true } = options
+  const { audio = false, video = true } = options
 
   const isSupported = 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices
 

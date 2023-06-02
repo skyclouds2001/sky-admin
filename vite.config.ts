@@ -9,6 +9,7 @@ import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { createHtmlPlugin as html } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
 import mkcert from 'vite-plugin-mkcert'
 import eslint from 'vite-plugin-eslint'
@@ -29,6 +30,9 @@ export default defineConfig({
     ElementPlus({}),
     VueI18nPlugin({
       include: path.resolve(__dirname, './src/locale/**'),
+    }),
+    html({
+      minify: true,
     }),
     VitePWA({
       registerType: 'autoUpdate',

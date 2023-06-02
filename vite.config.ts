@@ -9,6 +9,7 @@ import svgLoader from 'vite-svg-loader'
 // @ts-expect-error typescript can not recognize its definition file
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { VitePWA } from 'vite-plugin-pwa'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
@@ -28,6 +29,9 @@ export default defineConfig({
     ElementPlus({}),
     VueI18nPlugin({
       include: path.resolve(__dirname, './src/locale/**'),
+    }),
+    VitePWA({
+      registerType: 'autoUpdate',
     }),
     eslint({
       cache: true,

@@ -193,6 +193,7 @@
     "vite-plugin-inspect": "^0.7.24",
     "vite-plugin-mkcert": "^1.14.1",
     "vite-plugin-mock": "^3.0.0",
+    "vite-plugin-pwa": "^0.16.1",
     "vite-plugin-stylelint": "^4.3.0",
     "vite-svg-loader": "^4.0.0",
     "vitepress": "1.0.0-beta.1",

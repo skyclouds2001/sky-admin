@@ -9,6 +9,7 @@ import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import viteCompression from 'vite-plugin-compression'
 import mkcert from 'vite-plugin-mkcert'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
@@ -24,7 +25,6 @@ export default defineConfig({
     vueJsx(),
     legacy(),
     mock(),
-    mkcert(),
     svgLoader(),
     ElementPlus({}),
     VueI18nPlugin({
@@ -33,6 +33,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
     }),
+    viteCompression(),
+    mkcert(),
     eslint({
       cache: true,
       cacheLocation: 'node_modules/.eslint/.eslintcache',

@@ -1,15 +1,16 @@
 /**
  * 生成视频截图
- * @param video Video 标签元素
+ * @param source Video 标签元素
  */
-export const captureScreenshot = (video: HTMLVideoElement): void => {
+export const captureScreenshot = (source: HTMLVideoElement): void => {
   const canvas = document.createElement('canvas')
-  canvas.width = video.videoWidth
-  canvas.height = video.videoHeight
+  canvas.width = source.videoWidth
+  canvas.height = source.videoHeight
   canvas.hidden = true
   canvas.style.display = 'none'
+
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+  ctx.drawImage(source, 0, 0, canvas.width, canvas.height)
 
   canvas.toBlob((blob) => {
     const data = URL.createObjectURL(blob as Blob)

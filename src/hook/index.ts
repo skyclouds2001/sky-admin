@@ -48,6 +48,8 @@ export { default as useLocalStorage } from './useLocalStorage'
 
 export { default as useMediaQuery } from './useMediaQuery'
 
+export { default as useMediaRecorder } from './useMediaRecorder'
+
 export { default as useNetwork } from './useNetwork'
 
 export { default as useNotification } from './useNotification'

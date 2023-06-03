@@ -48,8 +48,12 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/tests/**/*.[jt]s?(x)'],
-      extends: ['plugin:testing-library/vue', 'plugin:playwright/playwright-test', 'plugin:vitest/recommended'],
+      files: ['**/tests/unit/*.[jt]s?(x)', '**/tests/components/*.[jt]s?(x)'],
+      extends: ['plugin:testing-library/vue', 'plugin:vitest/recommended'],
+    },
+    {
+      files: ['**/tests/e2e/*.[jt]s?(x)'],
+      extends: ['plugin:playwright/playwright-test'],
     },
     {
       files: ['*.ts', '*.tsx', '*.vue'],

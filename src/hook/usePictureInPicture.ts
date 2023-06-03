@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
+import { computed, type ComputedRef, ref, type Ref, shallowRef, type ShallowRef, unref, watch } from 'vue'
 import { useEventListener } from '@/hook'
 
 const usePictureInPicture = (
@@ -13,7 +13,7 @@ const usePictureInPicture = (
 } => {
   const isSupported = 'pictureInPictureElement' in document && 'requestPictureInPicture' in HTMLVideoElement.prototype && 'exitPictureInPicture' in document && document.pictureInPictureEnabled
 
-  const isPictureInPicture = ref(document.pictureInPictureElement === target)
+  const isPictureInPicture = ref(document.pictureInPictureElement === unref(target) && document.pictureInPictureElement !== null)
 
   const pictureInPictureWindow = shallowRef<PictureInPictureWindow | null>(null)
 
@@ -39,16 +39,24 @@ const usePictureInPicture = (
     await (isPictureInPicture.value ? exit() : enter())
   }
 
-  const el = unref(target)
-  if (isSupported && el !== null) {
-    useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(el, 'enterpictureinpicture', () => {
-      isPictureInPicture.value = document.pictureInPictureElement === unref(target)
-    })
+  watch(
+    target,
+    (target) => {
+      if (!isSupported) return
 
-    useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(el, 'leavepictureinpicture', () => {
-      isPictureInPicture.value = document.pictureInPictureElement === unref(target)
-    })
-  }
+      const el = unref(target)
+      if (el === null) return
+
+      useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(el, 'enterpictureinpicture', () => {
+        isPictureInPicture.value = document.pictureInPictureElement === unref(target) && document.pictureInPictureElement !== null
+      })
+
+      useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(el, 'leavepictureinpicture', () => {
+        isPictureInPicture.value = document.pictureInPictureElement === unref(target) && document.pictureInPictureElement !== null
+      })
+    },
+    { immediate: true }
+  )
 
   return {
     isSupported,

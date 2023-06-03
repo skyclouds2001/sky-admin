@@ -2,16 +2,18 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { useDisplayMedia, useMediaRecorder } from '@/hook'
+import { useDisplayMedia, useMediaRecorder, usePictureInPicture } from '@/hook'
 import { getSupportedMimeTypes, captureScreenshot } from '@/util'
 
 const i18n = useI18n()
+
+const el = ref<HTMLVideoElement | null>(null)
 
 const { isEnabled, stream, start, stop } = useDisplayMedia()
 
 const { state, start: startRecord, pause: pauseRecord, resume: resumeRecord, stop: stopRecord } = useMediaRecorder()
 
-const el = ref<HTMLVideoElement | null>(null)
+const { toggle: togglePictureInPicture } = usePictureInPicture(el)
 
 /**
  * 当前使用的 MIME TYPE
@@ -60,6 +62,7 @@ const handleClose = async () => {
         <el-option v-for="item in mimeTypes" :key="item" :label="item" :value="item" />
       </el-select>
       <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="togglePictureInPicture">Picture In Picture</el-button>
     </el-space>
     <video id="video" ref="el" width="800" height="600" autoplay playsinline></video>
   </el-space>

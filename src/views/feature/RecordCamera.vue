@@ -2,18 +2,20 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { useDevicesList, useMediaRecorder, useUserMedia } from '@/hook'
+import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from '@/hook'
 import { captureScreenshot } from '@/util'
 
 const i18n = useI18n()
+
+const el = ref<HTMLVideoElement | null>(null)
 
 const { videoInputs: devices } = useDevicesList()
 
 const { state, start: startRecord, pause: pauseRecord, resume: resumeRecord, stop: stopRecord } = useMediaRecorder()
 
-const { isEnabled, stream, start, stop } = useUserMedia()
+const { toggle: togglePictureInPicture } = usePictureInPicture(el)
 
-const el = ref<HTMLVideoElement | null>(null)
+const { isEnabled, stream, start, stop } = useUserMedia()
 
 /**
  * 当前设备
@@ -57,6 +59,7 @@ const handleClose = async () => {
       <el-button :disabled="!isEnabled || state !== 'paused'" type="primary" @click="resumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
       <el-button :disabled="!isEnabled || state === 'inactive'" type="primary" @click="stopRecord">{{ i18n.t('feature.stop_record') }}</el-button>
       <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="togglePictureInPicture">Picture In Picture</el-button>
     </el-space>
     <video id="video" ref="el" width="800" height="600" autoplay playsinline></video>
   </el-space>

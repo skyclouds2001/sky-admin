@@ -1,8 +1,8 @@
-import { computed, type ComputedRef, ref, shallowRef, type ShallowRef } from 'vue'
+import { computed, type ComputedRef, ref, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const usePictureInPicture = (
-  target: HTMLVideoElement
+  target: HTMLVideoElement | Ref<HTMLVideoElement | null>
 ): {
   isSupported: boolean
   isPictureInPicture: ComputedRef<boolean>
@@ -11,7 +11,7 @@ const usePictureInPicture = (
   exit: () => Promise<void>
   toggle: () => Promise<void>
 } => {
-  const isSupported = 'pictureInPictureElement' in document && 'requestPictureInPicture' in HTMLVideoElement.prototype && 'exitPictureInPicture' in document && document.pictureInPictureEnabled && !target.disablePictureInPicture
+  const isSupported = 'pictureInPictureElement' in document && 'requestPictureInPicture' in HTMLVideoElement.prototype && 'exitPictureInPicture' in document && document.pictureInPictureEnabled
 
   const isPictureInPicture = ref(document.pictureInPictureElement === target)
 
@@ -20,8 +20,8 @@ const usePictureInPicture = (
   const enter = async (): Promise<void> => {
     if (!isSupported) return
 
-    const window = await target.requestPictureInPicture()
-    pictureInPictureWindow.value = window
+    const window = await unref(target)?.requestPictureInPicture()
+    pictureInPictureWindow.value = window ?? null
 
     isPictureInPicture.value = true
   }
@@ -30,6 +30,7 @@ const usePictureInPicture = (
     if (!isSupported) return
 
     await document.exitPictureInPicture()
+    pictureInPictureWindow.value = null
 
     isPictureInPicture.value = false
   }
@@ -38,13 +39,16 @@ const usePictureInPicture = (
     await (isPictureInPicture.value ? exit() : enter())
   }
 
-  useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {
-    isPictureInPicture.value = document.pictureInPictureElement === target
-  })
+  const el = unref(target)
+  if (isSupported && el !== null) {
+    useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(el, 'enterpictureinpicture', () => {
+      isPictureInPicture.value = document.pictureInPictureElement === unref(target)
+    })
 
-  useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(target, 'leavepictureinpicture', () => {
-    isPictureInPicture.value = document.pictureInPictureElement === target
-  })
+    useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(el, 'leavepictureinpicture', () => {
+      isPictureInPicture.value = document.pictureInPictureElement === unref(target)
+    })
+  }
 
   return {
     isSupported,

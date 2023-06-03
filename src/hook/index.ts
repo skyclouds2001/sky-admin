@@ -1,14 +1,28 @@
 export { default as useAnimationFrame } from './useAnimationFrame'
 
+export { default as useAppBadge } from './useAppBadge'
+
 export { default as useArticles } from './useArticles'
 
 export { default as useBattery } from './useBattery'
+
+export { default as useBluetooth } from './useBluetooth'
 
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
 
 export { default as useColorWeakness } from './useColorWeakness'
+
+export { default as useDevicesList } from './useDevicesList'
+
+export { default as useDisplayMedia } from './useDisplayMedia'
+
+export { default as useDocumentActiveElement } from './useDocumentActiveElement'
+
+export { default as useDocumentReadyState } from './useDocumentReadyState'
+
+export { default as useDocumentVisibility } from './useDocumentVisibility'
 
 export { default as useEventBus } from './useEventBus'
 
@@ -26,6 +40,8 @@ export { default as useGeolocation } from './useGeolocation'
 
 export { default as useGrayMode } from './useGrayMode'
 
+export { default as useIntersectionObserver } from './useIntersectionObserver'
+
 export { default as useInterval } from './useInterval'
 
 export { default as useLang } from './useLang'
@@ -33,6 +49,10 @@ export { default as useLang } from './useLang'
 export { default as useLocalStorage } from './useLocalStorage'
 
 export { default as useMediaQuery } from './useMediaQuery'
+
+export { default as useMediaRecorder } from './useMediaRecorder'
+
+export { default as useMutationObserver } from './useMutationObserver'
 
 export { default as useNetwork } from './useNetwork'
 
@@ -52,6 +72,8 @@ export { default as usePreferredLang } from './usePreferredLang'
 
 export { default as usePreferredTheme } from './usePreferredTheme'
 
+export { default as useResizeObserver } from './useResizeObserver'
+
 export { default as useScreenOrientation } from './useScreenOrientation'
 
 export { default as useSelection } from './useSelection'
@@ -68,6 +90,14 @@ export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
 
+export { default as useUserMedia } from './useUserMedia'
+
 export { default as useVibrate } from './useVibrate'
 
 export { default as useWakeLock } from './useWakeLock'
+
+export { default as useWindowFocus } from './useWindowFocus'
+
+export { default as useWindowScroll } from './useWindowScroll'
+
+export { default as useWindowSize } from './useWindowSize'

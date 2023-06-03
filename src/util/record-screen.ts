@@ -1,5 +1,3 @@
-import { ElMessage } from 'element-plus'
-
 /**
  * 初始化视频流方法
  * @param el Video 标签元素
@@ -10,11 +8,7 @@ export const initScreenStream = async (el: HTMLVideoElement): Promise<void> => {
       audio: true,
       video: true,
     })
-  } catch (error) {
-    ElMessage.error({
-      message: error instanceof Error ? `${error.name}: ${error.message}` : '加载失败',
-    })
-  }
+  } catch {}
 }
 
 /**

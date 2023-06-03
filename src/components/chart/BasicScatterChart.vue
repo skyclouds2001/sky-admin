@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue'
-import { echarts, type EchartsOptions } from '@/lib'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import * as echarts from 'echarts/core'
+import { ScatterChart, type ScatterSeriesOption } from 'echarts/charts'
+import { LabelLayout, UniversalTransition } from 'echarts/features'
+import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
 import { useTheme } from '@/hook'
 import { generateFakeData } from '@/util'
+
+type EchartsOptions = echarts.ComposeOption<ScatterSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
+
+echarts.use([ScatterChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
+
+const el = ref<HTMLDivElement | null>(null)
 
 const { isLight, isDark } = useTheme()
 
@@ -10,7 +20,7 @@ const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
-    .init(document.getElementById('basic-scatter-chart') as HTMLDivElement, 'light', {
+    .init(el.value as HTMLDivElement, 'light', {
       width: 1000,
       height: 800,
     })
@@ -74,12 +84,12 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  echarts.getInstanceByDom(document.getElementById('basic-scatter-chart') as HTMLDivElement)?.dispose()
+  echarts.getInstanceByDom(el.value as HTMLDivElement)?.dispose()
 })
 </script>
 
 <template>
-  <div id="basic-scatter-chart" style="width: 1000px; height: 600px"></div>
+  <div ref="el" style="width: 1000px; height: 600px"></div>
 </template>
 
 <style scoped lang="scss"></style>

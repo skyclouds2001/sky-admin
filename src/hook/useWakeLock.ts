@@ -1,12 +1,38 @@
 import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
+interface NavigatorWithWakeLock extends Navigator {
+  readonly wakeLock: WakeLock
+}
+
+interface WakeLock {
+  request: (type?: WakeLockType) => Promise<WakeLockSentinel>
+}
+
+type WakeLockType = 'screen'
+
+interface WakeLockSentinel extends EventTarget {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onrelease: ((this: WakeLockSentinel, ev: Event) => any) | null
+  readonly released: boolean
+  readonly type: WakeLockType
+  release: () => Promise<void>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  addEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  removeEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+}
+
+interface WakeLockSentinelEventMap {
+  release: Event
+}
+
 const useWakeLock = (): {
   isSupported: boolean
   isActive: ComputedRef<boolean>
-  request: () => void
-  release: () => void
-  toggle: () => void
+  request: () => Promise<void>
+  release: () => Promise<void>
+  toggle: () => Promise<void>
 } => {
   const isSupported = 'wakeLock' in navigator
 
@@ -14,28 +40,28 @@ const useWakeLock = (): {
 
   let wakeLockSentinel: WakeLockSentinel | null = null
 
-  const request = (): void => {
+  const request = async (): Promise<void> => {
     if (!isSupported) return
 
-    void navigator.wakeLock.request('screen').then((wakeLock) => {
-      wakeLockSentinel = wakeLock
-      isActive.value = wakeLockSentinel.released === false
-    })
+    const wakeLock = await (navigator as NavigatorWithWakeLock).wakeLock.request('screen')
+
+    wakeLockSentinel = wakeLock
+    isActive.value = !wakeLockSentinel.released
   }
 
-  const release = (): void => {
+  const release = async (): Promise<void> => {
     if (!isSupported) return
 
     if (wakeLockSentinel === null) return
 
-    void wakeLockSentinel.release().then(() => {
-      isActive.value = wakeLockSentinel !== null ? wakeLockSentinel.released === false : false
-      wakeLockSentinel = null
-    })
+    await wakeLockSentinel.release()
+
+    isActive.value = wakeLockSentinel !== null ? !wakeLockSentinel.released : false
+    wakeLockSentinel = null
   }
 
-  const toggle = (): void => {
-    isActive.value ? release() : request()
+  const toggle = async (): Promise<void> => {
+    await (isActive.value ? release() : request())
   }
 
   useEventListener(document, 'visibilitychange', () => {
@@ -45,8 +71,8 @@ const useWakeLock = (): {
 
     if (document.visibilityState === 'hidden') return
 
-    void navigator.wakeLock.request('screen').then((wakeLock) => {
-      isActive.value = wakeLock.released === false
+    void (navigator as NavigatorWithWakeLock).wakeLock.request('screen').then((wakeLock) => {
+      isActive.value = wakeLock.released
     })
   })
 

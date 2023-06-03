@@ -1,22 +1,17 @@
-import { ElMessage } from 'element-plus'
-
 /**
- * 初始化视频控制流方法
- * @param el 视频元素
+ * 初始化媒体录制方法
+ * @param stream 媒体流
  * @param mimeType MIMETYPE
  * @returns MediaRecorder 对象
  */
-export const initVideoRecorderStream = (el: HTMLVideoElement, mimeType?: string): MediaRecorder => {
-  // @ts-expect-error captureStream method has not apply on typescript dom definition file
-  const stream = el.captureStream()
-
+export const initVideoRecorderStream = (stream: MediaStream, mimeType?: string): MediaRecorder => {
   const mediaRecorder = new MediaRecorder(stream, {
     audioBitsPerSecond: 128000,
     videoBitsPerSecond: 2500000,
     mimeType,
   })
 
-  mediaRecorder?.addEventListener('dataavailable', (e) => {
+  mediaRecorder.addEventListener('dataavailable', (e) => {
     const blob = new Blob([e.data], { type: 'video/mp4' })
     const link = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -28,10 +23,8 @@ export const initVideoRecorderStream = (el: HTMLVideoElement, mimeType?: string)
     a.click()
   })
 
-  mediaRecorder?.addEventListener('error', () => {
-    ElMessage.error({
-      message: '录屏失败',
-    })
+  mediaRecorder.addEventListener('error', (error) => {
+    console.error(error)
   })
 
   return mediaRecorder

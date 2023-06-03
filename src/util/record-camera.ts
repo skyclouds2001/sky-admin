@@ -1,5 +1,3 @@
-import { ElMessage } from 'element-plus'
-
 /**
  * 初始化视频流方法
  * @param el Video 标签元素
@@ -15,11 +13,7 @@ export const initCameraStream = async (el: HTMLVideoElement, id?: string): Promi
         },
       },
     })
-  } catch (error) {
-    ElMessage.error({
-      message: error instanceof Error ? `${error.name}: ${error.message}` : '加载失败',
-    })
-  }
+  } catch {}
 }
 
 /**
@@ -30,9 +24,5 @@ export const initDevices = async (fn: (devices: MediaDeviceInfo[]) => void): Pro
   try {
     const devices = await navigator.mediaDevices.enumerateDevices()
     fn(devices.filter((v) => v.kind === 'videoinput'))
-  } catch (error) {
-    ElMessage.error({
-      message: error instanceof Error ? `${error.name}: ${error.message}` : '加载失败',
-    })
-  }
+  } catch {}
 }

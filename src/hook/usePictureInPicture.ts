@@ -6,35 +6,36 @@ const usePictureInPicture = (
 ): {
   isSupported: boolean
   isPictureInPicture: ComputedRef<boolean>
-  currentWindow: ShallowRef<PictureInPictureWindow | null>
-  enter: () => void
-  exit: () => void
-  toggle: () => void
+  pictureInPictureWindow: ShallowRef<PictureInPictureWindow | null>
+  enter: () => Promise<void>
+  exit: () => Promise<void>
+  toggle: () => Promise<void>
 } => {
-  const isSupported = 'pictureInPictureElement' in Document && 'requestPictureInPicture' in HTMLVideoElement && 'exitPictureInPicture' in Document && document.pictureInPictureEnabled && !target.disablePictureInPicture
+  const isSupported = 'pictureInPictureElement' in document && 'requestPictureInPicture' in HTMLVideoElement.prototype && 'exitPictureInPicture' in document && document.pictureInPictureEnabled && !target.disablePictureInPicture
 
   const isPictureInPicture = ref(document.pictureInPictureElement === target)
 
-  const wd = shallowRef<PictureInPictureWindow | null>(null)
+  const pictureInPictureWindow = shallowRef<PictureInPictureWindow | null>(null)
 
-  const enter = (): void => {
+  const enter = async (): Promise<void> => {
     if (!isSupported) return
 
-    void target.requestPictureInPicture().then((w) => {
-      wd.value = w
-    })
+    const window = await target.requestPictureInPicture()
+    pictureInPictureWindow.value = window
+
     isPictureInPicture.value = true
   }
 
-  const exit = (): void => {
+  const exit = async (): Promise<void> => {
     if (!isSupported) return
 
-    void document.exitPictureInPicture()
+    await document.exitPictureInPicture()
+
     isPictureInPicture.value = false
   }
 
-  const toggle = (): void => {
-    isPictureInPicture.value ? exit() : enter()
+  const toggle = async (): Promise<void> => {
+    await (isPictureInPicture.value ? exit() : enter())
   }
 
   useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {
@@ -48,7 +49,7 @@ const usePictureInPicture = (
   return {
     isSupported,
     isPictureInPicture: computed(() => isPictureInPicture.value),
-    currentWindow: wd,
+    pictureInPictureWindow: computed(() => pictureInPictureWindow.value),
     enter,
     exit,
     toggle,

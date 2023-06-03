@@ -97,6 +97,10 @@ watch(
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router./component/rich-text-editor') }}</span>
         </el-menu-item>
+        <el-menu-item index="/component/markdown-editor">
+          <el-icon><Collection /></el-icon>
+          <span>{{ i18n.t('router./component/markdown-editor') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 图表 -->
@@ -256,6 +260,10 @@ watch(
         <el-menu-item index="/feature/clipboard">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/clipboard') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/feature/broadcast-channel">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/broadcast-channel') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

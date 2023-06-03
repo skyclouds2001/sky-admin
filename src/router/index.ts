@@ -121,6 +121,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/component/markdown-editor'),
+          path: '/component/markdown-editor',
+          component: () => import('@/views/component/MarkdownEditor.vue'),
+          meta: {
+            title: 'Markdown 编辑器',
+            isView: true,
+          },
+        },
       ],
     },
 
@@ -452,6 +461,15 @@ const router = createRouter({
             isView: true,
           },
         },
+        {
+          name: Symbol('/feature/broadcast-channel'),
+          path: '/feature/broadcast-channel',
+          component: () => import('@/views/feature/BroadcastChannel.vue'),
+          meta: {
+            title: '广播频道',
+            isView: true,
+          },
+        },
       ],
     },
 
@@ -514,6 +532,17 @@ const router = createRouter({
       meta: {
         title: '关于',
         isView: true,
+      },
+    },
+
+    // 默认回退页
+    {
+      name: Symbol('*'),
+      path: '/:catchAll(.*)',
+      redirect: '/error/404',
+      meta: {
+        title: '*',
+        isView: false,
       },
     },
   ],

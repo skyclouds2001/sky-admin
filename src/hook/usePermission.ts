@@ -2,7 +2,7 @@ import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const usePermission = (
-  name: PermissionName
+  name: PermissionName | 'accelerometer' | 'accessibility-events' | 'ambient-light-sensor' | 'background-sync' | 'camera' | 'clipboard-read' | 'clipboard-write' | 'gyroscope' | 'magnetometer' | 'microphone' | 'payment-handler' | 'speaker'
 ): {
   isSupported: boolean
   status: ComputedRef<PermissionState | null>
@@ -11,19 +11,22 @@ const usePermission = (
 
   const permission = ref<PermissionState | null>(null)
 
+  let permissionStatus: PermissionStatus
+
   const update = (): void => {
-    void navigator.permissions.query({ name }).then((res) => {
-      permission.value = res.state
-    })
+    permission.value = permissionStatus.state
   }
 
-  void navigator.permissions.query({ name }).then((permissionStatus) => {
-    permission.value = permissionStatus.state
+  if (isSupported) {
+    const permission = name as PermissionName
+    void navigator.permissions.query({ name: permission }).then((status) => {
+      permissionStatus = status
 
-    useEventListener<PermissionStatus, PermissionStatusEventMap, 'change'>(permissionStatus, 'change', () => {
       update()
+
+      useEventListener<PermissionStatus, PermissionStatusEventMap, 'change'>(status, 'change', update)
     })
-  })
+  }
 
   return {
     isSupported,

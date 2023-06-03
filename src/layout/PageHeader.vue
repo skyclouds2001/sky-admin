@@ -75,10 +75,6 @@ const handleShare = () => {
 
   height: 100%;
 
-  .breadcrumb {
-    @apply select-none;
-  }
-
   .control-bar {
     @apply flex justify-center items-center;
 

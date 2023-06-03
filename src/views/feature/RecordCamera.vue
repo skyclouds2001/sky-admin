@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { initCameraStream, initDevices, captureScreenshot } from '@/util'
+import { useDevicesList, useMediaRecorder, useUserMedia } from '@/hook'
+import { captureScreenshot } from '@/util'
 
 const i18n = useI18n()
 
-onMounted(() => {
-  initDevices((data) => {
-    devices.value = data
-  })
-})
+const { videoInputs: devices } = useDevicesList()
+
+const { state, start: startRecord, pause: pauseRecord, resume: resumeRecord, stop: stopRecord } = useMediaRecorder()
+
+const { isEnabled, stream, start, stop } = useUserMedia()
 
 const el = ref<HTMLVideoElement | null>(null)
 
@@ -18,11 +19,6 @@ const el = ref<HTMLVideoElement | null>(null)
  * 当前设备
  */
 const device = ref<string>()
-
-/**
- * 设备列表
- */
-const devices = ref<MediaDeviceInfo[]>([])
 
 /**
  * 执行截图操作
@@ -34,30 +30,35 @@ const handleScreenshot = () => {
 /**
  * 启动视频流
  */
-const handleOpen = () => {
-  initCameraStream(el.value as HTMLVideoElement, device.value)
+const handleOpen = async () => {
+  await start()
+  if (el.value !== null) el.value.srcObject = stream.value
 }
 
 /**
  * 关闭视频流
  */
-const handleClose = () => {
-  ;(el.value as HTMLVideoElement).srcObject = null
-  device.value = undefined
+const handleClose = async () => {
+  await stop()
+  if (el.value !== null) el.value.srcObject = null
 }
 </script>
 
 <template>
   <el-space size="large" class="w-full p-5">
     <el-space size="large" direction="vertical">
+      <el-button :disabled="isEnabled" type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
       <el-select v-model="device" name="device">
         <el-option v-for="item in devices" :key="item.deviceId" :label="item.label" :value="item.deviceId" />
       </el-select>
-      <el-button type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
-      <el-button type="primary" @click="handleOpen">{{ i18n.t('feature.open') }}</el-button>
-      <el-button type="primary" @click="handleClose">{{ i18n.t('feature.close') }}</el-button>
+      <el-button :disabled="!isEnabled || state !== 'inactive'" type="primary" @click="startRecord(stream as MediaStream)">{{ i18n.t('feature.open_record') }}</el-button>
+      <el-button :disabled="!isEnabled || state !== 'recording'" type="primary" @click="pauseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
+      <el-button :disabled="!isEnabled || state !== 'paused'" type="primary" @click="resumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
+      <el-button :disabled="!isEnabled || state === 'inactive'" type="primary" @click="stopRecord">{{ i18n.t('feature.stop_record') }}</el-button>
+      <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
     </el-space>
-    <video id="video" ref="el" width="800" height="600" autoplay playsinline />
+    <video id="video" ref="el" width="800" height="600" autoplay playsinline></video>
   </el-space>
 </template>
 

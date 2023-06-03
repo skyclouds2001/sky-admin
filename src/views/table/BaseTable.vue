@@ -2,7 +2,7 @@
 import { ElMessage, ElMessageBox, ElPagination, ElSpace } from 'element-plus'
 import ArticleTable from '@/components/table/ArticleTable.vue'
 import ArticleSearch from '@/components/table/ArticleSearch.vue'
-import { removeArticle } from '@/api'
+import { updateArticle, removeArticle } from '@/api'
 import { useArticles } from '@/hook'
 import type { Article } from '@/model'
 import { exportExcelFromData } from '@/util'
@@ -14,6 +14,13 @@ const { articles, page, size, total, refresh, handleSearch } = useArticles()
  */
 const handleExport = () => {
   exportExcelFromData<Article>(articles.value)
+}
+
+/**
+ * 新增文章信息列表方法
+ */
+const handleAddArticle = () => {
+  console.log(-1)
 }
 
 /**
@@ -29,7 +36,55 @@ const handleEditArticle = (id: number) => {
  * @param id 文章ID
  */
 const handleToggleArticleStatus = (id: number) => {
-  console.log(id)
+  const article = articles.value.find((v) => v.id === id)
+  if (!article) return
+
+  ElMessageBox.confirm(article.status === 'drafted' ? '确认发表文章？' : '确认草稿文章？', '警告', {
+    type: 'info',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    center: true,
+    draggable: true,
+  })
+    .then(async () => {
+      try {
+        const a = Object.assign({}, article)
+        a.status = article.status === 'drafted' ? 'published' : 'drafted'
+        const res = await updateArticle(a)
+        if (res.success) {
+          ElMessage.success({
+            message: '修改成功',
+            showClose: true,
+            center: true,
+            grouping: true,
+          })
+        } else {
+          ElMessage.error({
+            message: `修改失败：${res.message}`,
+            showClose: true,
+            center: true,
+            grouping: true,
+          })
+        }
+      } catch {
+        ElMessage.error({
+          message: '修改失败',
+          showClose: true,
+          center: true,
+          grouping: true,
+        })
+      } finally {
+        refresh()
+      }
+    })
+    .catch(() => {
+      ElMessage.error({
+        message: '修改失败',
+        showClose: true,
+        center: true,
+        grouping: true,
+      })
+    })
 }
 
 /**
@@ -87,7 +142,7 @@ const handleRemoveArticle = (id: number) => {
 <template>
   <el-space direction="vertical" fill size="large" class="base-table-space p-5">
     <!-- 搜索框部分 -->
-    <article-search @search="handleSearch" @export="handleExport" />
+    <article-search @search="handleSearch" @add="handleAddArticle" @export="handleExport" />
 
     <!-- 表格部分 -->
     <article-table :articles="articles" @edit="handleEditArticle" @toggle="handleToggleArticleStatus" @remove="handleRemoveArticle" />

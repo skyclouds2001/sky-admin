@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
-import mkcert from 'vite-plugin-mkcert'
 import svgLoader from 'vite-svg-loader'
 // @ts-expect-error typescript can not recognize its definition file
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -18,7 +17,6 @@ export default defineConfig({
     vueJsx(),
     legacy(),
     mock(),
-    mkcert(),
     svgLoader(),
     ElementPlus({}),
     VueI18nPlugin({

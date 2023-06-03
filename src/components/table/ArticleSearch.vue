@@ -2,11 +2,12 @@
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
-import { Search, Download } from '@element-plus/icons-vue'
+import { Download, EditPen, Search } from '@element-plus/icons-vue'
 
 const i18n = useI18n()
 
 const emits = defineEmits<{
+  (e: 'add'): void
   (e: 'search', search: { name: string }): void
   (e: 'export'): void
 }>()
@@ -17,6 +18,10 @@ const search = reactive({
 
 const handleSearch = () => {
   emits('search', search)
+}
+
+const handleAdd = () => {
+  emits('add')
 }
 
 const handleExport = () => {
@@ -31,6 +36,7 @@ const handleExport = () => {
     </el-form-item>
     <el-form-item label="">
       <el-button type="primary" :icon="Search" @click="handleSearch">{{ i18n.t('table.search.search') }}</el-button>
+      <el-button type="primary" :icon="EditPen" @click="handleAdd">{{ i18n.t('table.search.add') }}</el-button>
       <el-button type="primary" :icon="Download" @click="handleExport">{{ i18n.t('table.search.export') }}</el-button>
     </el-form-item>
   </el-form>

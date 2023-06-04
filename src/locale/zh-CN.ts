@@ -267,6 +267,7 @@ export default {
     '/feature/encode-decode': '编码',
     '/feature/encrypt-decrypt': '密码',
     '/feature/code-highlight': '代码高亮',
+    '/feature/image-compress': '图片压缩',
     '/feature/geo-position': '地理位置',
     '/feature/camera-record': '视频录制',
     '/feature/screen-record': '屏幕录制',

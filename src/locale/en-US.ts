@@ -267,6 +267,7 @@ export default {
     '/feature/encode-decode': 'Encode',
     '/feature/encrypt-decrypt': 'Crypto',
     '/feature/code-highlight': 'Code Highlight',
+    '/feature/image-compress': 'Image Compress',
     '/feature/geo-position': 'Geographical Position',
     '/feature/camera-record': 'Video Recorder',
     '/feature/screen-record': 'Screen Recorder',

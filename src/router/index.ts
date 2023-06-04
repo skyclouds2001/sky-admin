@@ -390,6 +390,15 @@ const router = createRouter({
           },
         },
         {
+          name: Symbol('/feature/image-compress'),
+          path: '/feature/image-compress',
+          component: () => import('@/views/feature/ImageCompress.vue'),
+          meta: {
+            title: '图片压缩',
+            isView: true,
+          },
+        },
+        {
           name: Symbol('/feature/geo-position'),
           path: '/feature/geo-position',
           component: () => import('@/views/feature/GeographicalPosition.vue'),

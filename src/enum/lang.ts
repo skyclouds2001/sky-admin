@@ -9,3 +9,7 @@ enum Lang {
 }
 
 export default Lang
+
+export const isLang = (lang: unknown): lang is Lang => {
+  return typeof lang === 'string' && ['zh-CN', 'en-US'].includes(lang)
+}

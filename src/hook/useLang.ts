@@ -1,9 +1,8 @@
 import { ref, type Ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
-import { Lang } from '@/enum'
+import { Lang, isLang } from '@/enum'
 import { usePreferredLang, useStorage } from '@/hook'
-import { isLang } from '@/util'
 
 const useLang = (): {
   lang: Ref<Lang>

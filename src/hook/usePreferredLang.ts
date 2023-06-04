@@ -1,7 +1,6 @@
 import { ref, type Ref } from 'vue'
-import { Lang } from '@/enum'
+import { Lang, isLang } from '@/enum'
 import { useEventListener } from '@/hook'
-import { isLang } from '@/util'
 
 const usePreferredLang = (): Ref<Lang> => {
   const lang = ref(isLang(window.navigator.language) ? window.navigator.language : Lang.zhCN)

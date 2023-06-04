@@ -19,3 +19,5 @@ export * from './image-compress'
 export * from './is-type'
 
 export * from './open-page'
+
+export * from './sandbox'

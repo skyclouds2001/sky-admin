@@ -20,10 +20,4 @@ export * from './lang'
 
 export * from './open-page'
 
-export * from './record-camera'
-
-export * from './record-screen'
-
 export * from './theme'
-
-export * from './video-recorder'

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
+import { ElButton, ElSpace } from 'element-plus'
 import { useDisplayMedia, useMediaRecorder, usePictureInPicture } from '@/hook'
-import { getSupportedMimeTypes, captureScreenshot } from '@/util'
+import { captureScreenshot } from '@/util'
 
 const i18n = useI18n()
 
@@ -14,16 +14,6 @@ const { isEnabled, stream, start, stop } = useDisplayMedia()
 const { state, start: startRecord, pause: pauseRecord, resume: resumeRecord, stop: stopRecord } = useMediaRecorder()
 
 const { toggle: togglePictureInPicture } = usePictureInPicture(el)
-
-/**
- * 当前使用的 MIME TYPE
- */
-const mimeType = ref<string>()
-
-/**
- * 支持的 MIME TYPE 列表
- */
-const mimeTypes = ref(getSupportedMimeTypes())
 
 /**
  * 执行截图操作
@@ -58,9 +48,6 @@ const handleClose = async () => {
       <el-button :disabled="!isEnabled || state !== 'recording'" type="primary" @click="pauseRecord">{{ i18n.t('feature.pause_record') }}</el-button>
       <el-button :disabled="!isEnabled || state !== 'paused'" type="primary" @click="resumeRecord">{{ i18n.t('feature.resume_record') }}</el-button>
       <el-button :disabled="!isEnabled || state === 'inactive'" type="primary" @click="stopRecord">{{ i18n.t('feature.stop_record') }}</el-button>
-      <el-select v-model="mimeType" name="device">
-        <el-option v-for="item in mimeTypes" :key="item" :label="item" :value="item" />
-      </el-select>
       <el-button :disabled="!isEnabled" type="primary" @click="handleScreenshot">{{ i18n.t('feature.screenshot') }}</el-button>
       <el-button :disabled="!isEnabled" type="primary" @click="togglePictureInPicture">Picture In Picture</el-button>
     </el-space>

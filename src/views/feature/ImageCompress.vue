@@ -2,7 +2,7 @@
 import { shallowRef, ref } from 'vue'
 import { ElButton, ElCard, ElIcon, ElSpace, ElUpload, type UploadProps } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
-import { compressImage } from '@/util'
+import { compressImage, downloadFile } from '@/util'
 
 const img = shallowRef<File | null>(null)
 
@@ -23,13 +23,7 @@ const handleCompress = async () => {
     quality: 0.5,
   })
 
-  const a = document.createElement('a')
-  a.href = URL.createObjectURL(blob)
-  a.download = 'Compress Image'
-  a.target = '_blank'
-  a.hidden = true
-  a.style.display = 'none'
-  a.click()
+  downloadFile(blob)
 }
 </script>
 

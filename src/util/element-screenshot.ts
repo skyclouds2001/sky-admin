@@ -1,3 +1,5 @@
+import { downloadFile } from '@/util'
+
 /**
  * 生成视频截图
  * @param source Video 标签元素
@@ -9,17 +11,13 @@ export const captureScreenshot = (source: HTMLVideoElement): void => {
   canvas.hidden = true
   canvas.style.display = 'none'
 
-  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+  const ctx = canvas.getContext('2d')
+  if (ctx === null) throw new Error("Can't get CanvasRenderingContext2D.")
   ctx.drawImage(source, 0, 0, canvas.width, canvas.height)
 
   canvas.toBlob((blob) => {
-    const data = URL.createObjectURL(blob as Blob)
-    const a = document.createElement('a')
-    a.href = data
-    a.download = '截图'
-    a.target = '_blank'
-    a.hidden = true
-    a.style.display = 'none'
-    a.click()
+    if (blob === null) throw new Error("Can't get blob data.")
+
+    downloadFile(blob, '截图')
   })
 }

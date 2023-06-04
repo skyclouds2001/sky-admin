@@ -2,6 +2,8 @@ export * from './browser-info'
 
 export * from './debounce-throttle'
 
+export * from './download-file'
+
 export * from './element-screenshot'
 
 export * from './event-bus'

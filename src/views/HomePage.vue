@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
@@ -8,15 +7,15 @@ import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
 
-const browserInfo = shallowRef(generateBrowserInfo())
+const browserInfo = generateBrowserInfo()
 
 const { isOnline } = useOnline()
 
 const { battery, isSupported: isSupportedBattery } = useBattery()
 
-const { isSupported: isSupportedConnection, connection } = useNetwork()
+const { connection, isSupported: isSupportedConnection } = useNetwork()
 
-const { isSupported: isSupportedScreenOrientation, angel, type } = useScreenOrientation()
+const { angel, isSupported: isSupportedScreenOrientation, type } = useScreenOrientation()
 
 const timestamp = useTimestamp()
 </script>
@@ -121,24 +120,31 @@ const timestamp = useTimestamp()
           <el-tag>{{ browserInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
         </el-descriptions-item>
 
-        <el-descriptions-item v-if="isSupportedScreenOrientation">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.angel-o') }}</span>
-          </template>
-          <el-tag>{{ angel }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="isSupportedScreenOrientation">
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.type-o') }}</span>
-          </template>
-          <el-tag>{{ type }}</el-tag>
-        </el-descriptions-item>
-
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.screen.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item v-if="isSupportedScreenOrientation">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.type') }}</span>
+          </template>
+          <el-tag>{{ type }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item v-if="isSupportedScreenOrientation">
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.angel') }}</span>
+          </template>
+          <el-tag>{{ angel }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

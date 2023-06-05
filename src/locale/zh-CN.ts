@@ -23,9 +23,12 @@ export default {
       isSecureContext: '安全上下文',
       cookie: 'Cookie 状态',
       pdf: 'PDF 预览功能支持情况',
-      'type-o': '屏幕方向',
-      'angel-o': '屏幕角度',
       timestamp: '当前时间戳',
+    },
+    screen: {
+      title: '屏幕信息',
+      type: '屏幕方向',
+      angel: '屏幕角度',
     },
     network: {
       title: '网络信息',

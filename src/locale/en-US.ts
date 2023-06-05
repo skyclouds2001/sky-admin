@@ -23,9 +23,12 @@ export default {
       isSecureContext: 'Secure Context',
       cookie: 'Cookie Status',
       pdf: 'PDF Preview Feature Support',
-      'type-o': 'Screen Orientation Type',
-      'angel-o': 'Screen Orientation Angel',
       timestamp: 'Current Timestamp',
+    },
+    screen: {
+      title: 'Screen Info',
+      type: 'Screen Orientation Type',
+      angel: 'Screen Orientation Angel',
     },
     network: {
       title: 'Network Info',

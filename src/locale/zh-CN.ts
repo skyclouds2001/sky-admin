@@ -1,5 +1,11 @@
 export default {
   home: {
+    enabled: '启用',
+    disabled: '未启用',
+    supported: '支持',
+    unsupported: '不支持',
+    yes: '是',
+    no: '否',
     system: {
       title: '系统信息',
       system: '系统',
@@ -17,10 +23,6 @@ export default {
       isSecureContext: '安全上下文',
       cookie: 'Cookie 状态',
       pdf: 'PDF 预览功能支持情况',
-      enabled: '启用',
-      disabled: '未启用',
-      supported: '支持',
-      unsupported: '不支持',
       'type-o': '屏幕方向',
       'angel-o': '屏幕角度',
       timestamp: '当前时间戳',

@@ -1,5 +1,11 @@
 export default {
   home: {
+    enabled: 'Enabled',
+    disabled: 'Disabled',
+    supported: 'Supported',
+    unsupported: 'Unsupported',
+    yes: 'yes',
+    no: 'no',
     system: {
       title: 'System Info',
       system: 'System',
@@ -17,10 +23,6 @@ export default {
       isSecureContext: 'Secure Context',
       cookie: 'Cookie Status',
       pdf: 'PDF Preview Feature Support',
-      enabled: 'Enabled',
-      disabled: 'Disabled',
-      supported: 'Supported',
-      unsupported: 'Unsupported',
       'type-o': 'Screen Orientation Type',
       'angel-o': 'Screen Orientation Angel',
       timestamp: 'Current Timestamp',

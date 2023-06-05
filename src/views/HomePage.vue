@@ -105,20 +105,20 @@ const timestamp = useTimestamp()
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.isSecureContext') }}</span>
           </template>
-          <el-tag>{{ browserInfo.isSecureContext }}</el-tag>
+          <el-tag>{{ browserInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.cookie') }}</span>
           </template>
-          <el-tag>{{ browserInfo.cookie ? i18n.t('home.system.enabled') : i18n.t('home.system.disabled') }}</el-tag>
+          <el-tag>{{ browserInfo.cookie ? i18n.t('home.enabled') : i18n.t('home.disabled') }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.pdf') }}</span>
           </template>
-          <el-tag>{{ browserInfo.pdf ? i18n.t('home.system.supported') : i18n.t('home.system.unsupported') }}</el-tag>
+          <el-tag>{{ browserInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item v-if="isSupportedScreenOrientation">

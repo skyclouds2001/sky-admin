@@ -25,6 +25,12 @@ export default {
       pdf: 'PDF 预览功能支持情况',
       timestamp: '当前时间戳',
     },
+    document: {
+      title: '文档信息',
+      activeElement: '聚焦元素',
+      readyState: '加载状态',
+      visibility: '可见状态',
+    },
     screen: {
       title: '屏幕信息',
       height: '屏幕高度',

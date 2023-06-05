@@ -25,6 +25,12 @@ export default {
       pdf: 'PDF Preview Feature Support',
       timestamp: 'Current Timestamp',
     },
+    document: {
+      title: 'Document Info',
+      activeElement: 'Active Element',
+      readyState: 'Ready State',
+      visibility: 'Visibility',
+    },
     screen: {
       title: 'Screen Info',
       height: 'Screen Height',

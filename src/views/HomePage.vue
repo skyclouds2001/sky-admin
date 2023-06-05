@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
@@ -12,6 +12,12 @@ const browserInfo = generateBrowserInfo()
 const screenInfo = window.screen
 
 const { battery, isSupported: isSupportedBattery } = useBattery()
+
+const activeElement = useDocumentActiveElement()
+
+const readyState = useDocumentReadyState()
+
+const visibility = useDocumentVisibility()
 
 const { connection, isSupported: isSupportedConnection } = useNetwork()
 
@@ -127,6 +133,32 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.document.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.document.activeElement') }}</span>
+          </template>
+          <el-tag>{{ activeElement?.localName ?? 'unknown' }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.document.readyState') }}</span>
+          </template>
+          <el-tag>{{ readyState }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.document.visibility') }}</span>
+          </template>
+          <el-tag>{{ visibility }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

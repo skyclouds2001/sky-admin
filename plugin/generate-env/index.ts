@@ -7,8 +7,6 @@ const GenerateEnv = (): Plugin => {
     config: () => ({
       define: {
         __BUILD_TIME__: `'${dayjs().format('YYYY-MM-DD HH:mm:ss')}'`,
-        __MODE__: process.env.NODE_ENV,
-        __NODE_ENV__: process.env.NODE_ENV,
       },
     }),
     enforce: 'pre',

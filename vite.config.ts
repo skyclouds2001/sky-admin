@@ -17,8 +17,8 @@ import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
 
-import GenerateEnv from './plugin/generate-env'
 import CopyFile from './plugin/copy-file'
+import GenerateEnv from './plugin/generate-env'
 
 export default defineConfig({
   plugins: [

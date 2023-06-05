@@ -9,7 +9,7 @@ import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
-import generateEnv from './plugin/generate-env'
+import GenerateEnv from './plugin/generate-env'
 
 export default defineConfig({
   plugins: [
@@ -22,7 +22,7 @@ export default defineConfig({
     VueI18nPlugin({
       include: path.resolve(__dirname, './src/locale/**'),
     }),
-    generateEnv(),
+    GenerateEnv(),
   ],
   resolve: {
     alias: {

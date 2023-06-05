@@ -10,7 +10,7 @@ const useInterval = (
 ): {
   isActive: Readonly<Ref<boolean>>
   resume: () => void
-  parse: () => void
+  pause: () => void
 } => {
   const { immediate = true, immediateCallback = false } = options
 
@@ -19,7 +19,7 @@ const useInterval = (
   let id: number | null = null
 
   const resume = (): void => {
-    parse()
+    pause()
 
     if (timeout >= 0) {
       isActive.value = true
@@ -28,7 +28,7 @@ const useInterval = (
     }
   }
 
-  const parse = (): void => {
+  const pause = (): void => {
     isActive.value = false
 
     if (id !== null) {
@@ -42,13 +42,13 @@ const useInterval = (
   }
 
   if (getCurrentScope() !== undefined) {
-    onScopeDispose(parse)
+    onScopeDispose(pause)
   }
 
   return {
     isActive: readonly(isActive),
     resume,
-    parse,
+    pause,
   }
 }
 

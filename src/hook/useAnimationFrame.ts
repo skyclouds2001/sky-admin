@@ -8,7 +8,7 @@ const useAnimationFrame = (
 ): {
   isActive: Readonly<Ref<boolean>>
   resume: () => void
-  parse: () => void
+  pause: () => void
 } => {
   const { immediate = true } = options
 
@@ -17,13 +17,13 @@ const useAnimationFrame = (
   let id: number | null = null
 
   const resume = (): void => {
-    if (!isActive.value) {
+    if (!isActive.value && id === null) {
       isActive.value = true
       id = window.requestAnimationFrame(fn)
     }
   }
 
-  const parse = (): void => {
+  const pause = (): void => {
     if (isActive.value && id !== null) {
       isActive.value = false
       window.cancelAnimationFrame(id)
@@ -36,13 +36,13 @@ const useAnimationFrame = (
   }
 
   if (getCurrentScope() !== undefined) {
-    onScopeDispose(parse)
+    onScopeDispose(pause)
   }
 
   return {
     isActive: readonly(isActive),
     resume,
-    parse,
+    pause,
   }
 }
 

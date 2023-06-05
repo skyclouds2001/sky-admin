@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { useFullscreen, usePointerLock, useShare } from '@/hook'
+import { useFullscreen, useNow, usePointerLock, useShare } from '@/hook'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()
@@ -12,6 +12,8 @@ const i18n = useI18n()
 const store = usePagesStore()
 
 const { isSupported: isSupportedFullscreen, toggle: toggleFullscreen } = useFullscreen()
+
+const now = useNow()
 
 const { isSupported: isSupportedPointerLock, isPointerLock, trigger } = usePointerLock()
 
@@ -46,6 +48,7 @@ const handleShare = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
+      <div class="current-time">{{ now.toLocaleString() }}</div>
       <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
         <el-icon :size="20">
           <Unlock v-if="isPointerLock" />
@@ -80,6 +83,10 @@ const handleShare = () => {
 
     > * {
       @apply mx-1;
+    }
+
+    .current-time {
+      @apply cursor-default select-none mx-2;
     }
 
     .pointer-lock {

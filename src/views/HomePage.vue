@@ -103,6 +103,12 @@ const timestamp = useTimestamp()
           </template>
           <el-tag>{{ browserInfo.touchPoints }}</el-tag>
         </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.isSecureContext') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.isSecureContext }}</el-tag>
+        </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>

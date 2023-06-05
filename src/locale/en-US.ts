@@ -14,6 +14,7 @@ export default {
       processor: 'Logical Processors Number',
       memory: 'Memory Size',
       touchPoint: 'Maximum Number of Touch Points',
+      isSecureContext: 'Secure Context',
       cookie: 'Cookie Status',
       pdf: 'PDF Preview Feature Support',
       enabled: 'Enabled',

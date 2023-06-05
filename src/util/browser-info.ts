@@ -35,6 +35,8 @@ export const generateBrowserInfo = (): {
   processors: number
   /** 最大支持触摸点数 */
   touchPoints: number
+  /** 是否安全上下文 */
+  isSecureContext: boolean
 } => {
   const userAgent = navigator.userAgent.toLowerCase()
 
@@ -280,6 +282,9 @@ export const generateBrowserInfo = (): {
   // 最大支持触摸点数
   const touchPoints = navigator.maxTouchPoints
 
+  // 是否安全上下文
+  const isSecureContext = window.isSecureContext
+
   return {
     system,
     systemVs,
@@ -295,5 +300,6 @@ export const generateBrowserInfo = (): {
     memory,
     processors,
     touchPoints,
+    isSecureContext,
   }
 }

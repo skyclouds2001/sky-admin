@@ -14,6 +14,7 @@ export default {
       processor: '逻辑处理器数',
       memory: '内存大小',
       touchPoint: '最大支持触摸点数',
+      isSecureContext: '安全上下文',
       cookie: 'Cookie 状态',
       pdf: 'PDF 预览功能支持情况',
       enabled: '启用',

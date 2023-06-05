@@ -23,7 +23,6 @@ export default {
       unsupported: '不支持',
       'type-o': '屏幕方向',
       'angel-o': '屏幕角度',
-      now: '当前时间',
       timestamp: '当前时间戳',
     },
     network: {

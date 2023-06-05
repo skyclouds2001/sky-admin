@@ -23,7 +23,6 @@ export default {
       unsupported: 'Unsupported',
       'type-o': 'Screen Orientation Type',
       'angel-o': 'Screen Orientation Angel',
-      now: 'Current Time',
       timestamp: 'Current Timestamp',
     },
     network: {

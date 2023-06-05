@@ -3,7 +3,7 @@ import { shallowRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useNetwork, useNow, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
+import { useBattery, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
@@ -17,8 +17,6 @@ const { battery, isSupported: isSupportedBattery } = useBattery()
 const { isSupported: isSupportedConnection, connection } = useNetwork()
 
 const { isSupported: isSupportedScreenOrientation, angel, type } = useScreenOrientation()
-
-const now = useNow()
 
 const timestamp = useTimestamp()
 </script>
@@ -136,12 +134,6 @@ const timestamp = useTimestamp()
           <el-tag>{{ type }}</el-tag>
         </el-descriptions-item>
 
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.system.now') }}</span>
-          </template>
-          <el-tag>{{ now.toLocaleString() }}</el-tag>
-        </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>

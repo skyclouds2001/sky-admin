@@ -16,10 +16,15 @@ const useAnimationFrame = (
 
   let id: number | null = null
 
+  const loop = (time: number): void => {
+    fn(time)
+    id = window.requestAnimationFrame(loop)
+  }
+
   const resume = (): void => {
     if (!isActive.value && id === null) {
       isActive.value = true
-      id = window.requestAnimationFrame(fn)
+      id = window.requestAnimationFrame(loop)
     }
   }
 

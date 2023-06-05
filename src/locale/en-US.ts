@@ -27,6 +27,12 @@ export default {
     },
     screen: {
       title: 'Screen Info',
+      height: 'Screen Height',
+      width: 'Screen Width',
+      availHeight: 'Screen Available Height',
+      availWidth: 'Screen Available Width',
+      colorDepth: 'Color Depth',
+      pixelDepth: 'Pixel Depth',
       type: 'Screen Orientation Type',
       angel: 'Screen Orientation Angel',
     },

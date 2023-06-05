@@ -9,11 +9,13 @@ const i18n = useI18n()
 
 const browserInfo = generateBrowserInfo()
 
-const { isOnline } = useOnline()
+const screenInfo = window.screen
 
 const { battery, isSupported: isSupportedBattery } = useBattery()
 
 const { connection, isSupported: isSupportedConnection } = useNetwork()
+
+const { isOnline } = useOnline()
 
 const { angel, isSupported: isSupportedScreenOrientation, type } = useScreenOrientation()
 
@@ -134,6 +136,42 @@ const timestamp = useTimestamp()
         <div class="text-left text-base font-bold">{{ i18n.t('home.screen.title') }}</div>
       </template>
       <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.height') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.height }}px</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.width') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.width }}px</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.availHeight') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.availHeight }}px</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.availWidth') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.availWidth }}px</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.colorDepth') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.colorDepth }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.screen.pixelDepth') }}</span>
+          </template>
+          <el-tag>{{ screenInfo.pixelDepth }}</el-tag>
+        </el-descriptions-item>
         <el-descriptions-item v-if="isSupportedScreenOrientation">
           <template #label>
             <span class="font-bold">{{ i18n.t('home.screen.type') }}</span>

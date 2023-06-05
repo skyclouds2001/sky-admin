@@ -27,6 +27,12 @@ export default {
     },
     screen: {
       title: '屏幕信息',
+      height: '屏幕高度',
+      width: '屏幕宽度',
+      availHeight: '屏幕可用高度',
+      availWidth: '屏幕可用宽度',
+      colorDepth: '屏幕颜色深度',
+      pixelDepth: '屏幕位深度',
       type: '屏幕方向',
       angel: '屏幕角度',
     },

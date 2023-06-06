@@ -2,7 +2,9 @@ import { computed, type ComputedRef, ref } from 'vue'
 import { useEventListener } from '@/hook'
 
 const usePointerLock = (
-  target: HTMLElement = document.documentElement
+  target: HTMLElement = document.documentElement,
+  options?: PointerLockOptions,
+  onError?: (e: Event) => void
 ): {
   isSupported: boolean
   isPointerLock: ComputedRef<boolean>
@@ -17,7 +19,7 @@ const usePointerLock = (
   const lock = async (): Promise<void> => {
     if (!isSupported) return
 
-    await target.requestPointerLock()
+    await target.requestPointerLock(options)
 
     isPointerLock.value = true
   }
@@ -38,6 +40,10 @@ const usePointerLock = (
     useEventListener(document, 'pointerlockchange', () => {
       isPointerLock.value = document.pointerLockElement === target
     })
+
+    if (onError !== undefined) {
+      useEventListener(document, 'pointerlockerror', onError)
+    }
   }
 
   return {

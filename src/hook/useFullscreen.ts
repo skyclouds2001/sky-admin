@@ -3,7 +3,8 @@ import { useEventListener } from '@/hook'
 
 const useFullscreen = (
   target: HTMLElement = document.documentElement,
-  options?: FullscreenOptions
+  options?: FullscreenOptions,
+  onError?: (e: Event) => void
 ): {
   isSupported: boolean
   isFullscreen: ComputedRef<boolean>
@@ -49,9 +50,15 @@ const useFullscreen = (
     await (isFullscreen.value ? exit() : enter())
   }
 
-  useEventListener(document, 'fullscreenchange', () => {
-    isFullscreen.value = document.fullscreenElement === target
-  })
+  if (isSupported) {
+    useEventListener(document, 'fullscreenchange', () => {
+      isFullscreen.value = document.fullscreenElement === target
+    })
+
+    if (onError !== undefined) {
+      useEventListener(document, 'fullscreenerror', onError)
+    }
+  }
 
   return {
     isSupported,

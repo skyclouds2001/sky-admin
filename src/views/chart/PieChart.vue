@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import BasicPieChart from '@/components/chart/BasicPieChart.vue'
+import { BasicPieChart } from '@/components'
 </script>
 
 <template>

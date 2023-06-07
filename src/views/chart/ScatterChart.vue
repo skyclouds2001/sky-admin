@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import BasicScatterChart from '@/components/chart/BasicScatterChart.vue'
+import { BasicScatterChart } from '@/components'
 </script>
 
 <template>

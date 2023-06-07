@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import EncoderDecoder from '@/components/feature/EncoderDecoder.vue'
-import HashAlgorithm from '@/components/feature/HashAlgorithm.vue'
-import HMACAlgorithm from '@/components/feature/HMACAlgorithm.vue'
-import PBKDF2Algorithm from '@/components/feature/PBKDF2Algorithm.vue'
+import { EncoderDecoder, HashAlgorithm, HMACAlgorithm, PBKDF2Algorithm } from '@/components'
 </script>
 
 <template>

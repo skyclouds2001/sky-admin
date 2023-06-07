@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ElMessage, ElMessageBox, ElPagination, ElSpace } from 'element-plus'
-import ArticleTable from '@/components/table/ArticleTable.vue'
-import ArticleSearch from '@/components/table/ArticleSearch.vue'
 import { updateArticle, removeArticle } from '@/api'
+import { ArticleTable, ArticleSearch } from '@/components'
 import { useArticles } from '@/hook'
 import type { Article } from '@/model'
 import { exportExcelFromData } from '@/util'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import BasicBarChart from '@/components/chart/BasicBarChart.vue'
+import { BasicBarChart } from '@/components'
 </script>
 
 <template>

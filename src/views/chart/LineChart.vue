@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
-import BasicLineChart from '@/components/chart/BasicLineChart.vue'
+import { BasicLineChart } from '@/components'
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
 import * as icons from '@element-plus/icons-vue'
-import IconItem from '@/components/component/IconItem'
+import { IconItem } from '@/components'
 </script>
 
 <template>

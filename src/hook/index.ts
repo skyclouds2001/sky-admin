@@ -40,6 +40,8 @@ export { default as useGeolocation } from './useGeolocation'
 
 export { default as useGrayMode } from './useGrayMode'
 
+export { default as useIdleCallback } from './useIdleCallback'
+
 export { default as useIntersectionObserver } from './useIntersectionObserver'
 
 export { default as useInterval } from './useInterval'

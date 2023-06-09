@@ -18,7 +18,7 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 
 <template>
   <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en" :button="{ autoInsertSpace: true }" :message="{ max: 5 }">
-    <layout-container>
+    <component :is="LayoutContainer">
       <router-view v-slot="{ Component }">
         <template v-if="Component">
           <transition mode="out-in">
@@ -30,7 +30,7 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
           </transition>
         </template>
       </router-view>
-    </layout-container>
+    </component>
   </el-config-provider>
 </template>
 

@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
 import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from 'shooks'
-import { captureScreenshot } from '@/util'
+import { captureScreenshot, downloadFile } from '@/util'
 
 const i18n = useI18n()
 
@@ -11,7 +11,17 @@ const el = ref<HTMLVideoElement | null>(null)
 
 const { videoInputs: devices } = useDevicesList()
 
-const { state, start: startRecord, pause: pauseRecord, resume: resumeRecord, stop: stopRecord } = useMediaRecorder()
+const {
+  state,
+  start: startRecord,
+  pause: pauseRecord,
+  resume: resumeRecord,
+  stop: stopRecord,
+} = useMediaRecorder({
+  onDataAvailable(e) {
+    downloadFile(new window.Blob([e.data], { type: 'video/mp4' }), '录制')
+  },
+})
 
 const { toggle: togglePictureInPicture } = usePictureInPicture(el)
 

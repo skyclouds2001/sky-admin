@@ -1,0 +1,7 @@
+{
+  "name": "shooks",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
+}

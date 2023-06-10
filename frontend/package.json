@@ -1,5 +1,5 @@
 {
-  "name": "frontend-sky-admin",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
@@ -31,9 +31,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "prepare": "is-ci || husky install",
-    "preinstall": "only-allow pnpm"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

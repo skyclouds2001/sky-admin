@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { shallowRef, type ShallowRef, ref, type Ref, type UnwrapRef, watch } from 'vue'
-import { name, version } from '~/package.json'
-import { useEventListener } from '@/hook'
+import useEventListener from './useEventListener'
 
 type StorageDataType = number | string | boolean | object | null | any
 
@@ -91,7 +90,7 @@ const useStorage = <T extends number | string | boolean | object | null>(
 ): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
   const { prefix = true, shallow = false, deep = true, watchChange = true } = options
 
-  const storageKey = `${typeof prefix === 'string' ? prefix : prefix ? `${name}-${version}` : ''}-${key}`
+  const storageKey = `${typeof prefix === 'string' ? prefix : ''}-${key}`
 
   const storeValue = storage.getItem(storageKey)
 

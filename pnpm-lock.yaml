@@ -141,6 +141,9 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
+      shooks:
+        specifier: workspace:*
+        version: link:../packages/shooks
       three:
         specifier: ^0.153.0
         version: 0.153.0

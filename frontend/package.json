@@ -61,6 +61,7 @@
     "prismjs": "^1.29.0",
     "qrcode": "^1.5.3",
     "qs": "^6.11.2",
+    "shooks": "workspace:*",
     "three": "^0.153.0",
     "tui-color-picker": "^2.2.8",
     "vue": "^3.3.4",

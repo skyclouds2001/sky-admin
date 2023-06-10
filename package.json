@@ -35,9 +35,9 @@
     "pnpm": "=8.4.0"
   },
   "scripts": {
-    "dev": "pnpm --stream -r dev",
-    "build": "cross-env NODE_ENV=production vue-tsc && vite build",
-    "preview": "vite preview",
+    "dev": "cross-env NODE_ENV=development pnpm --stream -r dev",
+    "build": "cross-env NODE_ENV=production pnpm --stream -r build",
+    "preview": "pnpm --stream -r preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",

@@ -29,9 +29,11 @@
     "skyclouds2001"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development vite",
-    "build": "cross-env NODE_ENV=production vue-tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "prepare": "is-ci || husky install",
+    "preinstall": "only-allow pnpm"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

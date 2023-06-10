@@ -25,12 +25,8 @@ module.exports = {
   globals: {},
   rules: {
     'n/no-missing-import': 'off',
-    'import/no-unresolved': [
-      'error',
-      {
-        ignore: ['package.json', '^@'],
-      },
-    ],
+    'import/no-unresolved': 'off',
+    'n/no-extraneous-import': 'off',
     '@typescript-eslint/promise-function-async': 'off',
     'promise/always-return': 'off',
   },

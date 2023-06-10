@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElButton, ElCard, ElInput, ElSpace, ElText } from 'element-plus'
-import { useNotification } from '@/hook'
+import { useNotification } from 'shooks'
 
 const title = ref('')
 

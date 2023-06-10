@@ -1,5 +1,5 @@
 import { readonly, ref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 type NavigatorWithConnection = Navigator & {
   connection: NetworkInformation

@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, getCurrentInstance, onMounted, onUnmounted, ref, shallowRef, type ShallowRef } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 interface NavigatorWithBluetooth extends Navigator {
   bluetooth: Bluetooth

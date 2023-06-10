@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue'
-import useMediaQuery from './useMediaQuery'
+import { useMediaQuery } from '.'
 
 const usePreferredTheme = (): Ref<'light' | 'dark'> => {
   const mediaQuery = useMediaQuery('(prefers-color-scheme: dark)')

@@ -1,6 +1,6 @@
 import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 import { Theme, isTheme } from '@/enum'
-import { usePreferredTheme, useStorage } from '@/hook'
+import { usePreferredTheme, useStorage } from 'shooks'
 
 const useTheme = (): {
   theme: Ref<Theme>

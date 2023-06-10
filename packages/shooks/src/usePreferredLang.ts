@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue'
-import useEventListener from './useEventListener'
+import { useEventListener } from '.'
 
 const usePreferredLang = (): Ref<string> => {
   const lang = ref(navigator.language)

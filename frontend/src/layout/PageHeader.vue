@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElImage, ElIcon } from 'element-plus'
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { useFullscreen, useNow, usePointerLock, useShare } from '@/hook'
+import { useFullscreen, useNow, usePointerLock, useShare } from 'shooks'
 import { usePagesStore } from '@/store'
 
 const i18n = useI18n()

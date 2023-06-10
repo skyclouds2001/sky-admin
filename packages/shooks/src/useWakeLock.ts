@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, ref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 interface NavigatorWithWakeLock extends Navigator {
   readonly wakeLock: WakeLock

@@ -1,5 +1,5 @@
 import { reactive, readonly } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 type NavigatorWithBattery = Navigator & {
   getBattery: () => Promise<BatteryManager>

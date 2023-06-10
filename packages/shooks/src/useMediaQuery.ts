@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useMediaQuery = (
   query: string

@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@/hook'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()

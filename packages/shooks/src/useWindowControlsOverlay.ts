@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, ref, shallowRef } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 interface NavigatorWithWindowControlsOverlay extends Navigator {
   readonly windowControlsOverlay: WindowControlsOverlay

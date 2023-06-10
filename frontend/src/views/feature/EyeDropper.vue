@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElButton, ElCard, ElSpace, ElText } from 'element-plus'
-import { useEyeDropper } from '@/hook'
+import { useEyeDropper } from 'shooks'
 
 const { isSupported, color, open } = useEyeDropper()
 </script>

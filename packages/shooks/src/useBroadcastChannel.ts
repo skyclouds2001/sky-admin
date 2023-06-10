@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, type DeepReadonly, getCurrentScope, onScopeDispose, readonly, ref, type Ref, shallowRef, type UnwrapRef } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useBroadcastChannel = <D = unknown, P = D>(
   name: string

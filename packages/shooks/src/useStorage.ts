@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { shallowRef, type ShallowRef, ref, type Ref, type UnwrapRef, watch } from 'vue'
-import useEventListener from './useEventListener'
+import { useEventListener } from '.'
 
 type StorageDataType = number | string | boolean | object | null | any
 

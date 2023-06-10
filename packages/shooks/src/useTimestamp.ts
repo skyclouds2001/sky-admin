@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue'
-import { useInterval, useAnimationFrame } from '@/hook'
+import { useAnimationFrame, useInterval } from '.'
 
 const useTimestamp = (
   options: {

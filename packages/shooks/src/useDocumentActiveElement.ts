@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, shallowRef } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useDocumentActiveElement = (): ComputedRef<Element | null> => {
   const activeElement = shallowRef(document.activeElement)

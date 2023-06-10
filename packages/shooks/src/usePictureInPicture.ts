@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, ref, type Ref, shallowRef, type ShallowRef, unref, watch } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const usePictureInPicture = (
   target: HTMLVideoElement | Ref<HTMLVideoElement | null>

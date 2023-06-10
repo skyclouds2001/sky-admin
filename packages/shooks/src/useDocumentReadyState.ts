@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, ref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useDocumentReadyState = (): ComputedRef<DocumentReadyState> => {
   const readyState = ref(document.readyState)

@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, ref } from 'vue'
-import { useEventListener, useTimeout } from '@/hook'
+import { useEventListener, useTimeout } from '.'
 
 const useClipboard = (
   options: {

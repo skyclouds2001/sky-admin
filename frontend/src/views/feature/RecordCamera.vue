@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from '@/hook'
+import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from 'shooks'
 import { captureScreenshot } from '@/util'
 
 const i18n = useI18n()

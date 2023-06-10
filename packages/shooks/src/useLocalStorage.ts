@@ -1,5 +1,5 @@
 import { type ShallowRef, type Ref, type UnwrapRef } from 'vue'
-import { useStorage } from '@/hook'
+import { useStorage } from '.'
 
 const useLocalStorage = <T extends number | string | boolean | object | null>(
   key: string,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
-import { useBroadcastChannel } from '@/hook'
+import { useBroadcastChannel } from 'shooks'
 
 const message = ref('')
 

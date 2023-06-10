@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
-import { useClipboard } from '@/hook'
+import { useClipboard } from 'shooks'
 
 const { isSupported, isCopied, copy } = useClipboard()
 

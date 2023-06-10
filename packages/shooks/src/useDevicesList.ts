@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, shallowRef, type ShallowRef } from 'vue'
-import { useEventListener, usePermission } from '@/hook'
+import { useEventListener, usePermission } from '.'
 
 const useDevicesList = (
   options: {

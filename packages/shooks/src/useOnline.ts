@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, type Ref, ref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useOnline = (): {
   isOnline: ComputedRef<boolean>

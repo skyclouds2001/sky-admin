@@ -1,6 +1,5 @@
 import { computed, type ComputedRef, ref } from 'vue'
-import { useEventListener } from '@/hook'
-import { downloadFile } from '@/util'
+import { useEventListener } from '.'
 
 const useMediaRecorder = (
   options: {
@@ -38,13 +37,9 @@ const useMediaRecorder = (
 
     state.value = mediaRecorder.state
 
-    useEventListener<MediaRecorder, MediaRecorderEventMap, 'dataavailable'>(mediaRecorder, 'dataavailable', (e) => {
-      if (onDataAvailable !== undefined) onDataAvailable(e)
-
-      const blob = new window.Blob([e.data], { type: 'video/mp4' })
-
-      downloadFile(blob, '录制')
-    })
+    if (onDataAvailable !== undefined) {
+      useEventListener<MediaRecorder, MediaRecorderEventMap, 'dataavailable'>(mediaRecorder, 'dataavailable', onDataAvailable)
+    }
 
     if (onError !== undefined) {
       useEventListener<MediaRecorder, MediaRecorderEventMap, 'error'>(mediaRecorder, 'error', onError)

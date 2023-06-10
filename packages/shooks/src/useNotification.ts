@@ -1,5 +1,5 @@
 import { getCurrentScope, onScopeDispose, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useNotification = (
   title: string | Ref<string>,

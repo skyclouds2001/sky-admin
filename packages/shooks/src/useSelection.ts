@@ -1,5 +1,5 @@
 import { computed, type ComputedRef, shallowRef, type ShallowRef } from 'vue'
-import { useEventListener } from '@/hook'
+import { useEventListener } from '.'
 
 const useSelection = (): {
   selection: ShallowRef<Selection | null>

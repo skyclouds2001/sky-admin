@@ -34,7 +34,7 @@
     "yarn": "=1.22.19",
     "pnpm": "=8.4.0"
   },
-  "main": "index.ts",
+  "main": "src/index.ts",
   "devDependencies": {
     "typescript": "^5.1.3"
   },

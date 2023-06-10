@@ -28,7 +28,7 @@ module.exports = {
     'import/no-unresolved': [
       'error',
       {
-        ignore: ['package.json'],
+        ignore: ['package.json', '^@'],
       },
     ],
     '@typescript-eslint/promise-function-async': 'off',

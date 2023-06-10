@@ -1,6 +1,33 @@
 {
   "name": "frontend-sky-admin",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
+  "keywords": [
+    "admin",
+    "management",
+    "system",
+    "skyclouds2001"
+  ],
   "main": "src/main.ts",
+  "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyclouds2001/SkyAdmin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skyclouds2001/SkyAdmin/issues",
+    "email": "skyclouds2001@163.com"
+  },
+  "author": {
+    "name": "skyclouds2001",
+    "email": "skyclouds2001@163.com",
+    "url": "https://skyclouds2001.github.io"
+  },
+  "contributors": [
+    "skyclouds2001"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vue-tsc && vite build",

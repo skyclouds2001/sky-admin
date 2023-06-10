@@ -27,7 +27,6 @@
   "contributors": [
     "skyclouds2001"
   ],
-  "main": "src/main.ts",
   "packageManager": "pnpm@8.4.0",
   "engines": {
     "node": "=18.13.0",

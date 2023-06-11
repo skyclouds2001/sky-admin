@@ -1,23 +1,25 @@
-import { ref, type Ref, watch } from 'vue'
+import { ref, unref, type Ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
 import { Lang, isLang } from '@/enum'
-import { usePreferredLang, useStorage } from 'shooks'
+import { usePreferredLanguages, useStorage } from 'shooks'
 
 const useLang = (): {
   lang: Ref<Lang>
 } => {
+  const preferredLanguage = unref(usePreferredLanguages()).at(0)
+
   const i18n = useI18n()
 
-  const data = useStorage('lang')
+  const data = useStorage<Lang>('lang')
 
   /**
    * 语言
    */
-  const lang = ref(isLang(data.value) ? (data as Ref<Lang>) : usePreferredLang())
+  const language = ref(data.value !== null ? data.value : isLang(preferredLanguage) ? preferredLanguage : Lang.zhCN)
 
   watch(
-    lang,
+    language,
     (current) => {
       switch (current) {
         case Lang.zhCN:
@@ -38,7 +40,7 @@ const useLang = (): {
   )
 
   return {
-    lang,
+    lang: language,
   }
 }
 

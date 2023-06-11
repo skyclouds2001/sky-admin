@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
+import { computed, type ComputedRef, ref, type Ref, unref, watch } from 'vue'
 import { Theme, isTheme } from '@/enum'
 import { usePreferredTheme, useStorage } from 'shooks'
 
@@ -10,12 +10,14 @@ const useTheme = (): {
   toDark: () => void
   toggleTheme: () => void
 } => {
-  const data = useStorage('theme')
+  const preferredTheme = unref(usePreferredTheme())
+
+  const data = useStorage<Theme>('theme')
 
   /**
    * 主题
    */
-  const theme = ref(isTheme(data.value) ? (data as Ref<Theme>) : usePreferredTheme())
+  const theme = ref(data.value !== null ? data.value : isTheme(preferredTheme) ? preferredTheme : Theme.LIGHT)
 
   /**
    * 判断是否为亮色主题

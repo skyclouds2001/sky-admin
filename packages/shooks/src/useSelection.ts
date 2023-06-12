@@ -1,8 +1,8 @@
-import { computed, type ComputedRef, shallowRef, type ShallowRef } from 'vue'
+import { computed, type ComputedRef, shallowReadonly, shallowRef, type ShallowRef } from 'vue'
 import { useEventListener } from '.'
 
 const useSelection = (): {
-  selection: ShallowRef<Selection | null>
+  selection: Readonly<ShallowRef<Selection | null>>
   text: ComputedRef<string>
   ranges: ComputedRef<Range[]>
   rects: ComputedRef<DOMRect[]>
@@ -17,7 +17,7 @@ const useSelection = (): {
   })
 
   return {
-    selection,
+    selection: shallowReadonly(selection),
     text,
     rects,
     ranges,

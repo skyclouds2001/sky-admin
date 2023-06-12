@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 interface NavigatorWithWakeLock extends Navigator {
@@ -29,7 +29,7 @@ interface WakeLockSentinelEventMap {
 
 const useWakeLock = (): {
   isSupported: boolean
-  isActive: ComputedRef<boolean>
+  isActive: Readonly<Ref<boolean>>
   request: () => Promise<void>
   release: () => Promise<void>
   toggle: () => Promise<void>
@@ -78,7 +78,7 @@ const useWakeLock = (): {
 
   return {
     isSupported,
-    isActive: computed(() => isActive.value),
+    isActive: readonly(isActive),
     request,
     release,
     toggle,

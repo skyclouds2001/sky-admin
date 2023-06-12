@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref, shallowRef } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 interface NavigatorWithWindowControlsOverlay extends Navigator {
@@ -24,14 +24,14 @@ interface WindowControlsOverlayGeometryChangeEvent extends Event {
 
 const useWindowControlsOverlay = (): {
   isSupported: boolean
-  visible: ComputedRef<boolean>
-  rect: ComputedRef<DOMRect>
+  visible: Readonly<Ref<boolean>>
+  rect: Readonly<Ref<DOMRect>>
 } => {
   const isSupported = 'windowControlsOverlay' in navigator
 
   const visible = ref((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay.visible)
 
-  const rect = shallowRef((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay.getTitlebarAreaRect())
+  const rect = ref((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay.getTitlebarAreaRect())
 
   useEventListener<WindowControlsOverlay, WindowControlsOverlayEventMap, 'geometrychange'>((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay, 'geometrychange', (e) => {
     visible.value = e.visible
@@ -40,8 +40,8 @@ const useWindowControlsOverlay = (): {
 
   return {
     isSupported,
-    visible: computed(() => visible.value),
-    rect: computed(() => rect.value),
+    visible: readonly(visible),
+    rect: readonly(rect),
   }
 }
 

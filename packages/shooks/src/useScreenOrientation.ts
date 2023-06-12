@@ -1,10 +1,10 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useScreenOrientation = (): {
   isSupported: boolean
-  type: ComputedRef<OrientationType>
-  angel: ComputedRef<number>
+  type: Readonly<Ref<OrientationType>>
+  angel: Readonly<Ref<number>>
   lock: (type: OrientationLockType) => Promise<void>
   unlock: () => Promise<void>
 } => {
@@ -28,8 +28,8 @@ const useScreenOrientation = (): {
 
   return {
     isSupported,
-    type: computed(() => type.value),
-    angel: computed(() => angel.value),
+    type: readonly(type),
+    angel: readonly(angel),
     lock,
     unlock,
   }

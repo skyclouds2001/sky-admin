@@ -11,7 +11,9 @@ const useLang = (): {
 
   const i18n = useI18n()
 
-  const data = useStorage<Lang>('lang')
+  const data = useStorage<Lang>('lang', {
+    prefix: 'sky-admin-0.0.0',
+  })
 
   /**
    * 语言

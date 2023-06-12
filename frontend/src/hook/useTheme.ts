@@ -12,7 +12,9 @@ const useTheme = (): {
 } => {
   const preferredTheme = unref(usePreferredTheme())
 
-  const data = useStorage<Theme>('theme')
+  const data = useStorage<Theme>('theme', {
+    prefix: 'sky-admin-0.0.0',
+  })
 
   /**
    * 主题

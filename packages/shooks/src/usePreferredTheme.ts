@@ -1,10 +1,10 @@
-import { ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useMediaQuery } from '.'
 
-const usePreferredTheme = (): Ref<'light' | 'dark'> => {
+const usePreferredTheme = (): Readonly<Ref<'light' | 'dark'>> => {
   const mediaQuery = useMediaQuery('(prefers-color-scheme: dark)')
 
-  return ref(mediaQuery.isSupported && mediaQuery.matchMediaQuery.value ? 'dark' : 'light')
+  return readonly(ref(mediaQuery.isSupported && mediaQuery.matchMediaQuery.value ? 'dark' : 'light'))
 }
 
 export default usePreferredTheme

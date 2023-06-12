@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const usePointerLock = (
@@ -7,7 +7,7 @@ const usePointerLock = (
   onError?: (e: Event) => void
 ): {
   isSupported: boolean
-  isPointerLock: ComputedRef<boolean>
+  isPointerLock: Readonly<Ref<boolean>>
   lock: () => Promise<void>
   unlock: () => Promise<void>
   trigger: () => Promise<void>
@@ -48,7 +48,7 @@ const usePointerLock = (
 
   return {
     isSupported,
-    isPointerLock: computed(() => isPointerLock.value),
+    isPointerLock: readonly(isPointerLock),
     lock,
     unlock,
     trigger,

@@ -1,12 +1,12 @@
-import { computed, type ComputedRef, ref, type Ref, shallowRef, type ShallowRef, unref, watch } from 'vue'
+import { readonly, ref, type Ref, unref, watch } from 'vue'
 import { useEventListener } from '.'
 
 const usePictureInPicture = (
   target: HTMLVideoElement | Ref<HTMLVideoElement | null>
 ): {
   isSupported: boolean
-  isPictureInPicture: ComputedRef<boolean>
-  pictureInPictureWindow: ShallowRef<PictureInPictureWindow | null>
+  isPictureInPicture: Readonly<Ref<boolean>>
+  pictureInPictureWindow: Readonly<Ref<PictureInPictureWindow | null>>
   enter: () => Promise<void>
   exit: () => Promise<void>
   toggle: () => Promise<void>
@@ -15,7 +15,7 @@ const usePictureInPicture = (
 
   const isPictureInPicture = ref(document.pictureInPictureElement === unref(target) && document.pictureInPictureElement !== null)
 
-  const pictureInPictureWindow = shallowRef<PictureInPictureWindow | null>(null)
+  const pictureInPictureWindow = ref<PictureInPictureWindow | null>(null)
 
   const enter = async (): Promise<void> => {
     if (!isSupported) return
@@ -60,8 +60,8 @@ const usePictureInPicture = (
 
   return {
     isSupported,
-    isPictureInPicture: computed(() => isPictureInPicture.value),
-    pictureInPictureWindow: computed(() => pictureInPictureWindow.value),
+    isPictureInPicture: readonly(isPictureInPicture),
+    pictureInPictureWindow: readonly(pictureInPictureWindow),
     enter,
     exit,
     toggle,

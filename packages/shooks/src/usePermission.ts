@@ -1,11 +1,11 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const usePermission = (
   name: PermissionName | 'accelerometer' | 'accessibility-events' | 'ambient-light-sensor' | 'background-sync' | 'camera' | 'clipboard-read' | 'clipboard-write' | 'gyroscope' | 'magnetometer' | 'microphone' | 'payment-handler' | 'speaker'
 ): {
   isSupported: boolean
-  status: ComputedRef<PermissionState | null>
+  status: Readonly<Ref<PermissionState | null>>
 } => {
   const isSupported = 'permissions' in navigator
 
@@ -30,7 +30,7 @@ const usePermission = (
 
   return {
     isSupported,
-    status: computed(() => permission.value),
+    status: readonly(permission),
   }
 }
 

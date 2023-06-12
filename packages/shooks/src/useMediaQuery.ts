@@ -1,11 +1,11 @@
-import { ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useMediaQuery = (
   query: string
 ): {
   isSupported: boolean
-  matchMediaQuery: Ref<boolean>
+  matchMediaQuery: Readonly<Ref<boolean>>
 } => {
   const isSupported = 'matchMedia' in window && typeof window.matchMedia === 'function'
 
@@ -19,7 +19,7 @@ const useMediaQuery = (
 
   return {
     isSupported,
-    matchMediaQuery: matches,
+    matchMediaQuery: readonly(matches),
   }
 }
 

@@ -1,4 +1,4 @@
-import { readonly, ref } from 'vue'
+import { reactive, readonly } from 'vue'
 import { useEventListener } from '.'
 
 type NavigatorWithConnection = Navigator & {
@@ -30,54 +30,48 @@ interface NetworkInformationEventMap {
 
 const useNetwork = (): {
   isSupported: boolean
-  connection: Readonly<Partial<NetworkInformation>>
+  connection: Readonly<{
+    downlink: number | null
+    effectiveType: NetworkEffectiveType | null
+    rtt: number | null
+    saveData: boolean | null
+    type: NetworkType | null
+    downlinkMax: number | null
+  }>
 } => {
   /**
    * 标记 Navigator.connection 是否支持
    */
   const isSupported = 'connection' in navigator
 
-  /**
-   * 网络带宽
-   */
-  const downlink = ref<number>()
-
-  /**
-   * 网络最大带宽
-   */
-  const downlinkMax = ref<number>()
-
-  /**
-   * 网络最大带宽
-   */
-  const type = ref<NetworkType>()
-
-  /**
-   * 网络作用类型
-   */
-  const effectiveType = ref<NetworkEffectiveType>()
-
-  /**
-   * 网络往返时延
-   */
-  const rtt = ref<number>()
-
-  /**
-   * 用户是否设定减少数据使用
-   */
-  const saveData = ref<boolean>()
+  /** 网络连接状态对象 */
+  const connection = reactive<{
+    downlink: number | null
+    effectiveType: NetworkEffectiveType | null
+    rtt: number | null
+    saveData: boolean | null
+    type: NetworkType | null
+    downlinkMax: number | null
+  }>({
+    downlink: null,
+    downlinkMax: null,
+    type: null,
+    effectiveType: null,
+    rtt: null,
+    saveData: null,
+  })
 
   /**
    * 更新网络连接状态
-   * @param connection 网络连接对象
+   * @param information 网络连接对象
    */
-  const updateConnectionStatus = (connection: NetworkInformation): void => {
-    downlink.value = connection.downlink
-    downlinkMax.value = connection.downlinkMax
-    type.value = connection.type
-    effectiveType.value = connection.effectiveType
-    rtt.value = connection.rtt * 0.025
-    saveData.value = connection.saveData
+  const updateConnectionStatus = (information: NetworkInformation): void => {
+    connection.downlink = information.downlink
+    connection.downlinkMax = information.downlinkMax
+    connection.type = information.type
+    connection.effectiveType = information.effectiveType
+    connection.rtt = information.rtt * 0.025
+    connection.saveData = information.saveData
   }
 
   if (isSupported) {
@@ -92,14 +86,7 @@ const useNetwork = (): {
 
   return {
     isSupported,
-    connection: readonly({
-      downlink,
-      downlinkMax,
-      type,
-      effectiveType,
-      rtt,
-      saveData,
-    }),
+    connection: readonly(connection),
   }
 }
 

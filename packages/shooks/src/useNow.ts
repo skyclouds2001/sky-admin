@@ -1,4 +1,4 @@
-import { ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useAnimationFrame, useInterval } from '.'
 
 const useNow = (
@@ -6,7 +6,7 @@ const useNow = (
     mode?: 'AnimationFrame' | 'Interval'
     interval?: number
   } = {}
-): Ref<Date> => {
+): Readonly<Ref<Date>> => {
   const { mode = 'AnimationFrame', interval = 0 } = options
 
   const now = ref(new Date())
@@ -22,7 +22,7 @@ const useNow = (
     useInterval(update, interval)
   }
 
-  return now
+  return readonly(now)
 }
 
 export default useNow

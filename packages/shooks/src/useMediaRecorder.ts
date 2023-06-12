@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useMediaRecorder = (
@@ -12,7 +12,7 @@ const useMediaRecorder = (
   } = {}
 ): {
   isSupported: boolean
-  state: ComputedRef<RecordingState>
+  state: Readonly<Ref<RecordingState>>
   start: (stream: MediaStream, options?: MediaRecorderOptions) => void
   pause: () => void
   resume: () => void
@@ -100,7 +100,7 @@ const useMediaRecorder = (
 
   return {
     isSupported,
-    state: computed(() => state.value),
+    state: readonly(state),
     start,
     pause,
     resume,

@@ -10,6 +10,7 @@
     "system",
     "skyclouds2001"
   ],
+  "main": "src/index.ts",
   "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {
     "type": "git",
@@ -34,11 +35,11 @@
     "yarn": "=1.22.19",
     "pnpm": "=8.4.0"
   },
-  "main": "src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
   "devDependencies": {
     "typescript": "^5.1.3"
-  },
-  "peerDependencies": {
-    "vue": "^3.3.4"
   }
 }

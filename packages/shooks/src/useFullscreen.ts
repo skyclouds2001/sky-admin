@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useFullscreen = (
@@ -7,7 +7,7 @@ const useFullscreen = (
   onError?: (e: Event) => void
 ): {
   isSupported: boolean
-  isFullscreen: ComputedRef<boolean>
+  isFullscreen: Readonly<Ref<boolean>>
   enter: () => Promise<void>
   exit: () => Promise<void>
   toggle: () => Promise<void>
@@ -62,7 +62,7 @@ const useFullscreen = (
 
   return {
     isSupported,
-    isFullscreen: computed(() => isFullscreen.value),
+    isFullscreen: readonly(isFullscreen),
     enter,
     exit,
     toggle,

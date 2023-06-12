@@ -1,4 +1,4 @@
-import { onBeforeUnmount, onMounted, ref, type Ref, shallowRef, type ShallowRef } from 'vue'
+import { onBeforeUnmount, onMounted, readonly, ref, type Ref } from 'vue'
 
 const useGeolocation = (
   options: {
@@ -8,9 +8,9 @@ const useGeolocation = (
   } = {}
 ): {
   isSupported: boolean
-  geolocation: Ref<GeolocationCoordinates>
-  locatedAt: Ref<number | null>
-  error: ShallowRef<GeolocationPositionError | null>
+  geolocation: Readonly<Ref<GeolocationCoordinates>>
+  locatedAt: Readonly<Ref<number | null>>
+  error: Readonly<Ref<GeolocationPositionError | null>>
 } => {
   const { enableHighAccuracy = true, maximumAge = 30000, timeout = 27000 } = options
 
@@ -28,7 +28,7 @@ const useGeolocation = (
 
   const locatedAt = ref<number | null>(null)
 
-  const error = shallowRef<GeolocationPositionError | null>(null)
+  const error = ref<GeolocationPositionError | null>(null)
 
   let watcher: number | null = null
 
@@ -60,9 +60,9 @@ const useGeolocation = (
 
   return {
     isSupported,
-    geolocation: location,
-    locatedAt,
-    error,
+    geolocation: readonly(location),
+    locatedAt: readonly(locatedAt),
+    error: readonly(error),
   }
 }
 

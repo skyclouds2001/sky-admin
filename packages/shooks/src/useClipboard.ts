@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener, useTimeout } from '.'
 
 const useClipboard = (
@@ -8,8 +8,8 @@ const useClipboard = (
   } = {}
 ): {
   isSupported: boolean
-  text: ComputedRef<string>
-  isCopied: ComputedRef<boolean>
+  text: Readonly<Ref<string>>
+  isCopied: Readonly<Ref<boolean>>
   copy: (data: string) => Promise<void>
 } => {
   const { delay = 2500, listen = true } = options
@@ -52,8 +52,8 @@ const useClipboard = (
 
   return {
     isSupported,
-    text: computed(() => text.value),
-    isCopied: computed(() => isCopied.value),
+    text: readonly(text),
+    isCopied: readonly(isCopied),
     copy,
   }
 }

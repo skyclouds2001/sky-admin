@@ -1,18 +1,17 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
+
+type WindowWithEyeDropper = typeof window & {
+  EyeDropper: EyeDropper
+}
 
 interface EyeDropper {
   // eslint-disable-next-line @typescript-eslint/no-misused-new
   new (): EyeDropper
   open: (options?: EyeDropperOpenOptions) => Promise<{ sRGBHex: string }>
-  [Symbol.toStringTag]: 'EyeDropper'
 }
 
 interface EyeDropperOpenOptions {
   signal: AbortSignal
-}
-
-type WindowWithEyeDropper = typeof window & {
-  EyeDropper: EyeDropper
 }
 
 const useEyeDropper = (
@@ -21,7 +20,7 @@ const useEyeDropper = (
   } = {}
 ): {
   isSupported: boolean
-  color: ComputedRef<string | null>
+  color: Readonly<Ref<string | null>>
   open: (options?: EyeDropperOpenOptions) => Promise<void>
 } => {
   const { initial = null } = options
@@ -39,7 +38,7 @@ const useEyeDropper = (
 
   return {
     isSupported,
-    color: computed(() => color.value),
+    color: readonly(color),
     open,
   }
 }

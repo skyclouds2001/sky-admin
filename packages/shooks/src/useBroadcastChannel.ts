@@ -1,13 +1,13 @@
-import { computed, type ComputedRef, type DeepReadonly, getCurrentScope, onScopeDispose, readonly, ref, type Ref, shallowRef, type UnwrapRef } from 'vue'
+import { type DeepReadonly, getCurrentScope, onScopeDispose, readonly, ref, type Ref, shallowRef, type ShallowRef, type UnwrapRef, shallowReadonly } from 'vue'
 import { useEventListener } from '.'
 
 const useBroadcastChannel = <D = unknown, P = D>(
   name: string
 ): {
   isSupported: boolean
-  isOpen: ComputedRef<boolean>
+  isOpen: Readonly<Ref<boolean>>
   data: Readonly<Ref<DeepReadonly<UnwrapRef<D>> | null>>
-  error: Readonly<Ref<DeepReadonly<UnwrapRef<MessageEvent>> | null>>
+  error: Readonly<ShallowRef<MessageEvent<D> | null>>
   post: (data: P) => void
   close: () => void
 } => {
@@ -19,7 +19,7 @@ const useBroadcastChannel = <D = unknown, P = D>(
 
   const data = ref<D | null>(null)
 
-  const error = shallowRef<MessageEvent | null>(null)
+  const error = shallowRef<MessageEvent<D> | null>(null)
 
   const post = (data: P): void => {
     broadcastChannel.postMessage(data)
@@ -48,9 +48,9 @@ const useBroadcastChannel = <D = unknown, P = D>(
 
   return {
     isSupported,
-    isOpen: computed(() => isOpen.value),
+    isOpen: readonly(isOpen),
     data: readonly(data),
-    error: readonly(error),
+    error: shallowReadonly(error),
     post,
     close,
   }

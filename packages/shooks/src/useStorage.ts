@@ -80,15 +80,15 @@ const parse = <T extends StorageDataType>(data: string): T => {
 
 const useStorage = <T extends number | string | boolean | object | null>(
   key: string,
-  storage: Storage = window.localStorage,
   options: {
+    storage?: Storage
     prefix?: boolean | string
     shallow?: boolean
     deep?: boolean
     watchChange?: boolean
   } = {}
 ): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
-  const { prefix = true, shallow = false, deep = true, watchChange = true } = options
+  const { storage = window.localStorage, prefix = true, shallow = false, deep = true, watchChange = true } = options
 
   const storageKey = `${typeof prefix === 'string' ? prefix : ''}-${key}`
 

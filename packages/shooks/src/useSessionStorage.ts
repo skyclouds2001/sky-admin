@@ -6,9 +6,11 @@ const useSessionStorage = <T extends number | string | boolean | object | null>(
   options: {
     prefix?: boolean | string
     shallow?: boolean
+    deep?: boolean
+    watchChange?: boolean
   } = {}
 ): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
-  return useStorage<T>(key, window.sessionStorage, options)
+  return useStorage<T>(key, { ...options, storage: window.sessionStorage })
 }
 
 export default useSessionStorage

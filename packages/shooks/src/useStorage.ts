@@ -90,7 +90,7 @@ const useStorage = <T extends number | string | boolean | object | null>(
 ): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
   const { storage = window.localStorage, prefix = true, shallow = false, deep = true, watchChange = true } = options
 
-  const storageKey = `${typeof prefix === 'string' ? prefix : ''}-${key}`
+  const storageKey = `${typeof prefix === 'string' ? prefix : 'shooks'}-${key}`
 
   const storeValue = storage.getItem(storageKey)
 

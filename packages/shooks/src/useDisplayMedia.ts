@@ -1,4 +1,4 @@
-import { readonly, ref, type Ref, shallowRef, type ShallowRef, watch } from 'vue'
+import { readonly, ref, type Ref, shallowReadonly, shallowRef, type ShallowRef, watch } from 'vue'
 
 const useDisplayMedia = (
   options: {
@@ -8,7 +8,7 @@ const useDisplayMedia = (
 ): {
   isSupported: boolean
   isEnabled: Readonly<Ref<boolean>>
-  stream: ShallowRef<MediaStream | null>
+  stream: Readonly<ShallowRef<MediaStream | null>>
   start: () => Promise<void>
   stop: () => Promise<void>
 } => {
@@ -61,7 +61,7 @@ const useDisplayMedia = (
   return {
     isSupported,
     isEnabled: readonly(isEnabled),
-    stream,
+    stream: shallowReadonly(stream),
     start,
     stop,
   }

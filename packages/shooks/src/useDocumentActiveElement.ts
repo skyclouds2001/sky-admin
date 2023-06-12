@@ -1,7 +1,7 @@
-import { computed, type ComputedRef, shallowRef } from 'vue'
+import { shallowReadonly, shallowRef, type ShallowRef } from 'vue'
 import { useEventListener } from '.'
 
-const useDocumentActiveElement = (): ComputedRef<Element | null> => {
+const useDocumentActiveElement = (): Readonly<ShallowRef<Element | null>> => {
   const activeElement = shallowRef(document.activeElement)
 
   useEventListener(window, 'blur', () => {
@@ -12,7 +12,7 @@ const useDocumentActiveElement = (): ComputedRef<Element | null> => {
     activeElement.value = document.activeElement
   })
 
-  return computed(() => activeElement.value)
+  return shallowReadonly(activeElement)
 }
 
 export default useDocumentActiveElement

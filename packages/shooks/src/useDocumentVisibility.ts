@@ -1,14 +1,14 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
-const useDocumentVisibility = (): ComputedRef<DocumentVisibilityState> => {
+const useDocumentVisibility = (): Readonly<Ref<DocumentVisibilityState>> => {
   const visibility = ref(document.visibilityState)
 
   useEventListener(document, 'visibilitychange', () => {
     visibility.value = document.visibilityState
   })
 
-  return computed(() => visibility.value)
+  return readonly(visibility)
 }
 
 export default useDocumentVisibility

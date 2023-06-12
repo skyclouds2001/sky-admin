@@ -1,9 +1,9 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useWindowScroll = (): {
-  x: ComputedRef<number>
-  y: ComputedRef<number>
+  x: Readonly<Ref<number>>
+  y: Readonly<Ref<number>>
 } => {
   const x = ref(0)
   const y = ref(0)
@@ -18,8 +18,8 @@ const useWindowScroll = (): {
   update()
 
   return {
-    x: computed(() => x.value),
-    y: computed(() => y.value),
+    x: readonly(x),
+    y: readonly(y),
   }
 }
 

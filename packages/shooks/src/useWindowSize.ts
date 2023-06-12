@@ -1,9 +1,9 @@
-import { computed, type ComputedRef, ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
 const useWindowSize = (): {
-  width: ComputedRef<number>
-  height: ComputedRef<number>
+  width: Readonly<Ref<number>>
+  height: Readonly<Ref<number>>
 } => {
   const width = ref(Infinity)
   const height = ref(Infinity)
@@ -18,8 +18,8 @@ const useWindowSize = (): {
   update()
 
   return {
-    width: computed(() => width.value),
-    height: computed(() => height.value),
+    width: readonly(width),
+    height: readonly(height),
   }
 }
 

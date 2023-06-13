@@ -2,6 +2,8 @@ export { default as tryOnBeforeUnmount } from './tryOnBeforeUnmount'
 
 export { default as tryOnMounted } from './tryOnMounted'
 
+export { default as tryOnScopeDispose } from './tryOnScopeDispose'
+
 export { default as useAnimationFrame } from './useAnimationFrame'
 
 export { default as useAppBadge } from './useAppBadge'

@@ -2,6 +2,8 @@ export { default as tryOnBeforeMount } from './tryOnBeforeMount'
 
 export { default as tryOnBeforeUnmount } from './tryOnBeforeUnmount'
 
+export { default as tryOnBeforeUpdate } from './tryOnBeforeUpdate'
+
 export { default as tryOnMounted } from './tryOnMounted'
 
 export { default as tryOnScopeDispose } from './tryOnScopeDispose'

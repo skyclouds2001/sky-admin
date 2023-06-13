@@ -13,7 +13,8 @@
     "noEmit": true,
     "lib": ["ESNext"],
     "composite": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "baseUrl": "."
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue", "**/*.json", "**/*.html", "**/*.md", "**/*.mdx"],
   "exclude": ["node_modules", "dist"]

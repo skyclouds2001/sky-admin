@@ -12,6 +12,10 @@ interface NetworkInformation extends EventTarget {
   saveData: boolean
   type: NetworkType
   downlinkMax: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  addEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  removeEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
 }
 
 /**
@@ -44,7 +48,9 @@ const useNetwork = (): {
    */
   const isSupported = 'connection' in navigator
 
-  /** 网络连接状态对象 */
+  /**
+   * 网络连接状态对象
+   */
   const connection = reactive<{
     downlink: number | null
     effectiveType: NetworkEffectiveType | null
@@ -65,7 +71,7 @@ const useNetwork = (): {
    * 更新网络连接状态
    * @param information 网络连接对象
    */
-  const updateConnectionStatus = (information: NetworkInformation): void => {
+  const updateNetworkInformation = (information: NetworkInformation): void => {
     connection.downlink = information.downlink
     connection.downlinkMax = information.downlinkMax
     connection.type = information.type
@@ -75,12 +81,12 @@ const useNetwork = (): {
   }
 
   if (isSupported) {
-    const connection = (window.navigator as NavigatorWithConnection).connection
+    const connection = (navigator as NavigatorWithConnection).connection
 
-    updateConnectionStatus(connection)
+    updateNetworkInformation(connection)
 
-    useEventListener<NetworkInformation, NetworkInformationEventMap, 'change'>(connection, 'change', (e) => {
-      updateConnectionStatus(e.target as NetworkInformation)
+    useEventListener<NetworkInformation, NetworkInformationEventMap, 'change'>(connection, 'change', () => {
+      updateNetworkInformation(connection)
     })
   }
 

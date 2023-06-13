@@ -1,4 +1,5 @@
-import { onBeforeUnmount, onMounted, readonly, ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
+import { tryOnMounted, tryOnBeforeUnmount } from '.'
 
 const useGeolocation = (
   options: {
@@ -32,9 +33,9 @@ const useGeolocation = (
 
   let watcher: number | null = null
 
-  onMounted(() => {
-    if (isSupported) {
-      watcher = window.navigator.geolocation.watchPosition(
+  if (isSupported) {
+    tryOnMounted(() => {
+      watcher = navigator.geolocation.watchPosition(
         (geo) => {
           location.value = geo.coords
           error.value = null
@@ -49,14 +50,14 @@ const useGeolocation = (
           timeout,
         }
       )
-    }
-  })
+    })
 
-  onBeforeUnmount(() => {
-    if (isSupported && watcher !== null) {
-      window.navigator.geolocation.clearWatch(watcher)
-    }
-  })
+    tryOnBeforeUnmount(() => {
+      if (watcher !== null) {
+        navigator.geolocation.clearWatch(watcher)
+      }
+    })
+  }
 
   return {
     isSupported,

@@ -17,7 +17,7 @@ const CopyFile = (
   let config: ResolvedConfig
 
   return {
-    name: 'copy-file',
+    name: 'vite-plugin-copy-file',
     apply: 'build',
     configResolved: (cf) => {
       config = cf

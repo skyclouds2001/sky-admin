@@ -8,6 +8,8 @@ export { default as tryOnScopeDispose } from './tryOnScopeDispose'
 
 export { default as tryOnUnmounted } from './tryOnUnmounted'
 
+export { default as tryOnUpdated } from './tryOnUpdated'
+
 export { default as useAnimationFrame } from './useAnimationFrame'
 
 export { default as useAppBadge } from './useAppBadge'

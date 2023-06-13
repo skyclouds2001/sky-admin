@@ -412,6 +412,9 @@ importers:
       vite-plugin-eslint:
         specifier: ^1.8.1
         version: 1.8.1(eslint@8.41.0)(vite@4.3.9)
+      vite-plugin-generate-env:
+        specifier: workspace:*
+        version: link:../packages/vite-plugin-generate-env
       vite-plugin-html:
         specifier: ^3.2.0
         version: 3.2.0(vite@4.3.9)
@@ -451,6 +454,16 @@ importers:
         version: 5.1.3
 
   packages/vite-plugin-copy-file:
+    dependencies:
+      vite:
+        specifier: ^4.3.9
+        version: 4.3.9(@types/node@20.2.5)(less@4.1.3)(sass@1.62.1)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.17.7)
+    devDependencies:
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.3
+
+  packages/vite-plugin-generate-env:
     dependencies:
       vite:
         specifier: ^4.3.9

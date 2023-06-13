@@ -1,12 +1,11 @@
 import type { Plugin } from 'vite'
-import dayjs from 'dayjs'
 
 const GenerateEnv = (): Plugin => {
   return {
-    name: 'generate-env',
+    name: 'vite-plugin-generate-env',
     config: () => ({
       define: {
-        __BUILD_TIME__: `'${dayjs().format('YYYY-MM-DD HH:mm:ss')}'`,
+        __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
       },
     }),
     enforce: 'pre',

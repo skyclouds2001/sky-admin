@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
+import GenerateEnv from 'vite-plugin-generate-env'
 import svgLoader from 'vite-svg-loader'
 // @ts-expect-error typescript can not recognize its definition file
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -11,14 +12,12 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
+import CopyFile from 'vite-plugin-copy-file'
 import mkcert from 'vite-plugin-mkcert'
 import eslint from 'vite-plugin-eslint'
 import stylelint from 'vite-plugin-stylelint'
 import visualizer from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
-
-import CopyFile from './plugin/copy-file'
-import GenerateEnv from './plugin/generate-env'
 
 export default defineConfig({
   plugins: [

@@ -1,3 +1,5 @@
+export { default as tryOnMounted } from './tryOnMounted'
+
 export { default as useAnimationFrame } from './useAnimationFrame'
 
 export { default as useAppBadge } from './useAppBadge'

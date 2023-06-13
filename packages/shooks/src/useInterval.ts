@@ -1,4 +1,5 @@
-import { getCurrentScope, onScopeDispose, readonly, ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useInterval = (
   fn: () => void,
@@ -41,9 +42,7 @@ const useInterval = (
     resume()
   }
 
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(pause)
-  }
+  tryOnScopeDispose(pause)
 
   return {
     isActive: readonly(isActive),

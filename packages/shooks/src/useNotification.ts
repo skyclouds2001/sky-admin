@@ -1,5 +1,5 @@
-import { getCurrentScope, onScopeDispose, type Ref, shallowRef, type ShallowRef, unref } from 'vue'
-import { useEventListener } from '.'
+import { type Ref, shallowRef, type ShallowRef, unref } from 'vue'
+import { tryOnScopeDispose, useEventListener } from '.'
 
 const useNotification = (
   title: string | Ref<string>,
@@ -46,11 +46,7 @@ const useNotification = (
       }
     })
 
-    if (getCurrentScope() !== undefined) {
-      onScopeDispose(() => {
-        void close()
-      })
-    }
+    tryOnScopeDispose(close)
   }
 
   return {

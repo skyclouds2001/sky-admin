@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 type UseEventListenerOptions = AddEventListenerOptions | EventListenerOptions | boolean
 
@@ -22,11 +22,9 @@ function useEventListener<T extends EventTarget, M extends Record<string, any>, 
  */
 function useEventListener(target: EventTarget, event: string, listener: (this: EventTarget, e: Event) => void, options?: UseEventListenerOptions): void {
   target.addEventListener(event, listener, options)
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(() => {
-      target.removeEventListener(event, listener, options)
-    })
-  }
+  tryOnScopeDispose(() => {
+    target.removeEventListener(event, listener, options)
+  })
 }
 
 export default useEventListener

@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useResizeObserver = (
   target: Element | Element[],
@@ -32,14 +32,12 @@ const useResizeObserver = (
       observer?.observe(target)
     }
 
-    if (getCurrentScope() !== undefined) {
-      onScopeDispose(() => {
-        if (observer !== null) {
-          observer.disconnect()
-          observer = null
-        }
-      })
-    }
+    tryOnScopeDispose(() => {
+      if (observer !== null) {
+        observer.disconnect()
+        observer = null
+      }
+    })
   }
 
   return {

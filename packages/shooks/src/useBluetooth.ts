@@ -1,5 +1,5 @@
-import { computed, type ComputedRef, getCurrentInstance, onMounted, onUnmounted, ref, shallowRef, type ShallowRef } from 'vue'
-import { useEventListener } from '.'
+import { computed, type ComputedRef, ref, shallowRef, type ShallowRef } from 'vue'
+import { tryOnMounted, tryOnUnmounted, useEventListener } from '.'
 
 interface NavigatorWithBluetooth extends Navigator {
   bluetooth: Bluetooth
@@ -125,15 +125,14 @@ const useBluetooth = (): {
     void updateBluetoothAvailability()
   })
 
-  if (getCurrentInstance() !== null) {
-    onMounted(async () => {
-      await updateBluetoothAvailability()
-      await device.value?.gatt?.connect()
-    })
-    onUnmounted(() => {
-      device.value?.gatt?.disconnect()
-    })
-  }
+  tryOnMounted(async () => {
+    await updateBluetoothAvailability()
+    await device.value?.gatt?.connect()
+  })
+
+  tryOnUnmounted(() => {
+    device.value?.gatt?.disconnect()
+  })
 
   return {
     isSupported,

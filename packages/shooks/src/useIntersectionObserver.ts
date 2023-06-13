@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useIntersectionObserver = (
   target: Element | Element[],
@@ -38,11 +38,7 @@ const useIntersectionObserver = (
       observer?.observe(target)
     }
 
-    if (getCurrentScope() !== undefined) {
-      onScopeDispose(() => {
-        stop()
-      })
-    }
+    tryOnScopeDispose(stop)
   }
 
   return {

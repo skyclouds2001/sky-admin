@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useMutationObserver = (
   target: Node,
@@ -24,11 +24,7 @@ const useMutationObserver = (
 
     observer.observe(target, options)
 
-    if (getCurrentScope() !== undefined) {
-      onScopeDispose(() => {
-        stop()
-      })
-    }
+    tryOnScopeDispose(stop)
   }
 
   return {

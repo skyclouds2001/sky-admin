@@ -1,4 +1,5 @@
-import { getCurrentScope, onScopeDispose, readonly, ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useAnimationFrame = (
   fn: (time: DOMHighResTimeStamp) => void,
@@ -40,9 +41,7 @@ const useAnimationFrame = (
     resume()
   }
 
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(pause)
-  }
+  tryOnScopeDispose(pause)
 
   return {
     isActive: readonly(isActive),

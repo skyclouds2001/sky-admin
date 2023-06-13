@@ -1,5 +1,5 @@
-import { type DeepReadonly, getCurrentScope, onScopeDispose, readonly, ref, type Ref, shallowRef, type ShallowRef, type UnwrapRef, shallowReadonly } from 'vue'
-import { useEventListener } from '.'
+import { type DeepReadonly, readonly, ref, type Ref, shallowRef, type ShallowRef, type UnwrapRef, shallowReadonly } from 'vue'
+import { tryOnScopeDispose, useEventListener } from '.'
 
 const useBroadcastChannel = <D = unknown, P = D>(
   name: string
@@ -40,11 +40,7 @@ const useBroadcastChannel = <D = unknown, P = D>(
     data.value = null
   })
 
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(() => {
-      close()
-    })
-  }
+  tryOnScopeDispose(close)
 
   return {
     isSupported,

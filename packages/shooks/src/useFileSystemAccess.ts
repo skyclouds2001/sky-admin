@@ -1,4 +1,4 @@
-import { computed, type ComputedRef, ref, type Ref, unref, watch } from 'vue'
+import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 
 type WindowWithFileSystemAccess = typeof window & {
   showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
@@ -53,7 +53,7 @@ type WriteCommandType = 'seek' | 'truncate' | 'write'
 type DataType = 'Text' | 'ArrayBuffer' | 'Blob'
 
 const useFileSystemAccess = (
-  options: { dataType?: DataType | Ref<DataType> } = {}
+  options: { dataType?: DataType } = {}
 ): {
   isSupported: boolean
   data: Ref<string | ArrayBuffer | Blob | undefined>
@@ -86,7 +86,7 @@ const useFileSystemAccess = (
   }
 
   const updateData = async (): Promise<void> => {
-    switch (unref(dataType)) {
+    switch (dataType) {
       case 'Text':
         data.value = await file.value?.text()
         break

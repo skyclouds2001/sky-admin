@@ -1,8 +1,8 @@
-import { type Ref, shallowRef, type ShallowRef, unref } from 'vue'
+import { shallowRef, type ShallowRef } from 'vue'
 import { tryOnScopeDispose, useEventListener } from '.'
 
 const useNotification = (
-  title: string | Ref<string>,
+  title: string,
   options: NotificationOptions = {}
 ): {
   isSupported: boolean
@@ -27,7 +27,7 @@ const useNotification = (
 
     await requestPermission()
 
-    notification.value = new window.Notification(unref(overrides.title ?? title), Object.assign({}, options, overrides))
+    notification.value = new window.Notification(overrides.title ?? title, Object.assign({}, options, overrides))
   }
 
   const close = async (): Promise<void> => {

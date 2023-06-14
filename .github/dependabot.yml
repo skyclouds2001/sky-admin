@@ -1,28 +1,28 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     allow:
-      - dependency-type: "all"
+      - dependency-type: 'all'
     ignore:
-      - dependency-name: "pnpm"
+      - dependency-name: 'pnpm'
     labels:
-      - "dependencies"
+      - 'dependencies'
     open-pull-requests-limit: 10
     pull-request-branch-name:
-      separator: "-"
-    target-branch: "dev"
-  - package-ecosystem: "github-actions"
-    directory: "/"
+      separator: '-'
+    target-branch: 'dev'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     allow:
-      - dependency-type: "all"
+      - dependency-type: 'all'
     labels:
-      - "dependencies"
+      - 'dependencies'
     open-pull-requests-limit: 10
     pull-request-branch-name:
-      separator: "-"
-    target-branch: "dev"
+      separator: '-'
+    target-branch: 'dev'

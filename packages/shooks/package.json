@@ -10,7 +10,24 @@
     "system",
     "skyclouds2001"
   ],
-  "main": "src/index.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.iife.js",
+  "jsdelivr": "./dist/index.iife.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./*": "./*"
+  },
   "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {
     "type": "git",

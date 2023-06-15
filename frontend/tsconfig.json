@@ -1,0 +1,12 @@
+{
+  "extends": "./../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "WebWorker", "ScriptHost"],
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
+    }
+  }
+}

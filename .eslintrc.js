@@ -25,12 +25,8 @@ module.exports = {
   globals: {},
   rules: {
     'n/no-missing-import': 'off',
-    'import/no-unresolved': [
-      'error',
-      {
-        ignore: ['package.json'],
-      },
-    ],
+    'import/no-unresolved': 'off',
+    'n/no-extraneous-import': 'off',
     '@typescript-eslint/promise-function-async': 'off',
     'promise/always-return': 'off',
   },
@@ -48,8 +44,12 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/tests/**/*.[jt]s?(x)'],
-      extends: ['plugin:testing-library/vue', 'plugin:playwright/playwright-test', 'plugin:vitest/recommended'],
+      files: ['**/tests/unit/*.[jt]s?(x)', '**/tests/components/*.[jt]s?(x)'],
+      extends: ['plugin:testing-library/vue', 'plugin:vitest/recommended'],
+    },
+    {
+      files: ['**/tests/e2e/*.[jt]s?(x)'],
+      extends: ['plugin:playwright/playwright-test'],
     },
     {
       files: ['*.ts', '*.tsx', '*.vue'],

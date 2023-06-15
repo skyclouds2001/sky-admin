@@ -9,15 +9,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM", "WebWorker", "ScriptHost"],
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["vite/client"],
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./src/*"]
-    }
+    "lib": ["ESNext"],
+    "composite": true,
+    "rootDir": ".",
+    "baseUrl": "."
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue", "**/*.json", "**/*.html", "**/*.md", "**/*.mdx"],
   "exclude": ["node_modules", "dist"]

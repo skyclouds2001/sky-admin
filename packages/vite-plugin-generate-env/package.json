@@ -47,10 +47,10 @@
   ],
   "packageManager": "pnpm@8.4.0",
   "engines": {
-    "node": "=18.13.0",
-    "npm": "=9.6.4",
-    "yarn": "=1.22.19",
-    "pnpm": "=8.4.0"
+    "node": ">=18.13.0",
+    "npm": ">=9.6.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=8.4.0"
   },
   "scripts": {
     "build": "vite build"

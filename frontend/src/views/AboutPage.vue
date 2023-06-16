@@ -66,11 +66,11 @@ const i18n = useI18n()
         <div class="title">{{ i18n.t('about.dependencies') }}</div>
       </template>
       <el-descriptions border>
-        <el-descriptions-item v-for="item in Object.entries(packageConfig.dependencies)" :key="item[0]">
+        <el-descriptions-item v-for="[name, version] in Object.entries(packageConfig.dependencies)" :key="name">
           <template #label>
-            <span class="font-bold">{{ item[0] }}</span>
+            <span class="font-bold">{{ name }}</span>
           </template>
-          <el-link type="primary" :href="generateNpmLink(item[0])" target="_blank" :underline="false">{{ item[1] }}</el-link>
+          <el-link type="primary" :href="generateNpmLink(name)" target="_blank" :underline="false">{{ version }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
@@ -80,11 +80,11 @@ const i18n = useI18n()
         <div class="title">{{ i18n.t('about.devDependencies') }}</div>
       </template>
       <el-descriptions border>
-        <el-descriptions-item v-for="item in Object.entries(packageConfig.devDependencies)" :key="item[0]">
+        <el-descriptions-item v-for="[name, version] in Object.entries(packageConfig.devDependencies)" :key="name">
           <template #label>
-            <span class="font-bold">{{ item[0] }}</span>
+            <span class="font-bold">{{ name }}</span>
           </template>
-          <el-link type="primary" :href="generateNpmLink(item[0])" target="_blank" :underline="false">{{ item[1] }}</el-link>
+          <el-link type="primary" :href="generateNpmLink(name)" target="_blank" :underline="false">{{ version }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

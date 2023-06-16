@@ -10,7 +10,6 @@
     "system",
     "skyclouds2001"
   ],
-  "type": "module",
   "files": [
     "dist",
     "lib"

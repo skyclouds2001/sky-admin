@@ -96,6 +96,8 @@ export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
 
+export { default as useTitle } from './useTitle'
+
 export { default as useUserMedia } from './useUserMedia'
 
 export { default as useVibrate } from './useVibrate'

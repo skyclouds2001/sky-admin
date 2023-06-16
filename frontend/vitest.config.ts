@@ -53,7 +53,7 @@ export default defineConfig({
     include: ['tests/{unit,components}/**/*.{test,spec}.{js,jsx,ts,tsx}'],
     reporters: ['default', 'html'],
     coverage: {
-      provider: 'c8',
+      provider: 'v8',
       enabled: true,
     },
     deps: {

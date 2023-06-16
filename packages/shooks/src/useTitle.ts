@@ -1,17 +1,19 @@
 import { ref, type Ref, watch } from 'vue'
 import { useMutationObserver } from '.'
 
-const useTitle = (initial?: string): Ref<string> => {
-  const title = ref(initial ?? '')
+const useTitle = (initial?: string): Ref<string | null> => {
+  const title = ref<string | null>(initial ?? '')
 
   watch(
     title,
     (current, previous) => {
-      if (current !== previous) {
+      if (current !== previous && typeof current === 'string') {
         document.title = current
       }
     },
-    { immediate: true }
+    {
+      immediate: true,
+    }
   )
 
   useMutationObserver(
@@ -21,7 +23,9 @@ const useTitle = (initial?: string): Ref<string> => {
         title.value = document.title
       }
     },
-    { childList: true }
+    {
+      childList: true,
+    }
   )
 
   return title

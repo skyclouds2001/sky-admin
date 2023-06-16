@@ -40,6 +40,8 @@ export { default as useEventListener } from './useEventListener'
 
 export { default as useEyeDropper } from './useEyeDropper'
 
+export { default as useFavicon } from './useFavicon'
+
 export { default as useFileDialog } from './useFileDialog'
 
 export { default as useFileSystemAccess } from './useFileSystemAccess'

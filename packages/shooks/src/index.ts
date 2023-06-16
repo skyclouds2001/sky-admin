@@ -58,6 +58,8 @@ export { default as useInterval } from './useInterval'
 
 export { default as useLocalStorage } from './useLocalStorage'
 
+export { default as useLocation } from './useLocation'
+
 export { default as useMediaQuery } from './useMediaQuery'
 
 export { default as useMediaRecorder } from './useMediaRecorder'

@@ -56,3 +56,7 @@ const usePointerLock = (
 }
 
 export default usePointerLock
+
+interface PointerLockOptions {
+  unadjustedMovement: boolean
+}

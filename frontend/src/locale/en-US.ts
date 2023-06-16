@@ -25,6 +25,15 @@ export default {
       pdf: 'PDF Preview Feature Support',
       timestamp: 'Current Timestamp',
     },
+    website: {
+      title: 'Website Info',
+      href: 'URL',
+      protocol: 'Protocol',
+      hostname: 'Hostname',
+      port: 'Port',
+      pathname: 'Pathname',
+      hash: 'Hash',
+    },
     document: {
       title: 'Document Info',
       activeElement: 'Active Element',

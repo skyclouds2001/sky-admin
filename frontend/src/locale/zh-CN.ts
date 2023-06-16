@@ -25,6 +25,15 @@ export default {
       pdf: 'PDF 预览功能支持情况',
       timestamp: '当前时间戳',
     },
+    website: {
+      title: '网站信息',
+      href: 'URL',
+      protocol: '协议',
+      hostname: '域名',
+      port: '端口',
+      pathname: '路径',
+      hash: '哈希值',
+    },
     document: {
       title: '文档信息',
       activeElement: '聚焦元素',

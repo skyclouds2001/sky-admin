@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
 import { generateBrowserInfo } from '@/util'
 
 const i18n = useI18n()
@@ -18,6 +18,8 @@ const activeElement = useDocumentActiveElement()
 const readyState = useDocumentReadyState()
 
 const visibility = useDocumentVisibility()
+
+const location = useLocation()
 
 const { connection, isSupported: isSupportedConnection } = useNetwork()
 
@@ -133,6 +135,50 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.website.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.href') }}</span>
+          </template>
+          <el-tag>{{ location.href }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.protocol') }}</span>
+          </template>
+          <el-tag>{{ location.protocol.replaceAll(':', '') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.hostname') }}</span>
+          </template>
+          <el-tag>{{ location.hostname }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.port') }}</span>
+          </template>
+          <el-tag>{{ location.port }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.pathname') }}</span>
+          </template>
+          <el-tag>{{ location.pathname }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.hash') }}</span>
+          </template>
+          <el-tag>{{ `#${location.hash}` }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

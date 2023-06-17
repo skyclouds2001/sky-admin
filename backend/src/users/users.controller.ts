@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put } from '@nestjs/common'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { UsersService } from './users.service'
 import { type CreateUserDto } from './dto/create-user.dto'
@@ -29,7 +29,7 @@ export class UsersController {
     return new UserEntity(await this.usersService.findOne(id))
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: UserEntity })
   async update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
     return new UserEntity(await this.usersService.update(id, updateUserDto))

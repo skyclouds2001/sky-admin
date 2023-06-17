@@ -13,31 +13,31 @@ export class UsersController {
 
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
-  create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-    return this.usersService.create(createUserDto)
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.create(createUserDto))
   }
 
   @Get()
   @ApiOkResponse({ type: UserEntity, isArray: true })
-  findAll(): Promise<UserEntity[]> {
-    return this.usersService.findAll()
+  async findAll(): Promise<UserEntity[]> {
+    return (await this.usersService.findAll()).map((user) => new UserEntity(user))
   }
 
   @Get(':id')
   @ApiOkResponse({ type: UserEntity })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
-    return this.usersService.findOne(id)
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.findOne(id))
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: UserEntity })
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
-    return this.usersService.update(id, updateUserDto)
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.update(id, updateUserDto))
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: UserEntity })
-  remove(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
-    return this.usersService.remove(id)
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.remove(id))
   }
 }

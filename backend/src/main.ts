@@ -1,5 +1,5 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core'
-import { ValidationPipe } from '@nestjs/common'
+import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core'
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
 import { AppModule } from './app.module'
@@ -15,6 +15,8 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
   app.useGlobalFilters(new PrismaClientExceptionFilter(app.get(HttpAdapterHost).httpAdapter))
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
 
   await app.get(PrismaService).enableShutdownHooks(app)
 

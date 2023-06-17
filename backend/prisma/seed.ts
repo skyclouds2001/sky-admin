@@ -2,7 +2,9 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/**
+ * 数据库 seed 方法
+ */
 async function main(): Promise<void> {
   const post1 = await prisma.article.upsert({
     where: {

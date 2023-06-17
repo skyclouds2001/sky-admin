@@ -12,7 +12,7 @@ export class AuthController {
 
   @Post('login')
   @ApiOkResponse({ type: AuthEntity })
-  login(@Body() { email, password }: LoginDto): Promise<AuthEntity> {
-    return this.authService.login(email, password)
+  login(@Body() loginDto: LoginDto): Promise<AuthEntity> {
+    return this.authService.login(loginDto.email, loginDto.password)
   }
 }

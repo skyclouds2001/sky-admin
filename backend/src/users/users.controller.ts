@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put, UseGuards } from '@nestjs/common'
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { UsersService } from './users.service'
 import { type CreateUserDto } from './dto/create-user.dto'
@@ -20,6 +20,7 @@ export class UsersController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity, isArray: true })
   async findAll(): Promise<UserEntity[]> {
     return (await this.usersService.findAll()).map((user) => new UserEntity(user))
@@ -27,6 +28,7 @@ export class UsersController {
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
     return new UserEntity(await this.usersService.findOne(id))
@@ -34,6 +36,7 @@ export class UsersController {
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
   async update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
     return new UserEntity(await this.usersService.update(id, updateUserDto))
@@ -41,6 +44,7 @@ export class UsersController {
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
   async remove(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
     return new UserEntity(await this.usersService.remove(id))

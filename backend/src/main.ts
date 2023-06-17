@@ -10,7 +10,7 @@ import { AppModule } from './app.module'
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule)
 
-  SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, new DocumentBuilder().setTitle('Sky Admin').setDescription('Api route document for Sky Admin').setVersion('0.0.0').build()))
+  SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, new DocumentBuilder().setTitle('Sky Admin').setDescription('Api route document for Sky Admin').setVersion('0.0.0').addBearerAuth().build()))
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 

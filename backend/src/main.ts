@@ -1,8 +1,8 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { PrismaClientExceptionFilter } from 'nestjs-prisma'
 import { AppModule } from './app.module'
-import { PrismaClientExceptionFilter } from './prisma-client-exception/prisma-client-exception.filter'
 
 /**
  * 初始化方法

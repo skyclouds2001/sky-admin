@@ -39,11 +39,6 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint && pnpm lint:markdownlint && pnpm lint:type",
-    "lint:eslint": "eslint --fix --cache --cache-location \"./node_modules/.eslint/.eslintcache\" .",
-    "lint:prettier": "prettier --write --cache --cache-location \"./node_modules/.prettier/.prettiercache\" .",
-    "lint:stylelint": "stylelint --fix --cache --cache-location \"./node_modules/.stylelint/.stylelintcache\"",
-    "lint:markdownlint": "markdownlint --fix **/*.md",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "cross-env NODE_ENV=test vitest",
     "test:e2e": "cross-env NODE_ENV=test playwright test"

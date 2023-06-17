@@ -38,7 +38,12 @@
     "dev": "cross-env NODE_ENV=development pnpm --stream -r dev",
     "build": "cross-env NODE_ENV=production pnpm --stream -r build",
     "preview": "pnpm --stream -r preview",
-    "lint": "pnpm --stream -r lint",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint && pnpm lint:markdownlint && pnpm lint:type",
+    "lint:eslint": "eslint --fix --cache --cache-location \"./node_modules/.eslint/.eslintcache\" .",
+    "lint:prettier": "prettier --write --cache --cache-location \"./node_modules/.prettier/.prettiercache\" .",
+    "lint:stylelint": "stylelint --fix --cache --cache-location \"./node_modules/.stylelint/.stylelintcache\"",
+    "lint:markdownlint": "markdownlint --fix **/*.md",
+    "lint:type": "vue-tsc --noEmit",
     "test": "cross-env NODE_ENV=test pnpm --stream -r test",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -99,6 +104,7 @@
     "stylelint-config-standard-scss": "^9.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-stylus": "^0.18.0",
-    "vitepress": "1.0.0-beta.2"
+    "vitepress": "1.0.0-beta.2",
+    "vue-tsc": "^1.6.5"
   }
 }

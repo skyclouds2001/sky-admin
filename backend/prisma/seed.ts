@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client'
+import * as bcyptjs from 'bcryptjs'
 
 const prisma = new PrismaClient()
+
+const roundsOfHashing = 10
 
 /**
  * 数据库 seed 方法
@@ -10,11 +13,13 @@ async function main(): Promise<void> {
     where: {
       email: 'ag@ag.com',
     },
-    update: {},
+    update: {
+      password: bcyptjs.hashSync('password-ag', roundsOfHashing),
+    },
     create: {
       email: 'ag@ag.com',
       name: 'ag',
-      password: 'password-ag',
+      password: bcyptjs.hashSync('password-ag', roundsOfHashing),
     },
   })
 
@@ -22,11 +27,13 @@ async function main(): Promise<void> {
     where: {
       email: 'estar@estar.com',
     },
-    update: {},
+    update: {
+      password: bcyptjs.hashSync('password-estar', roundsOfHashing),
+    },
     create: {
       email: 'estar@estar.com',
       name: 'estar',
-      password: 'password-estar',
+      password: bcyptjs.hashSync('password-estar', roundsOfHashing),
     },
   })
 
@@ -34,11 +41,13 @@ async function main(): Promise<void> {
     where: {
       email: 'wb@wb.com',
     },
-    update: {},
+    update: {
+      password: bcyptjs.hashSync('password-wb', roundsOfHashing),
+    },
     create: {
       email: 'wb@wb.com',
       name: 'wb',
-      password: 'password-wb',
+      password: bcyptjs.hashSync('password-wb', roundsOfHashing),
     },
   })
 
@@ -46,11 +55,13 @@ async function main(): Promise<void> {
     where: {
       email: 'edgm@edgm.com',
     },
-    update: {},
+    update: {
+      password: bcyptjs.hashSync('password-edgm', roundsOfHashing),
+    },
     create: {
       email: 'edgm@edgm.com',
       name: 'edgm',
-      password: 'password-edgm',
+      password: bcyptjs.hashSync('password-edgm', roundsOfHashing),
     },
   })
 
@@ -58,11 +69,13 @@ async function main(): Promise<void> {
     where: {
       email: 'we@we.com',
     },
-    update: {},
+    update: {
+      password: bcyptjs.hashSync('password-we', roundsOfHashing),
+    },
     create: {
       email: 'we@we.com',
       name: 'we',
-      password: 'password-we',
+      password: bcyptjs.hashSync('password-we', roundsOfHashing),
     },
   })
 

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, NotFoundException } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common'
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { ArticlesService } from './articles.service'
@@ -13,31 +13,31 @@ export class ArticlesController {
 
   @Post()
   @ApiCreatedResponse({ type: ArticleEntity })
-  create(@Body() createArticleDto: CreateArticleDto): Promise<ArticleEntity> {
-    return this.articlesService.create(createArticleDto)
+  async create(@Body() createArticleDto: CreateArticleDto): Promise<ArticleEntity> {
+    return new ArticleEntity(await this.articlesService.create(createArticleDto))
   }
 
   @Get()
   @ApiOkResponse({ type: ArticleEntity, isArray: true })
-  findAll(): Promise<ArticleEntity[]> {
-    return this.articlesService.findAll()
+  async findAll(): Promise<ArticleEntity[]> {
+    return (await this.articlesService.findAll()).map((article) => new ArticleEntity(article))
   }
 
   @Get(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
-    return this.articlesService.findOne(id)
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+    return new ArticleEntity(await this.articlesService.findOne(id))
   }
 
   @Put(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto): Promise<ArticleEntity> {
-    return this.articlesService.update(id, updateArticleDto)
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto): Promise<ArticleEntity> {
+    return new ArticleEntity(await this.articlesService.update(id, updateArticleDto))
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  remove(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
-    return this.articlesService.remove(id)
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+    return new ArticleEntity(await this.articlesService.remove(id))
   }
 }

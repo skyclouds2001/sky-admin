@@ -16,15 +16,11 @@ export class CreateArticleDto {
   @ApiProperty({ required: false })
   description?: string
 
-  @IsString()
+  @IsInt()
   @IsNotEmpty()
+  @IsPositive()
   @ApiProperty()
-  author: string
-
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  reviewer: string
+  authorId: number
 
   @IsInt()
   @IsNotEmpty()

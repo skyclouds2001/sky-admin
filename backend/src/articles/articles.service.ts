@@ -24,6 +24,9 @@ export class ArticlesService {
       where: {
         id,
       },
+      include: {
+        author: true,
+      },
     })
   }
 

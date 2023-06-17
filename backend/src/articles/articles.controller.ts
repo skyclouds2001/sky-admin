@@ -5,6 +5,7 @@ import { ArticlesService } from './articles.service'
 import { type CreateArticleDto } from './dto/create-article.dto'
 import { type UpdateArticleDto } from './dto/update-article.dto'
 import { ArticleEntity } from './entities/article.entity'
+import { ParseIntPipe } from '@nestjs/common/pipes'
 
 @Controller('articles')
 @ApiTags('articles')
@@ -25,19 +26,19 @@ export class ArticlesController {
 
   @Get(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  findOne(@Param('id') id: string): Promise<ArticleEntity> {
-    return this.articlesService.findOne(+id)
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+    return this.articlesService.findOne(id)
   }
 
   @Put(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto): Promise<ArticleEntity> {
-    return this.articlesService.update(+id, updateArticleDto)
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto): Promise<ArticleEntity> {
+    return this.articlesService.update(id, updateArticleDto)
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  remove(@Param('id') id: string): Promise<ArticleEntity> {
-    return this.articlesService.remove(+id)
+  remove(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+    return this.articlesService.remove(id)
   }
 }

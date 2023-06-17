@@ -5,7 +5,7 @@ import { PrismaModule } from 'nestjs-prisma'
 import { UsersModule } from 'src/users/users.module'
 import { AuthService } from './auth.service'
 import { AuthController } from './auth.controller'
-import { JwtStrategy } from './strategy/jwt.strategy'
+import { JwtStrategy } from './jwt.strategy'
 
 export const jwtSecret = 'zjP9h6ZI5LoSKCRj'
 

@@ -11,11 +11,8 @@ export class ArticleEntity implements Article {
   @ApiProperty({ required: false, nullable: true })
   description: string | null
 
-  @ApiProperty()
-  author: string
-
-  @ApiProperty()
-  reviewer: string
+  @ApiProperty({ required: false, nullable: true })
+  authorId: number | null
 
   @ApiProperty()
   star: number

@@ -1,11 +1,11 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { PrismaClientExceptionFilter } from 'nestjs-prisma'
+import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
 import { AppModule } from './app.module'
 
 /**
- * 初始化方法
+ * main initial method
  */
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule)
@@ -15,6 +15,8 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
   app.useGlobalFilters(new PrismaClientExceptionFilter(app.get(HttpAdapterHost).httpAdapter))
+
+  await app.get(PrismaService).enableShutdownHooks(app)
 
   await app.listen(3000)
 }

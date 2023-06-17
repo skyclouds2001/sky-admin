@@ -1,9 +1,8 @@
 import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { UsersService } from './users.service'
-import { type CreateUserDto } from './dto/create-user.dto'
-import { type UpdateUserDto } from './dto/update-user.dto'
+import { CreateUserDto } from './dto/create-user.dto'
+import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 
@@ -15,6 +14,7 @@ export class UsersController {
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
   async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+    console.dir(createUserDto, { depth: Infinity })
     return new UserEntity(await this.usersService.create(createUserDto))
   }
 

@@ -1,9 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { UsersService } from 'src/users/users.service'
-import { type UserEntity } from 'src/users/entities/user.entity'
+import { UserEntity } from 'src/users/entities/user.entity'
 import { jwtSecret } from './auth.module'
 
 @Injectable()

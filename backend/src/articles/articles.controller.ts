@@ -1,9 +1,8 @@
 import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common'
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { ArticlesService } from './articles.service'
-import { type CreateArticleDto } from './dto/create-article.dto'
-import { type UpdateArticleDto } from './dto/update-article.dto'
+import { CreateArticleDto } from './dto/create-article.dto'
+import { UpdateArticleDto } from './dto/update-article.dto'
 import { ArticleEntity } from './entities/article.entity'
 
 @Controller('articles')

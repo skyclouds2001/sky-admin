@@ -1,9 +1,7 @@
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { JwtService } from '@nestjs/jwt'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { PrismaService } from 'nestjs-prisma'
-import { type AuthEntity } from './entity/auth.entity'
+import { AuthEntity } from './entity/auth.entity'
 
 @Injectable()
 export class AuthService {

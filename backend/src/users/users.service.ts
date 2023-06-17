@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { PrismaService } from 'nestjs-prisma'
-import { type CreateUserDto } from './dto/create-user.dto'
-import { type UpdateUserDto } from './dto/update-user.dto'
-import { type UserEntity } from './entities/user.entity'
+import { CreateUserDto } from './dto/create-user.dto'
+import { UpdateUserDto } from './dto/update-user.dto'
+import { UserEntity } from './entities/user.entity'
 
 @Injectable()
 export class UsersService {

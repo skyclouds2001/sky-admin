@@ -1,8 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { AuthService } from './auth.service'
-import { type LoginDto } from './dto/login.dto'
+import { LoginDto } from './dto/login.dto'
 import { AuthEntity } from './entity/auth.entity'
 
 @Controller('auth')

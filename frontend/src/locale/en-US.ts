@@ -25,6 +25,15 @@ export default {
       pdf: 'PDF Preview Feature Support',
       timestamp: 'Current Timestamp',
     },
+    browser: {
+      title: 'Browser Info',
+      locationbar: 'Locationbar Visibility',
+      menubar: 'Menubar Visibility',
+      personalbar: 'Personalbar Visibility',
+      scrollbars: 'Scrollbars Visibility',
+      statusbar: 'Statusbar Visibility',
+      toolbar: 'Toolbar Visibility',
+    },
     website: {
       title: 'Website Info',
       href: 'URL',

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -8,6 +9,10 @@ import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      cache: true,
+      expandVariables: true,
+    }),
     PrismaModule.forRoot({
       prismaServiceOptions: {
         explicitConnect: true,

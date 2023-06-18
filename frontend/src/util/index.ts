@@ -1,4 +1,4 @@
-export * from './browser-info'
+export * from './system-info'
 
 export * from './debounce-throttle'
 

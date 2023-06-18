@@ -3,11 +3,11 @@ import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
 import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
-import { generateBrowserInfo } from '@/util'
+import { generateSystemInfo } from '@/util'
 
 const i18n = useI18n()
 
-const browserInfo = generateBrowserInfo()
+const systemInfo = generateSystemInfo()
 
 const screenInfo = window.screen
 
@@ -41,93 +41,93 @@ const timestamp = useTimestamp()
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.system') }}</span>
           </template>
-          <el-tag>{{ browserInfo.system ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.system ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.systemVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.systemVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.systemVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.platform') }}</span>
           </template>
-          <el-tag>{{ browserInfo.platform ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.platform ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.engine') }}</span>
           </template>
-          <el-tag>{{ browserInfo.engine ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.engine ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.engineVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.engineVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.engineVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.supporter') }}</span>
           </template>
-          <el-tag>{{ browserInfo.supporter ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.supporter ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.supporterVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.supporterVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.supporterVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.shell') }}</span>
           </template>
-          <el-tag>{{ browserInfo.shell ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.shell ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.shellVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.shellVs ?? '' }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.processor') }}</span>
           </template>
-          <el-tag>{{ browserInfo.processors }}</el-tag>
+          <el-tag>{{ systemInfo.processors }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.memory') }}</span>
           </template>
-          <el-tag>{{ browserInfo.memory }}GiB</el-tag>
+          <el-tag>{{ systemInfo.memory }}GiB</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.touchPoint') }}</span>
           </template>
-          <el-tag>{{ browserInfo.touchPoints }}</el-tag>
+          <el-tag>{{ systemInfo.touchPoints }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.isSecureContext') }}</span>
           </template>
-          <el-tag>{{ browserInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
+          <el-tag>{{ systemInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.cookie') }}</span>
           </template>
-          <el-tag>{{ browserInfo.cookie ? i18n.t('home.enabled') : i18n.t('home.disabled') }}</el-tag>
+          <el-tag>{{ systemInfo.cookie ? i18n.t('home.enabled') : i18n.t('home.disabled') }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.pdf') }}</span>
           </template>
-          <el-tag>{{ browserInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
+          <el-tag>{{ systemInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>

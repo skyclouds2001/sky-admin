@@ -1,20 +1,42 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "lib": ["ESNext"],
-    "composite": true,
     "rootDir": ".",
-    "baseUrl": "."
+
+    "newLine": "lf",
+    "noEmit": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": true,
+
+    "allowJs": false,
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "useDefineForClassFields": false,
+
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+
+    "skipLibCheck": true
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue", "**/*.json", "**/*.html", "**/*.md", "**/*.mdx"],
   "exclude": ["node_modules", "dist"]

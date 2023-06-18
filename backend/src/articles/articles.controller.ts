@@ -12,31 +12,31 @@ export class ArticlesController {
 
   @Post()
   @ApiCreatedResponse({ type: ArticleEntity })
-  async create(@Body() createArticleDto: CreateArticleDto): Promise<ArticleEntity> {
+  async create(@Body() createArticleDto: CreateArticleDto) {
     return new ArticleEntity(await this.articlesService.create(createArticleDto))
   }
 
   @Get()
   @ApiOkResponse({ type: ArticleEntity, isArray: true })
-  async findAll(): Promise<ArticleEntity[]> {
+  async findAll() {
     return (await this.articlesService.findAll()).map((article) => new ArticleEntity(article))
   }
 
   @Get(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     return new ArticleEntity(await this.articlesService.findOne(id))
   }
 
   @Put(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  async update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto): Promise<ArticleEntity> {
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto) {
     return new ArticleEntity(await this.articlesService.update(id, updateArticleDto))
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: ArticleEntity })
-  async remove(@Param('id', ParseIntPipe) id: number): Promise<ArticleEntity> {
+  async remove(@Param('id', ParseIntPipe) id: number) {
     return new ArticleEntity(await this.articlesService.remove(id))
   }
 }

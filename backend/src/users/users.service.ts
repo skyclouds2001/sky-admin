@@ -3,7 +3,6 @@ import { PrismaService } from 'nestjs-prisma'
 import * as bcyptjs from 'bcryptjs'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { UserEntity } from './entities/user.entity'
 
 export const roundsOfHashing = 10
 
@@ -11,16 +10,16 @@ export const roundsOfHashing = 10
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createUserDto: CreateUserDto): Promise<UserEntity> {
+  create(createUserDto: CreateUserDto) {
     createUserDto.password = bcyptjs.hashSync(createUserDto.password, roundsOfHashing)
     return this.prisma.user.create({ data: createUserDto })
   }
 
-  findAll(): Promise<UserEntity[]> {
+  findAll() {
     return this.prisma.user.findMany()
   }
 
-  findOne(id: number): Promise<UserEntity> {
+  findOne(id: number) {
     return this.prisma.user.findUnique({
       where: {
         id,
@@ -28,7 +27,7 @@ export class UsersService {
     })
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
+  update(id: number, updateUserDto: UpdateUserDto) {
     if (updateUserDto.password !== undefined) {
       updateUserDto.password = bcyptjs.hashSync(updateUserDto.password, roundsOfHashing)
     }
@@ -41,7 +40,7 @@ export class UsersService {
     })
   }
 
-  remove(id: number): Promise<UserEntity> {
+  remove(id: number) {
     return this.prisma.user.delete({
       where: {
         id,

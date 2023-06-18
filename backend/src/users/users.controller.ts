@@ -13,7 +13,7 @@ export class UsersController {
 
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
-  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+  async create(@Body() createUserDto: CreateUserDto) {
     console.dir(createUserDto, { depth: Infinity })
     return new UserEntity(await this.usersService.create(createUserDto))
   }
@@ -22,7 +22,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity, isArray: true })
-  async findAll(): Promise<UserEntity[]> {
+  async findAll() {
     return (await this.usersService.findAll()).map((user) => new UserEntity(user))
   }
 
@@ -30,7 +30,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     return new UserEntity(await this.usersService.findOne(id))
   }
 
@@ -38,7 +38,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
-  async update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) {
     return new UserEntity(await this.usersService.update(id, updateUserDto))
   }
 
@@ -46,7 +46,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
-  async remove(@Param('id', ParseIntPipe) id: number): Promise<UserEntity> {
+  async remove(@Param('id', ParseIntPipe) id: number) {
     return new UserEntity(await this.usersService.remove(id))
   }
 }

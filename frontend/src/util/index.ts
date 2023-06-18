@@ -1,4 +1,4 @@
-export * from './system-info'
+export * from './browser-info'
 
 export * from './debounce-throttle'
 
@@ -21,3 +21,5 @@ export * from './is-type'
 export * from './open-page'
 
 export * from './sandbox'
+
+export * from './system-info'

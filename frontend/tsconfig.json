@@ -1,12 +1,14 @@
 {
   "extends": "./../tsconfig.json",
   "compilerOptions": {
-    "lib": ["ESNext", "DOM", "WebWorker", "ScriptHost"],
-    "types": ["vite/client"],
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "baseUrl": ".",
+    "types": ["vite/client"],
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

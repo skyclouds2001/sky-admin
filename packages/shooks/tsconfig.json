@@ -3,5 +3,7 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "WebWorker", "ScriptHost"],
     "baseUrl": "."
-  }
+  },
+  "include": ["src/**/*", "test/**/*", "index.ts"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -15,8 +15,8 @@
 
     "newLine": "lf",
     "noEmit": true,
-    "outDir": "dist",
-    "removeComments": true,
+    "outDir": "./dist",
+    "removeComments": false,
     "sourceMap": true,
 
     "allowJs": false,

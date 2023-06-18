@@ -408,7 +408,7 @@ const timestamp = useTimestamp()
           <template #label>
             <span class="font-bold">{{ i18n.t('home.author.website') }}</span>
           </template>
-          <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ i18n.t('home.author.website') }}</el-link>
+          <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ PROJECT_AUTHOR_HOME_PAGE }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

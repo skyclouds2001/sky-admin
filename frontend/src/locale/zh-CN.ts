@@ -269,7 +269,7 @@ export default {
     '/form/base': '基础表单',
     '/component': '组件',
     '/component/icon': '图标组件',
-    '/component/terminal': '终端组件',
+    '/component/terminal': 'Web 终端',
     '/component/draggable': '拖拽组件',
     '/component/scalable': '缩放组件',
     '/component/rotatable': '旋转组件',

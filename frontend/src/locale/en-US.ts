@@ -269,7 +269,7 @@ export default {
     '/form/base': 'Base Form',
     '/component': 'Component',
     '/component/icon': 'Icon Component',
-    '/component/terminal': 'Terminal Component',
+    '/component/terminal': 'Web Terminal',
     '/component/draggable': 'Draggable Component',
     '/component/scalable': 'Scalable Component',
     '/component/rotatable': 'Rotatable Component',

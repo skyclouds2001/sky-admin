@@ -20,6 +20,10 @@ export { default as useBattery } from './useBattery'
 
 export { default as useBluetooth } from './useBluetooth'
 
+export * from './useBreakPoints'
+
+export { default as useBreakpoints } from './useBreakPoints'
+
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'

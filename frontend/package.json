@@ -85,7 +85,7 @@
     "xlsx": "^0.18.5",
     "xterm": "^5.2.1",
     "xterm-addon-fit": "^0.7.0",
-    "xterm-addon-search": "^0.11.0",
+    "xterm-addon-search": "^0.12.0",
     "xterm-addon-web-links": "^0.8.0"
   },
   "devDependencies": {

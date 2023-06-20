@@ -3,8 +3,6 @@ import { ConfigModule } from '@nestjs/config'
 import { DevtoolsModule } from '@nestjs/devtools-integration'
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma'
 import * as Joi from 'joi'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { ArticlesModule } from './articles/articles.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
@@ -37,7 +35,5 @@ import { AuthModule } from './auth/auth.module'
     UsersModule,
     AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

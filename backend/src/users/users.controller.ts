@@ -14,7 +14,6 @@ export class UsersController {
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
   async create(@Body() createUserDto: CreateUserDto) {
-    console.dir(createUserDto, { depth: Infinity })
     return new UserEntity(await this.usersService.create(createUserDto))
   }
 

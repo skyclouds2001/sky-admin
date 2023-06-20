@@ -1,5 +1,6 @@
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core'
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
 import { AppModule } from './app.module'
@@ -20,7 +21,7 @@ async function bootstrap(): Promise<void> {
 
   await app.get(PrismaService).enableShutdownHooks(app)
 
-  await app.listen(3000)
+  await app.listen(app.get(ConfigService).get<number>('PORT'))
 }
 
 void bootstrap()

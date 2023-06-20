@@ -9,7 +9,9 @@ import { AppModule } from './app.module'
  * main initial method
  */
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, {
+    snapshot: true,
+  })
 
   SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, new DocumentBuilder().setTitle('Sky Admin').setDescription('Api route document for Sky Admin').setVersion('0.0.0').addBearerAuth().build()))
 

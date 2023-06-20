@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { DevtoolsModule } from '@nestjs/devtools-integration'
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma'
 import * as Joi from 'joi'
 import { AppController } from './app.controller'
@@ -28,6 +29,9 @@ import { AuthModule } from './auth/auth.module'
         explicitConnect: true,
         middlewares: [loggingMiddleware()],
       },
+    }),
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
     }),
     ArticlesModule,
     UsersModule,

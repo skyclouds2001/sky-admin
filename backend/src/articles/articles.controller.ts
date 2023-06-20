@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common'
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger'
 import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
@@ -11,31 +11,67 @@ export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
   @Post()
-  @ApiCreatedResponse({ type: ArticleEntity })
+  @ApiBody({
+    type: CreateArticleDto,
+    description: '待添加的文章信息',
+  })
+  @ApiCreatedResponse({
+    type: ArticleEntity,
+    description: '文章信息',
+  })
   async create(@Body() createArticleDto: CreateArticleDto) {
     return new ArticleEntity(await this.articlesService.create(createArticleDto))
   }
 
   @Get()
-  @ApiOkResponse({ type: ArticleEntity, isArray: true })
+  @ApiOkResponse({
+    type: ArticleEntity,
+    isArray: true,
+    description: '文章信息列表',
+  })
   async findAll() {
     return (await this.articlesService.findAll()).map((article) => new ArticleEntity(article))
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: ArticleEntity })
+  @ApiParam({
+    name: 'id',
+    description: '文章ID',
+  })
+  @ApiOkResponse({
+    type: ArticleEntity,
+    description: '文章信息',
+  })
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return new ArticleEntity(await this.articlesService.findOne(id))
   }
 
   @Put(':id')
-  @ApiOkResponse({ type: ArticleEntity })
+  @ApiParam({
+    name: 'id',
+    description: '文章ID',
+  })
+  @ApiBody({
+    type: UpdateArticleDto,
+    description: '待更新的用户信息',
+  })
+  @ApiOkResponse({
+    type: ArticleEntity,
+    description: '文章信息',
+  })
   async update(@Param('id', ParseIntPipe) id: number, @Body() updateArticleDto: UpdateArticleDto) {
     return new ArticleEntity(await this.articlesService.update(id, updateArticleDto))
   }
 
   @Delete(':id')
-  @ApiOkResponse({ type: ArticleEntity })
+  @ApiParam({
+    name: 'id',
+    description: '文章ID',
+  })
+  @ApiOkResponse({
+    type: ArticleEntity,
+    description: '文章信息',
+  })
   async remove(@Param('id', ParseIntPipe) id: number) {
     return new ArticleEntity(await this.articlesService.remove(id))
   }

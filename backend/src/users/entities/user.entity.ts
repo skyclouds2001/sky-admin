@@ -7,19 +7,31 @@ export class UserEntity implements User {
     Object.assign(this, partial)
   }
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '用户ID',
+  })
   id: number
 
-  @ApiProperty({ required: false, nullable: true })
-  name: string
+  @ApiProperty({
+    description: '用户姓名',
+    required: false,
+    nullable: true,
+  })
+  name: string | null
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '用户电子邮箱',
+  })
   email: string
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '用户创建时间',
+  })
   createdAt: Date
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '用户更新时间',
+  })
   updatedAt: Date
 
   @Exclude()

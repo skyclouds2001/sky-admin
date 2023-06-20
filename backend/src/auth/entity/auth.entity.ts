@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 export class AuthEntity {
-  @ApiProperty()
+  @ApiProperty({
+    description: '登录token',
+  })
   accessToken: string
 }

@@ -8,33 +8,66 @@ export class ArticleEntity implements Article {
     if (author !== null) this.author = new UserEntity(author)
   }
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章ID',
+  })
   id: number
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章标题',
+    minLength: 5,
+  })
   title: string
 
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty({
+    description: '文章描述',
+    required: false,
+    nullable: true,
+    maxLength: 250,
+  })
   description: string | null
 
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty({
+    description: '文章作者ID',
+    required: false,
+    nullable: true,
+  })
   authorId: number | null
 
-  @ApiProperty({ required: false, type: UserEntity })
+  @ApiProperty({
+    type: UserEntity,
+    description: '文章作者信息',
+    required: false,
+  })
   author?: UserEntity
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章星级',
+    minimum: 0,
+    maximum: 5,
+  })
   star: number
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章阅读量',
+  })
   read: number
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章发布状态',
+    required: false,
+    default: 'Drafted',
+    enum: ArticleStatus,
+  })
   status: ArticleStatus
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章创建时间',
+  })
   createdAt: Date
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '文章更新时间',
+  })
   updatedAt: Date
 }

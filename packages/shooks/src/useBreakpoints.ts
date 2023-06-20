@@ -1,3 +1,4 @@
+import { type Ref } from 'vue'
 import { useMediaQuery } from '.'
 
 /**
@@ -89,19 +90,35 @@ export const breakpointsTailwind = {
   '2xl': 1536,
 } as const
 
-type Breakpoints<K extends string = string> = Record<K, number | string>
+type Breakpoints<K extends string = string> = Record<K, number>
 
-/**
- * @param breakpoints
- * @see https://github.com/vueuse/vueuse/blob/main/packages/core/useBreakpoints/index.ts
- */
 const useBreakpoints = <const K extends string = string>(
   breakpoints: Breakpoints<K>
 ): {
   breakpoints: Breakpoints<K>
+  greater: (k: K) => Ref<boolean>
+  greaterOrEqual: (k: K) => Ref<boolean>
+  smaller: (k: K) => Ref<boolean>
+  smallerOrEqual: (k: K) => Ref<boolean>
+  between: (a: K, b: K) => Ref<boolean>
 } => {
+  const greater = (k: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
+
+  const greaterOrEqual = (k: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
+
+  const smaller = (k: K): Ref<boolean> => useMediaQuery(`(max-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
+
+  const smallerOrEqual = (k: K): Ref<boolean> => useMediaQuery(`(max-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
+
+  const between = (a: K, b: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[a]}px) and (max-width: ${breakpoints[b]}px)`).matchMediaQuery
+
   return {
     breakpoints,
+    greater,
+    greaterOrEqual,
+    smaller,
+    smallerOrEqual,
+    between,
   }
 }
 

@@ -20,9 +20,9 @@ export { default as useBattery } from './useBattery'
 
 export { default as useBluetooth } from './useBluetooth'
 
-export * from './useBreakPoints'
+export * from './useBreakpoints'
 
-export { default as useBreakpoints } from './useBreakPoints'
+export { default as useBreakpoints } from './useBreakpoints'
 
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 

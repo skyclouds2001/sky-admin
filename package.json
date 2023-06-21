@@ -93,7 +93,7 @@
     "eslint-plugin-testing-library": "^5.11.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "eslint-plugin-vitest": "^0.2.6",
-    "eslint-plugin-vue": "^9.14.1",
+    "eslint-plugin-vue": "^9.15.0",
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
     "jsdom": "^22.1.0",

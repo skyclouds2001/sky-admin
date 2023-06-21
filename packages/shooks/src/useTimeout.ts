@@ -1,4 +1,5 @@
-import { getCurrentScope, onScopeDispose, readonly, ref, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
+import { tryOnScopeDispose } from '.'
 
 const useTimeout = (
   fn: () => void,
@@ -42,9 +43,7 @@ const useTimeout = (
     start()
   }
 
-  if (getCurrentScope() !== undefined) {
-    onScopeDispose(stop)
-  }
+  tryOnScopeDispose(stop)
 
   return {
     isPending: readonly(isPending),

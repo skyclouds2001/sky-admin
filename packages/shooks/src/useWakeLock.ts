@@ -1,32 +1,6 @@
 import { readonly, ref, type Ref } from 'vue'
 import { useEventListener } from '.'
 
-interface NavigatorWithWakeLock extends Navigator {
-  readonly wakeLock: WakeLock
-}
-
-interface WakeLock {
-  request: (type?: WakeLockType) => Promise<WakeLockSentinel>
-}
-
-type WakeLockType = 'screen'
-
-interface WakeLockSentinel extends EventTarget {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onrelease: ((this: WakeLockSentinel, ev: Event) => any) | null
-  readonly released: boolean
-  readonly type: WakeLockType
-  release: () => Promise<void>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  addEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  removeEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
-}
-
-interface WakeLockSentinelEventMap {
-  release: Event
-}
-
 const useWakeLock = (): {
   isSupported: boolean
   isActive: Readonly<Ref<boolean>>
@@ -86,3 +60,29 @@ const useWakeLock = (): {
 }
 
 export default useWakeLock
+
+interface NavigatorWithWakeLock extends Navigator {
+  readonly wakeLock: WakeLock
+}
+
+interface WakeLock {
+  request: (type?: WakeLockType) => Promise<WakeLockSentinel>
+}
+
+type WakeLockType = 'screen'
+
+interface WakeLockSentinel extends EventTarget {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onrelease: ((this: WakeLockSentinel, ev: Event) => any) | null
+  readonly released: boolean
+  readonly type: WakeLockType
+  release: () => Promise<void>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  addEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  removeEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+}
+
+interface WakeLockSentinelEventMap {
+  release: Event
+}

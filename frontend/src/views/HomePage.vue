@@ -2,12 +2,14 @@
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
-import { generateBrowserInfo } from '@/util'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
+import { generateBrowserInformation, generateSystemInfo } from '@/util'
 
 const i18n = useI18n()
 
-const browserInfo = generateBrowserInfo()
+const browserInfo = generateBrowserInformation()
+
+const systemInfo = generateSystemInfo()
 
 const screenInfo = window.screen
 
@@ -18,6 +20,8 @@ const activeElement = useDocumentActiveElement()
 const readyState = useDocumentReadyState()
 
 const visibility = useDocumentVisibility()
+
+const location = useLocation()
 
 const { connection, isSupported: isSupportedConnection } = useNetwork()
 
@@ -39,93 +43,93 @@ const timestamp = useTimestamp()
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.system') }}</span>
           </template>
-          <el-tag>{{ browserInfo.system ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.system ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.systemVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.systemVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.systemVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.platform') }}</span>
           </template>
-          <el-tag>{{ browserInfo.platform ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.platform ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.engine') }}</span>
           </template>
-          <el-tag>{{ browserInfo.engine ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.engine ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.engineVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.engineVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.engineVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.supporter') }}</span>
           </template>
-          <el-tag>{{ browserInfo.supporter ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.supporter ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.supporterVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.supporterVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.supporterVs ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.shell') }}</span>
           </template>
-          <el-tag>{{ browserInfo.shell ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.shell ?? '' }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.shellVs') }}</span>
           </template>
-          <el-tag>{{ browserInfo.shellVs ?? '' }}</el-tag>
+          <el-tag>{{ systemInfo.shellVs ?? '' }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.processor') }}</span>
           </template>
-          <el-tag>{{ browserInfo.processors }}</el-tag>
+          <el-tag>{{ systemInfo.processors }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.memory') }}</span>
           </template>
-          <el-tag>{{ browserInfo.memory }}GiB</el-tag>
+          <el-tag>{{ systemInfo.memory }}GiB</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.touchPoint') }}</span>
           </template>
-          <el-tag>{{ browserInfo.touchPoints }}</el-tag>
+          <el-tag>{{ systemInfo.touchPoints }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.isSecureContext') }}</span>
           </template>
-          <el-tag>{{ browserInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
+          <el-tag>{{ systemInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.cookie') }}</span>
           </template>
-          <el-tag>{{ browserInfo.cookie ? i18n.t('home.enabled') : i18n.t('home.disabled') }}</el-tag>
+          <el-tag>{{ systemInfo.cookie ? i18n.t('home.enabled') : i18n.t('home.disabled') }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>
             <span class="font-bold">{{ i18n.t('home.system.pdf') }}</span>
           </template>
-          <el-tag>{{ browserInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
+          <el-tag>{{ systemInfo.pdf ? i18n.t('home.supported') : i18n.t('home.unsupported') }}</el-tag>
         </el-descriptions-item>
 
         <el-descriptions-item>
@@ -133,6 +137,94 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.browser.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.locationbar') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.locationbar }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.menubar') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.menubar }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.personalbar') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.personalbar }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.scrollbars') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.scrollbars }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.statusbar') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.statusbar }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.browser.toolbar') }}</span>
+          </template>
+          <el-tag>{{ browserInfo.toolbar }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.website.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.href') }}</span>
+          </template>
+          <el-tag>{{ location.href }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.protocol') }}</span>
+          </template>
+          <el-tag>{{ location.protocol.replaceAll(':', '') }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.hostname') }}</span>
+          </template>
+          <el-tag>{{ location.hostname }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.port') }}</span>
+          </template>
+          <el-tag>{{ location.port }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.pathname') }}</span>
+          </template>
+          <el-tag>{{ location.pathname }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.website.hash') }}</span>
+          </template>
+          <el-tag>{{ `#${location.hash}` }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
@@ -316,7 +408,7 @@ const timestamp = useTimestamp()
           <template #label>
             <span class="font-bold">{{ i18n.t('home.author.website') }}</span>
           </template>
-          <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ i18n.t('home.author.website') }}</el-link>
+          <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ PROJECT_AUTHOR_HOME_PAGE }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

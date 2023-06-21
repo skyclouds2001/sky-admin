@@ -10,7 +10,24 @@
     "system",
     "skyclouds2001"
   ],
-  "main": "index.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.iife.js",
+  "jsdelivr": "./dist/index.iife.js",
+  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./*": "./*"
+  },
   "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {
     "type": "git",
@@ -30,16 +47,19 @@
   ],
   "packageManager": "pnpm@8.4.0",
   "engines": {
-    "node": "=18.13.0",
-    "npm": "=9.6.4",
-    "yarn": "=1.22.19",
-    "pnpm": "=8.4.0"
+    "node": ">=18.13.0",
+    "npm": ">=9.6.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=8.4.0"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "vite": "^4.3.9"
   },
   "devDependencies": {
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "vite-plugin-dts": "^2.3.0"
   }
 }

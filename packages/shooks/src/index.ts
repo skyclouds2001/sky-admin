@@ -20,6 +20,10 @@ export { default as useBattery } from './useBattery'
 
 export { default as useBluetooth } from './useBluetooth'
 
+export * from './useBreakpoints'
+
+export { default as useBreakpoints } from './useBreakpoints'
+
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
@@ -40,6 +44,8 @@ export { default as useEventListener } from './useEventListener'
 
 export { default as useEyeDropper } from './useEyeDropper'
 
+export { default as useFavicon } from './useFavicon'
+
 export { default as useFileDialog } from './useFileDialog'
 
 export { default as useFileSystemAccess } from './useFileSystemAccess'
@@ -55,6 +61,8 @@ export { default as useIntersectionObserver } from './useIntersectionObserver'
 export { default as useInterval } from './useInterval'
 
 export { default as useLocalStorage } from './useLocalStorage'
+
+export { default as useLocation } from './useLocation'
 
 export { default as useMediaQuery } from './useMediaQuery'
 
@@ -95,6 +103,8 @@ export { default as useStorage } from './useStorage'
 export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
+
+export { default as useTitle } from './useTitle'
 
 export { default as useUserMedia } from './useUserMedia'
 

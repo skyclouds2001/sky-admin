@@ -1,26 +1,29 @@
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
-  testDir: './tests/e2e',
-  timeout: 60 * 1000,
+  testMatch: '**/?(*.)spec.?(c|m)[jt]s?(x)',
+  testIgnore: '**/backend/**',
+
+  timeout: 30 * 1000,
   expect: {
     timeout: 5 * 1000,
   },
+
   fullyParallel: true,
   forbidOnly: process.env.CI !== undefined,
   retries: process.env.CI !== undefined ? 2 : 0,
   workers: process.env.CI !== undefined ? 1 : undefined,
+
   reporter: 'html',
   use: {
-    actionTimeout: 0,
     baseURL: 'https://localhost:5173',
     trace: 'on-first-retry',
   },
 
   webServer: {
-    command: 'pnpm dev',
+    command: 'npm run dev',
     url: 'https://localhost:5173',
-    timeout: 30 * 1000,
+    reuseExistingServer: process.env.CI === undefined,
   },
 
   projects: [

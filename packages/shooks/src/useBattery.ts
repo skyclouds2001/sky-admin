@@ -1,24 +1,6 @@
 import { reactive, readonly } from 'vue'
 import { useEventListener } from '.'
 
-type NavigatorWithBattery = Navigator & {
-  getBattery: () => Promise<BatteryManager>
-}
-
-interface BatteryManager extends EventTarget {
-  charging: boolean
-  chargingTime: number
-  dischargingTime: number
-  level: number
-}
-
-interface BatteryManagerEventMap {
-  chargingchange: Event
-  chargingtimechange: Event
-  dischargingtimechange: Event
-  levelchange: Event
-}
-
 const useBattery = (): {
   isSupported: boolean
   battery: Readonly<Partial<BatteryManager>>
@@ -75,3 +57,21 @@ const useBattery = (): {
 }
 
 export default useBattery
+
+type NavigatorWithBattery = Navigator & {
+  getBattery: () => Promise<BatteryManager>
+}
+
+interface BatteryManager extends EventTarget {
+  charging: boolean
+  chargingTime: number
+  dischargingTime: number
+  level: number
+}
+
+interface BatteryManagerEventMap {
+  chargingchange: Event
+  chargingtimechange: Event
+  dischargingtimechange: Event
+  levelchange: Event
+}

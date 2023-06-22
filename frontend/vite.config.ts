@@ -72,6 +72,12 @@ export default defineConfig({
     strictPort: true,
     https: true,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     host: '0.0.0.0',
@@ -79,5 +85,11 @@ export default defineConfig({
     strictPort: true,
     https: true,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
   },
 })

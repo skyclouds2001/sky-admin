@@ -24,15 +24,13 @@ export const getArticles = ({
     total: number
   }>
 > =>
-  http
-    .get(`/api/article`, {
-      params: {
-        page,
-        size,
-        name,
-      },
-    })
-    .then((res) => res.data)
+  http.get(`/api/article`, {
+    params: {
+      page,
+      size,
+      name,
+    },
+  })
 
 /**
  * 添加文章信息方法
@@ -40,11 +38,9 @@ export const getArticles = ({
  * @returns null
  */
 export const addArticle = (article: Omit<Article, 'id'>): Promise<Response<null>> =>
-  http
-    .post('/api/article', {
-      article,
-    })
-    .then((res) => res.data)
+  http.post('/api/article', {
+    article,
+  })
 
 /**
  * 更新文章信息方法
@@ -52,11 +48,9 @@ export const addArticle = (article: Omit<Article, 'id'>): Promise<Response<null>
  * @returns null
  */
 export const updateArticle = (article: Partial<Omit<Article, 'id'>> & { id: Article['id'] }): Promise<Response<null>> =>
-  http
-    .put('/api/article', {
-      article,
-    })
-    .then((res) => res.data)
+  http.put('/api/article', {
+    article,
+  })
 
 /**
  * 删除文章信息方法
@@ -64,10 +58,8 @@ export const updateArticle = (article: Partial<Omit<Article, 'id'>> & { id: Arti
  * @returns null
  */
 export const removeArticle = (id: number): Promise<Response<null>> =>
-  http
-    .delete('/api/article', {
-      data: {
-        id,
-      },
-    })
-    .then((res) => res.data)
+  http.delete('/api/article', {
+    data: {
+      id,
+    },
+  })

@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
+import { SettingDrawer } from '@/components'
 import { useMenuStore } from '@/store'
-import SettingDrawer from '@/components/SettingDrawer.vue'
-import PageSidebar from './PageSidebar.vue'
-import PageHeader from './PageHeader.vue'
-import PageFooter from './PageFooter.vue'
-import PageTabs from './PageTabs.vue'
+import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
 const menuStore = useMenuStore()
 

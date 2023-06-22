@@ -9,7 +9,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
-import LayoutContainer from '@/layout/LayoutContainer.vue'
+import { LayoutContainer } from '@/layout'
 
 const i18n = useI18n()
 

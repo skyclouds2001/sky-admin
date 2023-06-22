@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
 import { AppModule } from './app.module'
+import { ResultInterceptor } from './result/result.interceptor'
 
 /**
  * main initial method
@@ -28,6 +29,7 @@ async function bootstrap(): Promise<void> {
   app.useGlobalFilters(new PrismaClientExceptionFilter(app.get(HttpAdapterHost).httpAdapter))
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
+  app.useGlobalInterceptors(new ResultInterceptor())
 
   await app.get(PrismaService).enableShutdownHooks(app)
 

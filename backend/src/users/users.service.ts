@@ -12,7 +12,9 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto) {
     createUserDto.password = bcyptjs.hashSync(createUserDto.password, roundsOfHashing)
-    return this.prisma.user.create({ data: createUserDto })
+    return this.prisma.user.create({
+      data: createUserDto,
+    })
   }
 
   findAll() {

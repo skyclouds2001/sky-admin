@@ -38,9 +38,9 @@ watch(
   <el-scrollbar wrap-class="wrap" view-class="view">
     <el-menu router :default-active="defaultActive" :collapse="menuStore.isCollapse" :class="['page-sidebar', menuStore.isCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
       <!-- 首页 -->
-      <el-menu-item index="/">
+      <el-menu-item index="/home">
         <el-icon><HomeFilled /></el-icon>
-        <span>{{ i18n.t('router./') }}</span>
+        <span>{{ i18n.t('router./home') }}</span>
       </el-menu-item>
 
       <!-- 表格 -->

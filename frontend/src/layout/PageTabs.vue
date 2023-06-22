@@ -40,7 +40,7 @@ onBeforeMount(() => {
 
 <template>
   <el-tabs v-model="store.currentTab" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
-    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== '/'">
+    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== '/home'">
       <el-scrollbar wrap-class="wrap" view-class="view flex justify-center items-center">
         <slot v-if="item.path === store.currentTab" />
       </el-scrollbar>

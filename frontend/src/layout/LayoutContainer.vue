@@ -16,28 +16,30 @@ provide<Ref<boolean>>('setting', isShowSettingDrawer)
 </script>
 
 <template>
-  <el-container class="main-container w-screen h-screen">
-    <el-aside class="w-auto h-screen">
-      <page-sidebar />
-    </el-aside>
-    <el-container class="page-container h-screen" :style="{ width: menuStore.isCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
-      <el-header class="border-b">
-        <page-header />
-      </el-header>
-      <el-main class="content-container p-0">
-        <page-tabs>
-          <router-view />
-        </page-tabs>
-      </el-main>
-      <el-footer class="border-t">
-        <page-footer />
-      </el-footer>
+  <el-container>
+    <el-container class="main-container w-screen h-screen">
+      <el-aside class="w-auto h-screen">
+        <page-sidebar />
+      </el-aside>
+      <el-container class="page-container h-screen" :style="{ width: menuStore.isCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
+        <el-header class="border-b">
+          <page-header />
+        </el-header>
+        <el-main class="content-container p-0">
+          <page-tabs>
+            <router-view />
+          </page-tabs>
+        </el-main>
+        <el-footer class="border-t">
+          <page-footer />
+        </el-footer>
+      </el-container>
     </el-container>
+
+    <setting-drawer />
+
+    <el-backtop :right="100" :bottom="100" />
   </el-container>
-
-  <setting-drawer />
-
-  <el-backtop />
 </template>
 
 <style scoped lang="scss">

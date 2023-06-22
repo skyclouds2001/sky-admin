@@ -262,7 +262,8 @@ export default {
     },
   },
   router: {
-    '/': '首页',
+    '/login': '登录',
+    '/home': '首页',
     '/table': '表格',
     '/table/base': '基础表格',
     '/form': '表单',

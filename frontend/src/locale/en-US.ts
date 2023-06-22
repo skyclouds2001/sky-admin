@@ -262,7 +262,8 @@ export default {
     },
   },
   router: {
-    '/': 'Home',
+    '/login': 'Login',
+    '/home': 'Home',
     '/table': 'Table',
     '/table/base': 'Base Table',
     '/form': 'Form',

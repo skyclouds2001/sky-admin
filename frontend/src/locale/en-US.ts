@@ -318,6 +318,7 @@ export default {
     '/error/404': '404',
     '/link': 'Link',
     '/link/github': 'GitHub (External Link)',
+    '/link/blog': 'Blog (External Link)',
     '/link/juejin': 'JueJin (External Link)',
     '/link/vite': 'Vite (Internal Link)',
     '/link/vue': 'Vue (Internal Link)',

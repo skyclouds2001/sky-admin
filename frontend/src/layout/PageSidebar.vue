@@ -297,6 +297,10 @@ watch(
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/github') }}</span>
         </el-menu-item>
+        <el-menu-item index="https://skyclouds2001.github.io">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router./link/blog') }}</span>
+        </el-menu-item>
         <el-menu-item index="https://juejin.cn/user/814058986548567">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/juejin') }}</span>

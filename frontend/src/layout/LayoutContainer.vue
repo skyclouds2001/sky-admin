@@ -26,7 +26,7 @@ provide<Ref<boolean>>('setting', isShowSettingDrawer)
       </el-header>
       <el-main class="content-container p-0">
         <page-tabs>
-          <slot />
+          <router-view />
         </page-tabs>
       </el-main>
       <el-footer class="border-t">

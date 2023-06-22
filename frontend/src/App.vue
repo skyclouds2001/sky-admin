@@ -9,7 +9,6 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
-import { LayoutContainer } from '@/layout'
 
 const i18n = useI18n()
 
@@ -18,19 +17,17 @@ locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 
 <template>
   <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en" :button="{ autoInsertSpace: true }" :message="{ max: 5 }">
-    <component :is="LayoutContainer">
-      <router-view v-slot="{ Component }">
-        <template v-if="Component">
-          <transition mode="out-in">
-            <keep-alive>
-              <suspense>
-                <component :is="Component" />
-              </suspense>
-            </keep-alive>
-          </transition>
-        </template>
-      </router-view>
-    </component>
+    <router-view v-slot="{ Component }">
+      <template v-if="Component">
+        <transition mode="out-in">
+          <keep-alive>
+            <suspense>
+              <component :is="Component" />
+            </suspense>
+          </keep-alive>
+        </transition>
+      </template>
+    </router-view>
   </el-config-provider>
 </template>
 

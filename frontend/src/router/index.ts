@@ -601,7 +601,7 @@ router.beforeEach((to) => {
 
   // 自动修改 tabsStore 内的 tabs 数据
   useTabsStore().$patch((state) => {
-    if (state.tabs.findIndex((v) => v.path === to.path) === -1) {
+    if (to.path !== '/login' && state.tabs.findIndex((v) => v.path === to.path) === -1) {
       state.tabs.push({
         name: to.meta.title,
         path: to.path,
@@ -613,17 +613,19 @@ router.beforeEach((to) => {
 
   // 自动更新 pagesStore 内的 pages 数据
   usePagesStore().$patch((state) => {
-    state.pages = to.matched
-      .map((v) => ({
-        name: v.meta.title,
-        path: v.path,
-      }))
-      .filter((v) => v.path !== '/')
-    if (to.path !== '/home') {
-      state.pages.unshift({
-        name: '首页',
-        path: '/home',
-      })
+    if (to.path !== '/login') {
+      state.pages = to.matched
+        .map((v) => ({
+          name: v.meta.title,
+          path: v.path,
+        }))
+        .filter((v) => v.path !== '/')
+      if (to.path !== '/home') {
+        state.pages.unshift({
+          name: '首页',
+          path: '/home',
+        })
+      }
     }
   })
 })

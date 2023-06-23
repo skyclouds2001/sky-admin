@@ -17,6 +17,13 @@ export class ArticlesService {
     return this.prisma.article.findMany()
   }
 
+  findPage(page: number, size: number) {
+    return this.prisma.article.findMany({
+      skip: (page - 1) * size,
+      take: size,
+    })
+  }
+
   findOne(id: number) {
     return this.prisma.article.findUnique({
       where: {

@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common'
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger'
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, Query, DefaultValuePipe } from '@nestjs/common'
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
@@ -23,7 +23,7 @@ export class ArticlesController {
     return new ArticleEntity(await this.articlesService.create(createArticleDto))
   }
 
-  @Get()
+  @Get('all')
   @ApiOkResponse({
     type: ArticleEntity,
     isArray: true,
@@ -31,6 +31,26 @@ export class ArticlesController {
   })
   async findAll() {
     return (await this.articlesService.findAll()).map((article) => new ArticleEntity(article))
+  }
+
+  @Get()
+  @ApiQuery({
+    name: 'page',
+    description: '分页页码',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'size',
+    description: '分页容量',
+    required: false,
+  })
+  @ApiOkResponse({
+    type: ArticleEntity,
+    isArray: true,
+    description: '文章信息分页列表',
+  })
+  async findPage(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number, @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number) {
+    return (await this.articlesService.findPage(page, size)).map((article) => new ArticleEntity(article))
   }
 
   @Get(':id')

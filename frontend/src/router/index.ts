@@ -598,13 +598,13 @@ router.beforeEach((to) => {
     openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/').at(1)))
     return false
   }
+})
 
+router.afterEach((to) => {
   // 登录页不执行 tab 和 page 操作
-  if (to.path === '/login') {
-    return true
-  }
+  if (to.path === '/login') return
 
-  // 自动修改 tabsStore 内的 tabs 数据
+  // 更新 tabsStore 内的 tabs 数据
   useTabsStore().$patch((state) => {
     if (state.tabs.findIndex((v) => v.path === to.path) === -1) {
       state.tabs.push({
@@ -616,7 +616,7 @@ router.beforeEach((to) => {
     state.currentTab = to.path
   })
 
-  // 自动更新 pagesStore 内的 pages 数据
+  // 更新 pagesStore 内的 pages 数据
   usePagesStore().$patch((state) => {
     state.pages = to.matched
       .map((v) => ({

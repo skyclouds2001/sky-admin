@@ -1,7 +1,24 @@
+import { ApiProperty } from '@nestjs/swagger'
+
 export class Result<T = unknown> {
+  @ApiProperty({
+    description: '响应状态',
+  })
   public readonly success: boolean
+
+  @ApiProperty({
+    description: '响应码',
+  })
   public readonly code: number
+
+  @ApiProperty({
+    description: '响应信息',
+  })
   public readonly message: string
+
+  @ApiProperty({
+    description: '响应数据',
+  })
   public readonly data: T
 
   public constructor(data: T, message: string, code: number, success: boolean) {

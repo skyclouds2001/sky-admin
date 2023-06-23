@@ -5,6 +5,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
 import { AppModule } from './app.module'
 import { ResultInterceptor } from './result/result.interceptor'
+import { ExceptionsFilter } from './filters/exception.filter'
+import { HttpExceptionFilter } from './filters/http-exception.filter'
 
 /**
  * main initial method
@@ -27,6 +29,8 @@ async function bootstrap(): Promise<void> {
   )
 
   app.useGlobalFilters(new PrismaClientExceptionFilter(app.get(HttpAdapterHost).httpAdapter))
+  app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalFilters(new ExceptionsFilter())
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
   app.useGlobalInterceptors(new ResultInterceptor())

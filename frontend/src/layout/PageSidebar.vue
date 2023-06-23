@@ -293,23 +293,23 @@ watch(
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link') }}</span>
         </template>
-        <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://github.com/skyclouds2001/SkyAdmin')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/github') }}</span>
         </el-menu-item>
-        <el-menu-item index="https://skyclouds2001.github.io">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://skyclouds2001.github.io')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/blog') }}</span>
         </el-menu-item>
-        <el-menu-item index="https://juejin.cn/user/814058986548567">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://juejin.cn/user/814058986548567')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/juejin') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}/internal`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/vite') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}/internal`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/vue') }}</span>
         </el-menu-item>

@@ -545,7 +545,7 @@ const router = createRouter({
           children: [
             {
               name: Symbol('/link/:to'),
-              path: '/link/:to',
+              path: '/link/:to/:mode',
               component: () => import('@/views/link/LinkPage.vue'),
               meta: {
                 title: '链接',
@@ -593,9 +593,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  // 检测是否为外链（非内链）
-  if (to.path.includes('https://')) {
-    openNewPageInNewTab(to.path.slice(1))
+  // 检测是否为外链（非内链），若是外链则跳转打开新页面
+  if (to.path.includes('/link') && to.params.mode === 'external') {
+    openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/').at(1)))
     return false
   }
 

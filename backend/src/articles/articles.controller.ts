@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, Query, DefaultValuePipe } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, Query, DefaultValuePipe, HttpStatus, HttpCode } from '@nestjs/common'
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
@@ -12,6 +12,7 @@ export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   @ApiBody({
     type: CreateArticleDto,
     description: '待添加的文章信息',

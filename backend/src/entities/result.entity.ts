@@ -4,7 +4,7 @@ export class Result<T = unknown> {
   public readonly message: string
   public readonly data: T
 
-  constructor(data: T, message: string, code: number, success: boolean) {
+  public constructor(data: T, message: string, code: number, success: boolean) {
     this.data = data
     this.message = message
     this.code = code

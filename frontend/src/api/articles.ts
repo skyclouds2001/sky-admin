@@ -21,10 +21,12 @@ export const getArticles = ({
 }): Promise<
   Response<{
     articles: Article[]
+    page: number
+    size: number
     total: number
   }>
 > =>
-  http.get(`/api/article`, {
+  http.get(`/api/articles`, {
     params: {
       page,
       size,
@@ -38,7 +40,7 @@ export const getArticles = ({
  * @returns null
  */
 export const addArticle = (article: Omit<Article, 'id'>): Promise<Response<null>> =>
-  http.post('/api/article', {
+  http.post('/api/articles', {
     article,
   })
 
@@ -48,7 +50,7 @@ export const addArticle = (article: Omit<Article, 'id'>): Promise<Response<null>
  * @returns null
  */
 export const updateArticle = (article: Partial<Omit<Article, 'id'>> & { id: Article['id'] }): Promise<Response<null>> =>
-  http.put('/api/article', {
+  http.put('/api/articles', {
     article,
   })
 
@@ -58,7 +60,7 @@ export const updateArticle = (article: Partial<Omit<Article, 'id'>> & { id: Arti
  * @returns null
  */
 export const removeArticle = (id: number): Promise<Response<null>> =>
-  http.delete('/api/article', {
+  http.delete('/api/articles', {
     data: {
       id,
     },

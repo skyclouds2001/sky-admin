@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { ElButton, ElCard, ElCol, ElForm, ElFormItem, ElInput, ElRow, type FormInstance, type FormRules } from 'element-plus'
+import { useRouter } from 'vue-router'
+import { ElButton, ElCard, ElCol, ElForm, ElFormItem, ElInput, ElMessage, ElRow, type FormInstance, type FormRules } from 'element-plus'
 import { Lock as Locker, User } from '@element-plus/icons-vue'
+import { useStorage } from 'shooks'
+import { login } from '@/api'
+
+const router = useRouter()
+
+const storage = useStorage<string>('token', {
+  prefix: 'sky-admin-0.0.0',
+})
 
 const el = ref<FormInstance | null>(null)
 
@@ -30,13 +39,51 @@ const rules = reactive<FormRules>({
 
 const isSubmitting = ref(false)
 
-const handleSubmit = () => {
-  el.value?.validate((status) => {
-    console.log(status)
-    console.log(form)
-  })
+const handleSubmit = async () => {
+  const status = await el.value?.validate()
+
+  if (!status) {
+    ElMessage.error({
+      message: '请检查登录信息',
+      center: true,
+      showClose: true,
+      grouping: true,
+    })
+  }
+
+  try {
+    isSubmitting.value = true
+    const res = await login(form.username, form.password)
+    if (res.success) {
+      ElMessage.success({
+        message: '登录成功',
+        center: true,
+        showClose: true,
+        grouping: true,
+      })
+      storage.value = res.data.accessToken
+      router.push({
+        path: '/home',
+      })
+    } else {
+      ElMessage.error({
+        message: `登录失败：${res.message}`,
+        center: true,
+        showClose: true,
+        grouping: true,
+      })
+    }
+  } catch {
+    ElMessage.error({
+      message: '登录失败',
+      center: true,
+      showClose: true,
+      grouping: true,
+    })
+  } finally {
+    isSubmitting.value = false
+  }
 }
-//
 </script>
 
 <template>
@@ -51,7 +98,7 @@ const handleSubmit = () => {
             <el-input v-model="form.password" placeholder="Please input password" show-password :prefix-icon="Locker" name="password" label="password" />
           </el-form-item>
           <el-form-item>
-            <el-button :loading="isSubmitting" @click="handleSubmit">Login</el-button>
+            <el-button :loading="isSubmitting" :disabled="isSubmitting" @click="handleSubmit">Login</el-button>
           </el-form-item>
         </el-form>
       </el-card>

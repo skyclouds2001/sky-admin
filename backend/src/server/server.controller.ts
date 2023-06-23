@@ -3,6 +3,7 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { ServerService } from './server.service'
 import { ServerInfo } from './entities/server-info.entity'
+import { Result } from 'src/entities/result.entity'
 
 @Controller('server')
 @ApiTags('server')
@@ -17,10 +18,12 @@ export class ServerController {
   async getServerInfo(@Req() request: Request, @Res() response: Response) {
     response
       .status(HttpStatus.OK)
-      .json({
-        ...(await this.serverService.getServerInfo()),
-        ip: request.ip,
-      })
+      .json(
+        Result.success({
+          ...(await this.serverService.getServerInfo()),
+          ip: request.ip,
+        })
+      )
       .send()
   }
 }

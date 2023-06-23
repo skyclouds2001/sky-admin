@@ -1,5 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, Logger } from '@nestjs/common'
 import { Request, Response } from 'express'
+import { Result } from 'src/entities/result.entity'
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter<unknown> {
@@ -19,11 +20,6 @@ Code: ${HttpStatus.INTERNAL_SERVER_ERROR}
       `
     )
 
-    response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-      success: false,
-      code: -1,
-      message: 'FAIL',
-      data: null,
-    })
+    response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(Result.fail())
   }
 }

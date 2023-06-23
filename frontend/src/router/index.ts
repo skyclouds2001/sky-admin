@@ -599,9 +599,14 @@ router.beforeEach((to) => {
     return false
   }
 
+  // 登录页不执行 tab 和 page 操作
+  if (to.path === '/login') {
+    return true
+  }
+
   // 自动修改 tabsStore 内的 tabs 数据
   useTabsStore().$patch((state) => {
-    if (to.path !== '/login' && state.tabs.findIndex((v) => v.path === to.path) === -1) {
+    if (state.tabs.findIndex((v) => v.path === to.path) === -1) {
       state.tabs.push({
         name: to.meta.title,
         path: to.path,
@@ -613,19 +618,17 @@ router.beforeEach((to) => {
 
   // 自动更新 pagesStore 内的 pages 数据
   usePagesStore().$patch((state) => {
-    if (to.path !== '/login') {
-      state.pages = to.matched
-        .map((v) => ({
-          name: v.meta.title,
-          path: v.path,
-        }))
-        .filter((v) => v.path !== '/')
-      if (to.path !== '/home') {
-        state.pages.unshift({
-          name: '首页',
-          path: '/home',
-        })
-      }
+    state.pages = to.matched
+      .map((v) => ({
+        name: v.meta.title,
+        path: v.path,
+      }))
+      .filter((v) => v.path !== '/')
+    if (to.path !== '/home') {
+      state.pages.unshift({
+        name: '首页',
+        path: '/home',
+      })
     }
   })
 })

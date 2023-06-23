@@ -86,9 +86,10 @@ const useStorage = <T extends number | string | boolean | object | null>(
     shallow?: boolean
     deep?: boolean
     watchChange?: boolean
+    initial?: T
   } = {}
 ): Ref<UnwrapRef<T> | null> | ShallowRef<T | null> => {
-  const { storage = window.localStorage, prefix = true, shallow = false, deep = true, watchChange = true } = options
+  const { storage = window.localStorage, prefix = true, shallow = false, deep = true, watchChange = true, initial } = options
 
   const storageKey = `${typeof prefix === 'string' ? prefix : 'shooks'}-${key}`
 
@@ -116,6 +117,10 @@ const useStorage = <T extends number | string | boolean | object | null>(
         data.value = e.newValue !== null ? (parse<T>(e.newValue) as UnwrapRef<T>) : null
       }
     })
+  }
+
+  if (initial !== undefined) {
+    data.value = initial
   }
 
   return data

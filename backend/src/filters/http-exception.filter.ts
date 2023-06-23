@@ -17,7 +17,7 @@ Method: ${request.method}
 IP: ${request.ip}
 Code: ${status}
 -----------------------------------------------------------------------
-      `.trim()
+      `
     )
 
     response.status(status).json({

@@ -16,7 +16,7 @@ Method: ${request.method}
 IP: ${request.ip}
 Code: ${HttpStatus.INTERNAL_SERVER_ERROR}
 -----------------------------------------------------------------------
-      `.trim()
+      `
     )
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({

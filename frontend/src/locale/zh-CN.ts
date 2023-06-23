@@ -96,12 +96,8 @@ export default {
       export: '导出',
     },
     table: {
-      id: '序号',
       title: '标题',
       author: '作者',
-      country: '国家',
-      reviewer: '审核人',
-      time: '发布时间',
       read: '阅读数',
       star: '星级',
       status: '状态',
@@ -112,6 +108,9 @@ export default {
       operate_published: '发布',
       operate_drafted: '草稿',
       operate_delete: '删除',
+      description: '描述',
+      create_time: '创建时间',
+      update_time: '更新时间',
     },
   },
   form: {

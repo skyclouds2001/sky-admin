@@ -96,12 +96,8 @@ export default {
       export: 'Export',
     },
     table: {
-      id: 'Order',
       title: 'Title',
       author: 'Author',
-      country: 'Country',
-      reviewer: 'Reviewer',
-      time: 'Published Time',
       read: 'Read Number',
       star: 'Star',
       status: 'Status',
@@ -112,6 +108,9 @@ export default {
       operate_published: 'Publish',
       operate_drafted: 'Draft',
       operate_delete: 'Delete',
+      description: 'Description',
+      create_time: 'Create Time',
+      update_time: 'Update Time',
     },
   },
   form: {

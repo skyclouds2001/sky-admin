@@ -21,6 +21,13 @@ export class UsersService {
     return this.prisma.user.findMany()
   }
 
+  findPage(page: number, size: number) {
+    return this.prisma.user.findMany({
+      skip: (page - 1) * size,
+      take: size,
+    })
+  }
+
   findOne(id: number) {
     return this.prisma.user.findUnique({
       where: {

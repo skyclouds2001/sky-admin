@@ -25,6 +25,9 @@ export class ArticlesService {
     return this.prisma.article.findMany({
       skip: (page - 1) * size,
       take: size,
+      include: {
+        author: true,
+      },
     })
   }
 

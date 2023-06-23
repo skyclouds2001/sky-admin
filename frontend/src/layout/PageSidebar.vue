@@ -293,7 +293,7 @@ watch(
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link') }}</span>
         </template>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://github.com/skyclouds2001/SkyAdmin')}/external`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://github.com/skyclouds2001')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/github') }}</span>
         </el-menu-item>

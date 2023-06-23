@@ -1,5 +1,5 @@
 import { http } from '@/lib'
-import type { Response, Article } from '@/model'
+import type { Article, Pagination, Response } from '@/model'
 
 /**
  * 获取文章列表方法
@@ -10,22 +10,7 @@ import type { Response, Article } from '@/model'
  * @param data.search.name 搜索文章名称
  * @returns 文章列表数据
  */
-export const getArticles = ({
-  page,
-  size,
-  search: { name },
-}: {
-  page: number
-  size: number
-  search: { name: string }
-}): Promise<
-  Response<{
-    articles: Article[]
-    page: number
-    size: number
-    total: number
-  }>
-> =>
+export const getArticles = ({ page, size, search: { name } }: { page: number; size: number; search: { name: string } }): Promise<Response<Pagination<Article>>> =>
   http.get(`/api/articles`, {
     params: {
       page,

@@ -23,5 +23,6 @@ export const jwtSecret = 'zjP9h6ZI5LoSKCRj'
     }),
     UsersModule,
   ],
+  exports: [AuthService],
 })
 export class AuthModule {}

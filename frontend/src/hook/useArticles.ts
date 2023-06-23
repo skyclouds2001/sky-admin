@@ -40,13 +40,9 @@ const useArticles = (): {
   const loadArticles = async (page: number, size: number, search: Record<'name', string>): Promise<void> => {
     try {
       loading.value = true
-      const res = await getArticles({
-        page,
-        size,
-        search,
-      })
+      const res = await getArticles(page, size, search)
       if (res.success) {
-        articles.value = res.data.articles
+        articles.value = res.data.data
         total.value = res.data.total
       } else {
         ElMessage.error({
@@ -75,6 +71,7 @@ const useArticles = (): {
     },
     {
       immediate: true,
+      deep: true,
     }
   )
 

@@ -3,19 +3,18 @@ import type { Article, Pagination, Response } from '@/model'
 
 /**
  * 获取文章列表方法
- * @param data 分页参数
- * @param data.page 页面下标
- * @param data.size 页面容量
- * @param data.search 搜索参数
- * @param data.search.name 搜索文章名称
+ * @param page 页面下标
+ * @param size 页面容量
+ * @param search 搜索参数
+ * @param search.name 搜索文章名称
  * @returns 文章列表数据
  */
-export const getArticles = ({ page, size, search: { name } }: { page: number; size: number; search: { name: string } }): Promise<Response<Pagination<Article>>> =>
+export const getArticles = (page: number, size: number, search: Record<'name', string>): Promise<Response<Pagination<Article>>> =>
   http.get(`/api/articles`, {
     params: {
       page,
       size,
-      name,
+      name: search.name,
     },
   })
 

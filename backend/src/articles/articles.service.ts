@@ -7,6 +7,10 @@ import { UpdateArticleDto } from './dto/update-article.dto'
 export class ArticlesService {
   constructor(private readonly prisma: PrismaService) {}
 
+  count() {
+    return this.prisma.article.count()
+  }
+
   create(createArticleDto: CreateArticleDto) {
     return this.prisma.article.create({
       data: createArticleDto,

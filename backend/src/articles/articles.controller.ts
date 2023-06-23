@@ -4,6 +4,7 @@ import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
 import { ArticleEntity } from './entities/article.entity'
+import { Pagination } from 'src/entities/pagination.entity'
 
 @Controller('articles')
 @ApiTags('articles')
@@ -45,12 +46,16 @@ export class ArticlesController {
     required: false,
   })
   @ApiOkResponse({
-    type: ArticleEntity,
-    isArray: true,
+    type: Pagination<ArticleEntity>,
     description: '文章信息分页列表',
   })
   async findPage(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number, @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number) {
-    return (await this.articlesService.findPage(page, size)).map((article) => new ArticleEntity(article))
+    return new Pagination(
+      (await this.articlesService.findPage(page, size)).map((article) => new ArticleEntity(article)),
+      page,
+      size,
+      await this.articlesService.count()
+    )
   }
 
   @Get(':id')

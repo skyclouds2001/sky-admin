@@ -10,6 +10,10 @@ export const roundsOfHashing = 10
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
+  count() {
+    return this.prisma.user.count()
+  }
+
   create(createUserDto: CreateUserDto) {
     createUserDto.password = bcyptjs.hashSync(createUserDto.password, roundsOfHashing)
     return this.prisma.user.create({

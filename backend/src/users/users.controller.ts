@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+import { Pagination } from 'src/entities/pagination.entity'
 
 @Controller('users')
 @ApiTags('users')
@@ -52,12 +53,16 @@ export class UsersController {
     required: false,
   })
   @ApiOkResponse({
-    type: UserEntity,
-    isArray: true,
+    type: Pagination<UserEntity>,
     description: '用户信息分页列表',
   })
   async findPage(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number, @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number) {
-    return (await this.usersService.findPage(page, size)).map((user) => new UserEntity(user))
+    return new Pagination(
+      (await this.usersService.findPage(page, size)).map((user) => new UserEntity(user)),
+      page,
+      size,
+      await this.usersService.count()
+    )
   }
 
   @Get(':id')

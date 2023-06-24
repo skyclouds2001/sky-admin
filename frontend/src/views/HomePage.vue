@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
 import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
+import { getServerInfo } from '@/api'
 import { generateBrowserInformation, generateSystemInfo } from '@/util'
 
 const i18n = useI18n()
@@ -10,6 +11,8 @@ const i18n = useI18n()
 const browserInfo = generateBrowserInformation()
 
 const systemInfo = generateSystemInfo()
+
+const { data: serverInfo } = await getServerInfo()
 
 const screenInfo = window.screen
 
@@ -134,9 +137,90 @@ const timestamp = useTimestamp()
 
         <el-descriptions-item>
           <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.ip') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.ip }}</el-tag>
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template #label>
             <span class="font-bold">{{ i18n.t('home.system.timestamp') }}</span>
           </template>
           <el-tag>{{ timestamp }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    </el-card>
+
+    <el-card shadow="always">
+      <template #header>
+        <div class="text-left text-base font-bold">{{ i18n.t('home.server.title') }}</div>
+      </template>
+      <el-descriptions border>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.hostname') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.hostname }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.type') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.type }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.release') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.release }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.machine') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.machine }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.username') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.username }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.uptime') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.uptime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.version') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.version }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.totalmem') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.totalmem }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.freemem') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.freemem }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.nodeUptime') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.nodeUptime }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.server.nodeVersion') }}</span>
+          </template>
+          <el-tag>{{ serverInfo.nodeVersion }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

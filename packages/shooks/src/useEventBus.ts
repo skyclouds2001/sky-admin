@@ -1,4 +1,4 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import tryOnScopeDispose from './tryOnScopeDispose'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const events = new Map<string | number | symbol, Set<any>>()
@@ -13,18 +13,14 @@ const useEventBus = <const T extends string | number | symbol, P = any>(
   emit: (event: T, payload: P) => void
   reset: () => void
 } => {
-  const scope = getCurrentScope()
-
   const on = (listener: (event: T, payload: P) => void): void => {
     const listeners = events.get(key) ?? new Set()
     listeners.add(listener)
     events.set(key, listeners)
 
-    if (scope !== undefined) {
-      onScopeDispose(() => {
-        off(listener)
-      })
-    }
+    tryOnScopeDispose(() => {
+      off(listener)
+    })
   }
 
   const off = (listener: (event: T, payload: P) => void): void => {

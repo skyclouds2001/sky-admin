@@ -73,9 +73,7 @@ const handleSubmit = async () => {
         appContext
       )
       storage.value = res.data.accessToken
-      router.push({
-        path: '/home',
-      })
+      router.push('/home')
     } else {
       ElMessage.error(
         {

@@ -1,9 +1,10 @@
 import { ref, type Ref, reactive, watch } from 'vue'
-import { ElMessage } from 'element-plus'
 import { getArticles } from '@/api'
-import type { Article } from '@/model'
+import type { Article, Pagination, Response } from '@/model'
 
-const useArticles = (): {
+const useArticles = (options: {
+  onError?: (error?: Response<Pagination<Article>>) => void
+}): {
   articles: Ref<Article[]>
   total: Ref<number>
   page: Ref<number>
@@ -15,6 +16,8 @@ const useArticles = (): {
   refresh: () => void
   handleSearch: (search: { name: string }) => void
 } => {
+  const { onError } = options
+
   const articles = ref<Article[]>([])
 
   const total = ref(0)
@@ -45,20 +48,10 @@ const useArticles = (): {
         articles.value = res.data.data
         total.value = res.data.total
       } else {
-        ElMessage.error({
-          message: `加载失败：${res.code}: ${res.message}`,
-          showClose: true,
-          center: true,
-          grouping: true,
-        })
+        if (onError !== undefined) onError(res)
       }
-    } catch {
-      ElMessage.error({
-        message: '加载失败',
-        showClose: true,
-        center: true,
-        grouping: true,
-      })
+    } catch (error) {
+      if (onError !== undefined) onError(error)
     } finally {
       loading.value = false
     }

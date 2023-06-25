@@ -1,3 +1,5 @@
+export { default as reactifyFunction } from './reactifyFunction'
+
 export { default as tryOnBeforeMount } from './tryOnBeforeMount'
 
 export { default as tryOnBeforeUnmount } from './tryOnBeforeUnmount'

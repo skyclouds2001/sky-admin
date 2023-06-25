@@ -50,6 +50,13 @@ const handleShare = () => {
 }
 
 /**
+ * 打开关于页
+ */
+const routeToAbout = () => {
+  router.push('/about')
+}
+
+/**
  * 退出登录
  */
 const exitLogin = () => {
@@ -111,7 +118,8 @@ const exitLogin = () => {
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="exitLogin">退出登录</el-dropdown-item>
+            <el-dropdown-item @click="routeToAbout">{{ i18n.t(`layout.about`) }}</el-dropdown-item>
+            <el-dropdown-item @click="exitLogin">{{ i18n.t(`layout.exit_login`) }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

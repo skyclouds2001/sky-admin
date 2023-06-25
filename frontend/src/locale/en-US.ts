@@ -274,6 +274,8 @@ export default {
       color_weakness: 'Color Weak',
       wake_lock: 'WakeLock',
     },
+    about: 'About',
+    exit_login: 'Exit',
   },
   router: {
     '/login': 'Login',

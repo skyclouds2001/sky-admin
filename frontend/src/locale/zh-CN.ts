@@ -274,6 +274,8 @@ export default {
       color_weakness: '色弱模式',
       wake_lock: '电源锁',
     },
+    about: '关于',
+    exit_login: '退出',
   },
   router: {
     '/login': '登录',

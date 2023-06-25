@@ -1,7 +1,12 @@
 /* eslint-disable promise/no-promise-in-callback */
 
 import axios from 'axios'
+import { useStorage } from 'shooks'
 import { SERVER_HOST } from '@/config'
+
+const storage = useStorage<string>('token', {
+  prefix: 'sky-admin-0.0.0',
+})
 
 const instance = axios.create({
   baseURL: SERVER_HOST,
@@ -10,7 +15,12 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  (config) => config,
+  (config) => {
+    if (storage.value !== null) {
+      config.headers.Authorization = `Bearer ${storage.value}`
+    }
+    return config
+  },
   (error) => Promise.reject(error)
 )
 

@@ -593,6 +593,10 @@ const router = createRouter({
   },
 })
 
+const storage = useStorage<string>('token', {
+  prefix: 'sky-admin-0.0.0',
+})
+
 router.beforeEach((to) => {
   // 检测是否为外链（非内链），若是外链则跳转打开新页面
   if (to.path.includes('/link') && to.params.mode === 'external') {
@@ -600,12 +604,7 @@ router.beforeEach((to) => {
     return false
   }
 
-  if (
-    to.path !== '/login' &&
-    useStorage<string>('token', {
-      prefix: 'sky-admin-0.0.0',
-    }).value === null
-  ) {
+  if (to.path !== '/login' && storage.value === null) {
     return {
       path: '/login',
     }

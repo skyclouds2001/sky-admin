@@ -6,15 +6,15 @@ import type { Article, Pagination, Response } from '@/model'
  * @param page 页面下标
  * @param size 页面容量
  * @param search 搜索参数
- * @param search.name 搜索文章名称
+ * @param search.title 搜索文章名称
  * @returns 文章列表数据
  */
-export const getArticles = (page: number, size: number, search: Record<'name', string>): Promise<Response<Pagination<Article>>> =>
+export const getArticles = (page: number, size: number, search: Pick<Article, 'title'>): Promise<Response<Pagination<Article>>> =>
   http.get(`/api/articles`, {
     params: {
       page,
       size,
-      name: search.name,
+      title: search.title,
     },
   })
 

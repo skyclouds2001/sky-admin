@@ -1,25 +1,18 @@
 import { ref, type Ref, reactive, watch } from 'vue'
 import { getArticles } from '@/api'
-import type { Article, Pagination, Response } from '@/model'
+import { useApi } from '@/hook'
+import type { Article } from '@/model'
 
-const useArticles = (
-  options: {
-    onError?: (error?: Response<Pagination<Article>>) => void
-  } = {}
-): {
+const useArticles = (): {
   articles: Ref<Article[]>
   total: Ref<number>
   page: Ref<number>
   size: Ref<number>
+  error: Ref<unknown>
   loading: Ref<boolean>
-  search: {
-    name: string
-  }
+  search: Pick<Article, 'title'>
   refresh: () => void
-  handleSearch: (search: { name: string }) => void
 } => {
-  const { onError } = options
-
   const articles = ref<Article[]>([])
 
   const total = ref(0)
@@ -28,41 +21,31 @@ const useArticles = (
 
   const size = ref(10)
 
-  const loading = ref(false)
-
   const search = reactive({
-    name: '',
+    title: '',
   })
 
-  const handleSearch = (s: { name: string }): void => {
-    search.name = s.name
-  }
-
   const refresh = (): void => {
-    void loadArticles(page.value, size.value, search)
+    void loadData(page.value, size.value, search)
   }
 
-  const loadArticles = async (page: number, size: number, search: Record<'name', string>): Promise<void> => {
-    try {
-      loading.value = true
-      const res = await getArticles(page, size, search)
-      if (res.success) {
-        articles.value = res.data.data
-        total.value = res.data.total
-      } else {
-        if (onError !== undefined) onError(res)
+  const { loading, result, error, fetch } = useApi(getArticles)
+
+  const loadData = async (pageIndex: number, pageSize: number, pageSearch: Pick<Article, 'title'>): Promise<void> => {
+    void fetch(pageIndex, pageSize, pageSearch).then(() => {
+      if (result.value !== null) {
+        articles.value = result.value.data.data
+        total.value = result.value.data.total
+        page.value = result.value.data.page
+        size.value = result.value.data.size
       }
-    } catch (error) {
-      if (onError !== undefined) onError(error)
-    } finally {
-      loading.value = false
-    }
+    })
   }
 
   watch(
     [page, size, search],
     ([currentPage, currentSize, currentSearch]) => {
-      void loadArticles(currentPage, currentSize, currentSearch)
+      void loadData(currentPage, currentSize, currentSearch)
     },
     {
       immediate: true,
@@ -75,10 +58,10 @@ const useArticles = (
     total,
     page,
     size,
+    error,
     loading,
     search,
     refresh,
-    handleSearch,
   }
 }
 

@@ -6,7 +6,7 @@ import { ElBreadcrumb, ElBreadcrumbItem, ElDropdown, ElDropdownMenu, ElDropdownI
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from 'shooks'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
-import { usePagesStore } from '@/store'
+import { SettingDrawerKey, usePagesStore } from '@/store'
 
 const appContext = getCurrentInstance()?.appContext
 
@@ -28,7 +28,7 @@ const storage = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',
 })
 
-const isShowSettingDrawer = inject<Ref<boolean>>('setting')
+const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey)
 
 /**
  * 控制展示设置窗口

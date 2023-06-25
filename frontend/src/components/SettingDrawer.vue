@@ -6,6 +6,7 @@ import { useWakeLock } from 'shooks'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
 import { useColorWeakness, useGrayMode, useLang, useTheme } from '@/hook'
+import { SettingDrawerKey } from '@/store'
 
 const i18n = useI18n()
 
@@ -19,7 +20,7 @@ const { lang } = useLang()
 
 const { isSupported, isActive, toggle } = useWakeLock()
 
-const isShowSettingDrawer = inject<Ref<boolean>>('setting')
+const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey)
 </script>
 
 <template>

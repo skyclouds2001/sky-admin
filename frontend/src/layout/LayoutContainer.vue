@@ -2,17 +2,12 @@
 import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
 import { SettingDrawer } from '@/components'
-import { useMenuStore } from '@/store'
+import { SettingDrawerKey, useMenuStore } from '@/store'
 import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
 const menuStore = useMenuStore()
 
-/**
- * 控制设置窗口是否展示
- */
-const isShowSettingDrawer = ref(false)
-
-provide<Ref<boolean>>('setting', isShowSettingDrawer)
+provide<Ref<boolean>>(SettingDrawerKey, ref(false))
 </script>
 
 <template>

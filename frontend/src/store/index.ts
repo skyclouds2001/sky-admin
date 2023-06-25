@@ -9,3 +9,5 @@ export { default as useMenuStore } from './menu'
 export { default as usePagesStore } from './page'
 
 export { default as useTabsStore } from './tab'
+
+export const SettingDrawerKey = Symbol('setting')

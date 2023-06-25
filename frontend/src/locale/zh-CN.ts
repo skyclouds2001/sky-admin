@@ -1,4 +1,12 @@
 export default {
+  login: {
+    login: '登录',
+    check_username: '请输入用户名',
+    check_password: '请输入密码',
+    check_info: '请检查登录信息',
+    success: '登录成功',
+    fail: '登录失败',
+  },
   home: {
     enabled: '启用',
     disabled: '未启用',

@@ -1,4 +1,12 @@
 export default {
+  login: {
+    login: 'Login',
+    check_username: 'Please input username',
+    check_password: 'Please input password',
+    check_info: 'Please check login information',
+    success: 'Login Success',
+    fail: 'Login Failed',
+  },
   home: {
     enabled: 'Enabled',
     disabled: 'Disabled',

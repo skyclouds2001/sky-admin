@@ -27,12 +27,14 @@ const useAppBadge = (
     contents,
     (contents) => {
       if (contents !== 0) {
-        void navigator.setAppBadge(contents)
+        void (navigator as NavigatorWithAppBadge).setAppBadge(contents)
       } else {
-        void navigator.clearAppBadge()
+        void (navigator as NavigatorWithAppBadge).clearAppBadge()
       }
     },
-    { immediate: true }
+    {
+      immediate: true,
+    }
   )
 
   return {
@@ -44,3 +46,8 @@ const useAppBadge = (
 }
 
 export default useAppBadge
+
+type NavigatorWithAppBadge = Navigator & {
+  clearAppBadge: () => Promise<void>
+  setAppBadge: (contents?: number) => Promise<void>
+}

@@ -9,7 +9,7 @@ interface Pagination<T = unknown> {
   /** 分页容量 */
   size: number
   /** 数据总数 */
-  total: string
+  total: number
 }
 
 export default Pagination

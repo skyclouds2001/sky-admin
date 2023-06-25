@@ -2,7 +2,7 @@
 import { getCurrentInstance, inject, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { ElBreadcrumb, ElBreadcrumbItem, ElDropdown, ElDropdownMenu, ElDropdownItem, ElImage, ElIcon, ElMessageBox, ElMessage } from 'element-plus'
+import { ElBreadcrumb, ElBreadcrumbItem, ElDropdown, ElDropdownMenu, ElDropdownItem, ElImage, ElIcon, ElMessageBox, ElMessage, ElTooltip } from 'element-plus'
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from 'shooks'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
@@ -97,18 +97,24 @@ const exitLogin = () => {
 
     <div class="control-bar">
       <div class="current-time">{{ now.toLocaleString() }}</div>
-      <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
-        <el-icon :size="20">
-          <Unlock v-if="isPointerLock" />
-          <Lock v-else />
-        </el-icon>
-      </div>
-      <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
-        <el-icon :size="20"><FullScreen /></el-icon>
-      </div>
-      <div v-if="isSupportedShare" class="share" @click="handleShare">
-        <el-icon :size="20"><Share /></el-icon>
-      </div>
+      <el-tooltip content="指针锁定">
+        <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
+          <el-icon :size="20">
+            <Unlock v-if="isPointerLock" />
+            <Lock v-else />
+          </el-icon>
+        </div>
+      </el-tooltip>
+      <el-tooltip content="全屏">
+        <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
+          <el-icon :size="20"><FullScreen /></el-icon>
+        </div>
+      </el-tooltip>
+      <el-tooltip content="分享">
+        <div v-if="isSupportedShare" class="share" @click="handleShare">
+          <el-icon :size="20"><Share /></el-icon>
+        </div>
+      </el-tooltip>
       <el-dropdown trigger="click">
         <div class="user">
           <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
@@ -123,9 +129,11 @@ const exitLogin = () => {
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <div class="settings" @click="showSettingDrawer">
-        <el-icon :size="20"><Setting /></el-icon>
-      </div>
+      <el-tooltip content="设置">
+        <div class="settings" @click="showSettingDrawer">
+          <el-icon :size="20"><Setting /></el-icon>
+        </div>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -144,7 +152,8 @@ const exitLogin = () => {
     }
 
     .current-time {
-      @apply cursor-default select-none mx-2;
+      @apply mx-2;
+      @apply cursor-pointer select-none;
     }
 
     .pointer-lock {

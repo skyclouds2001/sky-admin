@@ -42,7 +42,7 @@ const handleToggleArticleStatus = (id: number) => {
   if (!article) return
 
   ElMessageBox.confirm(
-    article.status === 'drafted' ? '确认发表文章？' : '确认草稿文章？',
+    article.status === 'Drafted' ? '确认发表文章？' : '确认草稿文章？',
     '警告',
     {
       type: 'info',
@@ -56,7 +56,7 @@ const handleToggleArticleStatus = (id: number) => {
     .then(async () => {
       try {
         const a = Object.assign({}, article)
-        a.status = article.status === 'drafted' ? 'published' : 'drafted'
+        a.status = article.status === 'Drafted' ? 'Published' : 'Drafted'
         const res = await updateArticle(a)
         if (res.success) {
           ElMessage.success(

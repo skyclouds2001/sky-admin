@@ -10,7 +10,7 @@ updates:
       - dependency-name: 'pnpm'
     labels:
       - 'dependencies'
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 50
     pull-request-branch-name:
       separator: '-'
     target-branch: 'dev'

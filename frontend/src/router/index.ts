@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useStorage } from 'shooks'
 import { LayoutContainer } from '@/layout'
 import { useTabsStore, usePagesStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
@@ -597,6 +598,17 @@ router.beforeEach((to) => {
   if (to.path.includes('/link') && to.params.mode === 'external') {
     openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/').at(1)))
     return false
+  }
+
+  if (
+    to.path !== '/login' &&
+    useStorage<string>('token', {
+      prefix: 'sky-admin-0.0.0',
+    }).value === null
+  ) {
+    return {
+      path: '/login',
+    }
   }
 })
 

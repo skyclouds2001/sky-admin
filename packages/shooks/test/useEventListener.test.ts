@@ -5,6 +5,7 @@ describe('useEventListener', () => {
   let target: HTMLDivElement
   let removeSpy: SpyInstance
   let addSpy: SpyInstance
+  let stop: () => void
 
   const listener = vi.fn()
   const event = 'click'
@@ -15,7 +16,7 @@ describe('useEventListener', () => {
     removeSpy = vi.spyOn(target, 'removeEventListener')
     addSpy = vi.spyOn(target, 'addEventListener')
     listener.mockReset()
-    useEventListener(target, event, listener, options)
+    stop = useEventListener(target, event, listener, options)
   })
 
   it('should be defined', () => {
@@ -35,7 +36,7 @@ describe('useEventListener', () => {
   it('should remove listener', () => {
     expect(removeSpy).not.toBeCalled()
 
-    stop() // todo - wait for apply
+    stop()
 
     expect(removeSpy).toBeCalledTimes(1)
     expect(removeSpy).toBeCalledWith(event, listener, options)

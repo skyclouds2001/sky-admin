@@ -2,9 +2,11 @@ import { ref, type Ref, reactive, watch } from 'vue'
 import { getArticles } from '@/api'
 import type { Article, Pagination, Response } from '@/model'
 
-const useArticles = (options: {
-  onError?: (error?: Response<Pagination<Article>>) => void
-}): {
+const useArticles = (
+  options: {
+    onError?: (error?: Response<Pagination<Article>>) => void
+  } = {}
+): {
   articles: Ref<Article[]>
   total: Ref<number>
   page: Ref<number>

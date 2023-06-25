@@ -2,12 +2,16 @@
 import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
 import { SettingDrawer } from '@/components'
-import { SettingDrawerKey, useMenuStore } from '@/store'
+import { MenuCollapseKey, SettingDrawerKey } from '@/store'
 import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
-const menuStore = useMenuStore()
+const isShowSettingDrawer = ref(false)
 
-provide<Ref<boolean>>(SettingDrawerKey, ref(false))
+provide<Ref<boolean>>(SettingDrawerKey, isShowSettingDrawer)
+
+const isMenuCollapse = ref(false)
+
+provide<Ref<boolean>>(MenuCollapseKey, isMenuCollapse)
 </script>
 
 <template>
@@ -16,7 +20,7 @@ provide<Ref<boolean>>(SettingDrawerKey, ref(false))
       <el-aside class="w-auto h-screen">
         <page-sidebar />
       </el-aside>
-      <el-container class="page-container h-screen" :style="{ width: menuStore.isCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
+      <el-container class="page-container h-screen" :style="{ width: isMenuCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
         <el-header class="border-b">
           <page-header />
         </el-header>

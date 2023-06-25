@@ -55,6 +55,27 @@ const useTheme = (): {
   }
 
   watch(
+    data,
+    (current) => {
+      switch (current) {
+        case Theme.LIGHT:
+          theme.value = Theme.LIGHT
+          document.documentElement.classList.add(Theme.LIGHT)
+          document.documentElement.classList.remove(Theme.DARK)
+          break
+        case Theme.DARK:
+          theme.value = Theme.DARK
+          document.documentElement.classList.add(Theme.DARK)
+          document.documentElement.classList.remove(Theme.LIGHT)
+          break
+      }
+    },
+    {
+      immediate: true,
+    }
+  )
+
+  watch(
     theme,
     (current) => {
       switch (current) {

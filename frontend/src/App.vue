@@ -9,8 +9,11 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
+import { useLang } from '@/hook'
 
 const i18n = useI18n()
+
+useLang()
 
 locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 </script>

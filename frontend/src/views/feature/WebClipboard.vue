@@ -23,7 +23,7 @@ watch(isCopied, (cur, pre) => {
   <el-space size="large" class="w-full p-4">
     <el-card shadow="always">
       <div class="pb-4">
-        <el-text v-if="!isSupported" size="small">当前浏览器不支持 Vibrate API</el-text>
+        <el-text v-if="!isSupported" size="small">当前浏览器不支持 Clipboard API</el-text>
       </div>
       <div class="pb-4">
         <el-input v-model="text" name="text" clearable />

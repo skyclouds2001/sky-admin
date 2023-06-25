@@ -9,13 +9,22 @@ import { getCurrentInstance } from 'vue'
 
 const appContext = getCurrentInstance()?.appContext
 
-const { articles, page, size, total, refresh, handleSearch } = useArticles()
+const { articles, page, size, total, search, refresh } = useArticles()
 
 /**
  * 导出表格回调方法
  */
 const handleExport = () => {
   exportExcelFromData<Article>(articles.value)
+}
+
+/**
+ * 搜索文章方法
+ * @param root0
+ * @param root0.title
+ */
+const handleSearch = ({ title }: Pick<Article, 'title'>) => {
+  search.title = title
 }
 
 /**

@@ -1,4 +1,7 @@
 export default {
+  confirm: '确认',
+  cancel: '取消',
+  warning: '警告',
   login: {
     login: '登录',
     username: '用户名',
@@ -284,8 +287,16 @@ export default {
       color_weakness: '色弱模式',
       wake_lock: '电源锁',
     },
-    about: '关于',
-    exit_login: '退出',
+    header: {
+      'confirm-exit-login': '确认退出登录',
+      'cancel-exit-login': '取消退出登录',
+      'pointer-lock': '指针锁定',
+      fullscreen: '全屏',
+      share: '分享',
+      settings: '设置',
+      about: '关于',
+      exit_login: '退出',
+    },
   },
   router: {
     '/login': '登录',

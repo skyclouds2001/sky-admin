@@ -1,4 +1,7 @@
 export default {
+  confirm: 'Confirm',
+  cancel: 'Cancel',
+  warning: 'Warning',
   login: {
     login: 'Login',
     username: 'Username',
@@ -284,8 +287,16 @@ export default {
       color_weakness: 'Color Weak',
       wake_lock: 'WakeLock',
     },
-    about: 'About',
-    exit_login: 'Exit',
+    header: {
+      'confirm-exit-login': 'Confirm Exit Login',
+      'cancel-exit-login': 'Cancel Exit Login',
+      'pointer-lock': 'PointerLock',
+      fullscreen: 'Fullscreen',
+      share: 'Share',
+      settings: 'Settings',
+      about: 'About',
+      exit_login: 'Exit',
+    },
   },
   router: {
     '/login': 'Login',

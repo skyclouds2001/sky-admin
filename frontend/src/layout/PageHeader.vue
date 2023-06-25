@@ -61,13 +61,13 @@ const routeToAbout = () => {
  */
 const exitLogin = () => {
   ElMessageBox.confirm(
-    '确认退出登录？',
-    '警告',
+    i18n.t(`layout.header.confirm-exit-login`),
+    i18n.t(`warning`),
     {
       distinguishCancelAndClose: true,
       type: 'info',
-      confirmButtonText: '确认',
-      cancelButtonText: '取消',
+      confirmButtonText: i18n.t(`confirm`),
+      cancelButtonText: i18n.t(`cancel`),
     },
     appContext
   )
@@ -78,7 +78,7 @@ const exitLogin = () => {
     .catch(() => {
       ElMessage.info(
         {
-          message: '取消退出登录',
+          message: i18n.t(`layout.header.cancel-exit-login`),
           showClose: true,
           center: true,
           grouping: true,
@@ -97,7 +97,7 @@ const exitLogin = () => {
 
     <div class="control-bar">
       <div class="current-time">{{ now.toLocaleString() }}</div>
-      <el-tooltip content="指针锁定">
+      <el-tooltip :content="i18n.t(`layout.header.pointer-lock`)">
         <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
           <el-icon :size="20">
             <Unlock v-if="isPointerLock" />
@@ -105,12 +105,12 @@ const exitLogin = () => {
           </el-icon>
         </div>
       </el-tooltip>
-      <el-tooltip content="全屏">
+      <el-tooltip :content="i18n.t(`layout.header.fullscreen`)">
         <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
           <el-icon :size="20"><FullScreen /></el-icon>
         </div>
       </el-tooltip>
-      <el-tooltip content="分享">
+      <el-tooltip :content="i18n.t(`layout.header.share`)">
         <div v-if="isSupportedShare" class="share" @click="handleShare">
           <el-icon :size="20"><Share /></el-icon>
         </div>
@@ -124,12 +124,12 @@ const exitLogin = () => {
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="routeToAbout">{{ i18n.t(`layout.about`) }}</el-dropdown-item>
-            <el-dropdown-item @click="exitLogin">{{ i18n.t(`layout.exit_login`) }}</el-dropdown-item>
+            <el-dropdown-item @click="routeToAbout">{{ i18n.t(`layout.header.about`) }}</el-dropdown-item>
+            <el-dropdown-item @click="exitLogin">{{ i18n.t(`layout.header.exit_login`) }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <el-tooltip content="设置">
+      <el-tooltip :content="i18n.t(`layout.header.settings`)">
         <div class="settings" @click="showSettingDrawer">
           <el-icon :size="20"><Setting /></el-icon>
         </div>

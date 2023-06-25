@@ -106,12 +106,12 @@ const handleSubmit = async () => {
 <template>
   <el-row class="w-screen h-screen justify-center items-center" style="background-image: linear-gradient(90deg, #0065ca, #54a9ff)">
     <el-col :span="8">
-      <el-card header="Login">
+      <el-card :header="i18n.t('login.login')">
         <el-form ref="el" :model="form" :rules="rules" label-position="top" label-width="100px" status-icon hide-required-asterisk>
-          <el-form-item label="Username" prop="username">
+          <el-form-item :label="i18n.t('login.username')" prop="username">
             <el-input v-model="form.username" :placeholder="i18n.t('login.check_username')" :prefix-icon="User" name="username" label="username" />
           </el-form-item>
-          <el-form-item label="Password" prop="password">
+          <el-form-item :label="i18n.t('login.password')" prop="password">
             <el-input v-model="form.password" :placeholder="i18n.t('login.check_password')" show-password :prefix-icon="Locker" name="password" label="password" />
           </el-form-item>
           <el-form-item>

@@ -1,6 +1,8 @@
 export default {
   login: {
     login: 'Login',
+    username: 'Username',
+    password: 'password',
     check_username: 'Please input username',
     check_password: 'Please input password',
     check_info: 'Please check login information',

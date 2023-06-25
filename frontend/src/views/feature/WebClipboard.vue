@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { getCurrentInstance, ref, watch } from 'vue'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
 import { useClipboard } from 'shooks'
+
+const appContext = getCurrentInstance()?.appContext
 
 const { isSupported, isCopied, copy } = useClipboard()
 
@@ -9,12 +11,15 @@ const text = ref('')
 
 watch(isCopied, (cur, pre) => {
   if (cur && !pre) {
-    ElMessage({
-      message: '已复制',
-      type: 'success',
-      showClose: true,
-      center: true,
-    })
+    ElMessage(
+      {
+        message: '已复制',
+        type: 'success',
+        showClose: true,
+        center: true,
+      },
+      appContext
+    )
   }
 })
 </script>

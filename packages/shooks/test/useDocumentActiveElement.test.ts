@@ -21,7 +21,7 @@ describe('useDocumentActiveElement', () => {
   it('should initialize with default value', () => {
     const activeElement = useDocumentActiveElement()
 
-    expect(activeElement).to.equal(document.body)
+    expect(activeElement).toEqual(document.body)
   })
 
   it('should initialize with already-active element', () => {
@@ -29,7 +29,7 @@ describe('useDocumentActiveElement', () => {
 
     const activeElement = useDocumentActiveElement()
 
-    expect(activeElement).to.equal(input)
+    expect(activeElement).toEqual(input)
   })
 
   it('should observe focus and blur events', () => {
@@ -37,10 +37,10 @@ describe('useDocumentActiveElement', () => {
 
     input?.focus()
 
-    expect(activeElement).to.equal(input)
+    expect(activeElement).toEqual(input)
 
     input?.blur()
 
-    expect(activeElement).to.equal(document.body)
+    expect(activeElement).toEqual(document.body)
   })
 })

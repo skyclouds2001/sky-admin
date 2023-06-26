@@ -324,7 +324,7 @@ watch(
 
       <!-- 菜单伸缩状态控制 -->
       <div class="collapse-controller" @click="handleCollapse">
-        <el-icon v-if="menuStore.isCollapse"><Expand /></el-icon>
+        <el-icon v-if="isMenuCollapse"><Expand /></el-icon>
         <el-icon v-else><Fold /></el-icon>
       </div>
     </el-menu>

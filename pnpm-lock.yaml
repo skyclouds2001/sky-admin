@@ -11887,7 +11887,7 @@ packages:
       jsonc-parser: 3.2.0
       markdownlint: 0.29.0
       minimatch: 9.0.1
-      run-con: 1.2.11
+      run-con: 1.2.12
     dev: true
 
   /markdownlint-micromark@0.1.5:
@@ -14701,8 +14701,8 @@ packages:
     engines: {node: '>=0.12.0'}
     dev: true
 
-  /run-con@1.2.11:
-    resolution: {integrity: sha512-NEMGsUT+cglWkzEr4IFK21P4Jca45HqiAbIIZIBdX5+UZTB24Mb/21iNGgz9xZa8tL6vbW7CXmq7MFN42+VjNQ==}
+  /run-con@1.2.12:
+    resolution: {integrity: sha512-5257ILMYIF4RztL9uoZ7V9Q97zHtNHn5bN3NobeAnzB1P3ASLgg8qocM2u+R18ttp+VEM78N2LK8XcNVtnSRrg==}
     hasBin: true
     dependencies:
       deep-extend: 0.6.0

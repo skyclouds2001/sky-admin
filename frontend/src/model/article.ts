@@ -1,3 +1,5 @@
+import type { User } from '@/model'
+
 /**
  * 文章数据结构
  */
@@ -17,10 +19,10 @@ interface Article {
   /** 文章作者 ID */
   authorId: number
   /** 文章作者信息 */
-  author: object
-  /** 文章发布时间 */
+  author: User
+  /** 数据创建时间 */
   createdAt: string
-  /** 文章更新时间 */
+  /** 数据更新时间 */
   updatedAt: string
 }
 

@@ -70,6 +70,8 @@ export { default as useMediaQuery } from './useMediaQuery'
 
 export { default as useMediaRecorder } from './useMediaRecorder'
 
+export { default as useModel } from './useModel'
+
 export { default as useMutationObserver } from './useMutationObserver'
 
 export { default as useNetwork } from './useNetwork'

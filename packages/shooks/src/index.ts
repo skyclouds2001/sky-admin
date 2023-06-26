@@ -22,7 +22,7 @@ export { default as useBattery } from './useBattery'
 
 export { default as useBluetooth } from './useBluetooth'
 
-export * from './useBreakpoints'
+export { breakpointsAntDesign, breakpointsBootstrapV5, breakpointsMasterCss, breakpointsQuasar, breakpointsSematic, breakpointsTailwind, breakpointsVuetify } from './useBreakpoints'
 
 export { default as useBreakpoints } from './useBreakpoints'
 

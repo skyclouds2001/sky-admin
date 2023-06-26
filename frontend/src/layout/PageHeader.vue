@@ -2,7 +2,7 @@
 import { getCurrentInstance, inject, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { ElBreadcrumb, ElBreadcrumbItem, ElDropdown, ElDropdownMenu, ElDropdownItem, ElImage, ElIcon, ElMessageBox, ElMessage, ElTooltip } from 'element-plus'
+import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownMenu, ElDropdownItem, ElImage, ElIcon, ElMessageBox, ElMessage, ElPopover, ElTooltip } from 'element-plus'
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from 'shooks'
 import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
@@ -87,6 +87,7 @@ const exitLogin = () => {
       )
     })
 }
+//
 </script>
 
 <template>
@@ -96,7 +97,13 @@ const exitLogin = () => {
     </el-breadcrumb>
 
     <div class="control-bar">
-      <div class="current-time">{{ now.toLocaleString() }}</div>
+      <el-popover trigger="click" :width="700">
+        <template #reference>
+          <div class="current-time">{{ now.toLocaleString() }}</div>
+        </template>
+        <el-calendar v-model="now" />
+      </el-popover>
+
       <el-tooltip :content="i18n.t(`layout.header.pointer-lock`)">
         <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
           <el-icon :size="20">
@@ -105,16 +112,19 @@ const exitLogin = () => {
           </el-icon>
         </div>
       </el-tooltip>
+
       <el-tooltip :content="i18n.t(`layout.header.fullscreen`)">
         <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
           <el-icon :size="20"><FullScreen /></el-icon>
         </div>
       </el-tooltip>
+
       <el-tooltip :content="i18n.t(`layout.header.share`)">
         <div v-if="isSupportedShare" class="share" @click="handleShare">
           <el-icon :size="20"><Share /></el-icon>
         </div>
       </el-tooltip>
+
       <el-dropdown trigger="click">
         <div class="user">
           <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
@@ -129,6 +139,7 @@ const exitLogin = () => {
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+
       <el-tooltip :content="i18n.t(`layout.header.settings`)">
         <div class="settings" @click="showSettingDrawer">
           <el-icon :size="20"><Setting /></el-icon>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { getCurrentInstance } from 'vue'
 import { ElMessage, ElMessageBox, ElPagination, ElSpace } from 'element-plus'
 import { updateArticle, removeArticle } from '@/api'
 import { ArticleTable, ArticleSearch } from '@/components'
 import { useArticles } from '@/hook'
 import type { Article } from '@/model'
 import { exportExcelFromData } from '@/util'
-import { getCurrentInstance } from 'vue'
 
 const appContext = getCurrentInstance()?.appContext
 
@@ -20,8 +20,8 @@ const handleExport = () => {
 
 /**
  * 搜索文章方法
- * @param root0
- * @param root0.title
+ * @param params 搜索参数
+ * @param params.title 文章标题
  */
 const handleSearch = ({ title }: Pick<Article, 'title'>) => {
   search.title = title

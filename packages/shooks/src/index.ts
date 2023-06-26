@@ -30,6 +30,8 @@ export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
 
+export { default as useDebounce } from './useDebounce'
+
 export { default as useDevicesList } from './useDevicesList'
 
 export { default as useDisplayMedia } from './useDisplayMedia'
@@ -103,6 +105,8 @@ export { default as useSessionStorage } from './useSessionStorage'
 export { default as useShare } from './useShare'
 
 export { default as useStorage } from './useStorage'
+
+export { default as useThrottle } from './useThrottle'
 
 export { default as useTimeout } from './useTimeout'
 

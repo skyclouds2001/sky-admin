@@ -46,6 +46,8 @@ export { default as useEventBus } from './useEventBus'
 
 export { default as useEventListener } from './useEventListener'
 
+export { default as useEventSource } from './useEventSource'
+
 export { default as useEyeDropper } from './useEyeDropper'
 
 export { default as useFavicon } from './useFavicon'

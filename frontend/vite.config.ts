@@ -41,10 +41,12 @@ export default defineConfig({
     eslint({
       cache: true,
       cacheLocation: 'node_modules/.eslint/.eslintcache',
+      exclude: ['**/node_modules/**', '**/dist/**'],
     }),
     stylelint({
       cache: true,
       cacheLocation: 'node_modules/.stylelint/.stylelintcache',
+      exclude: ['**/node_modules/**', '**/dist/**'],
     }),
     visualizer({
       filename: 'report.html',

@@ -120,6 +120,8 @@ export { default as useVibrate } from './useVibrate'
 
 export { default as useWakeLock } from './useWakeLock'
 
+export { default as useWebSocket } from './useWebSocket'
+
 export { default as useWindowControlsOverlay } from './useWindowControlsOverlay'
 
 export { default as useWindowFocus } from './useWindowFocus'

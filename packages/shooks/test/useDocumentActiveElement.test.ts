@@ -1,6 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, afterEach, describe, expect, it } from 'vitest'
 import { useDocumentActiveElement } from '..'
-import { afterEach } from 'node:test'
 
 describe('useDocumentActiveElement', () => {
   let input: HTMLInputElement | null = null
@@ -21,7 +20,7 @@ describe('useDocumentActiveElement', () => {
   it('should initialize with default value', () => {
     const activeElement = useDocumentActiveElement()
 
-    expect(activeElement).toEqual(document.body)
+    expect(activeElement.value).toEqual(document.body)
   })
 
   it('should initialize with already-active element', () => {
@@ -29,7 +28,7 @@ describe('useDocumentActiveElement', () => {
 
     const activeElement = useDocumentActiveElement()
 
-    expect(activeElement).toEqual(input)
+    expect(activeElement.value).toEqual(input)
   })
 
   it('should observe focus and blur events', () => {
@@ -37,10 +36,10 @@ describe('useDocumentActiveElement', () => {
 
     input?.focus()
 
-    expect(activeElement).toEqual(input)
+    expect(activeElement.value).toEqual(input)
 
     input?.blur()
 
-    expect(activeElement).toEqual(document.body)
+    expect(activeElement.value).toEqual(document.body)
   })
 })

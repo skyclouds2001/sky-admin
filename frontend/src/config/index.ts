@@ -36,6 +36,7 @@ export const PROJECT_AUTHOR_AVATAR = avatar
 export const PROJECT_CONTRIBUTORS = packageConfig.contributors
 
 /** 项目构建时间 */
+// @ts-expect-error using global defined variable
 export const BUILD_TIME = __BUILD_TIME__
 
 /** 服务器 HOST */

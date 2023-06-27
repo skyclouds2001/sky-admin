@@ -600,7 +600,7 @@ const storage = useStorage<string>('token', {
 router.beforeEach((to) => {
   // 检测是否为外链（非内链），若是外链则跳转打开新页面
   if (to.path.includes('/link') && to.params.mode === 'external') {
-    openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/').at(1)))
+    openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/')[1]))
     return false
   }
 

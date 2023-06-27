@@ -371,9 +371,6 @@ importers:
       qrcode:
         specifier: ^1.5.3
         version: 1.5.3
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
       shooks:
         specifier: workspace:*
         version: link:../packages/shooks
@@ -444,9 +441,6 @@ importers:
       '@types/qrcode':
         specifier: ^1.5.0
         version: 1.5.0
-      '@types/qs':
-        specifier: ^6.9.7
-        version: 6.9.7
       '@vitejs/plugin-legacy':
         specifier: ^4.0.5
         version: 4.0.5(terser@5.18.1)(vite@4.3.9)
@@ -506,7 +500,7 @@ importers:
         version: 4.0.1(postcss@8.4.24)
       tailwindcss:
         specifier: ^3.3.2
-        version: 3.3.2(ts-node@10.9.1)
+        version: 3.3.2
       terser:
         specifier: ^5.18.1
         version: 5.18.1
@@ -518,10 +512,10 @@ importers:
         version: 0.7.1(rollup@3.25.3)
       vite:
         specifier: ^4.3.9
-        version: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+        version: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
       vite-plugin-checker:
         specifier: ^0.6.1
-        version: 0.6.1(eslint@8.43.0)(stylelint@15.9.0)(typescript@5.1.3)(vite@4.3.9)(vue-tsc@1.8.2)
+        version: 0.6.1(typescript@5.1.3)(vite@4.3.9)(vue-tsc@1.8.2)
       vite-plugin-compression:
         specifier: ^0.5.1
         version: 0.5.1(vite@4.3.9)
@@ -4434,7 +4428,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.3.2(ts-node@10.9.1)
+      tailwindcss: 3.3.2
     dev: true
 
   /@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.2):
@@ -4442,7 +4436,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.2.0'
     dependencies:
-      tailwindcss: 3.3.2(ts-node@10.9.1)
+      tailwindcss: 3.3.2
     dev: true
 
   /@tailwindcss/forms@0.5.3(tailwindcss@3.3.2):
@@ -4451,7 +4445,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.3.2(ts-node@10.9.1)
+      tailwindcss: 3.3.2
     dev: true
 
   /@tailwindcss/typography@0.5.9(tailwindcss@3.3.2):
@@ -4463,7 +4457,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.3.2(ts-node@10.9.1)
+      tailwindcss: 3.3.2
     dev: true
 
   /@testing-library/dom@9.3.1:
@@ -5124,7 +5118,7 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.14.1
       terser: 5.18.1
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5139,7 +5133,7 @@ packages:
       '@babel/core': 7.22.5
       '@babel/plugin-transform-typescript': 7.22.5(@babel/core@7.22.5)
       '@vue/babel-plugin-jsx': 1.1.4(@babel/core@7.22.5)
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -5152,7 +5146,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
       vue: 3.3.4
     dev: true
 
@@ -13401,7 +13395,7 @@ packages:
       postcss: 8.4.24
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.24)(ts-node@10.9.1):
+  /postcss-load-config@4.0.1(postcss@8.4.24):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -13415,7 +13409,6 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.24
-      ts-node: 10.9.1(@types/node@20.3.2)(typescript@5.1.3)
       yaml: 2.3.1
     dev: true
 
@@ -14208,6 +14201,7 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
+    dev: true
 
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -16008,7 +16002,7 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss@3.3.2(ts-node@10.9.1):
+  /tailwindcss@3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -16030,7 +16024,7 @@ packages:
       postcss: 8.4.24
       postcss-import: 15.1.0(postcss@8.4.24)
       postcss-js: 4.0.1(postcss@8.4.24)
-      postcss-load-config: 4.0.1(postcss@8.4.24)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.24)
       postcss-nested: 6.0.1(postcss@8.4.24)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
@@ -16876,7 +16870,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-checker@0.6.1(eslint@8.43.0)(stylelint@15.9.0)(typescript@5.1.3)(vite@4.3.9)(vue-tsc@1.8.2):
+  /vite-plugin-checker@0.6.1(typescript@5.1.3)(vite@4.3.9)(vue-tsc@1.8.2):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -16912,7 +16906,6 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       commander: 8.3.0
-      eslint: 8.43.0
       fast-glob: 3.2.12
       fs-extra: 11.1.1
       lodash.debounce: 4.0.8
@@ -16920,10 +16913,9 @@ packages:
       npm-run-path: 4.0.1
       semver: 7.5.3
       strip-ansi: 6.0.1
-      stylelint: 15.9.0
       tiny-invariant: 1.3.1
       typescript: 5.1.3
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.8
@@ -16939,7 +16931,7 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -16984,7 +16976,7 @@ packages:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     dev: true
 
   /vite-plugin-inspect@0.7.29(rollup@3.25.3)(vite@4.3.9):
@@ -17000,7 +16992,7 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -17016,7 +17008,7 @@ packages:
       axios: 1.4.0(debug@4.3.4)
       debug: 4.3.4
       picocolors: 1.0.0
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -17038,7 +17030,7 @@ packages:
       mockjs: 1.1.0
       path-to-regexp: 6.2.1
       picocolors: 1.0.0
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
     transitivePeerDependencies:
       - esbuild
       - supports-color
@@ -17055,7 +17047,7 @@ packages:
       debug: 4.3.4
       fast-glob: 3.2.12
       pretty-bytes: 6.1.0
-      vite: 4.3.9(@types/node@20.3.2)(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
+      vite: 4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1)
       workbox-build: 7.0.0
       workbox-window: 7.0.0
     transitivePeerDependencies:
@@ -17105,6 +17097,43 @@ packages:
       terser: 5.18.1
     optionalDependencies:
       fsevents: 2.3.2
+
+  /vite@4.3.9(less@4.1.3)(sass@1.63.6)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.1):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.17.19
+      less: 4.1.3
+      postcss: 8.4.24
+      rollup: 3.25.3
+      sass: 1.63.6
+      stylus: 0.59.0
+      sugarss: 4.0.1(postcss@8.4.24)
+      terser: 5.18.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
 
   /vitepress@1.0.0-beta.3(@algolia/client-search@4.18.0)(@types/node@20.3.2)(search-insights@2.6.0):
     resolution: {integrity: sha512-GR5Pvr/o343NN1M4Na1shhDYZRrQbjmLq7WE0lla0H8iDPAsHE8agTHLWfu3FWx+3q2KA29sv16+0O9RQKGjlA==}

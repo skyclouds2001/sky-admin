@@ -419,7 +419,7 @@ importers:
         version: 4.1.1(vue@3.3.4)
       '@intlify/unplugin-vue-i18n':
         specifier: ^0.11.0
-        version: 0.11.0(rollup@3.25.1)(vue-i18n@9.2.2)
+        version: 0.11.0(rollup@3.25.3)(vue-i18n@9.2.2)
       '@tailwindcss/aspect-ratio':
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.3.2)
@@ -490,11 +490,11 @@ importers:
         specifier: ^10.1.3
         version: 10.1.3(postcss@8.4.24)
       rollup:
-        specifier: ^3.25.1
-        version: 3.25.1
+        specifier: ^3.25.3
+        version: 3.25.3
       rollup-plugin-visualizer:
         specifier: ^5.9.2
-        version: 5.9.2(rollup@3.25.1)
+        version: 5.9.2(rollup@3.25.3)
       sass:
         specifier: ^1.63.4
         version: 1.63.4
@@ -515,7 +515,7 @@ importers:
         version: 5.1.3
       unplugin-element-plus:
         specifier: ^0.7.1
-        version: 0.7.1(rollup@3.25.1)
+        version: 0.7.1(rollup@3.25.3)
       vite:
         specifier: ^4.3.9
         version: 4.3.9(@types/node@20.3.1)(less@4.1.3)(sass@1.63.4)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.0)
@@ -536,7 +536,7 @@ importers:
         version: 3.2.0(vite@4.3.9)
       vite-plugin-inspect:
         specifier: ^0.7.28
-        version: 0.7.28(rollup@3.25.1)(vite@4.3.9)
+        version: 0.7.28(rollup@3.25.3)(vite@4.3.9)
       vite-plugin-mkcert:
         specifier: ^1.15.0
         version: 1.15.0(vite@4.3.9)
@@ -548,7 +548,7 @@ importers:
         version: 0.16.4(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
       vite-plugin-stylelint:
         specifier: ^4.3.0
-        version: 4.3.0(postcss@8.4.24)(rollup@3.25.1)(stylelint@15.7.0)(vite@4.3.9)
+        version: 4.3.0(postcss@8.4.24)(rollup@3.25.3)(stylelint@15.7.0)(vite@4.3.9)
       vite-svg-loader:
         specifier: ^4.0.0
         version: 4.0.0
@@ -3418,7 +3418,7 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/unplugin-vue-i18n@0.11.0(rollup@3.25.1)(vue-i18n@9.2.2):
+  /@intlify/unplugin-vue-i18n@0.11.0(rollup@3.25.3)(vue-i18n@9.2.2):
     resolution: {integrity: sha512-ivcLZo08fvepHWV8o5lcKfhcKFSWqhwrqIAU6pUIbvq2ICo9fnXnIPYIZj7FeuHDLW1G3ADm44ZhQC3nYmvDlg==}
     engines: {node: '>= 14.16'}
     peerDependencies:
@@ -3435,7 +3435,7 @@ packages:
     dependencies:
       '@intlify/bundle-utils': 6.0.1(vue-i18n@9.2.2)
       '@intlify/shared': 9.3.0-beta.17
-      '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       '@vue/compiler-sfc': 3.3.4
       debug: 4.3.4
       fast-glob: 3.2.12
@@ -4355,7 +4355,7 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@rollup/pluginutils@5.0.2(rollup@3.25.1):
+  /@rollup/pluginutils@5.0.2(rollup@3.25.3):
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -4367,7 +4367,7 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.25.1
+      rollup: 3.25.3
     dev: true
 
   /@rushstack/node-core-library@3.59.4(@types/node@20.3.1):
@@ -14656,7 +14656,7 @@ packages:
       terser: 5.18.0
     dev: true
 
-  /rollup-plugin-visualizer@5.9.2(rollup@3.25.1):
+  /rollup-plugin-visualizer@5.9.2(rollup@3.25.3):
     resolution: {integrity: sha512-waHktD5mlWrYFrhOLbti4YgQCn1uR24nYsNuXxg7LkPH8KdTXVWR9DNY1WU0QqokyMixVXJS4J04HNrVTMP01A==}
     engines: {node: '>=14'}
     hasBin: true
@@ -14668,7 +14668,7 @@ packages:
     dependencies:
       open: 8.4.2
       picomatch: 2.3.1
-      rollup: 3.25.1
+      rollup: 3.25.3
       source-map: 0.7.4
       yargs: 17.7.2
     dev: true
@@ -14681,8 +14681,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /rollup@3.25.1:
-    resolution: {integrity: sha512-tywOR+rwIt5m2ZAWSe5AIJcTat8vGlnPFAv15ycCrw33t6iFsXZ6mzHVFh2psSjxQPmI+xgzMZZizUAukBI4aQ==}
+  /rollup@3.25.3:
+    resolution: {integrity: sha512-ZT279hx8gszBj9uy5FfhoG4bZx8c+0A1sbqtr7Q3KNWIizpTdDEPZbV2xcbvHsnFp4MavCQYZyzApJ+virB8Yw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -16695,11 +16695,11 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  /unplugin-element-plus@0.7.1(rollup@3.25.1):
+  /unplugin-element-plus@0.7.1(rollup@3.25.3):
     resolution: {integrity: sha512-qzvPyVUdwVMkWGYHFhVm6hTqmP/juQa8tR+RzY/T1YLEk9o69FGQD8G9fOPzXLeYXJi6MjkIrBye9YUYvLMiKg==}
     engines: {node: '>=14.19.0'}
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       es-module-lexer: 1.3.0
       magic-string: 0.30.0
       unplugin: 1.3.1
@@ -16879,7 +16879,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.5
       '@microsoft/api-extractor': 7.35.4(@types/node@20.3.1)
-      '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       '@rushstack/node-core-library': 3.59.4(@types/node@20.3.1)
       debug: 4.3.4
       fast-glob: 3.2.12
@@ -16927,14 +16927,14 @@ packages:
       vite: 4.3.9(@types/node@20.3.1)(less@4.1.3)(sass@1.63.4)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.0)
     dev: true
 
-  /vite-plugin-inspect@0.7.28(rollup@3.25.1)(vite@4.3.9):
+  /vite-plugin-inspect@0.7.28(rollup@3.25.3)(vite@4.3.9):
     resolution: {integrity: sha512-XRdQGdf+PU6eT0EoL8beUyFQfcCrHr06OyRM71IT8t7rEC9JywdsscehGHEAyFZryfaVBWAI280N63BI2N+1BA==}
     engines: {node: '>=14'}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
     dependencies:
       '@antfu/utils': 0.7.4
-      '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       debug: 4.3.4
       fs-extra: 11.1.1
       open: 9.1.0
@@ -17002,7 +17002,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-stylelint@4.3.0(postcss@8.4.24)(rollup@3.25.1)(stylelint@15.7.0)(vite@4.3.9):
+  /vite-plugin-stylelint@4.3.0(postcss@8.4.24)(rollup@3.25.3)(stylelint@15.7.0)(vite@4.3.9):
     resolution: {integrity: sha512-S8BONq5X8TndOFt+My4lkeHxVZvkDQRL++TV0nvnuYgOU/CvDddPPOT4V6go+ETzWK0NEtXqCGFnpkmm8c8Xcg==}
     engines: {node: '>=14.18'}
     peerDependencies:
@@ -17019,10 +17019,10 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       chokidar: 3.5.3
       postcss: 8.4.24
-      rollup: 3.25.1
+      rollup: 3.25.3
       stylelint: 15.7.0
       vite: 4.3.9(@types/node@20.3.1)(less@4.1.3)(sass@1.63.4)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.18.0)
     dev: true
@@ -17063,7 +17063,7 @@ packages:
       esbuild: 0.17.19
       less: 4.1.3
       postcss: 8.4.24
-      rollup: 3.25.1
+      rollup: 3.25.3
       sass: 1.63.4
       stylus: 0.59.0
       sugarss: 4.0.1(postcss@8.4.24)

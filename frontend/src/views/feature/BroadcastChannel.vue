@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { getCurrentInstance, ref, watch } from 'vue'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
 import { useBroadcastChannel } from 'shooks'
+
+const appContext = getCurrentInstance()?.appContext
 
 const message = ref('')
 
@@ -9,20 +11,26 @@ const { isSupported, data, error, post } = useBroadcastChannel<string>('broadcas
 
 watch([data, error], ([data, error]) => {
   if (data !== null) {
-    ElMessage.info({
-      message: `New Message: ${data}`,
-      showClose: true,
-      center: true,
-      grouping: true,
-    })
+    ElMessage.info(
+      {
+        message: `New Message: ${data}`,
+        showClose: true,
+        center: true,
+        grouping: true,
+      },
+      appContext
+    )
   }
   if (error !== null) {
-    ElMessage.error({
-      message: `Message Error: ${error.data}`,
-      showClose: true,
-      center: true,
-      grouping: true,
-    })
+    ElMessage.error(
+      {
+        message: `Message Error: ${error.data}`,
+        showClose: true,
+        center: true,
+        grouping: true,
+      },
+      appContext
+    )
   }
 })
 </script>

@@ -1,3 +1,5 @@
+export { default as reactifyFunction } from './reactifyFunction'
+
 export { default as tryOnBeforeMount } from './tryOnBeforeMount'
 
 export { default as tryOnBeforeUnmount } from './tryOnBeforeUnmount'
@@ -20,13 +22,15 @@ export { default as useBattery } from './useBattery'
 
 export { default as useBluetooth } from './useBluetooth'
 
-export * from './useBreakpoints'
+export { breakpointsAntDesign, breakpointsBootstrapV5, breakpointsMasterCss, breakpointsQuasar, breakpointsSematic, breakpointsTailwind, breakpointsVuetify } from './useBreakpoints'
 
 export { default as useBreakpoints } from './useBreakpoints'
 
 export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
+
+export { default as useDebounce } from './useDebounce'
 
 export { default as useDevicesList } from './useDevicesList'
 
@@ -41,6 +45,8 @@ export { default as useDocumentVisibility } from './useDocumentVisibility'
 export { default as useEventBus } from './useEventBus'
 
 export { default as useEventListener } from './useEventListener'
+
+export { default as useEventSource } from './useEventSource'
 
 export { default as useEyeDropper } from './useEyeDropper'
 
@@ -67,6 +73,8 @@ export { default as useLocation } from './useLocation'
 export { default as useMediaQuery } from './useMediaQuery'
 
 export { default as useMediaRecorder } from './useMediaRecorder'
+
+export { default as useModel } from './useModel'
 
 export { default as useMutationObserver } from './useMutationObserver'
 
@@ -100,6 +108,8 @@ export { default as useShare } from './useShare'
 
 export { default as useStorage } from './useStorage'
 
+export { default as useThrottle } from './useThrottle'
+
 export { default as useTimeout } from './useTimeout'
 
 export { default as useTimestamp } from './useTimestamp'
@@ -111,6 +121,8 @@ export { default as useUserMedia } from './useUserMedia'
 export { default as useVibrate } from './useVibrate'
 
 export { default as useWakeLock } from './useWakeLock'
+
+export { default as useWebSocket } from './useWebSocket'
 
 export { default as useWindowControlsOverlay } from './useWindowControlsOverlay'
 

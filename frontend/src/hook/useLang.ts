@@ -21,6 +21,27 @@ const useLang = (): {
   const language = ref(data.value !== null ? data.value : isLang(preferredLanguage) ? preferredLanguage : Lang.zhCN)
 
   watch(
+    data,
+    (current) => {
+      switch (current) {
+        case Lang.zhCN:
+          i18n.locale.value = Lang.zhCN
+          locale('zh-cn')
+          language.value = Lang.zhCN
+          break
+        case Lang.enUS:
+          i18n.locale.value = Lang.enUS
+          locale('en')
+          language.value = Lang.enUS
+          break
+      }
+    },
+    {
+      immediate: true,
+    }
+  )
+
+  watch(
     language,
     (current) => {
       switch (current) {

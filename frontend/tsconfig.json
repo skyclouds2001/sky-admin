@@ -9,6 +9,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["src/**/*", "test/**/*", "types/**/*", "mock/**/*", "package.json"],
   "exclude": ["node_modules", "dist"]
 }

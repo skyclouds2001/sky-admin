@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put, UseGuards } from '@nestjs/common'
-import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger'
+import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put, UseGuards, Query, DefaultValuePipe, HttpCode, HttpStatus } from '@nestjs/common'
+import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+import { Pagination } from 'src/entities/pagination.entity'
 
 @Controller('users')
 @ApiTags('users')
@@ -12,6 +13,9 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiBody({
     type: CreateUserDto,
     description: '待添加的用户信息',
@@ -24,7 +28,7 @@ export class UsersController {
     return new UserEntity(await this.usersService.create(createUserDto))
   }
 
-  @Get()
+  @Get('all')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({
@@ -34,6 +38,32 @@ export class UsersController {
   })
   async findAll() {
     return (await this.usersService.findAll()).map((user) => new UserEntity(user))
+  }
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiQuery({
+    name: 'page',
+    description: '分页页码',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'size',
+    description: '分页容量',
+    required: false,
+  })
+  @ApiOkResponse({
+    type: Pagination<UserEntity>,
+    description: '用户信息分页列表',
+  })
+  async findPage(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number, @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number) {
+    return new Pagination(
+      (await this.usersService.findPage(page, size)).map((user) => new UserEntity(user)),
+      page,
+      size,
+      await this.usersService.count()
+    )
   }
 
   @Get(':id')

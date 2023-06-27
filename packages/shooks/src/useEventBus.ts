@@ -1,4 +1,6 @@
-import { getCurrentScope, onScopeDispose } from 'vue'
+import tryOnScopeDispose from './tryOnScopeDispose'
+
+type Listener<T extends string | number | symbol, P = unknown> = (event: T, payload?: P) => void
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const events = new Map<string | number | symbol, Set<any>>()
@@ -7,40 +9,36 @@ const events = new Map<string | number | symbol, Set<any>>()
 const useEventBus = <const T extends string | number | symbol, P = any>(
   key: T
 ): {
-  on: (listener: (event: T, payload: P) => void) => void
-  off: (listener: (event: T, payload: P) => void) => void
-  once: (listener: (event: T, payload: P) => void) => void
-  emit: (event: T, payload: P) => void
+  on: (listener: Listener<T, P>) => void
+  off: (listener: Listener<T, P>) => void
+  once: (listener: Listener<T, P>) => void
+  emit: (event?: T, payload?: P) => void
   reset: () => void
 } => {
-  const scope = getCurrentScope()
-
-  const on = (listener: (event: T, payload: P) => void): void => {
+  const on = (listener: Listener<T, P>): void => {
     const listeners = events.get(key) ?? new Set()
     listeners.add(listener)
     events.set(key, listeners)
 
-    if (scope !== undefined) {
-      onScopeDispose(() => {
-        off(listener)
-      })
-    }
+    tryOnScopeDispose(() => {
+      off(listener)
+    })
   }
 
-  const off = (listener: (event: T, payload: P) => void): void => {
+  const off = (listener: Listener<T, P>): void => {
     const listeners = events.get(key)
     listeners?.delete(listener)
     events.set(key, listeners ?? new Set())
   }
 
-  const once = (listener: (event: T, payload: P) => void): void => {
+  const once = (listener: Listener<T, P>): void => {
     on((event, payload) => {
       off(listener)
       listener(event, payload)
     })
   }
 
-  const emit = (event: T, payload: P): void => {
+  const emit = (event?: T, payload?: P): void => {
     events.get(key)?.forEach((listener) => listener(event, payload))
   }
 

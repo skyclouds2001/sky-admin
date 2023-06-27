@@ -19,6 +19,7 @@ const usePointerLock = (
   const lock = async (): Promise<void> => {
     if (!isSupported) return
 
+    // @ts-expect-error Element: requestPointerLock() method has not applied for options in some browsers
     await target.requestPointerLock(options)
 
     isPointerLock.value = true

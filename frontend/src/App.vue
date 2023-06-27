@@ -9,28 +9,28 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import { locale } from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
-import LayoutContainer from '@/layout/LayoutContainer.vue'
+import { useLang } from '@/hook'
 
 const i18n = useI18n()
+
+useLang()
 
 locale(i18n.locale.value === 'zh-CN' ? 'zh-cn' : 'en')
 </script>
 
 <template>
   <el-config-provider :locale="i18n.locale.value === 'zh-CN' ? zhCn : en" :button="{ autoInsertSpace: true }" :message="{ max: 5 }">
-    <component :is="LayoutContainer">
-      <router-view v-slot="{ Component }">
-        <template v-if="Component">
-          <transition mode="out-in">
-            <keep-alive>
-              <suspense>
-                <component :is="Component" />
-              </suspense>
-            </keep-alive>
-          </transition>
-        </template>
-      </router-view>
-    </component>
+    <router-view v-slot="{ Component }">
+      <template v-if="Component">
+        <transition mode="out-in">
+          <keep-alive>
+            <suspense>
+              <component :is="Component" />
+            </suspense>
+          </keep-alive>
+        </transition>
+      </template>
+    </router-view>
   </el-config-provider>
 </template>
 

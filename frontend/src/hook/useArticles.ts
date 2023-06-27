@@ -1,6 +1,6 @@
 import { ref, type Ref, reactive, watch } from 'vue'
-import { ElMessage } from 'element-plus'
 import { getArticles } from '@/api'
+import { useApi } from '@/hook'
 import type { Article } from '@/model'
 
 const useArticles = (): {
@@ -8,12 +8,10 @@ const useArticles = (): {
   total: Ref<number>
   page: Ref<number>
   size: Ref<number>
+  error: Ref<unknown>
   loading: Ref<boolean>
-  search: {
-    name: string
-  }
+  search: Pick<Article, 'title'>
   refresh: () => void
-  handleSearch: (search: { name: string }) => void
 } => {
   const articles = ref<Article[]>([])
 
@@ -23,58 +21,35 @@ const useArticles = (): {
 
   const size = ref(10)
 
-  const loading = ref(false)
-
   const search = reactive({
-    name: '',
+    title: '',
   })
 
-  const handleSearch = (s: { name: string }): void => {
-    search.name = s.name
-  }
-
   const refresh = (): void => {
-    void loadArticles(page.value, size.value, search)
+    void loadData(page.value, size.value, search)
   }
 
-  const loadArticles = async (page: number, size: number, search: Record<'name', string>): Promise<void> => {
-    try {
-      loading.value = true
-      const res = await getArticles({
-        page,
-        size,
-        search,
-      })
-      if (res.success) {
-        articles.value = res.data.articles
-        total.value = res.data.total
-      } else {
-        ElMessage.error({
-          message: `加载失败：${res.code}: ${res.message}`,
-          showClose: true,
-          center: true,
-          grouping: true,
-        })
+  const { loading, result, error, fetch } = useApi(getArticles)
+
+  const loadData = async (pageIndex: number, pageSize: number, pageSearch: Pick<Article, 'title'>): Promise<void> => {
+    void fetch(pageIndex, pageSize, pageSearch).then(() => {
+      if (result.value !== null) {
+        articles.value = result.value.data.data
+        total.value = result.value.data.total
+        page.value = result.value.data.page
+        size.value = result.value.data.size
       }
-    } catch {
-      ElMessage.error({
-        message: '加载失败',
-        showClose: true,
-        center: true,
-        grouping: true,
-      })
-    } finally {
-      loading.value = false
-    }
+    })
   }
 
   watch(
     [page, size, search],
     ([currentPage, currentSize, currentSearch]) => {
-      void loadArticles(currentPage, currentSize, currentSearch)
+      void loadData(currentPage, currentSize, currentSearch)
     },
     {
       immediate: true,
+      deep: true,
     }
   )
 
@@ -83,10 +58,10 @@ const useArticles = (): {
     total,
     page,
     size,
+    error,
     loading,
     search,
     refresh,
-    handleSearch,
   }
 }
 

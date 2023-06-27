@@ -1,46 +1,44 @@
 <script setup lang="ts">
 import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
-import { useMenuStore } from '@/store'
-import SettingDrawer from '@/components/SettingDrawer.vue'
-import PageSidebar from './PageSidebar.vue'
-import PageHeader from './PageHeader.vue'
-import PageFooter from './PageFooter.vue'
-import PageTabs from './PageTabs.vue'
+import { SettingDrawer } from '@/components'
+import { MenuCollapseKey, SettingDrawerKey } from '@/store'
+import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
-const menuStore = useMenuStore()
-
-/**
- * 控制设置窗口是否展示
- */
 const isShowSettingDrawer = ref(false)
 
-provide<Ref<boolean>>('setting', isShowSettingDrawer)
+provide<Ref<boolean>>(SettingDrawerKey, isShowSettingDrawer)
+
+const isMenuCollapse = ref(false)
+
+provide<Ref<boolean>>(MenuCollapseKey, isMenuCollapse)
 </script>
 
 <template>
-  <el-container class="main-container w-screen h-screen">
-    <el-aside class="w-auto h-screen">
-      <page-sidebar />
-    </el-aside>
-    <el-container class="page-container h-screen" :style="{ width: menuStore.isCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
-      <el-header class="border-b">
-        <page-header />
-      </el-header>
-      <el-main class="content-container p-0">
-        <page-tabs>
-          <slot />
-        </page-tabs>
-      </el-main>
-      <el-footer class="border-t">
-        <page-footer />
-      </el-footer>
+  <el-container>
+    <el-container class="main-container w-screen h-screen">
+      <el-aside class="w-auto h-screen">
+        <page-sidebar />
+      </el-aside>
+      <el-container class="page-container h-screen" :style="{ width: isMenuCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">
+        <el-header class="border-b">
+          <page-header />
+        </el-header>
+        <el-main class="content-container p-0">
+          <page-tabs>
+            <router-view />
+          </page-tabs>
+        </el-main>
+        <el-footer class="border-t">
+          <page-footer />
+        </el-footer>
+      </el-container>
     </el-container>
+
+    <setting-drawer />
+
+    <el-backtop :right="100" :bottom="100" />
   </el-container>
-
-  <setting-drawer />
-
-  <el-backtop />
 </template>
 
 <style scoped lang="scss">

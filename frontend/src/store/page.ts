@@ -8,7 +8,7 @@ const usePagesStore = defineStore('pages', {
       pages: [
         {
           name: '首页',
-          path: '/',
+          path: '/home',
         },
       ] as Page[],
     }

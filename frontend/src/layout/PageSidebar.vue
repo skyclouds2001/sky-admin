@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { inject, ref, type Ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection } from '@element-plus/icons-vue'
-import { useTabsStore, useMenuStore } from '@/store'
+import { MenuCollapseKey, useTabsStore } from '@/store'
 
 const route = useRoute()
 
@@ -12,13 +12,14 @@ const i18n = useI18n()
 
 const tabsStore = useTabsStore()
 
-const menuStore = useMenuStore()
+const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey)
 
 /**
  * 切换 Sidebar 伸缩状态方法
  */
 const handleCollapse = () => {
-  menuStore.isCollapse = !menuStore.isCollapse
+  if (isMenuCollapse === undefined) return
+  isMenuCollapse.value = !isMenuCollapse.value
 }
 
 /**
@@ -36,11 +37,11 @@ watch(
 
 <template>
   <el-scrollbar wrap-class="wrap" view-class="view">
-    <el-menu router :default-active="defaultActive" :collapse="menuStore.isCollapse" :class="['page-sidebar', menuStore.isCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
+    <el-menu router :default-active="defaultActive" :collapse="isMenuCollapse" :class="['page-sidebar', isMenuCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
       <!-- 首页 -->
-      <el-menu-item index="/">
+      <el-menu-item index="/home">
         <el-icon><HomeFilled /></el-icon>
-        <span>{{ i18n.t('router./') }}</span>
+        <span>{{ i18n.t('router./home') }}</span>
       </el-menu-item>
 
       <!-- 表格 -->
@@ -293,19 +294,23 @@ watch(
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link') }}</span>
         </template>
-        <el-menu-item index="https://github.com/skyclouds2001/SkyAdmin">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://github.com/skyclouds2001')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/github') }}</span>
         </el-menu-item>
-        <el-menu-item index="https://juejin.cn/user/814058986548567">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://skyclouds2001.github.io')}/external`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router./link/blog') }}</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://juejin.cn/user/814058986548567')}/external`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/juejin') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}/internal`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/vite') }}</span>
         </el-menu-item>
-        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}`">
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}/internal`">
           <el-icon><Link /></el-icon>
           <span>{{ i18n.t('router./link/vue') }}</span>
         </el-menu-item>
@@ -319,7 +324,7 @@ watch(
 
       <!-- 菜单伸缩状态控制 -->
       <div class="collapse-controller" @click="handleCollapse">
-        <el-icon v-if="menuStore.isCollapse"><Expand /></el-icon>
+        <el-icon v-if="isMenuCollapse"><Expand /></el-icon>
         <el-icon v-else><Fold /></el-icon>
       </div>
     </el-menu>

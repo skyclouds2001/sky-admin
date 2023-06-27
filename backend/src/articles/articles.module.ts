@@ -7,5 +7,6 @@ import { ArticlesController } from './articles.controller'
   controllers: [ArticlesController],
   providers: [ArticlesService],
   imports: [PrismaModule],
+  exports: [ArticlesService],
 })
 export class ArticlesModule {}

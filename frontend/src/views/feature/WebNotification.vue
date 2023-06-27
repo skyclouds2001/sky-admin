@@ -5,7 +5,7 @@ import { useNotification } from 'shooks'
 
 const title = ref('')
 
-const { isSupported, show, close } = useNotification(title)
+const { isSupported, show, close } = useNotification(title.value)
 </script>
 
 <template>

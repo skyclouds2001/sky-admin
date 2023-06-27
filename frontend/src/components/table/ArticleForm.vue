@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { ElDatePicker, ElForm, ElFormItem, ElInput, ElInputNumber, ElOption, ElRate, ElSelect } from 'element-plus'
+import { ElForm, ElFormItem, ElInput, ElInputNumber, ElOption, ElRate, ElSelect } from 'element-plus'
 import type { Article } from '@/model'
 
-const data = reactive<Omit<Article, 'id'>>({
+const data = reactive<Omit<Article, 'id' | 'author' | 'createdAt' | 'updatedAt'>>({
   title: '',
-  time: '',
-  author: '',
-  country: '',
-  reviewer: '',
+  description: '',
+  authorId: 0,
   star: 0,
   read: 0,
-  status: 'drafted',
+  status: 'Drafted',
 })
 
 defineExpose({
@@ -24,17 +22,11 @@ defineExpose({
     <el-form-item label="title">
       <el-input v-model="data.title" name="title" label="title" placeholder="Please input title" clearable />
     </el-form-item>
-    <el-form-item label="time">
-      <el-date-picker v-model="data.time" name="time" placeholder="Please select time" />
+    <el-form-item label="description">
+      <el-input v-model="data.description" name="description" label="description" placeholder="Please input description" clearable />
     </el-form-item>
     <el-form-item label="author">
-      <el-input v-model="data.author" name="author" label="author" placeholder="Please input author" clearable />
-    </el-form-item>
-    <el-form-item label="country">
-      <el-input v-model="data.country" name="country" label="country" placeholder="Please input country" clearable />
-    </el-form-item>
-    <el-form-item label="reviewer">
-      <el-input v-model="data.reviewer" name="reviewer" label="reviewer" placeholder="Please input reviewer" clearable />
+      <el-input v-model="data.authorId" name="author" label="author" placeholder="Please input author" clearable />
     </el-form-item>
     <el-form-item label="star">
       <el-rate v-model="data.star" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" clearable label="star" />

@@ -128,6 +128,6 @@
     "vite-plugin-pwa": "^0.16.4",
     "vite-plugin-stylelint": "^4.3.0",
     "vite-svg-loader": "^4.0.0",
-    "vue-tsc": "^1.6.5"
+    "vue-tsc": "^1.8.2"
   }
 }

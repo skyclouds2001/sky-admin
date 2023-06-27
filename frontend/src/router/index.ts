@@ -604,11 +604,14 @@ router.beforeEach((to) => {
     return false
   }
 
+  // 检测是否已登录
   if (to.path !== '/login' && storage.value === null) {
     return {
       path: '/login',
     }
   }
+
+  return true
 })
 
 router.afterEach((to) => {

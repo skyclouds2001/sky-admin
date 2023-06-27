@@ -1,6 +1,6 @@
 import tryOnScopeDispose from './tryOnScopeDispose'
 
-type Listener<T extends string | number | symbol, P = unknown> = (event: T, payload: P) => void
+type Listener<T extends string | number | symbol, P = unknown> = (event: T, payload?: P) => void
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const events = new Map<string | number | symbol, Set<any>>()
@@ -12,7 +12,7 @@ const useEventBus = <const T extends string | number | symbol, P = any>(
   on: (listener: Listener<T, P>) => void
   off: (listener: Listener<T, P>) => void
   once: (listener: Listener<T, P>) => void
-  emit: Listener<T, P>
+  emit: (event?: T, payload?: P) => void
   reset: () => void
 } => {
   const on = (listener: Listener<T, P>): void => {
@@ -38,7 +38,7 @@ const useEventBus = <const T extends string | number | symbol, P = any>(
     })
   }
 
-  const emit: Listener<T, P> = (event, payload) => {
+  const emit = (event?: T, payload?: P): void => {
     events.get(key)?.forEach((listener) => listener(event, payload))
   }
 

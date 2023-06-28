@@ -7,6 +7,7 @@ import { ArticlesModule } from './articles/articles.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ServerModule } from './server/server.module'
+import { WsModule } from './ws/ws.module'
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { ServerModule } from './server/server.module'
     UsersModule,
     AuthModule,
     ServerModule,
+    WsModule,
   ],
 })
 export class AppModule {}

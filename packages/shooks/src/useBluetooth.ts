@@ -30,7 +30,7 @@ const useBluetooth = (): {
     error.value = null
 
     try {
-      device.value = await (navigator as NavigatorWithBluetooth).bluetooth.requestDevice({
+      device.value = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
       })
     } catch (err) {
@@ -39,10 +39,10 @@ const useBluetooth = (): {
   }
 
   const updateBluetoothAvailability = async (): Promise<void> => {
-    isAvailable.value = await (navigator as NavigatorWithBluetooth).bluetooth.getAvailability()
+    isAvailable.value = await navigator.bluetooth.getAvailability()
   }
 
-  useEventListener<Bluetooth, BluetoothEventMap, 'availabilitychanged'>((navigator as NavigatorWithBluetooth).bluetooth, 'availabilitychanged', () => {
+  useEventListener<Bluetooth, BluetoothEventMap, 'availabilitychanged'>(navigator.bluetooth, 'availabilitychanged', () => {
     void updateBluetoothAvailability()
   })
 
@@ -68,81 +68,101 @@ const useBluetooth = (): {
 
 export default useBluetooth
 
-interface NavigatorWithBluetooth extends Navigator {
-  bluetooth: Bluetooth
-}
+declare global {
+  interface Window {
+    Bluetooth: Bluetooth
+    BluetoothCharacteristicProperties: BluetoothCharacteristicProperties
+    BluetoothDevice: BluetoothDevice
+    BluetoothRemoteGATTCharacteristic: BluetoothRemoteGATTCharacteristic
+    BluetoothRemoteGATTDescriptor: BluetoothRemoteGATTDescriptor
+    BluetoothRemoteGATTServer: BluetoothRemoteGATTServer
+    BluetoothRemoteGATTService: BluetoothRemoteGATTService
+    BluetoothUUID: BluetoothUUID
+  }
 
-interface Bluetooth extends EventTarget {
-  getAvailability: () => Promise<boolean>
-  requestDevice: (options?: {
-    filters?: Array<{
-      services: string[]
-      name: string
-      namePrefix: string
-    }>
-    optionalServices?: string[]
-    acceptAllDevices?: boolean
-  }) => Promise<BluetoothDevice>
+  interface Navigator {
+    readonly bluetooth: Bluetooth
+  }
+
+  interface Bluetooth extends EventTarget {
+    getAvailability: () => Promise<boolean>
+    requestDevice: (options?: {
+      filters?: Array<{
+        services: string[]
+        name: string
+        namePrefix: string
+      }>
+      optionalServices?: string[]
+      acceptAllDevices?: boolean
+    }) => Promise<BluetoothDevice>
+  }
+
+  interface BluetoothDevice extends EventTarget {
+    id: string
+    name: string
+    gatt: BluetoothRemoteGATTServer
+  }
+
+  interface BluetoothRemoteGATTServer {
+    connected: boolean
+    device: BluetoothDevice
+    connect: () => Promise<BluetoothRemoteGATTServer>
+    disconnect: () => void
+    getPrimaryService: (bluetoothServiceUUID: string) => Promise<BluetoothRemoteGATTService>
+    getPrimaryServices: (bluetoothServiceUUID: string) => Promise<BluetoothRemoteGATTService>
+  }
+
+  interface BluetoothRemoteGATTService extends EventTarget {
+    device: BluetoothDevice
+    isPrimary: boolean
+    uuid: string
+    getCharacteristic: (characteristic: string) => Promise<BluetoothRemoteGATTCharacteristic>
+    getCharacteristics: (characteristic: string) => Promise<BluetoothRemoteGATTCharacteristic[]>
+  }
+
+  interface BluetoothRemoteGATTCharacteristic extends EventTarget {
+    properties: BluetoothCharacteristicProperties
+    service: BluetoothRemoteGATTService
+    uuid: string
+    value: BluetoothRemoteGATTCharacteristic
+    getDescriptor: () => Promise<BluetoothRemoteGATTDescriptor>
+    getDescriptors: () => Promise<BluetoothRemoteGATTDescriptor[]>
+    readValue: () => Promise<DataView>
+    startNotifications: () => Promise<BluetoothRemoteGATTCharacteristic>
+    stopNotifications: () => void
+    writeValue: (value: ArrayBuffer) => Promise<void>
+    writeValueWithoutResponse: (value: ArrayBuffer) => Promise<void>
+    writeValueWithResponse: (value: ArrayBuffer) => Promise<void>
+  }
+
+  interface BluetoothCharacteristicProperties {
+    authenticatedSignedWrites: boolean
+    broadcast: boolean
+    indicate: boolean
+    notify: boolean
+    read: boolean
+    reliableWrite: boolean
+    writableAuxiliaries: boolean
+    write: boolean
+    writeWithoutResponse: boolean
+  }
+
+  interface BluetoothRemoteGATTDescriptor {
+    characteristic: BluetoothRemoteGATTCharacteristic
+    uuid: string
+    value: ArrayBuffer
+    readValue: () => Promise<ArrayBuffer>
+    writeValue: (array: ArrayBuffer) => Promise<void>
+  }
+
+  interface BluetoothUUID {
+    canonicalUUID: (alias: string) => string
+    getCharacteristic: (name: string) => string
+    getDescriptor: (name: string) => string
+    getService: (name: string) => string
+  }
 }
 
 interface BluetoothEventMap {
   availabilitychanged: Event
-}
-
-interface BluetoothDevice {
-  id: string
-  name: string
-  gatt: BluetoothRemoteGATTServer
-}
-
-interface BluetoothRemoteGATTServer {
-  connected: boolean
-  device: BluetoothDevice
-  connect: () => Promise<BluetoothRemoteGATTServer>
-  disconnect: () => void
-  getPrimaryService: (bluetoothServiceUUID: string) => Promise<BluetoothRemoteGATTService>
-  getPrimaryServices: (bluetoothServiceUUID: string) => Promise<BluetoothRemoteGATTService>
-}
-
-interface BluetoothRemoteGATTService extends EventTarget {
-  device: BluetoothDevice
-  isPrimary: boolean
-  uuid: string
-  getCharacteristic: (characteristic: string) => Promise<BluetoothRemoteGATTCharacteristic>
-  getCharacteristics: (characteristic: string) => Promise<BluetoothRemoteGATTCharacteristic[]>
-}
-
-interface BluetoothRemoteGATTCharacteristic extends EventTarget {
-  properties: BluetoothCharacteristicProperties
-  service: BluetoothRemoteGATTService
-  uuid: string
-  value: BluetoothRemoteGATTCharacteristic
-  getDescriptor: () => Promise<BluetoothRemoteGATTDescriptor>
-  getDescriptors: () => Promise<BluetoothRemoteGATTDescriptor[]>
-  readValue: () => Promise<DataView>
-  startNotifications: () => Promise<BluetoothRemoteGATTCharacteristic>
-  stopNotifications: () => void
-  writeValue: (value: ArrayBuffer) => Promise<void>
-  writeValueWithoutResponse: (value: ArrayBuffer) => Promise<void>
-  writeValueWithResponse: (value: ArrayBuffer) => Promise<void>
-}
-
-interface BluetoothCharacteristicProperties {
-  authenticatedSignedWrites: boolean
-  broadcast: boolean
-  indicate: boolean
-  notify: boolean
-  read: boolean
-  reliableWrite: boolean
-  writableAuxiliaries: boolean
-  write: boolean
-  writeWithoutResponse: boolean
-}
-
-interface BluetoothRemoteGATTDescriptor {
-  characteristic: BluetoothRemoteGATTCharacteristic
-  uuid: string
-  value: ArrayBuffer
-  readValue: () => Promise<ArrayBuffer>
-  writeValue: (array: ArrayBuffer) => Promise<void>
 }

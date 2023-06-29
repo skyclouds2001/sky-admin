@@ -50,7 +50,7 @@ const useNetwork = (): {
   }
 
   if (isSupported) {
-    const connection = (navigator as NavigatorWithConnection).connection
+    const connection = navigator.connection
 
     updateNetworkInformation(connection)
 
@@ -67,31 +67,30 @@ const useNetwork = (): {
 
 export default useNetwork
 
-type NavigatorWithConnection = Navigator & {
-  connection: NetworkInformation
+declare global {
+  interface Window {
+    NetworkInformation: NetworkInformation
+  }
+
+  interface Navigator {
+    readonly connection: NetworkInformation
+  }
+
+  interface NetworkInformation extends EventTarget {
+    downlink: number
+    effectiveType: NetworkEffectiveType
+    rtt: number
+    saveData: boolean
+    type: NetworkType
+    downlinkMax: number
+    onchange: ((this: NetworkInformation, ev: Event) => any) | null
+    addEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+    removeEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+  }
 }
 
-interface NetworkInformation extends EventTarget {
-  downlink: number
-  effectiveType: NetworkEffectiveType
-  rtt: number
-  saveData: boolean
-  type: NetworkType
-  downlinkMax: number
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  addEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  removeEventListener: (<K extends keyof NetworkInformationEventMap>(type: K, listener: (this: NetworkInformation, ev: NetworkInformationEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
-}
-
-/**
- * 网络类型
- */
 type NetworkType = 'bluetooth' | 'cellular' | 'ethernet' | 'none' | 'wifi' | 'wimax' | 'other' | 'unknown'
 
-/**
- * 网络作用类型
- */
 type NetworkEffectiveType = 'slow-2g' | '2g' | '3g' | '4g' | undefined
 
 interface NetworkInformationEventMap {

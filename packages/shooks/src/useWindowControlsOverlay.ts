@@ -8,11 +8,11 @@ const useWindowControlsOverlay = (): {
 } => {
   const isSupported = 'windowControlsOverlay' in navigator
 
-  const visible = ref((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay.visible)
+  const visible = ref(navigator.windowControlsOverlay.visible)
 
-  const rect = ref((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay.getTitlebarAreaRect())
+  const rect = ref(navigator.windowControlsOverlay.getTitlebarAreaRect())
 
-  useEventListener<WindowControlsOverlay, WindowControlsOverlayEventMap, 'geometrychange'>((navigator as NavigatorWithWindowControlsOverlay).windowControlsOverlay, 'geometrychange', (e) => {
+  useEventListener<WindowControlsOverlay, WindowControlsOverlayEventMap, 'geometrychange'>(navigator.windowControlsOverlay, 'geometrychange', (e) => {
     visible.value = e.visible
     rect.value = e.titlebarAreaRect
   })
@@ -26,23 +26,30 @@ const useWindowControlsOverlay = (): {
 
 export default useWindowControlsOverlay
 
-interface NavigatorWithWindowControlsOverlay extends Navigator {
-  readonly windowControlsOverlay: WindowControlsOverlay
-}
+declare global {
+  interface Window {
+    WindowControlsOverlay: WindowControlsOverlay
+    WindowControlsOverlayGeometryChangeEvent: WindowControlsOverlayGeometryChangeEvent
+  }
 
-interface WindowControlsOverlay extends EventTarget {
-  readonly visible: boolean
-  getTitlebarAreaRect: () => DOMRect
-  ongeometrychange: ((this: WindowControlsOverlay, ev: WindowControlsOverlayGeometryChangeEvent) => void) | null
-  addEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => void, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
-  removeEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => void, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+  interface Navigator {
+    readonly windowControlsOverlay: WindowControlsOverlay
+  }
+
+  interface WindowControlsOverlay extends EventTarget {
+    readonly visible: boolean
+    getTitlebarAreaRect: () => DOMRect
+    ongeometrychange: ((this: WindowControlsOverlay, ev: WindowControlsOverlayGeometryChangeEvent) => any) | null
+    addEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+    removeEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+  }
+
+  interface WindowControlsOverlayGeometryChangeEvent extends Event {
+    readonly titlebarAreaRect: DOMRect
+    readonly visible: boolean
+  }
 }
 
 interface WindowControlsOverlayEventMap {
   geometrychange: WindowControlsOverlayGeometryChangeEvent
-}
-
-interface WindowControlsOverlayGeometryChangeEvent extends Event {
-  readonly titlebarAreaRect: DOMRect
-  readonly visible: boolean
 }

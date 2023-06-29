@@ -17,7 +17,7 @@ const useWakeLock = (): {
   const request = async (): Promise<void> => {
     if (!isSupported) return
 
-    const wakeLock = await (navigator as NavigatorWithWakeLock).wakeLock.request('screen')
+    const wakeLock = await navigator.wakeLock.request('screen')
 
     wakeLockSentinel = wakeLock
     isActive.value = !wakeLockSentinel.released
@@ -45,7 +45,7 @@ const useWakeLock = (): {
 
     if (document.visibilityState === 'hidden') return
 
-    void (navigator as NavigatorWithWakeLock).wakeLock.request('screen').then((wakeLock) => {
+    void navigator.wakeLock.request('screen').then((wakeLock) => {
       isActive.value = wakeLock.released
     })
   })
@@ -60,29 +60,3 @@ const useWakeLock = (): {
 }
 
 export default useWakeLock
-
-interface NavigatorWithWakeLock extends Navigator {
-  readonly wakeLock: WakeLock
-}
-
-interface WakeLock {
-  request: (type?: WakeLockType) => Promise<WakeLockSentinel>
-}
-
-type WakeLockType = 'screen'
-
-interface WakeLockSentinel extends EventTarget {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onrelease: ((this: WakeLockSentinel, ev: Event) => any) | null
-  readonly released: boolean
-  readonly type: WakeLockType
-  release: () => Promise<void>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  addEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  removeEventListener: (<K extends keyof WakeLockSentinelEventMap>(type: K, listener: (this: WakeLockSentinel, ev: WakeLockSentinelEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
-}
-
-interface WakeLockSentinelEventMap {
-  release: Event
-}

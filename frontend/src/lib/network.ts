@@ -3,21 +3,34 @@
 import axios from 'axios'
 import { useStorage } from 'shooks'
 import { SERVER_HOST } from '@/config'
+import AxiosRetry from 'axios-retry'
 
-const storage = useStorage<string>('token', {
+const token = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',
 })
 
 const instance = axios.create({
   baseURL: SERVER_HOST,
-  timeout: 10000,
+  timeout: 10 * 1000,
   withCredentials: true,
 })
 
+AxiosRetry(instance, {
+  retries: 3,
+  shouldResetTimeout: true,
+  retryDelay: (retryCount) => retryCount * 250,
+  retryCondition: (error) => error.message.includes('timeout'),
+})
+
+const CancelToken = axios.CancelToken
+
 instance.interceptors.request.use(
   (config) => {
-    if (storage.value !== null) {
-      config.headers.Authorization = `Bearer ${storage.value}`
+    if (config.headers['Content-Type'] === null) {
+      config.headers['Content-Type'] = 'application/json'
+    }
+    if (token.value !== null) {
+      config.headers.Authorization = `Bearer ${token.value}`
     }
     return config
   },

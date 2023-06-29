@@ -1,9 +1,11 @@
 /* eslint-disable promise/no-promise-in-callback */
 
-import axios from 'axios'
+import axios, { type Canceler } from 'axios'
 import { useStorage } from 'shooks'
 import { SERVER_HOST } from '@/config'
 import AxiosRetry from 'axios-retry'
+// eslint-disable-next-line import/named
+import { MD5 } from 'crypto-js'
 
 const token = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',
@@ -22,24 +24,56 @@ AxiosRetry(instance, {
   retryCondition: (error) => error.message.includes('timeout'),
 })
 
-const CancelToken = axios.CancelToken
+const requests = new Map<string, Canceler | null>()
 
 instance.interceptors.request.use(
   (config) => {
-    if (config.headers['Content-Type'] === null) {
-      config.headers['Content-Type'] = 'application/json'
-    }
     if (token.value !== null) {
       config.headers.Authorization = `Bearer ${token.value}`
     }
+
+    const { method, url, params, data } = config
+    const key = MD5([method, url, JSON.stringify(params), JSON.stringify(data)].join('&')).toString()
+    // @ts-expect-error error
+    if (config.cancelRepeat === 'before') {
+      requests.get(key)?.()
+      requests.delete(key)
+      config.cancelToken = new axios.CancelToken((cancel) => {
+        requests.set(key, cancel)
+      })
+    }
+    // @ts-expect-error error
+    if (config.cancelRepeat === 'after') {
+      if (requests.has(key)) {
+        config.cancelToken = new axios.CancelToken((cancel) => {
+          cancel()
+        })
+      }
+      requests.set(key, null)
+    }
+
     return config
   },
   (error) => Promise.reject(error)
 )
 
 instance.interceptors.response.use(
-  (result) => result.data,
-  (error) => Promise.reject(error)
+  (response) => {
+    const { method, url, params, data } = response.config
+    const key = MD5([method, url, JSON.stringify(params), JSON.stringify(data)].join('&')).toString()
+    requests.get(key)?.()
+    requests.delete(key)
+
+    return response.data
+  },
+  (error) => {
+    const { method, url, params, data } = error.config
+    const key = MD5([method, url, JSON.stringify(params), JSON.stringify(data)].join('&')).toString()
+    requests.get(key)?.()
+    requests.delete(key)
+
+    return axios.isCancel(error) ? undefined : Promise.reject(error)
+  }
 )
 
 export default instance

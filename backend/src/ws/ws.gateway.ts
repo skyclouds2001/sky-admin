@@ -3,11 +3,7 @@ import { MessageBody, SubscribeMessage, WebSocketGateway, WsResponse } from '@ne
 import { WsService } from './ws.service'
 import { WsExceptionFilter } from './ws-exception.filter'
 
-@WebSocketGateway({
-  cors: {
-    origin: '*',
-  },
-})
+@WebSocketGateway()
 @UseFilters(new WsExceptionFilter())
 export class WsGateway {
   constructor(private readonly wsService: WsService) {}

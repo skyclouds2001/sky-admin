@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'index.ts'),
       formats: ['es', 'cjs', 'umd', 'iife'],
-      name: 'shooks',
+      name: 'skyclouds2001-vhooks',
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {

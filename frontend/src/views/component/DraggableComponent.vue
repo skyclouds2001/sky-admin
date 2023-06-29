@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { useEventListener } from 'shooks'
+import { useEventListener } from '@skyclouds2001/vhooks'
 
 const isActive = ref(false)
 

@@ -1,11 +1,11 @@
 /* eslint-disable promise/no-promise-in-callback */
 
 import axios, { type Canceler } from 'axios'
-import { useStorage } from 'shooks'
-import { SERVER_HOST } from '@/config'
 import AxiosRetry from 'axios-retry'
 // eslint-disable-next-line import/named
 import { MD5 } from 'crypto-js'
+import { useStorage } from '@skyclouds2001/vhooks'
+import { SERVER_HOST } from '@/config'
 
 const token = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',

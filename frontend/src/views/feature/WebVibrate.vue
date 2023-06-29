@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElButton, ElCard, ElInputNumber, ElSpace, ElText } from 'element-plus'
-import { useVibrate } from 'shooks'
+import { useVibrate } from '@skyclouds2001/vhooks'
 
 const pattern = ref(1000)
 

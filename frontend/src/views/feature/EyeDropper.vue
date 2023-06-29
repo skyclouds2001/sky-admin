@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElButton, ElCard, ElSpace, ElText } from 'element-plus'
-import { useEyeDropper } from 'shooks'
+import { useEyeDropper } from '@skyclouds2001/vhooks'
 
 const { isSupported, color, open } = useEyeDropper()
 </script>

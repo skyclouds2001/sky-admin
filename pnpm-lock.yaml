@@ -308,6 +308,9 @@ importers:
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.8.0)(vue@3.3.4)
+      '@skyclouds2001/vhooks':
+        specifier: workspace:*
+        version: link:../packages/shooks
       '@toast-ui/chart':
         specifier: ^4.6.1
         version: 4.6.1
@@ -380,9 +383,6 @@ importers:
       qrcode:
         specifier: ^1.5.3
         version: 1.5.3
-      shooks:
-        specifier: workspace:*
-        version: link:../packages/shooks
       socket.io-client:
         specifier: ^4.7.1
         version: 4.7.1

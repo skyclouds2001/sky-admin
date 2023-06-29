@@ -1,5 +1,5 @@
 import { ref, type Ref, shallowRef, type ShallowRef } from 'vue'
-import { tryOnScopeDispose } from '..'
+import { tryOnScopeDispose } from '.'
 
 const useEventSource = (
   url: string | URL,

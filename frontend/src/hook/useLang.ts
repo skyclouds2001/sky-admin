@@ -18,6 +18,7 @@ const useLang = (): {
   /**
    * 语言
    */
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const language = ref(data.value !== null ? data.value : isLang(preferredLanguage) ? preferredLanguage : Lang.zhCN)
 
   watch(

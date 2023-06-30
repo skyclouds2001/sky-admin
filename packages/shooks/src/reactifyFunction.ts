@@ -1,4 +1,5 @@
 import { computed, type ComputedRef, type Ref, unref } from 'vue'
+import { type Fn } from '.'
 
 type Reactify<T> = T extends (...args: infer A) => infer R
   ? (
@@ -8,7 +9,7 @@ type Reactify<T> = T extends (...args: infer A) => infer R
     ) => ComputedRef<R>
   : never
 
-const reactifyFunction = function <T extends (...args: any[]) => any>(fn: T): Reactify<T> {
+const reactifyFunction = function <T extends Fn>(fn: T): Reactify<T> {
   return function (this: ThisType<T>, ...args: Parameters<T>) {
     return computed(() =>
       fn.apply(
@@ -16,7 +17,7 @@ const reactifyFunction = function <T extends (...args: any[]) => any>(fn: T): Re
         args.map((v) => unref(v))
       )
     )
-  } as any
+  } as unknown as Reactify<T>
 }
 
 export default reactifyFunction

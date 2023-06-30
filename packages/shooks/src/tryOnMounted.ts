@@ -1,7 +1,7 @@
 import { getCurrentInstance, onMounted } from 'vue'
+import { type Fn } from '.'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tryOnMounted = (fn: (...args: any[]) => any): void => {
+const tryOnMounted = (fn: Fn): void => {
   if (getCurrentInstance() !== null) {
     onMounted(fn)
   } else {

@@ -1,7 +1,7 @@
 import { getCurrentInstance, onBeforeMount } from 'vue'
+import { type Fn } from '.'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tryOnBeforeMount = (fn: (...args: any[]) => any): void => {
+const tryOnBeforeMount = (fn: Fn): void => {
   if (getCurrentInstance() !== null) {
     onBeforeMount(fn)
   } else {

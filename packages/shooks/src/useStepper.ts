@@ -1,6 +1,29 @@
-import { type MaybeRefOrGetter, readonly, ref, toValue, computed } from 'vue'
+import { computed, type ComputedRef, type MaybeRefOrGetter, readonly, ref, type Ref, toValue } from 'vue'
 
-const useStepper = <SS extends Array<string | number> | Record<string, any>, S = SS extends Record<string, infer R> ? R : string | number, N = SS extends Array<string | number> ? string | number : keyof SS>(steps: MaybeRefOrGetter<SS>, initialStep?: N): any => {
+const useStepper = <SS extends Array<string | number> | Record<string, any>, S = SS extends Record<string, infer R> ? R : string | number, N = SS extends Array<string | number> ? string | number : keyof SS>(
+  steps: MaybeRefOrGetter<SS>,
+  initialStep?: N
+): {
+  steps: Readonly<Ref<SS>>
+  stepNames: ComputedRef<Array<string | number>>
+  stepCount: ComputedRef<number>
+  index: Ref<number>
+  previous: ComputedRef<S | undefined>
+  current: ComputedRef<S | undefined>
+  next: ComputedRef<S | undefined>
+  isFirst: ComputedRef<boolean>
+  isLast: ComputedRef<boolean>
+  at: (index: number) => S | undefined
+  get: (name: string) => S | undefined
+  goToPrevious: () => void
+  goTo: (name: string) => void
+  goToNext: () => void
+  isPrevious: (name: string) => boolean
+  isCurrent: (name: string) => boolean
+  isNext: (name: string) => boolean
+  isBefore: (name: string) => boolean
+  isAfter: (name: string) => boolean
+} => {
   const step$ = ref(toValue(steps))
 
   const stepNames = computed(() => (Array.isArray(step$.value) ? step$.value : Object.keys(step$.value)))
@@ -51,7 +74,7 @@ const useStepper = <SS extends Array<string | number> | Record<string, any>, S =
   }
 
   return {
-    steps: readonly(step$),
+    steps: readonly(step$) as Readonly<Ref<SS>>,
     stepNames,
     stepCount,
     index,

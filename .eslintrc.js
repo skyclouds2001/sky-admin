@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   root: true,
   env: {
@@ -8,7 +10,7 @@ module.exports = {
     'shared-node-browser': true,
     worker: true,
   },
-  extends: ['standard-with-typescript', 'eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:n/recommended', 'plugin:promise/recommended', 'plugin:import/recommended', 'plugin:security/recommended', 'plugin:jsdoc/recommended', 'plugin:jsx-a11y/recommended', 'plugin:regexp/recommended', 'plugin:json/recommended', 'plugin:markdown/recommended', 'plugin:prettier/recommended'],
+  extends: ['standard-with-typescript', 'eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:n/recommended', 'plugin:promise/recommended', 'plugin:import/recommended', 'plugin:import/typescript', 'plugin:security/recommended', 'plugin:jsdoc/recommended', 'plugin:jsx-a11y/recommended', 'plugin:regexp/recommended', 'plugin:json/recommended', 'plugin:markdown/recommended', 'plugin:prettier/recommended'],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -22,16 +24,32 @@ module.exports = {
     extraFileExtensions: ['.vue', '.json', '.html', '.md', '.mdx'],
   },
   plugins: ['html', 'tsdoc'],
+  ignorePatterns: ['.eslintrc.js'],
   globals: {},
   rules: {
     'n/no-missing-import': 'off',
-    'import/no-unresolved': 'off',
-    'n/no-extraneous-import': 'off',
-    '@typescript-eslint/promise-function-async': 'off',
-    'promise/always-return': 'off',
+    'n/no-missing-require': 'off',
+    'import/no-unresolved': [
+      'error',
+      {
+        commonjs: true,
+        amd: true,
+        ignore: ['^@', '^~'],
+      },
+    ],
+    'promise/always-return': [
+      'error',
+      {
+        ignoreLastCallback: true,
+      },
+    ],
   },
   settings: {
-    'import/core-modules': ['element-plus'],
+    node: {
+      allowModules: ['vitest', '@playwright/test'],
+      resolvePaths: [__dirname],
+      tryExtensions: ['.ts', '.mts', '.js', '.mjs', '.jsx', '.tsx', '.json'],
+    },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },

@@ -102,15 +102,15 @@ const useBreakpoints = <const K extends string = string>(
   smallerOrEqual: (k: K) => Ref<boolean>
   between: (a: K, b: K) => Ref<boolean>
 } => {
-  const greater = (k: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
+  const greater = (k: K): Readonly<Ref<boolean>> => useMediaQuery(`(min-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
 
-  const greaterOrEqual = (k: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
+  const greaterOrEqual = (k: K): Readonly<Ref<boolean>> => useMediaQuery(`(min-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
 
-  const smaller = (k: K): Ref<boolean> => useMediaQuery(`(max-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
+  const smaller = (k: K): Readonly<Ref<boolean>> => useMediaQuery(`(max-width: ${breakpoints[k] - 0.001}px)`).matchMediaQuery
 
-  const smallerOrEqual = (k: K): Ref<boolean> => useMediaQuery(`(max-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
+  const smallerOrEqual = (k: K): Readonly<Ref<boolean>> => useMediaQuery(`(max-width: ${breakpoints[k] + 0.001}px)`).matchMediaQuery
 
-  const between = (a: K, b: K): Ref<boolean> => useMediaQuery(`(min-width: ${breakpoints[a]}px) and (max-width: ${breakpoints[b]}px)`).matchMediaQuery
+  const between = (a: K, b: K): Readonly<Ref<boolean>> => useMediaQuery(`(min-width: ${breakpoints[a] - 0.001}px) and (max-width: ${breakpoints[b] + 0.001}px)`).matchMediaQuery
 
   return {
     breakpoints,

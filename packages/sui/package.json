@@ -59,6 +59,11 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "rollup": "^3.25.3",
     "typescript": "^5.1.3"
   }
 }

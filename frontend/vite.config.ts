@@ -51,7 +51,7 @@ export default defineConfig({
         lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx,vue}"',
       },
       stylelint: {
-        lintCommand: 'stylelint ./src/**/*.{vue,css,sass,scss,less,styl,stylus}',
+        lintCommand: 'stylelint "./src/**/*.{vue,css,sass,scss,less,styl,stylus}"',
       },
     }),
     GenerateEnv(),

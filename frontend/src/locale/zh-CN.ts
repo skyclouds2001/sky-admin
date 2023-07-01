@@ -345,6 +345,7 @@ export default {
     '/feature/camera-record': '视频录制',
     '/feature/screen-record': '屏幕录制',
     '/feature/web-rtc': '网络实时通信',
+    '/feature/animation-effect': '动画',
     '/feature/eye-dropper': '吸管工具',
     '/feature/notification': '通知',
     '/feature/vibrate': '振动',

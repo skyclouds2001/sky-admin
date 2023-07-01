@@ -345,6 +345,7 @@ export default {
     '/feature/camera-record': 'Video Recorder',
     '/feature/screen-record': 'Screen Recorder',
     '/feature/web-rtc': 'Web Real-Time Communications',
+    '/feature/animation-effect': 'Animation',
     '/feature/eye-dropper': 'EyeDropper Tool',
     '/feature/notification': 'Notification',
     '/feature/vibrate': 'Vibrate',

@@ -250,6 +250,10 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/web-rtc') }}</span>
         </el-menu-item>
+        <el-menu-item index="/feature/animation-effect">
+          <el-icon><Service /></el-icon>
+          <span>{{ i18n.t('router./feature/animation-effect') }}</span>
+        </el-menu-item>
         <el-menu-item index="/feature/eye-dropper">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/eye-dropper') }}</span>

@@ -458,6 +458,15 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/feature/animation-effect'),
+              path: '/feature/animation-effect',
+              component: () => import('@/views/feature/AnimationEffect.vue'),
+              meta: {
+                title: '动画',
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/feature/eye-dropper'),
               path: '/feature/eye-dropper',
               component: () => import('@/views/feature/EyeDropper.vue'),

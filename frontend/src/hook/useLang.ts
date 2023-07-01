@@ -2,7 +2,7 @@ import { ref, unref, type Ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
 import { Lang, isLang } from '@/enum'
-import { usePreferredLanguages, useStorage } from '@skyclouds2001/vhooks'
+import { usePreferredLanguages, useStorage } from '@sky-fly/vhooks'
 
 const useLang = (): {
   lang: Ref<Lang>

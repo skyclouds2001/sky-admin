@@ -2,7 +2,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { ElIcon } from 'element-plus'
 import { RefreshRight } from '@element-plus/icons-vue'
-import { useEventListener } from '@skyclouds2001/vhooks'
+import { useEventListener } from '@sky-fly/vhooks'
 
 const el = ref<HTMLDivElement | null>(null)
 

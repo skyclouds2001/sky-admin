@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElButton, ElCard, ElInput, ElSpace, ElText } from 'element-plus'
-import { useNotification } from '@skyclouds2001/vhooks'
+import { useNotification } from '@sky-fly/vhooks'
 
 const title = ref('')
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getCurrentInstance, ref, watch } from 'vue'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
-import { useBroadcastChannel } from '@skyclouds2001/vhooks'
+import { useBroadcastChannel } from '@sky-fly/vhooks'
 
 const appContext = getCurrentInstance()?.appContext
 

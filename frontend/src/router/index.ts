@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStorage } from '@skyclouds2001/vhooks'
+import { useStorage } from '@sky-fly/vhooks'
 import { LayoutContainer } from '@/layout'
 import { useTabsStore, usePagesStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'

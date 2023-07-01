@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElSpace } from 'element-plus'
-import { useDisplayMedia, useMediaRecorder, usePictureInPicture } from '@skyclouds2001/vhooks'
+import { useDisplayMedia, useMediaRecorder, usePictureInPicture } from '@sky-fly/vhooks'
 import { captureScreenshot, downloadFile } from '@/util'
 
 const i18n = useI18n()

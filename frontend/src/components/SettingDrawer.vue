@@ -2,7 +2,7 @@
 import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElDrawer, ElDivider, ElSwitch, ElSelect, ElOption } from 'element-plus'
-import { useWakeLock } from '@skyclouds2001/vhooks'
+import { useWakeLock } from '@sky-fly/vhooks'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { Theme, Lang } from '@/enum'
 import { useColorWeakness, useGrayMode, useLang, useTheme } from '@/hook'

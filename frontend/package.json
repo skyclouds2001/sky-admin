@@ -43,7 +43,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@skyclouds2001/vhooks": "workspace:*",
+    "@sky-fly/vhooks": "workspace:*",
     "@toast-ui/chart": "^4.6.1",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-chart": "^3.0.1",

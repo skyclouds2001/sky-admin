@@ -31,6 +31,7 @@ export default defineConfig({
     }),
     resolve({
       browser: true,
+      extensions: ['.ts', '.tsx', '.mts', 'cts', '.js', '.jsx', '.mjs', 'cjs', '.json'],
     }),
     typescript({
       sourceMap: false,

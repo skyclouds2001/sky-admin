@@ -3,6 +3,8 @@ import NodeResolve from '@rollup/plugin-node-resolve'
 import Terser from '@rollup/plugin-terser'
 import Typescript from '@rollup/plugin-typescript'
 import VueJsx from '@vitejs/plugin-vue-jsx'
+import PostCSS from 'rollup-plugin-postcss'
+import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
   input: 'src/index.ts',
@@ -38,6 +40,12 @@ export default defineConfig({
       declarationDir: 'dist',
       emitDeclarationOnly: true,
       rootDir: 'src',
+    }),
+    PostCSS({
+      extensions: ['.css'],
+      extract: true,
+      minimize: true,
+      plugins: [autoprefixer()],
     }),
   ],
 })

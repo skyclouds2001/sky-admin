@@ -1,10 +1,11 @@
 import { defineComponent } from 'vue'
+import styles from './index.module.css'
 
 const Button = defineComponent({
   setup: () => {
     return () => (
       <div>
-        <button>button</button>
+        <button style={styles.button}>button</button>
       </div>
     )
   },

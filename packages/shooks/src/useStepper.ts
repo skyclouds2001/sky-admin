@@ -58,19 +58,24 @@ const useStepper = <SS extends Array<string | number> | Record<string, any>, S =
   }
 
   const isPrevious = (name: string): boolean => {
-    return stepNames.value.indexOf(name) === index.value - 1
+    const id = stepNames.value.indexOf(name)
+    return id === index.value - 1 && id !== -1
   }
   const isCurrent = (name: string): boolean => {
-    return stepNames.value.indexOf(name) === index.value
+    const id = stepNames.value.indexOf(name)
+    return id === index.value && id !== -1
   }
   const isNext = (name: string): boolean => {
-    return stepNames.value.indexOf(name) === index.value + 1
+    const id = stepNames.value.indexOf(name)
+    return id === index.value + 1 && id !== -1
   }
   const isBefore = (name: string): boolean => {
-    return stepNames.value.indexOf(name) < index.value
+    const id = stepNames.value.indexOf(name)
+    return id < index.value && id !== -1
   }
   const isAfter = (name: string): boolean => {
-    return stepNames.value.indexOf(name) > index.value
+    const id = stepNames.value.indexOf(name)
+    return id > index.value && id !== -1
   }
 
   return {

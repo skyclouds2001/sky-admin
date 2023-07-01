@@ -1,6 +1,5 @@
 {
-  "name": "@skyclouds2001/vhooks",
-  "private": true,
+  "name": "@sky-fly/vhooks",
   "version": "0.0.0",
   "license": "MIT",
   "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
@@ -13,6 +12,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "unpkg": "./dist/index.umd.js",

@@ -3,7 +3,7 @@ import { inject, ref, type Ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor } from '@element-plus/icons-vue'
 import { MenuCollapseKey, useTabsStore } from '@/store'
 
 const route = useRoute()
@@ -269,6 +269,18 @@ watch(
         <el-menu-item index="/feature/broadcast-channel">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/broadcast-channel') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 系统监控 -->
+      <el-sub-menu index="/monitor">
+        <template #title>
+          <el-icon><Monitor /></el-icon>
+          <span>{{ i18n.t('router./monitor') }}</span>
+        </template>
+        <el-menu-item index="/monitor/performance">
+          <el-icon><Monitor /></el-icon>
+          <span>{{ i18n.t('router./monitor/performance') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

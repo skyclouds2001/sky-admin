@@ -350,6 +350,8 @@ export default {
     '/feature/vibrate': 'Vibrate',
     '/feature/clipboard': 'Clipboard',
     '/feature/broadcast-channel': 'BroadcastChannel',
+    '/monitor': 'Monitor',
+    '/monitor/performance': 'Performance',
     '/error': 'Error',
     '/error/403': '403',
     '/error/404': '404',

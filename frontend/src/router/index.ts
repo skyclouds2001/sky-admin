@@ -505,6 +505,27 @@ const router = createRouter({
           ],
         },
 
+        // 系统监控
+        {
+          name: Symbol('/monitor'),
+          path: '/monitor',
+          meta: {
+            title: '系统监控',
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/monitor/performance'),
+              path: '/monitor/performance',
+              component: () => import('@/views/monitor/SystemPerformance.vue'),
+              meta: {
+                title: '系统性能',
+                isView: true,
+              },
+            },
+          ],
+        },
+
         // 异常
         {
           name: Symbol('/error'),

@@ -37,7 +37,7 @@ export default defineConfig({
       sourceMap: false,
       declaration: true,
       declarationDir: 'dist',
-      rootDir: './src',
+      rootDir: 'src',
       exclude: ['node_modules/**/*', 'dist/**/*', 'test/**/*'],
     }),
     terser(),

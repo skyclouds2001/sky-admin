@@ -1,0 +1,64 @@
+{
+  "name": "@skyclouds2001/ui",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
+  "keywords": [
+    "admin",
+    "management",
+    "system",
+    "skyclouds2001"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyclouds2001/SkyAdmin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skyclouds2001/SkyAdmin/issues",
+    "email": "skyclouds2001@163.com"
+  },
+  "author": {
+    "name": "skyclouds2001",
+    "email": "skyclouds2001@163.com",
+    "url": "https://skyclouds2001.github.io"
+  },
+  "contributors": [
+    "skyclouds2001"
+  ],
+  "packageManager": "pnpm@8.4.0",
+  "engines": {
+    "node": ">=18.13.0",
+    "npm": ">=9.6.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=8.4.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
+}

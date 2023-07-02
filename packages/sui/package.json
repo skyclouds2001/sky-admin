@@ -13,7 +13,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.umd.js",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "unpkg": "./dist/index.umd.js",
   "jsdelivr": "./dist/index.umd.js",
@@ -24,8 +24,7 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
-    },
-    "./*": "./*"
+    }
   },
   "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {

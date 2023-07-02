@@ -293,6 +293,9 @@ importers:
       '@sky-fly/vhooks':
         specifier: workspace:*
         version: link:../packages/shooks
+      '@sky-fly/vui':
+        specifier: workspace:*
+        version: link:../packages/sui
       '@toast-ui/chart':
         specifier: ^4.6.1
         version: 4.6.1

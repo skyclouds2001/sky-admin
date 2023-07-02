@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { ExceptionsFilter } from './exception.filter'
 
 describe('ExceptionFilter', () => {

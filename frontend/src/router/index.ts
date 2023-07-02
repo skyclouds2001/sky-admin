@@ -519,10 +519,20 @@ const router = createRouter({
           name: Symbol('/3d'),
           path: '/3d',
           meta: {
-            title: 'Web 3D',
+            title: '3D',
             isView: false,
           },
-          children: [],
+          children: [
+            {
+              name: Symbol('/3d/basis'),
+              path: '/3d/basis',
+              component: () => import('@/views/3D/Base3D.vue'),
+              meta: {
+                title: 'Basic 3D',
+                isView: true,
+              },
+            },
+          ],
         },
 
         // 系统监控

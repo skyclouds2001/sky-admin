@@ -282,6 +282,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d') }}</span>
         </template>
+        <el-menu-item index="/3d/basis">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/basis') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 系统监控 -->

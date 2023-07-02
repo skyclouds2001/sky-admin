@@ -352,6 +352,7 @@ export default {
     '/feature/clipboard': 'Clipboard',
     '/feature/broadcast-channel': 'BroadcastChannel',
     '/3d': '3D',
+    '/3d/basis': 'Basic 3D',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',
     '/error': 'Error',

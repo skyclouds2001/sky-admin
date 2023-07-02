@@ -3,7 +3,7 @@ import { inject, ref, type Ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor, Box } from '@element-plus/icons-vue'
 import { MenuCollapseKey, useTabsStore } from '@/store'
 
 const route = useRoute()
@@ -274,6 +274,14 @@ watch(
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router./feature/broadcast-channel') }}</span>
         </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 3D -->
+      <el-sub-menu index="/3d">
+        <template #title>
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d') }}</span>
+        </template>
       </el-sub-menu>
 
       <!-- 系统监控 -->

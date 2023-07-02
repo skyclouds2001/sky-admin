@@ -514,6 +514,17 @@ const router = createRouter({
           ],
         },
 
+        // 3D
+        {
+          name: Symbol('/3d'),
+          path: '/3d',
+          meta: {
+            title: 'Web 3D',
+            isView: false,
+          },
+          children: [],
+        },
+
         // 系统监控
         {
           name: Symbol('/monitor'),

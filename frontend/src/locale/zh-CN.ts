@@ -351,6 +351,7 @@ export default {
     '/feature/vibrate': '振动',
     '/feature/clipboard': '剪切板',
     '/feature/broadcast-channel': '广播频道',
+    '/3d': '3D',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',
     '/error': '异常',

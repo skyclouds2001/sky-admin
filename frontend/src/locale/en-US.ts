@@ -351,6 +351,7 @@ export default {
     '/feature/vibrate': 'Vibrate',
     '/feature/clipboard': 'Clipboard',
     '/feature/broadcast-channel': 'BroadcastChannel',
+    '/3d': '3D',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',
     '/error': 'Error',

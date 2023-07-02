@@ -43,7 +43,6 @@ export default defineConfig({
     }),
     PostCSS({
       extensions: ['.css'],
-      extract: true,
       minimize: true,
       plugins: [autoprefixer()],
     }),

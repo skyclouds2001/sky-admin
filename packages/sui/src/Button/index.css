@@ -2,6 +2,15 @@
   --sky-button-text-color: #cfd3dc;
   --sky-button-bg-color: transparent;
   --sky-button-border-color: #4c4d4f;
+  --sky-button-hover-text-color: #409eff;
+  --sky-button-hover-bg-color: #18222c;
+  --sky-button-hover-border-color: #213d5b;
+  --sky-button-active-text-color: #409eff;
+  --sky-button-active-bg-color: #18222c;
+  --sky-button-active-border-color: #409eff;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: transparent;
+  --sky-button-disabled-border-color: #414243;
 }
 
 .sky-button {
@@ -27,43 +36,97 @@
 
 .sky-button:hover,
 .sky-button:focus {
-  --sky-button-text-color: #409eff;
-  --sky-button-bg-color: #18222c;
-  --sky-button-border-color: #213d5b;
+  color: var(--sky-button-hover-text-color);
+  background-color: var(--sky-button-hover-bg-color);
+  border: 1px solid var(--sky-button-hover-border-color);
 }
 
 .sky-button:active {
-  --sky-button-text-color: #409eff;
-  --sky-button-bg-color: #18222c;
-  --sky-button-border-color: #409eff;
+  color: var(--sky-button-active-text-color);
+  background-color: var(--sky-button-active-bg-color);
+  border: 1px solid var(--sky-button-active-border-color);
 }
 
 .sky-button-primary {
   --sky-button-text-color: white;
   --sky-button-bg-color: #409eff;
   --sky-button-border-color: #409eff;
+  --sky-button-hover-text-color: white;
+  --sky-button-hover-bg-color: #3375b9;
+  --sky-button-hover-border-color: #3375b9;
+  --sky-button-active-text-color: white;
+  --sky-button-active-bg-color: #66b1ff;
+  --sky-button-active-border-color: #66b1ff;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: #2a598a;
+  --sky-button-disabled-border-color: #2a598a;
 }
 
 .sky-button-success {
   --sky-button-text-color: white;
   --sky-button-bg-color: #67c23a;
   --sky-button-border-color: #67c23a;
+  --sky-button-hover-text-color: white;
+  --sky-button-hover-bg-color: #4e8e2f;
+  --sky-button-hover-border-color: #4e8e2f;
+  --sky-button-active-text-color: white;
+  --sky-button-active-bg-color: #85ce61;
+  --sky-button-active-border-color: #85ce61;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: #3e6b27;
+  --sky-button-disabled-border-color: #3e6b27;
 }
 
 .sky-button-warning {
   --sky-button-text-color: white;
   --sky-button-bg-color: #e6a23c;
   --sky-button-border-color: #e6a23c;
+  --sky-button-hover-text-color: white;
+  --sky-button-hover-bg-color: #a77730;
+  --sky-button-hover-border-color: #a77730;
+  --sky-button-active-text-color: white;
+  --sky-button-active-bg-color: #ebb563;
+  --sky-button-active-border-color: #ebb563;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: #7d5b28;
+  --sky-button-disabled-border-color: #7d5b28;
 }
 
 .sky-button-danger {
   --sky-button-text-color: white;
   --sky-button-bg-color: #f56c6c;
   --sky-button-border-color: #f56c6c;
+  --sky-button-hover-text-color: white;
+  --sky-button-hover-bg-color: #b25252;
+  --sky-button-hover-border-color: #b25252;
+  --sky-button-active-text-color: white;
+  --sky-button-active-bg-color: #f78989;
+  --sky-button-active-border-color: #f78989;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: #854040;
+  --sky-button-disabled-border-color: #854040;
 }
 
 .sky-button-info {
   --sky-button-text-color: white;
   --sky-button-bg-color: #909399;
   --sky-button-border-color: #909399;
+  --sky-button-hover-text-color: white;
+  --sky-button-hover-bg-color: #6b6d71;
+  --sky-button-hover-border-color: #6b6d71;
+  --sky-button-active-text-color: white;
+  --sky-button-active-bg-color: #a6a9ad;
+  --sky-button-active-border-color: #a6a9ad;
+  --sky-button-disabled-text-color: rgb(255 255 255 / 50%);
+  --sky-button-disabled-bg-color: #525457;
+  --sky-button-disabled-border-color: #525457;
+}
+
+.sky-button-disabled,
+.sky-button-disabled:hover,
+.sky-button-disabled:focus {
+  color: var(--sky-button-disabled-text-color);
+  background-color: var(--sky-button-disabled-bg-color);
+  border: 1px solid var(--sky-button-disabled-border-color);
+  cursor: not-allowed;
 }

@@ -8,10 +8,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 14px;
+  padding: 8px 16px;
   color: var(--sky-button-text-color);
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1em;
   white-space: nowrap;
   text-align: center;
@@ -19,8 +19,23 @@
   background-color: var(--sky-button-bg-color);
   border: 1px solid var(--sky-button-border-color);
   border-radius: 4px;
+  outline: none;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
   user-select: none;
+}
+
+.sky-button:hover,
+.sky-button:focus {
+  --sky-button-text-color: #409eff;
+  --sky-button-bg-color: #18222c;
+  --sky-button-border-color: #213d5b;
+}
+
+.sky-button:active {
+  --sky-button-text-color: #409eff;
+  --sky-button-bg-color: #18222c;
+  --sky-button-border-color: #409eff;
 }
 
 .sky-button-primary {
@@ -30,17 +45,25 @@
 }
 
 .sky-button-success {
-  /* u */
+  --sky-button-text-color: white;
+  --sky-button-bg-color: #67c23a;
+  --sky-button-border-color: #67c23a;
 }
 
 .sky-button-warning {
-  /* u */
+  --sky-button-text-color: white;
+  --sky-button-bg-color: #e6a23c;
+  --sky-button-border-color: #e6a23c;
 }
 
 .sky-button-danger {
-  /* u */
+  --sky-button-text-color: white;
+  --sky-button-bg-color: #f56c6c;
+  --sky-button-border-color: #f56c6c;
 }
 
 .sky-button-info {
-  /* u */
+  --sky-button-text-color: white;
+  --sky-button-bg-color: #909399;
+  --sky-button-border-color: #909399;
 }

@@ -1,0 +1,46 @@
+:root {
+  --sky-button-text-color: #cfd3dc;
+  --sky-button-bg-color: transparent;
+  --sky-button-border-color: #4c4d4f;
+}
+
+.sky-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  color: var(--sky-button-text-color);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1em;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--sky-button-bg-color);
+  border: 1px solid var(--sky-button-border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sky-button-primary {
+  --sky-button-text-color: white;
+  --sky-button-bg-color: #409eff;
+  --sky-button-border-color: #409eff;
+}
+
+.sky-button-success {
+  /* u */
+}
+
+.sky-button-warning {
+  /* u */
+}
+
+.sky-button-danger {
+  /* u */
+}
+
+.sky-button-info {
+  /* u */
+}

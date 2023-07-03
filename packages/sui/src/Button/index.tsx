@@ -1,12 +1,20 @@
 import { defineComponent } from 'vue'
-import styles from './index.module.css'
+import './index.css'
 
 const Button = defineComponent({
-  setup: () => {
+  props: {
+    type: {
+      type: String,
+      default: '',
+      required: false,
+      validate: (value: string) => ['primary', 'success', 'warning', 'danger', 'info'].includes(value),
+    },
+  },
+  setup: (props, { slots }) => {
     return () => (
-      <div>
-        <button style={styles.button}>button</button>
-      </div>
+      <button class={['sky-button', props.type === 'primary' ? 'sky-button-primary' : '', props.type === 'success' ? 'sky-button-success' : '', props.type === 'warning' ? 'sky-button-warning' : '', props.type === 'danger' ? 'sky-button-danger' : '', props.type === 'info' ? 'sky-button-info' : '']}>
+        <span>{slots.default?.()}</span>
+      </button>
     )
   },
 })

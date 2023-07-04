@@ -20,7 +20,7 @@
   padding: 8px 16px;
   color: var(--sky-button-text-color);
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1em;
   white-space: nowrap;
   text-align: center;
@@ -129,4 +129,18 @@
   background-color: var(--sky-button-disabled-bg-color);
   border: 1px solid var(--sky-button-disabled-border-color);
   cursor: not-allowed;
+}
+
+.sky-button-large {
+  height: 40px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.sky-button-small {
+  height: 24px;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 3px;
 }

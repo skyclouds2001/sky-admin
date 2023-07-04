@@ -4,8 +4,8 @@ import './index.css'
 const Button = defineComponent({
   props: {
     type: {
-      type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info'>,
-      default: '',
+      type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default'>,
+      default: 'default',
       required: false,
       validator: (value: string) => value === '' || ['primary', 'success', 'warning', 'danger', 'info'].includes(value),
     },
@@ -31,7 +31,7 @@ const Button = defineComponent({
   }>,
   setup: (props, { slots }) => {
     return () => (
-      <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type === 'primary' ? 'sky-button-primary' : '', props.type === 'success' ? 'sky-button-success' : '', props.type === 'warning' ? 'sky-button-warning' : '', props.type === 'danger' ? 'sky-button-danger' : '', props.type === 'info' ? 'sky-button-info' : '', props.disabled ? 'sky-button-disabled' : '']}>
+      <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type !== 'default' ? `sky-button-${props.type}` : '', props.disabled ? 'sky-button-disabled' : '']}>
         <span>{slots.default()}</span>
       </button>
     )

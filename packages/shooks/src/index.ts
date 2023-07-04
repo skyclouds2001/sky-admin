@@ -64,6 +64,8 @@ export { default as useGeolocation } from './useGeolocation'
 
 export { default as useIdleCallback } from './useIdleCallback'
 
+export { default as useIndexedDB } from './useIndexedDB'
+
 export { default as useIntersectionObserver } from './useIntersectionObserver'
 
 export { default as useInterval } from './useInterval'

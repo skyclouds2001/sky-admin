@@ -40,8 +40,10 @@ const bootstrap = async (): Promise<void> => {
 
   await app.get(PrismaService).enableShutdownHooks(app)
 
-  await app.listen(app.get(ConfigService).get<number>('PORT'), () => {
-    Logger
+  const port = app.get(ConfigService).get<number>('PORT') ?? 3000
+
+  await app.listen(port, () => {
+    Logger.log(`Application is running at http://localhost:${port}`)
   })
 }
 

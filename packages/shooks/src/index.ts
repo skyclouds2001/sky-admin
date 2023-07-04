@@ -138,4 +138,4 @@ export { default as useWindowScroll } from './useWindowScroll'
 
 export { default as useWindowSize } from './useWindowSize'
 
-export * from './util'
+export type { Fn, Obj } from './util'

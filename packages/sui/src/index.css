@@ -84,8 +84,6 @@
   --sky-overlay-color: rgba(0 0 0 / 8%);
   --sky-overlay-color-light: rgba(0 0 0 / 7%);
   --sky-overlay-color-lighter: rgba(0 0 0 / 5%);
-  --sky-border-width: 1px;
-  --sky-border-style: solid;
   --sky-border-color-hover: var(--sky-text-color-disabled);
   --sky-border: var(--sky-border-width) var(--sky-border-style) var(--sky-border-color);
   --sky-svg-monochrome-grey: var(--sky-border-color);

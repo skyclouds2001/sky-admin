@@ -122,6 +122,10 @@
   --sky-button-disabled-border-color: var(--sky-color-info-light-5);
 }
 
+.sky-button-round {
+  border-radius: 20px;
+}
+
 .sky-button-disabled,
 .sky-button-disabled:hover,
 .sky-button-disabled:focus {

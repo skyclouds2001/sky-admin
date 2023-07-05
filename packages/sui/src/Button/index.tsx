@@ -9,6 +9,11 @@ const Button = defineComponent({
       required: false,
       validator: (value: string) => ['primary', 'success', 'warning', 'danger', 'info'].includes(value),
     },
+    round: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -37,7 +42,7 @@ const Button = defineComponent({
   }>,
   setup: (props, { slots }) => {
     return () => (
-      <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type !== 'default' ? `sky-button-${props.type}` : '', props.disabled ? 'sky-button-disabled' : '', props.size !== 'default' ? `sky-button-${props.size}` : '']}>
+      <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type !== 'default' ? `sky-button-${props.type}` : '', props.round ? 'sky-button-round' : '', props.disabled ? 'sky-button-disabled' : '', props.size !== 'default' ? `sky-button-${props.size}` : '']}>
         <span>{slots.default()}</span>
       </button>
     )

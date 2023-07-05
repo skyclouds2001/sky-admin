@@ -4,7 +4,7 @@ import axios, { type Canceler } from 'axios'
 import AxiosRetry from 'axios-retry'
 // eslint-disable-next-line import/named
 import { MD5 } from 'crypto-js'
-import { useStorage } from '@sky-fly/vhooks'
+import { useStorage } from '@sky-fly/shooks'
 import { SERVER_HOST } from '@/config'
 
 const token = useStorage<string>('token', {

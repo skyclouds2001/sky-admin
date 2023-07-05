@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag } from 'element-plus'
-import { useGeolocation } from '@sky-fly/vhooks'
+import { ElCard, ElDescriptions, ElDescriptionsItem, ElSpace, ElTag } from 'element-plus'
+import { useGeolocation } from '@sky-fly/shooks'
 
 const i18n = useI18n()
 

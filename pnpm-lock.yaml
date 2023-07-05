@@ -293,7 +293,7 @@ importers:
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.8.0)(vue@3.3.4)
-      '@sky-fly/vhooks':
+      '@sky-fly/shooks':
         specifier: workspace:*
         version: link:../packages/shooks
       '@sky-fly/vui':

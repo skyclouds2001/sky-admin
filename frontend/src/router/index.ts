@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStorage } from '@sky-fly/vhooks'
+import { useStorage } from '@sky-fly/shooks'
 import { LayoutContainer } from '@/layout'
-import { useTabsStore, usePagesStore } from '@/store'
+import { usePagesStore, useTabsStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
 
 const router = createRouter({

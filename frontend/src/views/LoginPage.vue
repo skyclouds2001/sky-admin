@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElCard, ElCol, ElForm, ElFormItem, ElInput, ElMessage, ElRow, type FormInstance, type FormRules } from 'element-plus'
 import { Lock as Locker, User } from '@element-plus/icons-vue'
-import { useStorage } from '@sky-fly/vhooks'
+import { useStorage } from '@sky-fly/shooks'
 import { login } from '@/api'
 
 const appContext = getCurrentInstance()?.appContext

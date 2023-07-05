@@ -61,7 +61,7 @@
     "highlight.js": "^11.8.0",
     "jsbarcode": "^3.11.5",
     "lodash-es": "^4.17.21",
-    "mitt": "^3.0.0",
+    "mitt": "^3.0.1",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.4",
     "prismjs": "^1.29.0",

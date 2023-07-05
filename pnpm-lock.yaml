@@ -5427,7 +5427,7 @@ packages:
       - vue
     dev: false
 
-  /@vueuse/integrations@10.2.1(focus-trap@7.4.3)(vue@3.3.4):
+  /@vueuse/integrations@10.2.1(focus-trap@7.5.2)(vue@3.3.4):
     resolution: {integrity: sha512-FDP5lni+z9FjHE9H3xuvwSjoRV9U8jmDvJpmHPCBjUgPGYRynwb60eHWXCFJXLUtb4gSIHy0e+iaEbrKdalCkQ==}
     peerDependencies:
       async-validator: '*'
@@ -5470,7 +5470,7 @@ packages:
     dependencies:
       '@vueuse/core': 10.2.1(vue@3.3.4)
       '@vueuse/shared': 10.2.1(vue@3.3.4)
-      focus-trap: 7.4.3
+      focus-trap: 7.5.2
       vue-demi: 0.14.5(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -9280,8 +9280,8 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /focus-trap@7.4.3:
-    resolution: {integrity: sha512-BgSSbK4GPnS2VbtZ50VtOv1Sti6DIkj3+LkVjiWMNjLeAp1SH1UlLx3ULu/DCu4vq5R4/uvTm+zrvsMsuYmGLg==}
+  /focus-trap@7.5.2:
+    resolution: {integrity: sha512-p6vGNNWLDGwJCiEjkSK6oERj/hEyI9ITsSwIUICBoKLlWiTWXJRfQibCwcoi50rTZdbi87qDtUlMCmQwsGSgPw==}
     dependencies:
       tabbable: 6.2.0
     dev: true
@@ -17168,9 +17168,9 @@ packages:
       '@vitejs/plugin-vue': 4.2.3(vite@4.4.0-beta.3)(vue@3.3.4)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.2.1(vue@3.3.4)
-      '@vueuse/integrations': 10.2.1(focus-trap@7.4.3)(vue@3.3.4)
+      '@vueuse/integrations': 10.2.1(focus-trap@7.5.2)(vue@3.3.4)
       body-scroll-lock: 4.0.0-beta.0
-      focus-trap: 7.4.3
+      focus-trap: 7.5.2
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.3

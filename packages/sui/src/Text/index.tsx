@@ -15,6 +15,11 @@ const Text = defineComponent({
       required: false,
       validator: (value: string) => ['large', 'default', 'small'].includes(value),
     },
+    ellipsis: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   slots: Object as SlotsType<{
     default: () => any
@@ -22,7 +27,7 @@ const Text = defineComponent({
   setup: (props, { slots }) => {
     return () => (
       <>
-        <span class={['sky-text', props.type !== 'default' ? `sky-text-${props.type}` : '', props.size !== 'default' ? `sky-text-${props.size}` : '']}>{slots.default()}</span>
+        <span class={['sky-text', props.type !== 'default' ? `sky-text-${props.type}` : '', props.size !== 'default' ? `sky-text-${props.size}` : '', props.ellipsis ? 'sky-text-ellipsis' : '']}>{slots.default()}</span>
       </>
     )
   },

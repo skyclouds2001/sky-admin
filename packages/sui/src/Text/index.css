@@ -27,3 +27,11 @@
 .sky-text-info {
   --sky-text-color: var(--sky-color-info);
 }
+
+.sky-text-large {
+  font-size: 16px;
+}
+
+.sky-text-small {
+  font-size: 12px;
+}

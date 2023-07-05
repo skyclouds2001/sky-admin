@@ -9,3 +9,5 @@ export { default as useGrayMode } from './useGrayMode'
 export { default as useLang } from './useLang'
 
 export { default as useTheme } from './useTheme'
+
+export { default as useWebVitals } from './useWebVitals'

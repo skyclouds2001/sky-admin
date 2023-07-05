@@ -1,5 +1,5 @@
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core'
-import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common'
+import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
@@ -8,10 +8,7 @@ import { ExceptionsFilter } from './filters/exception.filter'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { TransformResultInterceptor } from './interceptors/result.interceptor'
 
-/**
- * main initial method
- */
-async function bootstrap(): Promise<void> {
+const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
   })
@@ -43,7 +40,11 @@ async function bootstrap(): Promise<void> {
 
   await app.get(PrismaService).enableShutdownHooks(app)
 
-  await app.listen(app.get(ConfigService).get<number>('PORT'))
+  const port = app.get(ConfigService).get<number>('PORT') ?? 3000
+
+  await app.listen(port, () => {
+    Logger.log(`Application is running at http://localhost:${port}`)
+  })
 }
 
 void bootstrap()

@@ -9,14 +9,14 @@ import svgLoader from 'vite-svg-loader'
 // @ts-expect-error typescript can not recognize its definition file
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
-import viteCompression from 'vite-plugin-compression'
+import compression from 'vite-plugin-compression'
 import CopyFile from 'vite-plugin-copy-file'
 import mkcert from 'vite-plugin-mkcert'
 import { visualizer } from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
-import checker from 'vite-plugin-checker'
+import { checker } from 'vite-plugin-checker'
 
 export default defineConfig({
   plugins: [
@@ -32,10 +32,10 @@ export default defineConfig({
     html({
       minify: true,
     }),
-    VitePWA({
+    pwa({
       registerType: 'autoUpdate',
     }),
-    viteCompression(),
+    compression(),
     mkcert(),
     visualizer({
       filename: 'report.html',
@@ -51,7 +51,7 @@ export default defineConfig({
         lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx,vue}"',
       },
       stylelint: {
-        lintCommand: 'stylelint ./src/**/*.{vue,css,sass,scss,less,styl,stylus}',
+        lintCommand: 'stylelint "./src/**/*.{vue,css,sass,scss,less,styl,stylus}"',
       },
     }),
     GenerateEnv(),
@@ -66,6 +66,17 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+        },
+      },
+    },
+  },
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -76,6 +87,11 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+      },
+      '/socket.io': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        ws: true,
       },
     },
   },
@@ -89,6 +105,11 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+      },
+      '/socket.io': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        ws: true,
       },
     },
   },

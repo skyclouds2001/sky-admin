@@ -1,0 +1,155 @@
+:root {
+  --sky-button-text-color: var(--sky-text-color-regular);
+  --sky-button-bg-color: var(--sky-fill-color-blank);
+  --sky-button-border-color: var(--sky-border-color);
+  --sky-button-hover-text-color: var(--sky-color-primary);
+  --sky-button-hover-bg-color: var(--sky-color-primary-light-9);
+  --sky-button-hover-border-color: var(--sky-color-primary-light-7);
+  --sky-button-active-text-color: var(--sky-color-primary);
+  --sky-button-active-bg-color: var(--sky-color-primary-light-9);
+  --sky-button-active-border-color: var(--sky-color-primary);
+  --sky-button-disabled-text-color: var(--sky-disabled-text-color);
+  --sky-button-disabled-bg-color: var(--sky-fill-color-blank);
+  --sky-button-disabled-border-color: var(--sky-border-color-light);
+}
+
+.sky-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  color: var(--sky-button-text-color);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1em;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--sky-button-bg-color);
+  border: 1px solid var(--sky-button-border-color);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+
+.sky-button:hover,
+.sky-button:focus {
+  color: var(--sky-button-hover-text-color);
+  background-color: var(--sky-button-hover-bg-color);
+  border: 1px solid var(--sky-button-hover-border-color);
+}
+
+.sky-button:active {
+  color: var(--sky-button-active-text-color);
+  background-color: var(--sky-button-active-bg-color);
+  border: 1px solid var(--sky-button-active-border-color);
+}
+
+.sky-button-primary {
+  --sky-button-text-color: var(--sky-color-white);
+  --sky-button-bg-color: var(--sky-color-primary);
+  --sky-button-border-color: var(--sky-color-primary);
+  --sky-button-hover-text-color: var(--sky-color-white);
+  --sky-button-hover-bg-color: var(--sky-color-primary-light-3);
+  --sky-button-hover-border-color: var(--sky-color-primary-light-3);
+  --sky-button-active-text-color: var(--sky-color-white);
+  --sky-button-active-bg-color: var(--sky-color-primary-dark-2);
+  --sky-button-active-border-color: var(--sky-color-primary-dark-2);
+  --sky-button-disabled-text-color: var(--sky-color-white);
+  --sky-button-disabled-bg-color: var(--sky-color-primary-light-5);
+  --sky-button-disabled-border-color: var(--sky-color-primary-light-5);
+}
+
+.sky-button-success {
+  --sky-button-text-color: var(--sky-color-white);
+  --sky-button-bg-color: var(--sky-color-success);
+  --sky-button-border-color: var(--sky-color-success);
+  --sky-button-hover-text-color: var(--sky-color-white);
+  --sky-button-hover-bg-color: var(--sky-color-success-light-3);
+  --sky-button-hover-border-color: var(--sky-color-success-light-3);
+  --sky-button-active-text-color: var(--sky-color-white);
+  --sky-button-active-bg-color: var(--sky-color-success-dark-2);
+  --sky-button-active-border-color: var(--sky-color-success-dark-2);
+  --sky-button-disabled-text-color: var(--sky-color-white);
+  --sky-button-disabled-bg-color: var(--sky-color-success-light-5);
+  --sky-button-disabled-border-color: var(--sky-color-success-light-5);
+}
+
+.sky-button-warning {
+  --sky-button-text-color: var(--sky-color-white);
+  --sky-button-bg-color: var(--sky-color-warning);
+  --sky-button-border-color: var(--sky-color-warning);
+  --sky-button-hover-text-color: var(--sky-color-white);
+  --sky-button-hover-bg-color: var(--sky-color-warning-light-3);
+  --sky-button-hover-border-color: var(--sky-color-warning-light-3);
+  --sky-button-active-text-color: var(--sky-color-white);
+  --sky-button-active-bg-color: var(--sky-color-warning-dark-2);
+  --sky-button-active-border-color: var(--sky-color-warning-dark-2);
+  --sky-button-disabled-text-color: var(--sky-color-white);
+  --sky-button-disabled-bg-color: var(--sky-color-warning-light-5);
+  --sky-button-disabled-border-color: var(--sky-color-warning-light-5);
+}
+
+.sky-button-danger {
+  --sky-button-text-color: var(--sky-color-white);
+  --sky-button-bg-color: var(--sky-color-danger);
+  --sky-button-border-color: var(--sky-color-danger);
+  --sky-button-hover-text-color: var(--sky-color-white);
+  --sky-button-hover-bg-color: var(--sky-color-danger-light-3);
+  --sky-button-hover-border-color: var(--sky-color-danger-light-3);
+  --sky-button-active-text-color: var(--sky-color-white);
+  --sky-button-active-bg-color: var(--sky-color-danger-dark-2);
+  --sky-button-active-border-color: var(--sky-color-danger-dark-2);
+  --sky-button-disabled-text-color: var(--sky-color-white);
+  --sky-button-disabled-bg-color: var(--sky-color-danger-light-5);
+  --sky-button-disabled-border-color: var(--sky-color-danger-light-5);
+}
+
+.sky-button-info {
+  --sky-button-text-color: var(--sky-color-white);
+  --sky-button-bg-color: var(--sky-color-info);
+  --sky-button-border-color: var(--sky-color-info);
+  --sky-button-hover-text-color: var(--sky-color-white);
+  --sky-button-hover-bg-color: var(--sky-color-info-light-3);
+  --sky-button-hover-border-color: var(--sky-color-info-light-3);
+  --sky-button-active-text-color: var(--sky-color-white);
+  --sky-button-active-bg-color: var(--sky-color-info-dark-2);
+  --sky-button-active-border-color: var(--sky-color-info-dark-2);
+  --sky-button-disabled-text-color: var(--sky-color-white);
+  --sky-button-disabled-bg-color: var(--sky-color-info-light-5);
+  --sky-button-disabled-border-color: var(--sky-color-info-light-5);
+}
+
+.sky-button-round {
+  border-radius: 20px;
+}
+
+.sky-button-circle {
+  width: 50%;
+  padding: 8px;
+}
+
+.sky-button-disabled,
+.sky-button-disabled:hover,
+.sky-button-disabled:focus {
+  color: var(--sky-button-disabled-text-color);
+  background-color: var(--sky-button-disabled-bg-color);
+  border: 1px solid var(--sky-button-disabled-border-color);
+  cursor: not-allowed;
+}
+
+.sky-button-large {
+  height: 40px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.sky-button-small {
+  height: 24px;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 3px;
+}

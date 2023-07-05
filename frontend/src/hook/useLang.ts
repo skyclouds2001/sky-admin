@@ -1,8 +1,8 @@
-import { ref, unref, type Ref, watch } from 'vue'
+import { ref, type Ref, unref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { locale } from 'dayjs'
+import { usePreferredLanguages, useStorage } from '@sky-fly/shooks'
 import { Lang, isLang } from '@/enum'
-import { usePreferredLanguages, useStorage } from 'shooks'
 
 const useLang = (): {
   lang: Ref<Lang>
@@ -18,6 +18,7 @@ const useLang = (): {
   /**
    * 语言
    */
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const language = ref(data.value !== null ? data.value : isLang(preferredLanguage) ? preferredLanguage : Lang.zhCN)
 
   watch(

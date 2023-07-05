@@ -1,7 +1,7 @@
 import { getCurrentInstance, onUnmounted } from 'vue'
+import { type Fn } from '.'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tryOnUnmounted = (fn: (...args: any[]) => any): void => {
+const tryOnUnmounted = (fn: Fn): void => {
   if (getCurrentInstance() !== null) {
     onUnmounted(fn)
   }

@@ -4,8 +4,8 @@ import path from 'node:path'
 export default defineConfig({
   test: {
     root: '.',
-    include: ['**/?(*.)test.?(c|m)[jt]s?(x)'],
-    exclude: ['**/node_modules/**', '**/dist/**', '**/.{idea,fleet,vscode,git}/**', '**/{vite,vitest}.config.*', '**/backend/**'],
+    include: ['**/?(*.){test,spec}.?(c|m)[jt]s?(x)'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.{idea,fleet,vscode,git}/**', '**/{vite,vitest}.config.*'],
     watch: false,
     environment: 'jsdom',
     reporters: ['default', 'html'],

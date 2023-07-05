@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { ElButton, ElSelect, ElSpace, ElOption } from 'element-plus'
-import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from 'shooks'
+import { ElButton, ElOption, ElSelect, ElSpace } from 'element-plus'
+import { useDevicesList, useMediaRecorder, usePictureInPicture, useUserMedia } from '@sky-fly/shooks'
 import { captureScreenshot, downloadFile } from '@/util'
 
 const i18n = useI18n()

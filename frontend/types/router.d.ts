@@ -6,5 +6,3 @@ declare module 'vue-router' {
     isView: boolean
   }
 }
-
-export {}

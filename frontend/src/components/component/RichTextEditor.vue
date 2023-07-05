@@ -4,7 +4,7 @@ import type { IDomEditor } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
 
-const el = shallowRef<IDomEditor | null>(null)
+const el = shallowRef<IDomEditor>()
 
 const context = ref('')
 

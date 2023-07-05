@@ -1,7 +1,7 @@
 import { computed, type ComputedRef, ref, type Ref, watch } from 'vue'
 
 const useFileSystemAccess = (
-  options: { dataType?: DataType } = {}
+  options: { dataType?: 'Text' | 'ArrayBuffer' | 'Blob' } = {}
 ): {
   isSupported: boolean
   data: Ref<string | ArrayBuffer | Blob | undefined>
@@ -50,7 +50,7 @@ const useFileSystemAccess = (
   const open = async (options?: ShowOpenFilePickerOptions): Promise<void> => {
     if (!isSupported) return
 
-    const [handle] = await (window as WindowWithFileSystemAccess).showOpenFilePicker(options)
+    const [handle] = await window.showOpenFilePicker(options)
     fileHandle = handle
 
     await updateFile()
@@ -60,7 +60,7 @@ const useFileSystemAccess = (
   const create = async (options?: ShowSaveFilePickerOptions): Promise<void> => {
     if (!isSupported) return
 
-    fileHandle = await (window as WindowWithFileSystemAccess).showSaveFilePicker(options)
+    fileHandle = await window.showSaveFilePicker(options)
 
     await updateFile()
     await updateData()
@@ -69,7 +69,7 @@ const useFileSystemAccess = (
   const save = async (options?: ShowSaveFilePickerOptions): Promise<void> => {
     if (!isSupported) return
 
-    if (fileHandle === undefined) fileHandle = await (window as WindowWithFileSystemAccess).showSaveFilePicker(options)
+    if (fileHandle === undefined) fileHandle = await window.showSaveFilePicker(options)
 
     if (data.value !== undefined) {
       const stream = await fileHandle.createWritable()
@@ -98,9 +98,11 @@ const useFileSystemAccess = (
 
 export default useFileSystemAccess
 
-type WindowWithFileSystemAccess = typeof window & {
-  showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
-  showSaveFilePicker: (options?: ShowSaveFilePickerOptions) => Promise<FileSystemFileHandle>
+declare global {
+  interface Window {
+    showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
+    showSaveFilePicker: (options?: ShowSaveFilePickerOptions) => Promise<FileSystemFileHandle>
+  }
 }
 
 interface ShowOpenFilePickerOptions {
@@ -120,32 +122,3 @@ interface ShowSaveFilePickerOptions {
     accept: Record<string, string[]>
   }>
 }
-
-interface FileSystemFileHandle extends FileSystemHandle {
-  readonly kind: 'file'
-  createWritable: (options?: FileSystemCreateWritableOptions) => Promise<FileSystemWritableFileStream>
-  getFile: () => Promise<File>
-}
-
-interface FileSystemCreateWritableOptions {
-  keepExistingData?: boolean
-}
-
-interface FileSystemWritableFileStream extends WritableStream {
-  seek: (position: number) => Promise<void>
-  truncate: (size: number) => Promise<void>
-  write: (data: FileSystemWriteChunkType) => Promise<void>
-}
-
-type FileSystemWriteChunkType = BufferSource | Blob | string | WriteParams
-
-interface WriteParams {
-  data?: BufferSource | Blob | string | null
-  position?: number | null
-  size?: number | null
-  type: WriteCommandType
-}
-
-type WriteCommandType = 'seek' | 'truncate' | 'write'
-
-type DataType = 'Text' | 'ArrayBuffer' | 'Blob'

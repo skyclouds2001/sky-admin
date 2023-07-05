@@ -27,9 +27,9 @@ const useAppBadge = (
     contents,
     (contents) => {
       if (contents !== 0) {
-        void (navigator as NavigatorWithAppBadge).setAppBadge(contents)
+        void navigator.setAppBadge(contents)
       } else {
-        void (navigator as NavigatorWithAppBadge).clearAppBadge()
+        void navigator.clearAppBadge()
       }
     },
     {
@@ -47,7 +47,9 @@ const useAppBadge = (
 
 export default useAppBadge
 
-type NavigatorWithAppBadge = Navigator & {
-  clearAppBadge: () => Promise<void>
-  setAppBadge: (contents?: number) => Promise<void>
+declare global {
+  interface Navigator {
+    clearAppBadge: () => Promise<void>
+    setAppBadge: (contents?: number) => Promise<void>
+  }
 }

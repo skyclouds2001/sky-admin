@@ -1,7 +1,7 @@
 import { getCurrentScope, onScopeDispose } from 'vue'
+import { type Fn } from '.'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tryOnScopeDispose = (fn: (...args: any[]) => any): void => {
+const tryOnScopeDispose = (fn: Fn): void => {
   if (getCurrentScope() !== undefined) {
     onScopeDispose(fn)
   }

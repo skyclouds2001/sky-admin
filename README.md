@@ -50,4 +50,4 @@ pnpm preview
 
 ## License
 
-[MIT](LICENSE) © Richard Littauer
+[MIT](LICENSE) © skyclouds2001

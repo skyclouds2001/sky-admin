@@ -14,17 +14,20 @@ const useApi = <D = unknown, E = unknown, P extends unknown[] = unknown[]>(
 
   const fetch = (...params: P): Promise<void> => {
     loading.value = true
-    return api(...params)
-      .then((data) => {
-        result.value = data
-        error.value = null
-      })
-      .catch((error) => {
-        error.value = error
-      })
-      .finally(() => {
-        loading.value = false
-      })
+    return (
+      api(...params)
+        // eslint-disable-next-line promise/always-return
+        .then((data) => {
+          result.value = data
+          error.value = null
+        })
+        .catch((error) => {
+          error.value = error
+        })
+        .finally(() => {
+          loading.value = false
+        })
+    )
   }
 
   return {

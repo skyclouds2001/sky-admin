@@ -8,7 +8,7 @@ const useBattery = (): {
   /**
    * 是否支持电池API
    */
-  const isSupported = 'getBattery' in window.navigator
+  const isSupported = 'getBattery' in navigator
 
   /**
    * 电池信息
@@ -32,7 +32,7 @@ const useBattery = (): {
   }
 
   if (isSupported) {
-    void (window.navigator as NavigatorWithBattery).getBattery().then((batteryManager) => {
+    void navigator.getBattery().then((batteryManager) => {
       updateBatteryInfo(batteryManager)
 
       useEventListener<BatteryManager, BatteryManagerEventMap, 'chargingchange'>(batteryManager, 'chargingchange', (e) => {
@@ -58,15 +58,27 @@ const useBattery = (): {
 
 export default useBattery
 
-type NavigatorWithBattery = Navigator & {
-  getBattery: () => Promise<BatteryManager>
-}
+declare global {
+  interface Window {
+    BatteryManager: BatteryManager
+  }
 
-interface BatteryManager extends EventTarget {
-  charging: boolean
-  chargingTime: number
-  dischargingTime: number
-  level: number
+  interface Navigator {
+    getBattery: () => Promise<BatteryManager>
+  }
+
+  interface BatteryManager extends EventTarget {
+    charging: boolean
+    chargingTime: number
+    dischargingTime: number
+    level: number
+    onchargingchange: ((this: BatteryManager, ev: Event) => any) | null
+    onchargingtimechange: ((this: BatteryManager, ev: Event) => any) | null
+    ondischargingtimechange: ((this: BatteryManager, ev: Event) => any) | null
+    onlevelchange: ((this: BatteryManager, ev: Event) => any) | null
+    addEventListener: (<K extends keyof BatteryManagerEventMap>(type: K, listener: (this: BatteryManager, ev: BatteryManagerEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
+    removeEventListener: (<K extends keyof BatteryManagerEventMap>(type: K, listener: (this: BatteryManager, ev: BatteryManagerEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
+  }
 }
 
 interface BatteryManagerEventMap {

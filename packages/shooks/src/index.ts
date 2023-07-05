@@ -30,6 +30,8 @@ export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
 
+export { default as useCssVariable } from './useCssVariable'
+
 export { default as useDebounce } from './useDebounce'
 
 export { default as useDevicesList } from './useDevicesList'
@@ -61,6 +63,8 @@ export { default as useFullscreen } from './useFullscreen'
 export { default as useGeolocation } from './useGeolocation'
 
 export { default as useIdleCallback } from './useIdleCallback'
+
+export { default as useIndexedDB } from './useIndexedDB'
 
 export { default as useIntersectionObserver } from './useIntersectionObserver'
 
@@ -106,6 +110,8 @@ export { default as useSessionStorage } from './useSessionStorage'
 
 export { default as useShare } from './useShare'
 
+export { default as useStepper } from './useStepper'
+
 export { default as useStorage } from './useStorage'
 
 export { default as useThrottle } from './useThrottle'
@@ -131,3 +137,5 @@ export { default as useWindowFocus } from './useWindowFocus'
 export { default as useWindowScroll } from './useWindowScroll'
 
 export { default as useWindowSize } from './useWindowSize'
+
+export type { Fn, Obj } from './util'

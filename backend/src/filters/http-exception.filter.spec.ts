@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { HttpExceptionFilter } from './http-exception.filter'
 
 describe('HttpExceptionFilter', () => {

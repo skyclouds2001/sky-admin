@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStorage } from 'shooks'
+import { useStorage } from '@sky-fly/shooks'
 import { LayoutContainer } from '@/layout'
-import { useTabsStore, usePagesStore } from '@/store'
+import { usePagesStore, useTabsStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
 
 const router = createRouter({
@@ -458,6 +458,15 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/feature/animation-effect'),
+              path: '/feature/animation-effect',
+              component: () => import('@/views/feature/AnimationEffect.vue'),
+              meta: {
+                title: '动画',
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/feature/eye-dropper'),
               path: '/feature/eye-dropper',
               component: () => import('@/views/feature/EyeDropper.vue'),
@@ -499,6 +508,48 @@ const router = createRouter({
               component: () => import('@/views/feature/BroadcastChannel.vue'),
               meta: {
                 title: '广播频道',
+                isView: true,
+              },
+            },
+          ],
+        },
+
+        // 3D
+        {
+          name: Symbol('/3d'),
+          path: '/3d',
+          meta: {
+            title: '3D',
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/3d/basis'),
+              path: '/3d/basis',
+              component: () => import('@/views/3D/Base3D.vue'),
+              meta: {
+                title: 'Basic 3D',
+                isView: true,
+              },
+            },
+          ],
+        },
+
+        // 系统监控
+        {
+          name: Symbol('/monitor'),
+          path: '/monitor',
+          meta: {
+            title: '系统监控',
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/monitor/performance'),
+              path: '/monitor/performance',
+              component: () => import('@/views/monitor/SystemPerformance.vue'),
+              meta: {
+                title: '系统性能',
                 isView: true,
               },
             },

@@ -2,10 +2,10 @@
 import { getCurrentInstance, inject, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownMenu, ElDropdownItem, ElImage, ElIcon, ElMessageBox, ElMessage, ElPopover, ElTooltip } from 'element-plus'
+import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElImage, ElMessage, ElMessageBox, ElPopover, ElTooltip } from 'element-plus'
 import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
-import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from 'shooks'
-import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_AVATAR } from '@/config'
+import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/shooks'
+import { PROJECT_AUTHOR_AVATAR, PROJECT_AUTHOR_NAME } from '@/config'
 import { SettingDrawerKey, usePagesStore } from '@/store'
 
 const appContext = getCurrentInstance()?.appContext

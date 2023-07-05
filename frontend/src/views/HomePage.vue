@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { ElSpace, ElCard, ElDescriptions, ElDescriptionsItem, ElTag, ElLink } from 'element-plus'
-import { PROJECT_AUTHOR_NAME, PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE } from '@/config'
-import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from 'shooks'
+import { ElCard, ElDescriptions, ElDescriptionsItem, ElLink, ElSpace, ElTag } from 'element-plus'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@sky-fly/shooks'
 import { getServerInfo } from '@/api'
+import { PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE, PROJECT_AUTHOR_NAME } from '@/config'
 import { generateBrowserInformation, generateSystemInfo } from '@/util'
 
 const i18n = useI18n()

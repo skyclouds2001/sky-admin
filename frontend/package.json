@@ -122,7 +122,7 @@
     "vite-plugin-copy-file": "workspace:*",
     "vite-plugin-generate-env": "workspace:*",
     "vite-plugin-html": "^3.2.0",
-    "vite-plugin-inspect": "^0.7.29",
+    "vite-plugin-inspect": "^0.7.32",
     "vite-plugin-mkcert": "^1.16.0",
     "vite-plugin-mock": "^3.0.0",
     "vite-plugin-pwa": "^0.16.4",

@@ -30,6 +30,8 @@ export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
 
+export { default as useCounter } from './useCounter'
+
 export { default as useCssVariable } from './useCssVariable'
 
 export { default as useDebounce } from './useDebounce'

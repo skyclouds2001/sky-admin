@@ -1,6 +1,6 @@
-import { type MaybeRefOrGetter, ref, type Ref, toValue } from 'vue'
+import { type MaybeRefOrGetter, ref, type Ref, toValue, watch } from 'vue'
 
-const useToggle = <T = true, F = false>(options: {
+const useToggle = <const T = true, const F = false>(options: {
     truthy?: MaybeRefOrGetter<T>
     falsy?: MaybeRefOrGetter<F>
     initial?: T | F
@@ -15,6 +15,18 @@ const useToggle = <T = true, F = false>(options: {
     const toggle = (val?: T | F): void => {
         value.value = val !== undefined ? val : (value.value === toValue(truthy) ? toValue(falsy) : toValue(truthy))
     }
+
+    watch(truthy, (cur, pre) => {
+        if (value.value === pre) {
+            value.value = cur
+        }
+    })
+
+    watch(falsy, (cur, pre) => {
+        if (value.value === pre) {
+            value.value = cur
+        }
+    })
 
     return {
         value,

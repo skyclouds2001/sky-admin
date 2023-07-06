@@ -1,7 +1,7 @@
-export * from './any'
+export type { Awaitable, Promisify } from './any'
 
-export * from './function'
+export type { Fn } from './function'
 
-export * from './list'
+export type { Writable } from './list'
 
-export * from './object'
+export type { Obj } from './object'

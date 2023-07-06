@@ -112,6 +112,8 @@ export { default as useSessionStorage } from './useSessionStorage'
 
 export { default as useShare } from './useShare'
 
+export { default as useSpeechSynthesis } from './useSpeechSynthesis'
+
 export { default as useStepper } from './useStepper'
 
 export { default as useStorage } from './useStorage'

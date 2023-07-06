@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { useCssVariable } from './../src'
+import { useCssVariable } from '..'
 
 describe('useCssVariable', () => {
   const KEY = 'key'

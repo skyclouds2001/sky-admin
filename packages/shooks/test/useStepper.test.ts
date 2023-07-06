@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { reactive, ref } from 'vue'
-import { useStepper } from './../src'
+import { useStepper } from '..'
 
 describe('useStepper', () => {
   const stepsArray = ['a', 'b', 0, 1] as const

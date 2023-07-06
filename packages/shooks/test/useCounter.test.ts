@@ -14,7 +14,7 @@ describe('useCounter', () => {
 
   it('should initial with provided value if exsited', () => {
     const { count } = useCounter({
-        initial: 20,
+      initial: 20,
     })
 
     expect(count.value).toBe(20)
@@ -54,9 +54,9 @@ describe('useCounter', () => {
 
   it('should update counter with limit', () => {
     const { count, increase, decrease, get, set, reset } = useCounter({
-        min: -25,
-        max: 25,
-        initial: 10,
+      min: -25,
+      max: 25,
+      initial: 10,
     })
 
     expect(count.value).toBe(10)

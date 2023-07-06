@@ -16,8 +16,8 @@ describe('useToggle', () => {
 
   it('should represent preset values', () => {
     const { value } = useToggle({
-        truthy: 'true',
-        falsy: 'false',
+      truthy: 'true',
+      falsy: 'false',
     })
 
     expect(value.value).not.toBe('true')
@@ -26,7 +26,7 @@ describe('useToggle', () => {
 
   it('should initial with init value', () => {
     const { value } = useToggle({
-        initial: true,
+      initial: true,
     })
 
     expect(value.value).toBe(true)
@@ -35,9 +35,9 @@ describe('useToggle', () => {
 
   it('should support toggle value', () => {
     const { value, toggle } = useToggle({
-        truthy: 'true',
-        falsy: 'false',
-        initial: 'true',
+      truthy: 'true',
+      falsy: 'false',
+      initial: 'true',
     })
 
     expect(value.value).toBe('true')
@@ -63,9 +63,9 @@ describe('useToggle', () => {
     const truthy = ref('true')
     const falsy = ref('false')
     const { value, toggle } = useToggle({
-        truthy,
-        falsy,
-        initial: 'true',
+      truthy,
+      falsy,
+      initial: 'true',
     })
 
     expect(value.value).toBe('true')

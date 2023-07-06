@@ -59,6 +59,8 @@ const useBattery = (): {
 export default useBattery
 
 declare global {
+  let BatteryManager: BatteryManager
+
   interface Window {
     BatteryManager: BatteryManager
   }

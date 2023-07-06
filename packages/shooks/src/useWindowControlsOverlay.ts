@@ -27,6 +27,9 @@ const useWindowControlsOverlay = (): {
 export default useWindowControlsOverlay
 
 declare global {
+  let WindowControlsOverlay: WindowControlsOverlay
+  let WindowControlsOverlayGeometryChangeEvent: WindowControlsOverlayGeometryChangeEvent
+
   interface Window {
     WindowControlsOverlay: WindowControlsOverlay
     WindowControlsOverlayGeometryChangeEvent: WindowControlsOverlayGeometryChangeEvent

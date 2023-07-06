@@ -145,6 +145,31 @@ declare global {
     }
   }
 
+  let SpeechRecognition: {
+    prototype: SpeechRecognition
+    new (): SpeechRecognition
+  }
+
+  let SpeechGrammar: {
+    prototype: SpeechGrammar
+    new (): SpeechGrammar
+  }
+
+  let SpeechGrammarList: {
+    prototype: SpeechGrammarList
+    new (): SpeechGrammarList
+  }
+
+  let SpeechRecognitionEvent: {
+    prototype: SpeechRecognitionEvent
+    new (): SpeechRecognitionEvent
+  }
+
+  let SpeechRecognitionErrorEvent: {
+    prototype: SpeechRecognitionErrorEvent
+    new (): SpeechRecognitionErrorEvent
+  }
+
   interface SpeechRecognition extends EventTarget {
     continuous: boolean
     grammars: SpeechGrammarList

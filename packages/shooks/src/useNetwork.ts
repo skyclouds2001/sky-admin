@@ -68,6 +68,8 @@ const useNetwork = (): {
 export default useNetwork
 
 declare global {
+  let NetworkInformation: NetworkInformation
+
   interface Window {
     NetworkInformation: NetworkInformation
   }

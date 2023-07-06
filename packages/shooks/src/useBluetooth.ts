@@ -69,6 +69,15 @@ const useBluetooth = (): {
 export default useBluetooth
 
 declare global {
+  let Bluetooth: Bluetooth
+  let BluetoothCharacteristicProperties: BluetoothCharacteristicProperties
+  let BluetoothDevice: BluetoothDevice
+  let BluetoothRemoteGATTCharacteristic: BluetoothRemoteGATTCharacteristic
+  let BluetoothRemoteGATTDescriptor: BluetoothRemoteGATTDescriptor
+  let BluetoothRemoteGATTServer: BluetoothRemoteGATTServer
+  let BluetoothRemoteGATTService: BluetoothRemoteGATTService
+  let BluetoothUUID: BluetoothUUID
+
   interface Window {
     Bluetooth: Bluetooth
     BluetoothCharacteristicProperties: BluetoothCharacteristicProperties

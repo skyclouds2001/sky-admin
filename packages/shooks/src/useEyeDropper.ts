@@ -32,14 +32,19 @@ const useEyeDropper = (
 export default useEyeDropper
 
 declare global {
+  let EyeDropper: {
+    prototype: EyeDropper
+    new (): EyeDropper
+  }
+
   interface Window {
-    EyeDropper: EyeDropper
+    EyeDropper: {
+      prototype: EyeDropper
+      new (): EyeDropper
+    }
   }
 
   interface EyeDropper {
-    prototype: EyeDropper
-    // eslint-disable-next-line @typescript-eslint/no-misused-new
-    new (): EyeDropper
     open: (options?: { signal: AbortSignal }) => Promise<{ sRGBHex: string }>
   }
 }

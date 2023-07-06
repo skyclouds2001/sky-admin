@@ -11,17 +11,17 @@ const useSpeechSynthesis = (
     voice?: SpeechSynthesisUtterance['voice']
   } = {}
 ): {
-    isSupported: boolean
-    isPlaying: Ref<boolean>
-    status: Readonly<Ref<'init' | 'play' | 'pause' | 'end'>>
-    error: Readonly<Ref<string | null>>
-    utterance: Readonly<ShallowRef<SpeechSynthesisUtterance | null>>
-    speak: () => void
-    pause: () => void
-    resume: () => void
-    stop: () => void
-    toggle: () => void
-  } => {
+  isSupported: boolean
+  isPlaying: Ref<boolean>
+  status: Readonly<Ref<'init' | 'play' | 'pause' | 'end'>>
+  error: Readonly<Ref<string | null>>
+  utterance: Readonly<ShallowRef<SpeechSynthesisUtterance | null>>
+  speak: () => void
+  pause: () => void
+  resume: () => void
+  stop: () => void
+  toggle: () => void
+} => {
   const { lang = 'en-US', pitch = 1, rate = 1, volume = 1, voice = null } = options
 
   const isSupported = 'speechSynthesis' in window

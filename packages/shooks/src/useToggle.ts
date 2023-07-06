@@ -7,9 +7,9 @@ const useToggle = <const T = true, const F = false>(
     initial?: T | F
   } = {}
 ): {
-    value: Readonly<Ref<T | F>>
-    toggle: (val?: T | F) => void
-  } => {
+  value: Readonly<Ref<T | F>>
+  toggle: (val?: T | F) => void
+} => {
   const { truthy = true, falsy = false, initial = falsy } = options
 
   const value = ref(initial) as Ref<T | F>

@@ -7,13 +7,13 @@ const useCounter = (
     initial?: number
   } = {}
 ): {
-    count: Readonly<Ref<number>>
-    increase: (delta?: number) => void
-    decrease: (delta?: number) => void
-    get: () => number
-    set: (val: number) => void
-    reset: () => void
-  } => {
+  count: Readonly<Ref<number>>
+  increase: (delta?: number) => void
+  decrease: (delta?: number) => void
+  get: () => number
+  set: (val: number) => void
+  reset: () => void
+} => {
   const { min = -Infinity, max = Infinity, initial = 0 } = options
 
   const count = ref(Math.max(min, Math.min(max, initial)))

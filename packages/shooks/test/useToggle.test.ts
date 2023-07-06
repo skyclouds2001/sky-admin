@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { ref } from 'vue'
-import { useToggle } from '..'
+import { useToggle } from '../src'
 
 describe('useToggle', () => {
   it('should be defined', () => {
@@ -59,7 +59,7 @@ describe('useToggle', () => {
     expect(value.value).not.toBe('false')
   })
 
-  it('should bind with preset values if presets with refs', () => {
+  it('should bind with preset values if presets with refs', async () => {
     const truthy = ref('true')
     const falsy = ref('false')
     const { value, toggle } = useToggle({
@@ -74,7 +74,14 @@ describe('useToggle', () => {
     truthy.value = 't'
     falsy.value = 'f'
 
+    await new Promise((resolve) => setTimeout(resolve, 0))
+
     expect(value.value).toBe('t')
     expect(value.value).not.toBe('f')
+
+    toggle()
+
+    expect(value.value).not.toBe('t')
+    expect(value.value).toBe('f')
   })
 })

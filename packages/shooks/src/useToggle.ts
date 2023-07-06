@@ -1,4 +1,4 @@
-import { type MaybeRefOrGetter, ref, type Ref, toValue, watch } from 'vue'
+import { isRef, type MaybeRefOrGetter, readonly, ref, type Ref, toValue, watch } from 'vue'
 
 const useToggle = <const T = true, const F = false>(
   options: {
@@ -7,31 +7,39 @@ const useToggle = <const T = true, const F = false>(
     initial?: T | F
   } = {}
 ): {
-  value: Ref<T | F>
-  toggle: () => void
+  value: Readonly<Ref<T | F>>
+  toggle: (val?: T | F) => void
 } => {
   const { truthy = true, falsy = false, initial = falsy } = options
 
   const value = ref(initial) as Ref<T | F>
 
   const toggle = (val?: T | F): void => {
-    value.value = val !== undefined ? val : value.value === toValue(truthy) ? toValue(falsy) : toValue(truthy)
+    if (val !== undefined) {
+      value.value = val
+    } else {
+      value.value = value.value === toValue(truthy) ? (toValue(falsy) as F) : (toValue(truthy) as T)
+    }
   }
 
-  watch(truthy, (cur, pre) => {
-    if (value.value === pre) {
-      value.value = cur
-    }
-  })
+  if (isRef(truthy)) {
+    watch(truthy, (cur, pre) => {
+      if (value.value === pre) {
+        value.value = cur
+      }
+    })
+  }
 
-  watch(falsy, (cur, pre) => {
-    if (value.value === pre) {
-      value.value = cur
-    }
-  })
+  if (isRef(falsy)) {
+    watch(falsy, (cur, pre) => {
+      if (value.value === pre) {
+        value.value = cur
+      }
+    })
+  }
 
   return {
-    value,
+    value: readonly(value) as Readonly<Ref<T | F>>,
     toggle,
   }
 }

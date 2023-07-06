@@ -122,6 +122,8 @@ export { default as useTimestamp } from './useTimestamp'
 
 export { default as useTitle } from './useTitle'
 
+export { default as useToggle } from './useToggle'
+
 export { default as useUserMedia } from './useUserMedia'
 
 export { default as useVibrate } from './useVibrate'

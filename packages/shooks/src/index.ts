@@ -30,6 +30,8 @@ export { default as useBroadcastChannel } from './useBroadcastChannel'
 
 export { default as useClipboard } from './useClipboard'
 
+export { default as useCounter } from './useCounter'
+
 export { default as useCssVariable } from './useCssVariable'
 
 export { default as useDebounce } from './useDebounce'
@@ -121,6 +123,8 @@ export { default as useTimeout } from './useTimeout'
 export { default as useTimestamp } from './useTimestamp'
 
 export { default as useTitle } from './useTitle'
+
+export { default as useToggle } from './useToggle'
 
 export { default as useUserMedia } from './useUserMedia'
 

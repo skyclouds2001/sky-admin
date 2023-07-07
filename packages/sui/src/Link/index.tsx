@@ -30,6 +30,12 @@ const Link = defineComponent({
       default: false,
       required: false,
     },
+    size: {
+      type: String as PropType<'large' | 'default' | 'small'>,
+      default: 'default',
+      required: false,
+      validator: (value: string) => ['large', 'default', 'small'].includes(value),
+    },
     underline: {
       type: Boolean,
       default: true,
@@ -42,7 +48,7 @@ const Link = defineComponent({
   setup: (props, { slots }) => {
     return () => (
       <>
-        <a aria-disabled={props.disabled} href={props.href} target={props.target} download={props.download} class={['sky-link', props.type !== 'default' ? `sky-text-${props.type}` : '', props.disabled ? 'sky-link-disabled' : '']}>
+        <a aria-disabled={props.disabled} href={props.href} target={props.target} download={props.download} class={['sky-link', props.type !== 'default' ? `sky-text-${props.type}` : '', props.disabled ? 'sky-link-disabled' : '', props.size !== 'default' ? `sky-link-${props.size}` : '']}>
           <span>{slots.default()}</span>
         </a>
       </>

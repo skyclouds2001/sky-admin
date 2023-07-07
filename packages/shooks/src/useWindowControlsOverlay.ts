@@ -25,34 +25,3 @@ const useWindowControlsOverlay = (): {
 }
 
 export default useWindowControlsOverlay
-
-declare global {
-  let WindowControlsOverlay: WindowControlsOverlay
-  let WindowControlsOverlayGeometryChangeEvent: WindowControlsOverlayGeometryChangeEvent
-
-  interface Window {
-    WindowControlsOverlay: WindowControlsOverlay
-    WindowControlsOverlayGeometryChangeEvent: WindowControlsOverlayGeometryChangeEvent
-  }
-
-  interface Navigator {
-    readonly windowControlsOverlay: WindowControlsOverlay
-  }
-
-  interface WindowControlsOverlay extends EventTarget {
-    readonly visible: boolean
-    getTitlebarAreaRect: () => DOMRect
-    ongeometrychange: ((this: WindowControlsOverlay, ev: WindowControlsOverlayGeometryChangeEvent) => any) | null
-    addEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => any, options?: boolean | AddEventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void)
-    removeEventListener: (<K extends keyof WindowControlsOverlayEventMap>(type: K, listener: (this: WindowControlsOverlay, ev: WindowControlsOverlayEventMap[K]) => any, options?: boolean | EventListenerOptions) => void) & ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void)
-  }
-
-  interface WindowControlsOverlayGeometryChangeEvent extends Event {
-    readonly titlebarAreaRect: DOMRect
-    readonly visible: boolean
-  }
-}
-
-interface WindowControlsOverlayEventMap {
-  geometrychange: WindowControlsOverlayGeometryChangeEvent
-}

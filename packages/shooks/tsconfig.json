@@ -5,6 +5,6 @@
     "lib": ["ESNext", "DOM", "WebWorker", "ScriptHost"],
     "baseUrl": "."
   },
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["src/**/*", "test/**/*", "type/**/*"],
   "exclude": ["node_modules", "dist"]
 }

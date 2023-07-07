@@ -97,31 +97,3 @@ const useFileSystemAccess = (
 }
 
 export default useFileSystemAccess
-
-declare global {
-  let showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
-  let showSaveFilePicker: (options?: ShowSaveFilePickerOptions) => Promise<FileSystemFileHandle>
-
-  interface Window {
-    showOpenFilePicker: (options?: ShowOpenFilePickerOptions) => Promise<FileSystemFileHandle[]>
-    showSaveFilePicker: (options?: ShowSaveFilePickerOptions) => Promise<FileSystemFileHandle>
-  }
-}
-
-interface ShowOpenFilePickerOptions {
-  multiple?: boolean
-  excludeAcceptAllOption?: boolean
-  types?: Array<{
-    description?: string
-    accept: Record<string, string[]>
-  }>
-}
-
-interface ShowSaveFilePickerOptions {
-  excludeAcceptAllOption?: boolean
-  suggestedName?: string
-  types?: Array<{
-    description?: string
-    accept: Record<string, string[]>
-  }>
-}

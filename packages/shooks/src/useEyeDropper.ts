@@ -30,21 +30,3 @@ const useEyeDropper = (
 }
 
 export default useEyeDropper
-
-declare global {
-  let EyeDropper: {
-    prototype: EyeDropper
-    new (): EyeDropper
-  }
-
-  interface Window {
-    EyeDropper: {
-      prototype: EyeDropper
-      new (): EyeDropper
-    }
-  }
-
-  interface EyeDropper {
-    open: (options?: { signal: AbortSignal }) => Promise<{ sRGBHex: string }>
-  }
-}

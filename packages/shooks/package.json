@@ -10,7 +10,8 @@
     "skyclouds2001"
   ],
   "files": [
-    "dist"
+    "dist",
+    "type"
   ],
   "publishConfig": {
     "access": "public",

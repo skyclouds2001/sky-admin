@@ -3,7 +3,9 @@ import { useEventListener } from '.'
 
 const usePointerLock = (
   target: HTMLElement = document.documentElement,
-  options?: PointerLockOptions,
+  options?: {
+    unadjustedMovement: boolean
+  },
   onError?: (e: Event) => void
 ): {
   isSupported: boolean
@@ -57,7 +59,3 @@ const usePointerLock = (
 }
 
 export default usePointerLock
-
-interface PointerLockOptions {
-  unadjustedMovement: boolean
-}

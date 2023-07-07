@@ -46,10 +46,3 @@ const useAppBadge = (
 }
 
 export default useAppBadge
-
-declare global {
-  interface Navigator {
-    clearAppBadge: () => Promise<void>
-    setAppBadge: (contents?: number) => Promise<void>
-  }
-}

@@ -140,6 +140,8 @@ export { default as useWakeLock } from './useWakeLock'
 
 export { default as useWebSocket } from './useWebSocket'
 
+export { default as useWebWorker } from './useWebWorker'
+
 export { default as useWindowControlsOverlay } from './useWindowControlsOverlay'
 
 export { default as useWindowFocus } from './useWindowFocus'

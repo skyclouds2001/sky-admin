@@ -2,10 +2,8 @@ import tryOnScopeDispose from './tryOnScopeDispose'
 
 type Listener<T extends string | number | symbol, P = unknown> = (event: T, payload?: P) => void
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const events = new Map<string | number | symbol, Set<any>>()
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useEventBus = <const T extends string | number | symbol, P = any>(
   key: T
 ): {

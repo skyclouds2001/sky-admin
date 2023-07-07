@@ -4,7 +4,6 @@ import { useEventListener } from '.'
 interface BrowserLocation {
   trigger: 'load' | 'hashchange' | 'popstate'
   length: number
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: any
   hash: string
   host: string

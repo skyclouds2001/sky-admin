@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { shallowRef, type ShallowRef, ref, type Ref, watch } from 'vue'
 import { useEventListener } from '.'
 

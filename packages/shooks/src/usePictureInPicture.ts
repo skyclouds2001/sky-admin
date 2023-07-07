@@ -1,8 +1,8 @@
-import { isRef, readonly, ref, type Ref, unref, watch } from 'vue'
+import { type MaybeRefOrGetter, readonly, ref, type Ref, unref, toValue, watch } from 'vue'
 import { useEventListener } from '.'
 
 const usePictureInPicture = (
-  target: HTMLVideoElement | Ref<HTMLVideoElement | null>
+  target: MaybeRefOrGetter<HTMLVideoElement | null>
 ): {
   isSupported: boolean
   isPictureInPicture: Readonly<Ref<boolean>>
@@ -39,27 +39,25 @@ const usePictureInPicture = (
     await (isPictureInPicture.value ? exit() : enter())
   }
 
-  if (isRef(target)) {
-    watch(
-      target,
-      (target) => {
-        if (!isSupported) return
+  watch(
+    () => toValue(target),
+    (target) => {
+      if (!isSupported) return
 
-        if (target === null) return
+      if (target === null) return
 
-        useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {
-          isPictureInPicture.value = document.pictureInPictureElement === target && document.pictureInPictureElement !== null
-        })
+      useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'enterpictureinpicture'>(target, 'enterpictureinpicture', () => {
+        isPictureInPicture.value = document.pictureInPictureElement === target && document.pictureInPictureElement !== null
+      })
 
-        useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(target, 'leavepictureinpicture', () => {
-          isPictureInPicture.value = document.pictureInPictureElement === target && document.pictureInPictureElement !== null
-        })
-      },
-      {
-        immediate: true,
-      }
-    )
-  }
+      useEventListener<HTMLVideoElement, HTMLVideoElementEventMap, 'leavepictureinpicture'>(target, 'leavepictureinpicture', () => {
+        isPictureInPicture.value = document.pictureInPictureElement === target && document.pictureInPictureElement !== null
+      })
+    },
+    {
+      immediate: true,
+    }
+  )
 
   return {
     isSupported,

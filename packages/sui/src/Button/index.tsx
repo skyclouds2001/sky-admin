@@ -2,6 +2,7 @@ import { defineComponent, type PropType, type SlotsType } from 'vue'
 import './index.css'
 
 const Button = defineComponent({
+  name: 'Button',
   props: {
     type: {
       type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default'>,
@@ -47,9 +48,11 @@ const Button = defineComponent({
   }>,
   setup: (props, { slots }) => {
     return () => (
-      <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type !== 'default' ? `sky-button-${props.type}` : '', props.round ? 'sky-button-round' : '', props.circle ? 'sky-button-circle' : '', props.disabled ? 'sky-button-disabled' : '', props.size !== 'default' ? `sky-button-${props.size}` : '']}>
-        <span>{slots.default()}</span>
-      </button>
+      <>
+        <button aria-disabled={props.disabled} disabled={props.disabled} type={props.nativeType} autofocus={props.autofocus} class={['sky-button', props.type !== 'default' ? `sky-button-${props.type}` : '', props.round ? 'sky-button-round' : '', props.circle ? 'sky-button-circle' : '', props.disabled ? 'sky-button-disabled' : '', props.size !== 'default' ? `sky-button-${props.size}` : '']}>
+          <span>{slots.default()}</span>
+        </button>
+      </>
     )
   },
 })

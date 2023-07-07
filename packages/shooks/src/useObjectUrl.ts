@@ -11,13 +11,19 @@ const useObjectURL = (source: MaybeRefOrGetter<File | Blob | MediaSource | null>
     }
   }
 
-  watch(() => toValue(source), (source) => {
-    release()
+  watch(
+    () => toValue(source),
+    (source) => {
+      release()
 
-    if(source) {
-      url.value = URL.createObjectURL(source)
+      if(source) {
+        url.value = URL.createObjectURL(source)
+      }
+    },
+    {
+      immediate: true,
     }
-  })
+  )
 
   tryOnScopeDispose(release)
 

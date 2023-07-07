@@ -1,0 +1,61 @@
+:root {
+  --sky-link-text-color: var(--sky-text-color-regular);
+  --sky-link-hover-text-color: var(--sky-color-primary);
+  --sky-link-disabled-text-color: var(--sky-text-color-placeholder);
+}
+
+.sky-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--sky-link-text-color);
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  outline: none;
+}
+
+.sky-link:hover {
+  color: var(--sky-link-hover-text-color);
+}
+
+.sky-link:active {
+  color: var(--sky-color-primary-dark-2);
+}
+
+.sky-link:focus {
+  color: var(--sky-color-primary-light-3);
+}
+
+.sky-link-primary {
+  --sky-link-text-color: var(--sky-color-primary);
+  --sky-link-hover-text-color: var(--sky-color-primary-light-3);
+  --sky-link-disabled-text-color: var(--sky-color-primary-light-5);
+}
+
+.sky-link-success {
+  --sky-link-text-color: var(--sky-color-success);
+  --sky-link-hover-text-color: var(--sky-color-success-light-3);
+  --sky-link-disabled-text-color: var(--sky-color-success-light-5);
+}
+
+.sky-link-warning {
+  --sky-link-text-color: var(--sky-color-warning);
+  --sky-link-hover-text-color: var(--sky-color-warning-light-3);
+  --sky-link-disabled-text-color: var(--sky-color-warning-light-5);
+}
+
+.sky-link-danger {
+  --sky-link-text-color: var(--sky-color-danger);
+  --sky-link-hover-text-color: var(--sky-color-danger-light-3);
+  --sky-link-disabled-text-color: var(--sky-color-danger-light-5);
+}
+
+.sky-link-info {
+  --sky-link-text-color: var(--sky-color-info);
+  --sky-link-hover-text-color: var(--sky-color-info-light-3);
+  --sky-link-disabled-text-color: var(--sky-color-info-light-5);
+}

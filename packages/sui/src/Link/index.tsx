@@ -25,6 +25,16 @@ const Link = defineComponent({
       default: '',
       required: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    underline: {
+      type: Boolean,
+      default: true,
+      required: false,
+    },
   },
   slots: Object as SlotsType<{
     default: () => any
@@ -32,7 +42,7 @@ const Link = defineComponent({
   setup: (props, { slots }) => {
     return () => (
       <>
-        <a href={props.href} target={props.target} download={props.download} class={['sky-link', props.type !== 'default' ? `sky-text-${props.type}` : '']}>
+        <a aria-disabled={props.disabled} href={props.href} target={props.target} download={props.download} class={['sky-link', props.type !== 'default' ? `sky-text-${props.type}` : '', props.disabled ? 'sky-link-disabled' : '']}>
           <span>{slots.default()}</span>
         </a>
       </>

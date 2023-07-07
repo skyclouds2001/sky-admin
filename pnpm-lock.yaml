@@ -296,9 +296,6 @@ importers:
       '@sky-fly/shooks':
         specifier: workspace:*
         version: link:../packages/shooks
-      '@sky-fly/sui':
-        specifier: workspace:*
-        version: link:../packages/sui
       '@toast-ui/chart':
         specifier: ^4.6.1
         version: 4.6.1

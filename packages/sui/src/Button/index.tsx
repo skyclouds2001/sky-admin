@@ -8,7 +8,7 @@ const Button = defineComponent({
       type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default'>,
       default: 'default',
       required: false,
-      validator: (value: string) => ['primary', 'success', 'warning', 'danger', 'info'].includes(value),
+      validator: (value: string) => ['primary', 'success', 'warning', 'danger', 'info', 'default'].includes(value),
     },
     round: {
       type: Boolean,

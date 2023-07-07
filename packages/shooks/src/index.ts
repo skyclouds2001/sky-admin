@@ -90,6 +90,8 @@ export { default as useNotification } from './useNotification'
 
 export { default as useNow } from './useNow'
 
+export { default as useObjectURL } from './useObjectURL'
+
 export { default as useOnline } from './useOnline'
 
 export { default as usePermission } from './usePermission'

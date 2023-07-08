@@ -3,7 +3,7 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { Observable, interval, map } from 'rxjs'
 import { ServerService } from './server.service'
-import { ServerEntity } from './entities/server-info.entity'
+import { ServerEntity } from './entities/server.entity'
 import { Result } from './../entities/result.entity'
 
 @Controller('server')

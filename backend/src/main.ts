@@ -1,5 +1,6 @@
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core'
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common'
+import { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
@@ -9,7 +10,7 @@ import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { TransformResultInterceptor } from './interceptors/result.interceptor'
 
 const bootstrap = async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     snapshot: true,
   })
 

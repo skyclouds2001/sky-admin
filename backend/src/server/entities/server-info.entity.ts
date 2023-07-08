@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class ServerInfo {
+export class ServerEntity {
   @ApiProperty({
     description: '用户IP地址',
   })

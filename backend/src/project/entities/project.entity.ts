@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class Project {
+export class ProjectEntity {
   @ApiProperty({
     description: '项目仓库ID',
   })

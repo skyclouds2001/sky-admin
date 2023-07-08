@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common'
 import { ProjectService } from './project.service'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
-import { Project } from './entities/project.entity'
+import { ProjectEntity } from './entities/project.entity'
 
 @Controller('project')
 @ApiTags('project')
@@ -10,7 +10,7 @@ export class ProjectController {
 
   @Get()
   @ApiOkResponse({
-    type: Project,
+    type: ProjectEntity,
     description: '项目信息',
   })
   getProjectInformation() {

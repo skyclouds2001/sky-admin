@@ -1,6 +1,7 @@
-import { Controller, Get, HttpStatus, Req, Res } from '@nestjs/common'
+import { Controller, Get, HttpStatus, MessageEvent, Req, Res, Sse } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
+import { Observable, interval, map } from 'rxjs'
 import { ServerService } from './server.service'
 import { ServerInfo } from './entities/server-info.entity'
 import { Result } from './../entities/result.entity'
@@ -25,5 +26,10 @@ export class ServerController {
         })
       )
       .send()
+  }
+
+  @Sse()
+  message(): Observable<MessageEvent> {
+    return interval(1000).pipe(map(() => ({ data: 'message' })))
   }
 }

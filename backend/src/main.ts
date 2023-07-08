@@ -22,7 +22,7 @@ const bootstrap = async (): Promise<void> => {
   app.setViewEngine('hbs')
 
   app.setGlobalPrefix('api', {
-    exclude: ['docs'],
+    exclude: ['', 'docs'],
   })
 
   app.useGlobalPipes(

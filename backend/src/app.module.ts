@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ServerModule } from './server/server.module'
 import { WsModule } from './ws/ws.module'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
 
 @Module({
   imports: [
@@ -39,5 +41,7 @@ import { WsModule } from './ws/ws.module'
     ServerModule,
     WsModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

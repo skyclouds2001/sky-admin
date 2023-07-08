@@ -1,16 +1,24 @@
-import { ref, shallowRef } from 'vue'
+import { ref, type Ref, shallowRef, type ShallowRef } from 'vue'
 import { tryOnScopeDispose } from '.'
 
-const useWebWorker = <D>(source: string, options: WorkerOptions) => {
+const useWebWorker = <D>(
+  source: string,
+  options: WorkerOptions
+): {
+  worker: ShallowRef<Worker | null>
+  data: Ref<D | null>
+  postMessage: (message: D) => void
+  terminate: () => void
+} => {
   const worker = shallowRef<Worker>(new window.Worker(source, options))
 
-  const data = ref<D | null>(null)
+  const data = ref<D | null>(null) as Ref<D | null>
 
-  const postMessage = (message: D, transfer?: Transferable[]) => {
-    worker.value?.postMessage(message, transfer ?? {})
+  const postMessage = (message: D): void => {
+    worker.value?.postMessage(message)
   }
 
-  const terminate = () => {
+  const terminate = (): void => {
     worker.value?.terminate()
   }
 

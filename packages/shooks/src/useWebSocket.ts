@@ -7,11 +7,13 @@ const useWebSocket = <D extends string | ArrayBuffer | Blob = string>(
     immediate?: boolean
     autoClose?: boolean
     protocols?: string | string[]
-    autoReconnect?: boolean | {
-      retries?: number
-      delay?: number
-      onFail?: (e: CloseEvent) => void
-    }
+    autoReconnect?:
+      | boolean
+      | {
+          retries?: number
+          delay?: number
+          onFail?: (e: CloseEvent) => void
+        }
     onOpen?: (e: Event) => void
     onClose?: (e: CloseEvent) => void
     onMessage?: (e: MessageEvent<D>) => void
@@ -56,7 +58,7 @@ const useWebSocket = <D extends string | ArrayBuffer | Blob = string>(
 
       onClose?.(e)
 
-      if (!manualClose && autoReconnect) {
+      if (!manualClose && autoReconnect !== undefined) {
         const { retries = Infinity, delay = 1000, onFail = console.log } = typeof autoReconnect === 'object' ? autoReconnect : {}
 
         if (Number.isFinite(retries) || retry < retries) {

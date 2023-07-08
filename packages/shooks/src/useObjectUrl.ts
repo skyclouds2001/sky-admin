@@ -1,11 +1,11 @@
 import { type MaybeRefOrGetter, readonly, ref, type Ref, toValue, watch } from 'vue'
 import { tryOnScopeDispose } from '.'
 
-const useObjectURL = (source: MaybeRefOrGetter<File | Blob | MediaSource | null>): Ref<string> => {
+const useObjectURL = (source: MaybeRefOrGetter<File | Blob | MediaSource | null>): Readonly<Ref<string | null>> => {
   const url = ref<string | null>(null)
 
-  const release = () => {
-    if (url.value) {
+  const release = (): void => {
+    if (url.value !== null) {
       URL.revokeObjectURL(url.value)
       url.value = ''
     }
@@ -16,7 +16,7 @@ const useObjectURL = (source: MaybeRefOrGetter<File | Blob | MediaSource | null>
     (source) => {
       release()
 
-      if(source) {
+      if (source !== null) {
         url.value = URL.createObjectURL(source)
       }
     },

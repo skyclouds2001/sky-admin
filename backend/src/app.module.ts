@@ -7,6 +7,7 @@ import { ArticlesModule } from './articles/articles.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ServerModule } from './server/server.module'
+import { ProjectModule } from './project/project.module'
 import { WsModule } from './ws/ws.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -39,6 +40,7 @@ import { AppService } from './app.service'
     UsersModule,
     AuthModule,
     ServerModule,
+    ProjectModule,
     WsModule,
   ],
   controllers: [AppController],

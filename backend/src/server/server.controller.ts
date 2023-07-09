@@ -1,8 +1,9 @@
-import { Controller, Get, HttpStatus, Req, Res } from '@nestjs/common'
+import { Controller, Get, HttpStatus, MessageEvent, Req, Res, Sse } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
+import { Observable, interval, map } from 'rxjs'
 import { ServerService } from './server.service'
-import { ServerInfo } from './entities/server-info.entity'
+import { ServerEntity } from './entities/server.entity'
 import { Result } from './../entities/result.entity'
 
 @Controller('server')
@@ -12,7 +13,7 @@ export class ServerController {
 
   @Get()
   @ApiOkResponse({
-    type: ServerInfo,
+    type: ServerEntity,
     description: '服务器信息',
   })
   async getServerInfo(@Req() request: Request, @Res() response: Response) {
@@ -25,5 +26,10 @@ export class ServerController {
         })
       )
       .send()
+  }
+
+  @Sse()
+  message(): Observable<MessageEvent> {
+    return interval(1000).pipe(map(() => ({ data: 'message' })))
   }
 }

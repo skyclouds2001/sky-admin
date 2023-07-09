@@ -1,20 +1,29 @@
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core'
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common'
+import { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
+import * as compression from 'compression'
+import { resolve } from 'node:path'
 import { AppModule } from './app.module'
 import { ExceptionsFilter } from './filters/exception.filter'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { TransformResultInterceptor } from './interceptors/result.interceptor'
 
 const bootstrap = async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     snapshot: true,
   })
 
+  app.useStaticAssets(resolve(__dirname, '..', 'public'))
+
+  app.setBaseViewsDir(resolve(__dirname, '..', 'view'))
+
+  app.setViewEngine('hbs')
+
   app.setGlobalPrefix('api', {
-    exclude: ['docs'],
+    exclude: ['', 'docs'],
   })
 
   app.useGlobalPipes(
@@ -29,6 +38,8 @@ const bootstrap = async (): Promise<void> => {
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
   app.useGlobalInterceptors(new TransformResultInterceptor())
+
+  app.use(compression())
 
   SwaggerModule.setup(
     'docs',

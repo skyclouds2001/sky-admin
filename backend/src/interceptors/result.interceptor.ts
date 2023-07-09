@@ -5,6 +5,6 @@ import { Result } from './../entities/result.entity'
 @Injectable()
 export class TransformResultInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<Result> {
-    return next.handle().pipe(map((data) => Result.success(data)))
+    return next.handle().pipe(map((data) => (context.switchToHttp().getRequest().path !== '/' ? Result.success(data) : data)))
   }
 }

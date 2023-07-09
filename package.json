@@ -86,7 +86,7 @@
     "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-playwright": "^0.15.3",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.0-alpha.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-regexp": "^1.15.0",
     "eslint-plugin-security": "^1.7.1",

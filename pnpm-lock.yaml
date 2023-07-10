@@ -405,8 +405,8 @@ importers:
         specifier: ^9.2.2
         version: 9.2.2(vue@3.3.4)
       vue-router:
-        specifier: ^4.2.3
-        version: 4.2.3(vue@3.3.4)
+        specifier: ^4.2.4
+        version: 4.2.4(vue@3.3.4)
       web-vitals:
         specifier: ^3.3.2
         version: 3.3.2
@@ -16753,8 +16753,8 @@ packages:
       '@vue/devtools-api': 6.5.0
       vue: 3.3.4
 
-  /vue-router@4.2.3(vue@3.3.4):
-    resolution: {integrity: sha512-ynQ/edCZNUC/9koONOSgxGJbEBXZ1nUA0lKI3xTiOd3Ywe4QRCf2q8pGCG1v5ovdzPggoq3M09FxNCZTM9pZfw==}
+  /vue-router@4.2.4(vue@3.3.4):
+    resolution: {integrity: sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

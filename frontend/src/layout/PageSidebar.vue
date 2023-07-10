@@ -12,7 +12,7 @@ const i18n = useI18n()
 
 const tabsStore = useTabsStore()
 
-const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey)
+const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey) as Ref<boolean>
 
 /**
  * 切换 Sidebar 伸缩状态方法

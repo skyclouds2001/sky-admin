@@ -28,7 +28,7 @@ const storage = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',
 })
 
-const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey)
+const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolean>
 
 /**
  * 控制展示设置窗口

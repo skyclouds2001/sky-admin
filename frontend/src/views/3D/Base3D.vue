@@ -7,7 +7,9 @@ import WebGL from 'three/addons/capabilities/WebGL.js'
 
 const demo = ref<HTMLDivElement | null>(null)
 
-onMounted(() => {
+const line = ref<HTMLDivElement | null>(null)
+
+const df = (): void => {
   const animation = (time: number): void => {
     mesh.rotation.x = time / 2000
     mesh.rotation.y = time / 1000
@@ -30,6 +32,30 @@ onMounted(() => {
   renderer.setAnimationLoop(animation)
 
   demo.value?.appendChild(renderer.domElement)
+}
+
+const lf = (): void => {
+  const scene = new THREE.Scene()
+
+  const camera = new THREE.PerspectiveCamera(45, 800 / 400, 1, 500)
+  camera.position.set(0, 0, 100)
+  camera.lookAt(0, 0, 0)
+
+  const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-10, 0, 0), new THREE.Vector3(0, 10, 0), new THREE.Vector3(10, 0, 0)])
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff })
+  const lin = new THREE.Line(geometry, material)
+  scene.add(lin)
+
+  const renderer = new THREE.WebGLRenderer()
+  renderer.setSize(800, 400)
+  renderer.render(scene, camera)
+
+  line.value?.appendChild(renderer.domElement)
+}
+
+onMounted(() => {
+  df()
+  lf()
 })
 </script>
 
@@ -40,6 +66,9 @@ onMounted(() => {
     </el-card>
     <el-card shadow="always">
       <div ref="demo" style="width: 800px; height: 400px"></div>
+    </el-card>
+    <el-card shadow="always">
+      <div ref="line" style="width: 800px; height: 400px"></div>
     </el-card>
   </el-space>
 </template>

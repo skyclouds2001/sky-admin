@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
 import * as THREE from 'three'
+// @ts-expect-error can not find type definition for this file
+import WebGL from 'three/addons/capabilities/WebGL.js'
 
 const demo = ref<HTMLDivElement | null>(null)
 
@@ -15,8 +17,8 @@ onMounted(() => {
 
   const scene = new THREE.Scene()
 
-  const camera = new THREE.PerspectiveCamera(70, 800 / 600, 0.2, 10)
-  camera.position.z = 1
+  const camera = new THREE.PerspectiveCamera(70, 800 / 400, 0.2, 5)
+  camera.position.z = 0.5
 
   const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
   const material = new THREE.MeshNormalMaterial()
@@ -24,7 +26,7 @@ onMounted(() => {
   scene.add(mesh)
 
   const renderer = new THREE.WebGLRenderer({ antialias: true })
-  renderer.setSize(1000, 1000)
+  renderer.setSize(800, 400)
   renderer.setAnimationLoop(animation)
 
   demo.value?.appendChild(renderer.domElement)
@@ -34,7 +36,10 @@ onMounted(() => {
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
-      <div ref="demo" style="width: 800px; height: 600px"></div>
+      <div>{{ WebGL.isWebGLAvailable() ? 'Support' : 'UnSupport' }}</div>
+    </el-card>
+    <el-card shadow="always">
+      <div ref="demo" style="width: 800px; height: 400px"></div>
     </el-card>
   </el-space>
 </template>

@@ -1,4 +1,4 @@
-name: tests
+name: lint
 
 on:
   push:
@@ -24,3 +24,20 @@ jobs:
         run: pnpm exec playwright install --with-deps
       - name: run tests
         run: pnpm test
+  lint:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.4.0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+      - name: install dependencies
+        run: pnpm install
+      - name: run lint
+        run: pnpm lint
+        continue-on-error: true

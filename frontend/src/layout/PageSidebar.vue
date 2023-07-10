@@ -17,8 +17,7 @@ const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey) as Ref<boolean>
 /**
  * 切换 Sidebar 伸缩状态方法
  */
-const handleCollapse = () => {
-  if (isMenuCollapse === undefined) return
+const handleCollapse = (): void => {
   isMenuCollapse.value = !isMenuCollapse.value
 }
 

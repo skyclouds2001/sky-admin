@@ -33,7 +33,7 @@ const encode = ref<keyof typeof CryptoJS.enc>('Hex')
 /**
  * 执行编码方法
  */
-const hash = () => {
+const hash = (): void => {
   try {
     cipher.value = CryptoJS[type.value](raw.value).toString(CryptoJS.enc[encode.value])
   } catch (error) {

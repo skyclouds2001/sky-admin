@@ -9,16 +9,16 @@ import QrCode from 'qrcode'
 const i18n = useI18n()
 
 onMounted(() => {
-  QrCode.toCanvas(document.getElementById('simple-qrcode'), '0123456789')
+  void QrCode.toCanvas(document.getElementById('simple-qrcode'), '0123456789')
   QrCode.toDataURL('0123456789', {}, (error, url) => {
-    if (!error) {
+    if (error instanceof Error) {
       ;(document.getElementById('img-qrcode') as HTMLImageElement).src = url
     }
   })
-  QrCode.toCanvas(document.getElementById('qrcode-size'), '0123456789', {
+  void QrCode.toCanvas(document.getElementById('qrcode-size'), '0123456789', {
     width: 200,
   })
-  QrCode.toCanvas(document.getElementById('qrcode-style'), '0123456789', {
+  void QrCode.toCanvas(document.getElementById('qrcode-style'), '0123456789', {
     color: {
       dark: '#0000ffff',
       light: '#ff00ff55',

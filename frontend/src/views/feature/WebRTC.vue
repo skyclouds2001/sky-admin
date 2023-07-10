@@ -10,7 +10,7 @@ const pc = new RTCPeerConnection()
 /**
  * 初始化
  */
-const handleInitWebRTC = async () => {
+const handleInitWebRTC = async (): Promise<void> => {
   const local = document.getElementById('local') as HTMLVideoElement
   const remote = document.getElementById('remote') as HTMLVideoElement
 
@@ -38,22 +38,22 @@ const handleInitWebRTC = async () => {
 const offerSdp = ref('')
 const answerSdp = ref('')
 
-const createOffer = async () => {
+const createOffer = async (): Promise<void> => {
   const offer = await pc.createOffer()
   await pc.setLocalDescription(offer)
 
   pc.addEventListener('icecandidate', (e) => {
-    if (e.candidate) {
+    if (e.candidate !== null) {
       offerSdp.value = JSON.stringify(pc.localDescription)
     }
   })
 }
 
-const createAnswer = async () => {
+const createAnswer = async (): Promise<void> => {
   const offer = JSON.parse(offerSdp.value)
 
   pc.addEventListener('icecandidate', (e) => {
-    if (e.candidate) {
+    if (e.candidate !== null) {
       answerSdp.value = JSON.stringify(pc.localDescription)
     }
   })
@@ -64,10 +64,10 @@ const createAnswer = async () => {
   await pc.setLocalDescription(answer)
 }
 
-const addAnswer = () => {
+const addAnswer = async (): Promise<void> => {
   const answer = JSON.parse(answerSdp.value)
-  if (!pc.currentRemoteDescription) {
-    pc.setRemoteDescription(answer)
+  if (pc.currentRemoteDescription !== null) {
+    await pc.setRemoteDescription(answer)
   }
 }
 </script>

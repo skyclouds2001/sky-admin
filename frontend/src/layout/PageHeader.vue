@@ -33,17 +33,15 @@ const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolea
 /**
  * 控制展示设置窗口
  */
-const showSettingDrawer = () => {
-  if (isShowSettingDrawer) {
-    isShowSettingDrawer.value = true
-  }
+const showSettingDrawer = (): void => {
+  isShowSettingDrawer.value = true
 }
 
 /**
  * 分享操作
  */
-const handleShare = () => {
-  share({
+const handleShare = async (): Promise<void> => {
+  await share({
     title: document.title,
     url: location.href,
   })
@@ -52,14 +50,14 @@ const handleShare = () => {
 /**
  * 打开关于页
  */
-const routeToAbout = () => {
-  router.push('/about')
+const routeToAbout = (): void => {
+  void router.push('/about')
 }
 
 /**
  * 退出登录
  */
-const exitLogin = () => {
+const exitLogin = (): void => {
   ElMessageBox.confirm(
     i18n.t(`layout.header.confirm-exit-login`),
     i18n.t(`warning`),
@@ -73,7 +71,7 @@ const exitLogin = () => {
   )
     .then(() => {
       storage.value = null
-      router.push('/login')
+      void router.push('/login')
     })
     .catch(() => {
       ElMessage.info(
@@ -87,7 +85,6 @@ const exitLogin = () => {
       )
     })
 }
-//
 </script>
 
 <template>

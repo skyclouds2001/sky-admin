@@ -5,7 +5,7 @@ import * as THREE from 'three'
 const el = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  const animation = (time: number) => {
+  const animation = (time: number): void => {
     mesh.rotation.x = time / 2000
     mesh.rotation.y = time / 1000
 

@@ -18,7 +18,7 @@ const store = useTabsStore()
  * @param path - 待切换 tab 对应页面路径
  */
 const switchTab: InstanceType<typeof ElTabs>['onTabChange'] = (path) => {
-  router.push(path as string)
+  void router.push(path as string)
 }
 
 /**

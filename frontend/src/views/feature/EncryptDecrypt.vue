@@ -44,7 +44,7 @@ const pad = ref<(typeof pads)[number]>(pads[0])
 /**
  * 加密方法
  */
-const encrypt = () => {
+const encrypt = (): void => {
   try {
     cipher.value = CryptoJS[type.value].encrypt(raw.value, key, { iv, mode: CryptoJS.mode[mode.value], padding: CryptoJS.pad[pad.value] }).toString()
   } catch (error) {
@@ -55,7 +55,7 @@ const encrypt = () => {
 /**
  * 解密方法
  */
-const decrypt = () => {
+const decrypt = (): void => {
   try {
     raw.value = CryptoJS[type.value].decrypt(cipher.value, key, { iv }).toString()
   } catch (error) {

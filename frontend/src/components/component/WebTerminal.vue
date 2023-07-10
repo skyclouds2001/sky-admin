@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/* eslint-disable import/named */
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Terminal } from 'xterm'
 import 'xterm/css/xterm.css'
@@ -21,9 +20,10 @@ terminal.loadAddon(searchAddon)
 let id: number
 
 onMounted(() => {
-  if (!el.value) return
+  if (el.value === null) return
 
-  terminal.open(el.value as HTMLDivElement)
+  terminal.open(el.value)
+
   fitAddon.fit()
 
   id = window.setInterval(() => {

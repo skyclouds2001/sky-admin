@@ -16,7 +16,7 @@ useEventListener(window, 'mousedown', (e) => {
     localName: name,
     dataset: { id },
   } = e.target as HTMLElement
-  if (current.value === 0 && name === 'i' && id) {
+  if (current.value === 0 && name === 'i' && id !== undefined) {
     current.value = parseInt(id)
   }
 })

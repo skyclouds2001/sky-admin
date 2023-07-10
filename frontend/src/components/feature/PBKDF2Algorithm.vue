@@ -6,7 +6,7 @@ import CryptoJS from 'crypto-js'
 
 const i18n = useI18n()
 
-const types = Object.keys(CryptoJS).filter((v) => /KDF/.test(v)) as Array<Extract<keyof typeof CryptoJS, `${string}KDF${string}`>>
+const types = Object.keys(CryptoJS).filter((v) => v.includes('KDF')) as Array<Extract<keyof typeof CryptoJS, `${string}KDF${string}`>>
 
 const encodes = Object.keys(CryptoJS.enc) as Array<keyof typeof CryptoJS.enc>
 
@@ -38,14 +38,14 @@ const encode = ref<keyof typeof CryptoJS.enc>('Hex')
 /**
  * 生成盐值
  */
-const genSalt = () => {
+const genSalt = (): void => {
   salt.value = CryptoJS.lib.WordArray.random(128 / 8).toString()
 }
 
 /**
  * 执行编码方法
  */
-const hash = () => {
+const hash = (): void => {
   try {
     cipher.value = CryptoJS[type.value](raw.value, salt.value).toString(CryptoJS.enc[encode.value])
   } catch (error) {

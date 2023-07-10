@@ -10,8 +10,8 @@ const i18n = useI18n()
 /**
  * 返回首页方法
  */
-const redirect = () => {
-  router.push('/')
+const redirect = (): void => {
+  void router.push('/')
 }
 </script>
 

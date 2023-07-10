@@ -3,6 +3,10 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElButton, ElCard, ElForm, ElFormItem, ElInput, ElSpace } from 'element-plus'
 
+const local = ref<HTMLVideoElement | null>(null)
+
+const remote = ref<HTMLVideoElement | null>(null)
+
 const i18n = useI18n()
 
 const pc = new RTCPeerConnection()
@@ -11,16 +15,18 @@ const pc = new RTCPeerConnection()
  * 初始化
  */
 const handleInitWebRTC = async (): Promise<void> => {
-  const local = document.getElementById('local') as HTMLVideoElement
-  const remote = document.getElementById('remote') as HTMLVideoElement
+  if (local.value === null) return
 
   const remoteStream = new MediaStream()
 
   pc.addEventListener('track', (e) => {
+    if (remote.value === null) return
+
     e.streams[0].getTracks().forEach((track) => {
       remoteStream.addTrack(track)
     })
-    remote.srcObject = remoteStream
+
+    remote.value.srcObject = remoteStream
   })
 
   const localStream = await navigator.mediaDevices.getUserMedia({
@@ -28,7 +34,7 @@ const handleInitWebRTC = async (): Promise<void> => {
     audio: true,
   })
 
-  local.srcObject = localStream
+  local.value.srcObject = localStream
 
   localStream.getTracks().forEach((track) => {
     pc.addTrack(track, localStream)
@@ -75,8 +81,8 @@ const addAnswer = async (): Promise<void> => {
 <template>
   <el-space size="large" class="w-full p-5">
     <el-space size="large" direction="vertical">
-      <video id="local" ref="el" width="800" height="600" autoplay playsinline muted />
-      <video id="remote" ref="el" width="800" height="600" autoplay playsinline muted />
+      <video ref="local" width="800" height="600" autoplay playsinline muted />
+      <video ref="remote" width="800" height="600" autoplay playsinline muted />
     </el-space>
     <el-space size="large" direction="vertical">
       <el-button type="primary" @click="handleInitWebRTC">{{ i18n.t('feature.initialization') }}</el-button>

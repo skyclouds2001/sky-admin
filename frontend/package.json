@@ -75,7 +75,7 @@
     "tui-color-picker": "^2.2.8",
     "vue": "^3.3.4",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.2.3",
+    "vue-router": "^4.2.4",
     "web-vitals": "^3.3.2",
     "xlsx": "^0.18.5",
     "xterm": "^5.2.1",

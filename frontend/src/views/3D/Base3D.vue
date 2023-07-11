@@ -62,7 +62,7 @@ onMounted(() => {
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
-      <div>{{ WebGL.isWebGLAvailable() ? 'Support' : 'UnSupport' }}</div>
+      <div>WebGL - {{ WebGL.isWebGLAvailable() ? 'Support' : 'UnSupport' }}</div>
     </el-card>
     <el-card shadow="always">
       <div ref="demo" style="width: 800px; height: 400px"></div>

@@ -1,1 +1,1 @@
-export { default as avatar } from '@/assets/avatar.jpg'
+export { default as avatar } from './avatar.jpg'

@@ -532,6 +532,15 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/mirror-text'),
+              path: '/3d/mirror-text',
+              component: () => import('@/views/3D/MirrorText.vue'),
+              meta: {
+                title: 'Mirror Text',
+                isView: true,
+              },
+            },
           ],
         },
 

@@ -285,6 +285,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/basis') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/mirror-text">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/mirror-text') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 系统监控 -->

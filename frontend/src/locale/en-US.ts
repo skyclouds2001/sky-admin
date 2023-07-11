@@ -353,6 +353,7 @@ export default {
     '/feature/broadcast-channel': 'BroadcastChannel',
     '/3d': '3D',
     '/3d/basis': 'Basic 3D',
+    '/3d/mirror-text': 'Mirror Text',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',
     '/error': 'Error',

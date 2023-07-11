@@ -6,8 +6,7 @@ import * as THREE from 'three'
 import { FontLoader } from 'three/addons/loaders/FontLoader'
 // @ts-expect-error can not find type definition for this file
 import { TextGeometry } from 'three/addons/geometries/TextGeometry'
-
-import optimer_regular from '@/assets/optimer_regular.typeface.json?url'
+import { optimer_regular } from '@/assets'
 
 const text = ref<HTMLDivElement | null>(null)
 

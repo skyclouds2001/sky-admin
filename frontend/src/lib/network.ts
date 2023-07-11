@@ -1,8 +1,5 @@
-/* eslint-disable promise/no-promise-in-callback */
-
 import axios, { type Canceler } from 'axios'
 import AxiosRetry from 'axios-retry'
-// eslint-disable-next-line import/named
 import { MD5 } from 'crypto-js'
 import { useStorage } from '@sky-fly/shooks'
 import { SERVER_HOST } from '@/config'
@@ -54,6 +51,7 @@ instance.interceptors.request.use(
 
     return config
   },
+  // eslint-disable-next-line promise/no-promise-in-callback
   (error) => Promise.reject(error)
 )
 
@@ -72,6 +70,7 @@ instance.interceptors.response.use(
     requests.get(key)?.()
     requests.delete(key)
 
+    // eslint-disable-next-line promise/no-promise-in-callback
     return axios.isCancel(error) ? undefined : Promise.reject(error)
   }
 )

@@ -323,14 +323,12 @@ async function main(): Promise<void> {
   console.log({ user1, user2, user3, user4, user5 })
 }
 
-// eslint-disable-next-line promise/catch-or-return
-main()
+void main()
   .catch((e) => {
     console.error(e)
     // eslint-disable-next-line n/no-process-exit
     process.exit(-1)
   })
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  .finally(async () => {
-    await prisma.$disconnect()
+  .finally(() => {
+    void prisma.$disconnect()
   })

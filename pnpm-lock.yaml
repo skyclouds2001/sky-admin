@@ -5174,22 +5174,22 @@ packages:
       pretty-format: 29.6.0
     dev: true
 
-  /@volar/language-core@1.8.0:
-    resolution: {integrity: sha512-ZHTvZPM3pEbOOuaq+ybNz5TQlHUqPQPK0G1+SonvApGq0e3qgGijjhtL5T7hsCtUEmxfix8FrAuCH14tMBOhTg==}
+  /@volar/language-core@1.8.1:
+    resolution: {integrity: sha512-TA3qcpFGDsu8SZj/yYybu0ZZWkqi8mi0awL8lC3K/YlJlo+WjNk/yCb43FUfnSYXWuXWnI/i+NzIKYMskx6IEQ==}
     dependencies:
-      '@volar/source-map': 1.8.0
+      '@volar/source-map': 1.8.1
     dev: true
 
-  /@volar/source-map@1.8.0:
-    resolution: {integrity: sha512-d35aV0yFkIrkynRSKgrN5hgbMv6ekkFvcJsJGmOZ8UEjqLStto9zq7RSvpp6/PZ7/pa4Gn1f6K1qDt0bq0oUew==}
+  /@volar/source-map@1.8.1:
+    resolution: {integrity: sha512-s3teiZrch4o4ujz6jLEsfFCHR7jCPaqPPyazlEhmqVK2p1CIt8aaOOeMq5RWPWxJD5IwywIpKT2B7PzJzYRWjg==}
     dependencies:
       muggle-string: 0.3.1
     dev: true
 
-  /@volar/typescript@1.8.0:
-    resolution: {integrity: sha512-T/U1XLLhXv6tNr40Awznfc6QZWizSL99t6M0DeXtIMbnvSCqjjCVRnwlsq+DK9C1RlO3k8+i0Z8iJn7O1GGtoA==}
+  /@volar/typescript@1.8.1:
+    resolution: {integrity: sha512-V9eFI+KNzGApdfPIvVULt/mXWcGMTLVLPfea3GvUwaHn9mgLB5chBLjbx0u3LsA+vIwvQxKZ818jmhyBlAmdkA==}
     dependencies:
-      '@volar/language-core': 1.8.0
+      '@volar/language-core': 1.8.1
     dev: true
 
   /@vue/babel-helper-vue-transform-on@1.1.5:
@@ -5260,8 +5260,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@volar/language-core': 1.8.0
-      '@volar/source-map': 1.8.0
+      '@volar/language-core': 1.8.1
+      '@volar/source-map': 1.8.1
       '@vue/compiler-dom': 3.3.4
       '@vue/reactivity': 3.3.4
       '@vue/shared': 3.3.4
@@ -5330,7 +5330,7 @@ packages:
   /@vue/typescript@1.8.4(typescript@5.1.6):
     resolution: {integrity: sha512-sioQfIY5xcmEAz+cPLvv6CtzGPtGhIdR0Za87zB8M4mPe4OSsE3MBGkXcslf+EzQgF+fm6Gr1SRMSX8r5ZmzDA==}
     dependencies:
-      '@volar/typescript': 1.8.0
+      '@volar/typescript': 1.8.1
       '@vue/language-core': 1.8.4(typescript@5.1.6)
     transitivePeerDependencies:
       - typescript

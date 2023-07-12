@@ -9,14 +9,16 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry'
 import { useEventListener } from '@sky-fly/shooks'
 import { optimer_regular } from '@/assets'
 
-const text = ref<HTMLDivElement | null>(null)
+const el = ref<HTMLDivElement | null>(null)
 
 THREE.Cache.enabled = true
 
 const tf = (): void => {
-  if (text.value === null) return
+  if (el.value === null) return
 
   const render = (): void => {
+    group.rotation.y += (target - group.rotation.y) * 0.05
+
     renderer.render(scene, camera)
   }
 
@@ -48,7 +50,7 @@ const tf = (): void => {
 
   const materials = [new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), new THREE.MeshPhongMaterial({ color: 0xffffff })]
 
-  let tt = 'Hello World'
+  let text = 'Hello World'
   let textMesh1: THREE.Mesh
   let textMesh2: THREE.Mesh
   let font: unknown
@@ -69,7 +71,7 @@ const tf = (): void => {
   )
 
   const renderText = (): void => {
-    const textGeometry = new TextGeometry(tt, {
+    const textGeometry = new TextGeometry(text, {
       font,
       size: 70,
       height: 20,
@@ -98,21 +100,45 @@ const tf = (): void => {
   renderer.setSize(800, 400)
   renderer.setAnimationLoop(render)
   renderer.useLegacyLights = false
-  text.value.appendChild(renderer.domElement)
+  el.value.appendChild(renderer.domElement)
 
-  text.value.style.touchAction = 'none'
+  el.value.style.touchAction = 'none'
+
   useEventListener(window, 'keydown', (e) => {
     if (e.key === 'Backspace') {
-      tt = tt.slice(0, -1)
+      text = text.slice(0, -1)
     } else {
-      tt += e.key
+      text += e.key
     }
 
     group.clear()
 
-    if (tt.length === 0) return
+    if (text.length === 0) return
 
     renderText()
+  })
+
+  let target = 0
+
+  useEventListener(el.value, 'pointerdown', (e: PointerEvent) => {
+    if (!e.isPrimary) return
+
+    const pos = e.clientX - 800 / 2
+    const rawTarget = target
+
+    const move = (e: PointerEvent): void => {
+      if (!e.isPrimary) return
+
+      target = rawTarget + (e.clientX - 800 / 2 - pos) * 0.02
+    }
+
+    const stop = (): void => {
+      el.value?.removeEventListener('pointermove', move)
+      el.value?.removeEventListener('pointerup', stop)
+    }
+
+    el.value?.addEventListener('pointermove', move, { passive: true })
+    el.value?.addEventListener('pointerup', stop, { passive: true })
   })
 }
 
@@ -124,7 +150,7 @@ onMounted(() => {
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
-      <div ref="text" style="width: 800px; height: 400px"></div>
+      <div ref="el" style="width: 800px; height: 400px"></div>
     </el-card>
   </el-space>
 </template>

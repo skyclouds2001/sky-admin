@@ -115,7 +115,7 @@
     "tailwindcss": "^3.3.2",
     "terser": "^5.18.2",
     "typescript": "^5.1.6",
-    "unplugin-element-plus": "^0.7.1",
+    "unplugin-element-plus": "^0.7.2",
     "vite": "^4.3.9",
     "vite-plugin-checker": "^0.6.1",
     "vite-plugin-compression": "^0.5.1",

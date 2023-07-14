@@ -13,3 +13,7 @@ export type Readonly<T> = {
 export type Writable<T> = {
   -readonly [P in keyof T]: T[P]
 }
+
+export type Record<K extends string | number | symbol, T> = {
+  [P in keyof K]: T
+}

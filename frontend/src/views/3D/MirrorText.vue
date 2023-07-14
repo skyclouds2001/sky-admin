@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
-import * as THREE from 'three'
+import { Cache, Color, DirectionalLight, Fog, Group, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, PointLight, Scene, Vector3, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import { FontLoader } from 'three/addons/loaders/FontLoader'
 // @ts-expect-error can not find type definition for this file
@@ -11,7 +11,7 @@ import { optimer_regular } from '@/assets'
 
 const el = ref<HTMLDivElement | null>(null)
 
-THREE.Cache.enabled = true
+Cache.enabled = true
 
 const tf = (): void => {
   if (el.value === null) return
@@ -22,37 +22,37 @@ const tf = (): void => {
     renderer.render(scene, camera)
   }
 
-  const camera = new THREE.PerspectiveCamera(30, 800 / 400, 1, 1500)
+  const camera = new PerspectiveCamera(30, 800 / 400, 1, 1500)
   camera.position.set(0, 400, 700)
-  camera.lookAt(new THREE.Vector3(0, 150, 0))
+  camera.lookAt(new Vector3(0, 150, 0))
 
-  const scene = new THREE.Scene()
-  scene.background = new THREE.Color(0x000000)
-  scene.fog = new THREE.Fog(0x000000, 250, 1400)
+  const scene = new Scene()
+  scene.background = new Color(0x000000)
+  scene.fog = new Fog(0x000000, 250, 1400)
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4)
+  const directionalLight = new DirectionalLight(0xffffff, 0.4)
   directionalLight.position.set(0, 0, 1).normalize()
   scene.add(directionalLight)
 
-  const pointLight = new THREE.PointLight(0xffffff, 4.5, 0, 0)
+  const pointLight = new PointLight(0xffffff, 4.5, 0, 0)
   pointLight.color.setHSL(Math.random(), 1, 0.5)
   pointLight.position.set(0, 100, 90)
   scene.add(pointLight)
 
-  const plane = new THREE.Mesh(new THREE.PlaneGeometry(10000, 10000), new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0.5, transparent: true }))
+  const plane = new Mesh(new PlaneGeometry(10000, 10000), new MeshBasicMaterial({ color: 0xffffff, opacity: 0.5, transparent: true }))
   plane.position.y = 100
   plane.position.x = -Math.PI / 2
   scene.add(plane)
 
-  const group = new THREE.Group()
+  const group = new Group()
   group.position.y = 100
   scene.add(group)
 
-  const materials = [new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), new THREE.MeshPhongMaterial({ color: 0xffffff })]
+  const materials = [new MeshPhongMaterial({ color: 0xffffff, flatShading: true }), new MeshPhongMaterial({ color: 0xffffff })]
 
   let text = 'Hello World'
-  let textMesh1: THREE.Mesh
-  let textMesh2: THREE.Mesh
+  let textMesh1: Mesh
+  let textMesh2: Mesh
   let font: unknown
 
   new FontLoader().load(
@@ -84,18 +84,18 @@ const tf = (): void => {
 
     const center = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x)
 
-    textMesh1 = new THREE.Mesh(textGeometry, materials)
+    textMesh1 = new Mesh(textGeometry, materials)
     textMesh1.position.set(center, 30, 0)
     textMesh1.rotation.set(0, 2 * Math.PI, 0)
     group.add(textMesh1)
 
-    textMesh2 = new THREE.Mesh(textGeometry, materials)
+    textMesh2 = new Mesh(textGeometry, materials)
     textMesh2.position.set(center, -30, 0)
     textMesh2.rotation.set(Math.PI, 2 * Math.PI, 0)
     group.add(textMesh2)
   }
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true })
+  const renderer = new WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(800, 400)
   renderer.setAnimationLoop(render)

@@ -14966,7 +14966,7 @@ packages:
     dependencies:
       stylelint: 14.16.1
       stylelint-config-recommended: 6.0.0(stylelint@14.16.1)
-      stylelint-less: 1.0.7(stylelint@14.16.1)
+      stylelint-less: 1.0.8(stylelint@14.16.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -15074,10 +15074,10 @@ packages:
       stylelint-config-recommended: 13.0.0(stylelint@15.10.1)
     dev: true
 
-  /stylelint-less@1.0.7(stylelint@14.16.1):
-    resolution: {integrity: sha512-iI7FzgUK+cg23miQe6sPU6X799m6xCT5jc1PvA8G5exmNow39qNzRUMNxsdxYUXU4q3mW7ypUb8g97ykhJTEDA==}
+  /stylelint-less@1.0.8(stylelint@14.16.1):
+    resolution: {integrity: sha512-rV9qCtuMKpkcfMq0znW52yWb0bZfw0E/uZ2CwOK4MFSIoq0U6xXT7Y1a2nSJsa+p3t8li/2RTYUrRLc7ABRyaQ==}
     peerDependencies:
-      stylelint: ^15.9.0
+      stylelint: ^15.10.1
     dependencies:
       postcss: 8.4.25
       postcss-value-parser: 4.2.0

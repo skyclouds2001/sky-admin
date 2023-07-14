@@ -533,6 +533,15 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/geometry'),
+              path: '/3d/geometry',
+              component: () => import('@/views/3D/BaseGeometry.vue'),
+              meta: {
+                title: 'Basic GeoMetry',
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/mirror-text'),
               path: '/3d/mirror-text',
               component: () => import('@/views/3D/MirrorText.vue'),

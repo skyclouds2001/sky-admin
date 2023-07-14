@@ -353,6 +353,7 @@ export default {
     '/feature/broadcast-channel': '广播频道',
     '/3d': '3D',
     '/3d/basis': '基础3D',
+    '/3d/geometry': '基础图元',
     '/3d/mirror-text': '镜像文字',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',

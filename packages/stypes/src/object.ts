@@ -1,1 +1,1 @@
-export type Obj = Record<string, any>
+export type Object = Record<string, any>

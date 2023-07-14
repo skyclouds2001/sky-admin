@@ -61,7 +61,7 @@
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.9",
     "echarts": "^5.4.2",
-    "element-plus": "^2.3.7",
+    "element-plus": "^2.3.8",
     "highlight.js": "^11.8.0",
     "jsbarcode": "^3.11.5",
     "lodash-es": "^4.17.21",

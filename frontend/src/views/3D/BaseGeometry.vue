@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
-import { BoxGeometry, CapsuleGeometry, CircleGeometry, ConeGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { BoxGeometry, CapsuleGeometry, CircleGeometry, ConeGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 
 const geometry = ref<HTMLCanvasElement | null>(null)
 
@@ -15,6 +15,8 @@ onMounted(() => {
     circle.rotation.y = time / 1000
     cone.rotation.x = time / 1000
     cone.rotation.y = time / 1000
+    cylinder.rotation.x = time / 1000
+    cylinder.rotation.y = time / 1000
 
     renderer.render(scene, camera)
   }
@@ -35,13 +37,17 @@ onMounted(() => {
   capsule.position.set(-10, 0, 0)
   scene.add(capsule)
 
-  const circle = new Mesh(new CircleGeometry(1, 32, 0, Math.PI), new MeshBasicMaterial({ color: 0xff0000 }))
+  const circle = new Mesh(new CircleGeometry(1, 32, 0, 1.5 * Math.PI), new MeshBasicMaterial({ color: 0xff0000 }))
   circle.position.set(0, 5, 0)
   scene.add(circle)
 
-  const cone = new Mesh(new ConeGeometry(1.5, 2, 12, 12, false, 0, Math.PI), new MeshBasicMaterial({ color: 0x0000ff }))
+  const cone = new Mesh(new ConeGeometry(1.5, 2, 12, 12, false, 0, 1.5 * Math.PI), new MeshBasicMaterial({ color: 0x0000ff }))
   cone.position.set(0, -5, 0)
   scene.add(cone)
+
+  const cylinder = new Mesh(new CylinderGeometry())
+  cylinder.position.set(0, 0, 0)
+  scene.add(cylinder)
 
   const renderer = new WebGLRenderer({ canvas: geometry.value })
   renderer.setSize(800, 400)

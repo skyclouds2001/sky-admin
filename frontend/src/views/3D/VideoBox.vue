@@ -7,7 +7,7 @@ import { TrackballControls } from 'three/addons/controls/TrackballControls'
 // @ts-expect-error can not find type definition for this file
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer'
 
-const video = ref<HTMLCanvasElement | null>(null)
+const video = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
   const animate = (): void => {
@@ -18,12 +18,12 @@ onMounted(() => {
 
   const createElement = (src: string, x: number, y: number, z: number, ry: number): CSS3DObject => {
     const iframe = document.createElement('iframe')
-    // iframe.width = '480'
-    // iframe.height = '360'
     iframe.style.width = '480px'
     iframe.style.height = '360px'
-    // iframe.style.backgroundColor = '#000'
     iframe.style.zIndex = '9999'
+    iframe.width = '480'
+    iframe.height = '360'
+    iframe.loading = 'lazy'
     iframe.referrerPolicy = 'no-referrer'
     iframe.allowFullscreen = true
     iframe.src = src
@@ -53,6 +53,24 @@ onMounted(() => {
   const controls = new TrackballControls(camera, renderer.domElement)
   controls.rotateSpeed = 4
 
+  const blocker = document.createElement('div')
+  blocker.style.position = 'absolute'
+  blocker.style.top = '0'
+  blocker.style.right = '0'
+  blocker.style.bottom = '0'
+  blocker.style.left = '0'
+  blocker.style.zIndex = '9999'
+  blocker.style.display = 'none'
+  document.body.appendChild(blocker)
+
+  controls.addEventListener('start', () => {
+    blocker.style.display = 'block'
+  })
+
+  controls.addEventListener('end', () => {
+    blocker.style.display = 'none'
+  })
+
   animate()
 })
 </script>
@@ -60,7 +78,7 @@ onMounted(() => {
 <template>
   <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
     <el-card shadow="always">
-      <canvas ref="video" width="1000" height="600" style="width: 1000px; height: 600px"></canvas>
+      <div ref="video" style="width: 1000px; height: 600px"></div>
     </el-card>
   </el-space>
 </template>

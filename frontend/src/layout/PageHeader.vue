@@ -90,7 +90,7 @@ const exitLogin = (): void => {
 <template>
   <div class="page-header">
     <el-breadcrumb class="breadcrumb">
-      <el-breadcrumb-item v-for="item in store.pages" :key="item.name" :to="item.path">{{ i18n.t(`router.${item.path}`) }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in store.pages" :key="item.path" :to="item.path">{{ i18n.t(`router.${item.path}`) }}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <div class="control-bar">

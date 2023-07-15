@@ -25,15 +25,15 @@ const useWebVitals = (): {
   const CLSs = ref<CLSMetric[]>([])
 
   onLCP((metric) => {
-    LCPs.value.push(metric as LCPMetric)
+    LCPs.value.push(metric)
   })
 
   onFID((metric) => {
-    FIDs.value.push(metric as FIDMetric)
+    FIDs.value.push(metric)
   })
 
   onCLS((metric) => {
-    CLSs.value.push(metric as CLSMetric)
+    CLSs.value.push(metric)
   })
 
   return {

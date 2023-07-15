@@ -126,6 +126,8 @@ const tf = (): void => {
     const pos = e.clientX - 800 / 2
     const rawTarget = target
 
+    el.value?.setPointerCapture(e.pointerId)
+
     const move = (e: PointerEvent): void => {
       if (!e.isPrimary) return
 
@@ -133,6 +135,8 @@ const tf = (): void => {
     }
 
     const stop = (): void => {
+      el.value?.releasePointerCapture(e.pointerId)
+
       el.value?.removeEventListener('pointermove', move)
       el.value?.removeEventListener('pointerup', stop)
     }

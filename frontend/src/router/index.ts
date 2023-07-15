@@ -542,6 +542,15 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/video-box'),
+              path: '/3d/video-box',
+              component: () => import('@/views/3D/VideoBox.vue'),
+              meta: {
+                title: 'Video Box',
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/mirror-text'),
               path: '/3d/mirror-text',
               component: () => import('@/views/3D/MirrorText.vue'),

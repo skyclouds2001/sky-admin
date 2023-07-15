@@ -354,6 +354,7 @@ export default {
     '/3d': '3D',
     '/3d/basis': '基础3D',
     '/3d/geometry': '基础图元',
+    '/3d/video-box': '视频盒子',
     '/3d/mirror-text': '镜像文字',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',

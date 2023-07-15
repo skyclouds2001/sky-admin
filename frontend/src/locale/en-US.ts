@@ -354,6 +354,7 @@ export default {
     '/3d': '3D',
     '/3d/basis': 'Basic 3D',
     '/3d/geometry': 'Basic Geometry',
+    '/3d/video-box': 'Video Box',
     '/3d/mirror-text': 'Mirror Text',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',

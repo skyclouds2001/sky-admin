@@ -1,7 +1,9 @@
 export type { Awaitable, Promisify } from './any'
 
-export type { Fn } from './function'
+export type { Primitive, Builtin } from './core'
 
-export type { Writable } from './list'
+export type { Function } from './function'
 
-export type { Obj } from './object'
+export type { Partial, Readonly, Record, Required, Writable } from './list'
+
+export type { Object } from './object'

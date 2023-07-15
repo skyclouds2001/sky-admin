@@ -13,7 +13,7 @@ const el = ref<HTMLDivElement | null>(null)
 
 Cache.enabled = true
 
-const tf = (): void => {
+onMounted(() => {
   if (el.value === null) return
 
   const render = (): void => {
@@ -144,10 +144,6 @@ const tf = (): void => {
     el.value?.addEventListener('pointermove', move, { passive: true })
     el.value?.addEventListener('pointerup', stop, { passive: true })
   })
-}
-
-onMounted(() => {
-  tf()
 })
 </script>
 

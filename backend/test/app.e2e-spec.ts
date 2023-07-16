@@ -1,3 +1,4 @@
+import { beforeEach, describe, it } from 'vitest'
 import { Test, type TestingModule } from '@nestjs/testing'
 import { type INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
@@ -12,6 +13,7 @@ describe('AppController (e2e)', () => {
     }).compile()
 
     app = moduleFixture.createNestApplication()
+
     await app.init()
   })
 

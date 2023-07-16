@@ -14,7 +14,7 @@ const { articles, page, size, total, search, refresh } = useArticles()
 /**
  * 导出表格回调方法
  */
-const handleExport = () => {
+const handleExport = (): void => {
   exportExcelFromData<Article>(articles.value)
 }
 
@@ -23,14 +23,14 @@ const handleExport = () => {
  * @param params 搜索参数
  * @param params.title 文章标题
  */
-const handleSearch = ({ title }: Pick<Article, 'title'>) => {
+const handleSearch = ({ title }: Pick<Article, 'title'>): void => {
   search.title = title
 }
 
 /**
  * 新增文章信息列表方法
  */
-const handleAddArticle = () => {
+const handleAddArticle = (): void => {
   console.log(-1)
 }
 
@@ -38,7 +38,7 @@ const handleAddArticle = () => {
  * 编辑文章信息方法
  * @param id 文章ID
  */
-const handleEditArticle = (id: number) => {
+const handleEditArticle = (id: number): void => {
   console.log(id)
 }
 
@@ -46,9 +46,9 @@ const handleEditArticle = (id: number) => {
  * 切换文章状态方法
  * @param id 文章ID
  */
-const handleToggleArticleStatus = (id: number) => {
+const handleToggleArticleStatus = (id: number): void => {
   const article = articles.value.find((v) => v.id === id)
-  if (!article) return
+  if (article === undefined) return
 
   ElMessageBox.confirm(
     article.status === 'Drafted' ? '确认发表文章？' : '确认草稿文章？',
@@ -119,7 +119,7 @@ const handleToggleArticleStatus = (id: number) => {
  * 移除文章信息方法
  * @param id 文章ID
  */
-const handleRemoveArticle = (id: number) => {
+const handleRemoveArticle = (id: number): void => {
   ElMessageBox.confirm(
     '确认删除？',
     '警告',

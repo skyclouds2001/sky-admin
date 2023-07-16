@@ -12,13 +12,12 @@ const i18n = useI18n()
 
 const tabsStore = useTabsStore()
 
-const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey)
+const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey) as Ref<boolean>
 
 /**
  * 切换 Sidebar 伸缩状态方法
  */
-const handleCollapse = () => {
-  if (isMenuCollapse === undefined) return
+const handleCollapse = (): void => {
   isMenuCollapse.value = !isMenuCollapse.value
 }
 
@@ -285,6 +284,22 @@ watch(
         <el-menu-item index="/3d/basis">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/basis') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/geometry">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/geometry') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/video-box">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/video-box') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/mirror-text">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/mirror-text') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/active-building">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/active-building') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

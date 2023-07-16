@@ -14,7 +14,7 @@ const editorConfig = {
   placeholder: '请输入内容...',
 }
 
-const handleCreated = (e: IDomEditor) => {
+const handleCreated = (e: IDomEditor): void => {
   el.value = e
 }
 

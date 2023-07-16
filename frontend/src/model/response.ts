@@ -1,7 +1,7 @@
 /**
  * 请求成功响应数据结构
  */
-interface Response<T = unknown> {
+interface Response<T> {
   /** 请求成功标识 */
   success: boolean
   /** 请求码 */

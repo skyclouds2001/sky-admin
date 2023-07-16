@@ -26,7 +26,7 @@ const type = ref(types[0])
 /**
  * 编码方法
  */
-const decode = () => {
+const decode = (): void => {
   try {
     cipher.value = CryptoJS.enc[type.value].stringify(CryptoJS.enc.Utf8.parse(raw.value))
   } catch (error) {
@@ -37,7 +37,7 @@ const decode = () => {
 /**
  * 解码方法
  */
-const encode = () => {
+const encode = (): void => {
   try {
     raw.value = CryptoJS.enc[type.value].parse(cipher.value).toString(CryptoJS.enc.Utf8)
   } catch (error) {

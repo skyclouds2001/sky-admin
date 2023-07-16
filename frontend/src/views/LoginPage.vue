@@ -44,8 +44,10 @@ const rules = reactive<FormRules>({
 
 const isSubmitting = ref(false)
 
-const handleSubmit = async () => {
-  const status = await el.value?.validate()
+const handleSubmit = async (): Promise<void> => {
+  if (el.value === null) return
+
+  const status = await el.value.validate()
 
   if (!status) {
     ElMessage.error(
@@ -73,7 +75,7 @@ const handleSubmit = async () => {
         appContext
       )
       storage.value = res.data.accessToken
-      router.push('/home')
+      await router.push('/home')
     } else {
       ElMessage.error(
         {

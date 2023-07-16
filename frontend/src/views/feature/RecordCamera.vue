@@ -35,14 +35,14 @@ const device = ref<string>()
 /**
  * 执行截图操作
  */
-const handleScreenshot = () => {
+const handleScreenshot = (): void => {
   captureScreenshot(el.value as HTMLVideoElement)
 }
 
 /**
  * 启动视频流
  */
-const handleOpen = async () => {
+const handleOpen = async (): Promise<void> => {
   await start()
   if (el.value !== null) el.value.srcObject = stream.value
 }
@@ -50,7 +50,7 @@ const handleOpen = async () => {
 /**
  * 关闭视频流
  */
-const handleClose = async () => {
+const handleClose = async (): Promise<void> => {
   await stop()
   if (el.value !== null) el.value.srcObject = null
 }

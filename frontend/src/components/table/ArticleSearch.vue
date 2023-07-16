@@ -17,15 +17,15 @@ const search = reactive({
   title: '',
 })
 
-const handleSearch = () => {
+const handleSearch = (): void => {
   emits('search', search)
 }
 
-const handleAdd = () => {
+const handleAdd = (): void => {
   emits('add')
 }
 
-const handleExport = () => {
+const handleExport = (): void => {
   emits('export')
 }
 </script>

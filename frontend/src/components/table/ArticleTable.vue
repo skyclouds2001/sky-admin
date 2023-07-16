@@ -15,15 +15,15 @@ const emits = defineEmits<{
   (e: 'remove', id: number): void
 }>()
 
-const editArticle = (id: number) => {
+const editArticle = (id: number): void => {
   emits('edit', id)
 }
 
-const toggleArticleStatus = (id: number) => {
+const toggleArticleStatus = (id: number): void => {
   emits('toggle', id)
 }
 
-const removeArticle = (id: number) => {
+const removeArticle = (id: number): void => {
   emits('remove', id)
 }
 </script>

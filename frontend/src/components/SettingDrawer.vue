@@ -20,7 +20,7 @@ const { lang } = useLang()
 
 const { isSupported, isActive, toggle } = useWakeLock()
 
-const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey)
+const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolean>
 </script>
 
 <template>

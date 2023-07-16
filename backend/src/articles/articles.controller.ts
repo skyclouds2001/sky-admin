@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, Query, DefaultValuePipe, HttpStatus, HttpCode } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe, Query, DefaultValuePipe, HttpStatus, HttpCode, UseInterceptors } from '@nestjs/common'
+import { CacheInterceptor } from '@nestjs/cache-manager'
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
@@ -7,6 +8,7 @@ import { ArticleEntity } from './entities/article.entity'
 import { Pagination } from './../entities/pagination.entity'
 
 @Controller('articles')
+@UseInterceptors(CacheInterceptor)
 @ApiTags('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}

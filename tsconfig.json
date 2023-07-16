@@ -33,7 +33,6 @@
 
     "composite": true,
     "incremental": true,
-    "tsBuildInfoFile": "dist/.tsbuildinfo",
 
     "skipLibCheck": true
   },

@@ -13,7 +13,7 @@ const handleChoose: UploadProps['onChange'] = (file) => {
   image.value = URL.createObjectURL(file.raw as File)
 }
 
-const handleCompress = async () => {
+const handleCompress = async (): Promise<void> => {
   if (img.value === null) return
 
   const blob = await compressImage({

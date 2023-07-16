@@ -13,7 +13,6 @@ const router = createRouter({
       path: '/login',
       component: () => import('@/views/LoginPage.vue'),
       meta: {
-        title: '登录',
         isView: true,
       },
     },
@@ -24,7 +23,6 @@ const router = createRouter({
       redirect: '/home',
       component: LayoutContainer,
       meta: {
-        title: '布局',
         isView: false,
       },
       children: [
@@ -34,7 +32,6 @@ const router = createRouter({
           path: '/home',
           component: () => import('@/views/HomePage.vue'),
           meta: {
-            title: '首页',
             isView: true,
           },
         },
@@ -44,7 +41,6 @@ const router = createRouter({
           name: Symbol('/table'),
           path: '/table',
           meta: {
-            title: '表格',
             isView: false,
           },
           children: [
@@ -53,7 +49,6 @@ const router = createRouter({
               path: '/table/base',
               component: () => import('@/views/table/BaseTable.vue'),
               meta: {
-                title: '基础表格',
                 isView: true,
               },
             },
@@ -65,7 +60,6 @@ const router = createRouter({
           name: Symbol('/form'),
           path: '/form',
           meta: {
-            title: '表单',
             isView: false,
           },
           children: [
@@ -74,7 +68,6 @@ const router = createRouter({
               path: '/form/base',
               component: () => import('@/views/form/BaseForm.vue'),
               meta: {
-                title: '基础表单',
                 isView: true,
               },
             },
@@ -86,7 +79,6 @@ const router = createRouter({
           name: Symbol('/component'),
           path: '/component',
           meta: {
-            title: '组件',
             isView: false,
           },
           children: [
@@ -95,7 +87,6 @@ const router = createRouter({
               path: '/component/icon',
               component: () => import('@/views/component/IconList.vue'),
               meta: {
-                title: '图标组件',
                 isView: true,
               },
             },
@@ -104,7 +95,6 @@ const router = createRouter({
               path: '/component/terminal',
               component: () => import('@/views/component/WebTerminal.vue'),
               meta: {
-                title: '图标组件',
                 isView: true,
               },
             },
@@ -113,7 +103,6 @@ const router = createRouter({
               path: '/component/draggable',
               component: () => import('@/views/component/DraggableComponent.vue'),
               meta: {
-                title: '拖拽组件',
                 isView: true,
               },
             },
@@ -122,7 +111,6 @@ const router = createRouter({
               path: '/component/scalable',
               component: () => import('@/views/component/ScalableComponent.vue'),
               meta: {
-                title: '缩放组件',
                 isView: true,
               },
             },
@@ -131,7 +119,6 @@ const router = createRouter({
               path: '/component/rotatable',
               component: () => import('@/views/component/RotatableComponent.vue'),
               meta: {
-                title: '旋转组件',
                 isView: true,
               },
             },
@@ -140,7 +127,6 @@ const router = createRouter({
               path: '/component/rich-text-editor',
               component: () => import('@/views/component/RichTextEditor.vue'),
               meta: {
-                title: '富文本编辑器',
                 isView: true,
               },
             },
@@ -149,7 +135,6 @@ const router = createRouter({
               path: '/component/markdown-editor',
               component: () => import('@/views/component/MarkdownEditor.vue'),
               meta: {
-                title: 'Markdown 编辑器',
                 isView: true,
               },
             },
@@ -161,7 +146,6 @@ const router = createRouter({
           name: Symbol('/chart'),
           path: '/chart',
           meta: {
-            title: '图表',
             isView: false,
           },
           children: [
@@ -170,7 +154,6 @@ const router = createRouter({
               path: '/chart/bar',
               component: () => import('@/views/chart/BarChart.vue'),
               meta: {
-                title: '柱状图',
                 isView: true,
               },
             },
@@ -179,7 +162,6 @@ const router = createRouter({
               path: '/chart/line',
               component: () => import('@/views/chart/LineChart.vue'),
               meta: {
-                title: '折线图',
                 isView: true,
               },
             },
@@ -188,7 +170,6 @@ const router = createRouter({
               path: '/chart/pie',
               component: () => import('@/views/chart/PieChart.vue'),
               meta: {
-                title: '饼图',
                 isView: true,
               },
             },
@@ -197,7 +178,6 @@ const router = createRouter({
               path: '/chart/scatter',
               component: () => import('@/views/chart/ScatterChart.vue'),
               meta: {
-                title: '散点图',
                 isView: true,
               },
             },
@@ -209,7 +189,6 @@ const router = createRouter({
           name: Symbol('/route'),
           path: '/route',
           meta: {
-            title: '嵌套菜单',
             isView: false,
           },
           children: [
@@ -218,7 +197,6 @@ const router = createRouter({
               path: '/route/1',
               component: () => import('@/views/route/RouteFirst.vue'),
               meta: {
-                title: '嵌套菜单-1',
                 isView: true,
               },
             },
@@ -227,7 +205,6 @@ const router = createRouter({
               path: '/route/2',
               component: () => import('@/views/route/RouteSecond.vue'),
               meta: {
-                title: '嵌套菜单-2',
                 isView: true,
               },
               children: [
@@ -236,7 +213,6 @@ const router = createRouter({
                   path: '/route/2/1',
                   component: () => import('@/views/route/RouteSecondFirst.vue'),
                   meta: {
-                    title: '嵌套菜单-2-1',
                     isView: true,
                   },
                 },
@@ -245,7 +221,6 @@ const router = createRouter({
                   path: '/route/2/2',
                   component: () => import('@/views/route/RouteSecondSecond.vue'),
                   meta: {
-                    title: '嵌套菜单-2-2',
                     isView: true,
                   },
                   children: [
@@ -254,7 +229,6 @@ const router = createRouter({
                       path: '/route/2/2/1',
                       component: () => import('@/views/route/RouteSecondSecondFirst.vue'),
                       meta: {
-                        title: '嵌套菜单-2-2-1',
                         isView: true,
                       },
                     },
@@ -263,7 +237,6 @@ const router = createRouter({
                       path: '/route/2/2/2',
                       component: () => import('@/views/route/RouteSecondSecondSecond.vue'),
                       meta: {
-                        title: '嵌套菜单-2-2-2',
                         isView: true,
                       },
                     },
@@ -272,7 +245,6 @@ const router = createRouter({
                       path: '/route/2/2/3',
                       component: () => import('@/views/route/RouteSecondSecondThird.vue'),
                       meta: {
-                        title: '嵌套菜单-2-2-3',
                         isView: true,
                       },
                     },
@@ -283,7 +255,6 @@ const router = createRouter({
                   path: '/route/2/3',
                   component: () => import('@/views/route/RouteSecondThird.vue'),
                   meta: {
-                    title: '嵌套菜单-2-3',
                     isView: true,
                   },
                 },
@@ -294,7 +265,6 @@ const router = createRouter({
               path: '/route/3',
               component: () => import('@/views/route/RouteThird.vue'),
               meta: {
-                title: '嵌套菜单-3',
                 isView: true,
               },
             },
@@ -306,7 +276,6 @@ const router = createRouter({
           name: Symbol('/docs'),
           path: '/docs',
           meta: {
-            title: '文档',
             isView: false,
           },
           children: [
@@ -315,7 +284,6 @@ const router = createRouter({
               path: '/docs/word-preview',
               component: () => import('@/views/docs/WordPreview.vue'),
               meta: {
-                title: 'Word 预览',
                 isView: true,
               },
             },
@@ -324,7 +292,6 @@ const router = createRouter({
               path: '/docs/excel-preview',
               component: () => import('@/views/docs/ExcelPreview.vue'),
               meta: {
-                title: 'Excel 预览',
                 isView: true,
               },
             },
@@ -333,7 +300,6 @@ const router = createRouter({
               path: '/docs/ppt-preview',
               component: () => import('@/views/docs/PPTPreview.vue'),
               meta: {
-                title: 'PPT 预览',
                 isView: true,
               },
             },
@@ -342,7 +308,6 @@ const router = createRouter({
               path: '/docs/pdf-preview',
               component: () => import('@/views/docs/PDFPreview.vue'),
               meta: {
-                title: 'PDF 预览',
                 isView: true,
               },
             },
@@ -354,7 +319,6 @@ const router = createRouter({
           name: Symbol('/feature'),
           path: '/feature',
           meta: {
-            title: '功能',
             isView: false,
           },
           children: [
@@ -363,7 +327,6 @@ const router = createRouter({
               path: '/feature/bar-code',
               component: () => import('@/views/feature/BarCode.vue'),
               meta: {
-                title: '条形码',
                 isView: true,
               },
             },
@@ -372,7 +335,6 @@ const router = createRouter({
               path: '/feature/qrcode',
               component: () => import('@/views/feature/QrCode.vue'),
               meta: {
-                title: '二维码',
                 isView: true,
               },
             },
@@ -381,7 +343,6 @@ const router = createRouter({
               path: '/feature/image-editor',
               component: () => import('@/views/feature/ImageEditor.vue'),
               meta: {
-                title: '图片编辑器',
                 isView: true,
               },
             },
@@ -390,7 +351,6 @@ const router = createRouter({
               path: '/feature/encode-decode',
               component: () => import('@/views/feature/EncodeDecode.vue'),
               meta: {
-                title: '编码',
                 isView: true,
               },
             },
@@ -399,7 +359,6 @@ const router = createRouter({
               path: '/feature/encrypt-decrypt',
               component: () => import('@/views/feature/EncryptDecrypt.vue'),
               meta: {
-                title: '密码',
                 isView: true,
               },
             },
@@ -408,7 +367,6 @@ const router = createRouter({
               path: '/feature/code-highlight',
               component: () => import('@/views/feature/CodeHighlight.vue'),
               meta: {
-                title: '代码高亮',
                 isView: true,
               },
             },
@@ -417,7 +375,6 @@ const router = createRouter({
               path: '/feature/image-compress',
               component: () => import('@/views/feature/ImageCompress.vue'),
               meta: {
-                title: '图片压缩',
                 isView: true,
               },
             },
@@ -426,7 +383,6 @@ const router = createRouter({
               path: '/feature/geo-position',
               component: () => import('@/views/feature/GeographicalPosition.vue'),
               meta: {
-                title: '地理位置',
                 isView: true,
               },
             },
@@ -435,7 +391,6 @@ const router = createRouter({
               path: '/feature/camera-record',
               component: () => import('@/views/feature/RecordCamera.vue'),
               meta: {
-                title: '视频录制',
                 isView: true,
               },
             },
@@ -444,7 +399,6 @@ const router = createRouter({
               path: '/feature/screen-record',
               component: () => import('@/views/feature/RecordScreen.vue'),
               meta: {
-                title: '屏幕录制',
                 isView: true,
               },
             },
@@ -453,7 +407,6 @@ const router = createRouter({
               path: '/feature/web-rtc',
               component: () => import('@/views/feature/WebRTC.vue'),
               meta: {
-                title: '网络实时通信',
                 isView: true,
               },
             },
@@ -462,7 +415,6 @@ const router = createRouter({
               path: '/feature/animation-effect',
               component: () => import('@/views/feature/AnimationEffect.vue'),
               meta: {
-                title: '动画',
                 isView: true,
               },
             },
@@ -471,7 +423,6 @@ const router = createRouter({
               path: '/feature/eye-dropper',
               component: () => import('@/views/feature/EyeDropper.vue'),
               meta: {
-                title: '吸管工具',
                 isView: true,
               },
             },
@@ -480,7 +431,6 @@ const router = createRouter({
               path: '/feature/notification',
               component: () => import('@/views/feature/WebNotification.vue'),
               meta: {
-                title: '通知',
                 isView: true,
               },
             },
@@ -489,7 +439,6 @@ const router = createRouter({
               path: '/feature/vibrate',
               component: () => import('@/views/feature/WebVibrate.vue'),
               meta: {
-                title: '振动',
                 isView: true,
               },
             },
@@ -498,7 +447,6 @@ const router = createRouter({
               path: '/feature/clipboard',
               component: () => import('@/views/feature/WebClipboard.vue'),
               meta: {
-                title: '剪切板',
                 isView: true,
               },
             },
@@ -507,7 +455,6 @@ const router = createRouter({
               path: '/feature/broadcast-channel',
               component: () => import('@/views/feature/BroadcastChannel.vue'),
               meta: {
-                title: '广播频道',
                 isView: true,
               },
             },
@@ -519,7 +466,6 @@ const router = createRouter({
           name: Symbol('/3d'),
           path: '/3d',
           meta: {
-            title: '3D',
             isView: false,
           },
           children: [
@@ -528,7 +474,38 @@ const router = createRouter({
               path: '/3d/basis',
               component: () => import('@/views/3D/Base3D.vue'),
               meta: {
-                title: 'Basic 3D',
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/geometry'),
+              path: '/3d/geometry',
+              component: () => import('@/views/3D/BaseGeometry.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/video-box'),
+              path: '/3d/video-box',
+              component: () => import('@/views/3D/VideoBox.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/mirror-text'),
+              path: '/3d/mirror-text',
+              component: () => import('@/views/3D/MirrorText.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/active-building'),
+              path: '/3d/active-building',
+              component: () => import('@/views/3D/ActiveBuilding.vue'),
+              meta: {
                 isView: true,
               },
             },
@@ -540,7 +517,6 @@ const router = createRouter({
           name: Symbol('/monitor'),
           path: '/monitor',
           meta: {
-            title: '系统监控',
             isView: false,
           },
           children: [
@@ -549,7 +525,6 @@ const router = createRouter({
               path: '/monitor/performance',
               component: () => import('@/views/monitor/SystemPerformance.vue'),
               meta: {
-                title: '系统性能',
                 isView: true,
               },
             },
@@ -561,7 +536,6 @@ const router = createRouter({
           name: Symbol('/error'),
           path: '/error',
           meta: {
-            title: '异常',
             isView: false,
           },
           children: [
@@ -570,7 +544,6 @@ const router = createRouter({
               path: '/error/403',
               component: () => import('@/views/error/PermissionDenied.vue'),
               meta: {
-                title: '403',
                 isView: true,
               },
             },
@@ -579,7 +552,6 @@ const router = createRouter({
               path: '/error/404',
               component: () => import('@/views/error/NotFound.vue'),
               meta: {
-                title: '404',
                 isView: true,
               },
             },
@@ -591,7 +563,6 @@ const router = createRouter({
           name: Symbol('/link'),
           path: '/link',
           meta: {
-            title: '链接',
             isView: false,
           },
           children: [
@@ -600,7 +571,6 @@ const router = createRouter({
               path: '/link/:to/:mode',
               component: () => import('@/views/link/LinkPage.vue'),
               meta: {
-                title: '链接',
                 isView: true,
               },
             },
@@ -613,7 +583,6 @@ const router = createRouter({
           path: '/about',
           component: () => import('@/views/AboutPage.vue'),
           meta: {
-            title: '关于',
             isView: true,
           },
         },
@@ -626,7 +595,6 @@ const router = createRouter({
       path: '/:catchAll(.*)',
       redirect: '/error/404',
       meta: {
-        title: '*',
         isView: false,
       },
     },
@@ -673,9 +641,14 @@ router.afterEach((to) => {
   useTabsStore().$patch((state) => {
     if (state.tabs.findIndex((v) => v.path === to.path) === -1) {
       state.tabs.push({
-        name: to.meta.title,
         path: to.path,
         isView: to.meta.isView,
+      })
+    }
+    if (state.tabs.findIndex((v) => v.path === '/home') === -1) {
+      state.tabs.unshift({
+        path: '/home',
+        isView: true,
       })
     }
     state.currentTab = to.path
@@ -685,13 +658,11 @@ router.afterEach((to) => {
   usePagesStore().$patch((state) => {
     state.pages = to.matched
       .map((v) => ({
-        name: v.meta.title,
         path: v.path,
       }))
       .filter((v) => v.path !== '/')
     if (to.path !== '/home') {
       state.pages.unshift({
-        name: '首页',
         path: '/home',
       })
     }

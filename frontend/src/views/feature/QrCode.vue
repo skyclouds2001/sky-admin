@@ -1,24 +1,35 @@
 <script setup lang="ts">
-/* eslint-disable import/no-named-as-default-member */
-
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElSpace, ElCard } from 'element-plus'
-import QrCode from 'qrcode'
+import { toCanvas, toDataURL } from 'qrcode'
+
+const simple = ref<HTMLCanvasElement | null>(null)
+
+const image = ref<HTMLImageElement | null>(null)
+
+const size = ref<HTMLCanvasElement | null>(null)
+
+const style = ref<HTMLCanvasElement | null>(null)
 
 const i18n = useI18n()
 
 onMounted(() => {
-  QrCode.toCanvas(document.getElementById('simple-qrcode'), '0123456789')
-  QrCode.toDataURL('0123456789', {}, (error, url) => {
-    if (!error) {
-      ;(document.getElementById('img-qrcode') as HTMLImageElement).src = url
+  if (simple.value === null || size.value === null || style.value === null) return
+
+  toDataURL('0123456789', {}, (error, url) => {
+    if (error instanceof Error && image.value !== null) {
+      image.value.src = url
     }
   })
-  QrCode.toCanvas(document.getElementById('qrcode-size'), '0123456789', {
+
+  void toCanvas(simple.value, '0123456789')
+
+  void toCanvas(size.value, '0123456789', {
     width: 200,
   })
-  QrCode.toCanvas(document.getElementById('qrcode-style'), '0123456789', {
+
+  void toCanvas(style.value, '0123456789', {
     color: {
       dark: '#0000ffff',
       light: '#ff00ff55',
@@ -33,25 +44,25 @@ onMounted(() => {
       <template #header>
         <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.base') }}</div>
       </template>
-      <canvas id="simple-qrcode"></canvas>
+      <canvas ref="simple"></canvas>
     </el-card>
     <el-card shadow="always">
       <template #header>
         <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.image') }}</div>
       </template>
-      <img id="img-qrcode" src="" alt="" />
+      <img ref="image" src="" alt="" />
     </el-card>
     <el-card shadow="always">
       <template #header>
         <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.size') }}</div>
       </template>
-      <canvas id="qrcode-size"></canvas>
+      <canvas ref="size"></canvas>
     </el-card>
     <el-card shadow="always">
       <template #header>
         <div class="text-center text-base font-bold">{{ i18n.t('feature.qrcode.style') }}</div>
       </template>
-      <canvas id="qrcode-style"></canvas>
+      <canvas ref="style"></canvas>
     </el-card>
   </el-space>
 </template>

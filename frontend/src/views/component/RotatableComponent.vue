@@ -34,7 +34,7 @@ useEventListener(window, 'mouseup', () => {
 })
 
 onMounted(() => {
-  if (!el.value) return
+  if (el.value === null) return
 
   const rect = el.value.getBoundingClientRect()
   center.x = rect.left + rect.width / 2

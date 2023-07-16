@@ -645,6 +645,12 @@ router.afterEach((to) => {
         isView: to.meta.isView,
       })
     }
+    if (state.tabs.findIndex((v) => v.path === '/home') === -1) {
+      state.tabs.unshift({
+        path: '/home',
+        isView: true,
+      })
+    }
     state.currentTab = to.path
   })
 

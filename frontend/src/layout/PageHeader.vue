@@ -3,7 +3,7 @@ import { getCurrentInstance, inject, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElImage, ElMessage, ElMessageBox, ElPopover, ElTooltip } from 'element-plus'
-import { FullScreen, Lock, Setting, Share, Unlock } from '@element-plus/icons-vue'
+import { FullScreen, Lock, Printer, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/shooks'
 import { PROJECT_AUTHOR_AVATAR, PROJECT_AUTHOR_NAME } from '@/config'
 import { SettingDrawerKey, usePagesStore } from '@/store'
@@ -35,6 +35,13 @@ const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolea
  */
 const showSettingDrawer = (): void => {
   isShowSettingDrawer.value = true
+}
+
+/**
+ * 执行打印
+ */
+const print = (): void => {
+  window.print()
 }
 
 /**
@@ -101,6 +108,12 @@ const exitLogin = (): void => {
         <el-calendar v-model="now" />
       </el-popover>
 
+      <el-tooltip :content="i18n.t('layout.header.print')">
+        <el-icon :size="20" class="printer" @click="print">
+          <Printer />
+        </el-icon>
+      </el-tooltip>
+
       <el-tooltip :content="i18n.t(`layout.header.pointer-lock`)">
         <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
           <el-icon :size="20">
@@ -111,9 +124,9 @@ const exitLogin = (): void => {
       </el-tooltip>
 
       <el-tooltip :content="i18n.t(`layout.header.fullscreen`)">
-        <div v-if="isSupportedFullscreen" class="fullscreen" @click="toggleFullscreen">
-          <el-icon :size="20"><FullScreen /></el-icon>
-        </div>
+        <el-icon v-if="isSupportedFullscreen" :size="20" class="fullscreen" @click="toggleFullscreen">
+          <FullScreen />
+        </el-icon>
       </el-tooltip>
 
       <el-tooltip :content="i18n.t(`layout.header.share`)">
@@ -138,9 +151,9 @@ const exitLogin = (): void => {
       </el-dropdown>
 
       <el-tooltip :content="i18n.t(`layout.header.settings`)">
-        <div class="settings" @click="showSettingDrawer">
-          <el-icon :size="20"><Setting /></el-icon>
-        </div>
+        <el-icon :size="20" class="settings" @click="showSettingDrawer">
+          <Setting />
+        </el-icon>
       </el-tooltip>
     </div>
   </div>
@@ -162,6 +175,11 @@ const exitLogin = (): void => {
     .current-time {
       @apply mx-2;
       @apply cursor-pointer select-none;
+    }
+
+    .printer {
+      @apply flex justify-center items-center;
+      @apply cursor-pointer;
     }
 
     .pointer-lock {

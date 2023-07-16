@@ -291,6 +291,7 @@ export default {
       'confirm-exit-login': 'Confirm Exit Login',
       'cancel-exit-login': 'Cancel Exit Login',
       'pointer-lock': 'PointerLock',
+      print: 'Print',
       fullscreen: 'Fullscreen',
       share: 'Share',
       settings: 'Settings',

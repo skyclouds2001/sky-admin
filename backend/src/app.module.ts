@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { ScheduleModule } from '@nestjs/schedule'
 import { DevtoolsModule } from '@nestjs/devtools-integration'
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma'
 import * as Joi from 'joi'
@@ -27,6 +28,7 @@ import { AppService } from './app.service'
         abortEarly: false,
       },
     }),
+    ScheduleModule.forRoot(),
     PrismaModule.forRoot({
       prismaServiceOptions: {
         explicitConnect: true,

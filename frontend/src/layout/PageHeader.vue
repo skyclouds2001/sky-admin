@@ -115,12 +115,10 @@ const exitLogin = (): void => {
       </el-tooltip>
 
       <el-tooltip :content="i18n.t(`layout.header.pointer-lock`)">
-        <div v-if="isSupportedPointerLock" class="pointer-lock" @click="trigger">
-          <el-icon :size="20">
-            <Unlock v-if="isPointerLock" />
-            <Lock v-else />
-          </el-icon>
-        </div>
+        <el-icon v-if="isSupportedPointerLock" :size="20" class="pointer-lock" @click="trigger">
+          <Unlock v-if="isPointerLock" />
+          <Lock v-else />
+        </el-icon>
       </el-tooltip>
 
       <el-tooltip :content="i18n.t(`layout.header.fullscreen`)">
@@ -130,9 +128,9 @@ const exitLogin = (): void => {
       </el-tooltip>
 
       <el-tooltip :content="i18n.t(`layout.header.share`)">
-        <div v-if="isSupportedShare" class="share" @click="handleShare">
-          <el-icon :size="20"><Share /></el-icon>
-        </div>
+        <el-icon v-if="isSupportedShare" :size="20" class="share" @click="handleShare">
+          <Share />
+        </el-icon>
       </el-tooltip>
 
       <el-dropdown trigger="click">

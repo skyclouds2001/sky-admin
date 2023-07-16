@@ -48,7 +48,7 @@ const lf = (): void => {
   const lin = new Line(geometry, material)
   scene.add(lin)
 
-  const renderer = new WebGLRenderer()
+  const renderer = new WebGLRenderer({ antialias: true })
   renderer.setSize(800, 400)
   renderer.render(scene, camera)
 
@@ -80,7 +80,7 @@ const mf = (): void => {
   light.position.set(-1, 2, 4)
   scene.add(light)
 
-  const renderer = new WebGLRenderer({ canvas: shape.value })
+  const renderer = new WebGLRenderer({ canvas: shape.value, antialias: true })
   renderer.setSize(800, 400)
   renderer.setAnimationLoop(animate)
   renderer.render(scene, camera)

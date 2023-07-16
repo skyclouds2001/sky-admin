@@ -49,7 +49,7 @@ onMounted(() => {
   cylinder.position.set(0, 0, 0)
   scene.add(cylinder)
 
-  const renderer = new WebGLRenderer({ canvas: geometry.value })
+  const renderer = new WebGLRenderer({ canvas: geometry.value, antialias: true })
   renderer.setSize(800, 400)
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setAnimationLoop(animation)

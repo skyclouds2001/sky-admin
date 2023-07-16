@@ -356,6 +356,7 @@ export default {
     '/3d/geometry': '基础图元',
     '/3d/video-box': '视频盒子',
     '/3d/mirror-text': '镜像文字',
+    '/3d/active-building': '活动建筑',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',
     '/error': '异常',

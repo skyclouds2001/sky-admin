@@ -559,6 +559,15 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/active-building'),
+              path: '/3d/active-building',
+              component: () => import('@/views/3D/ActiveBuilding.vue'),
+              meta: {
+                title: 'Active Building',
+                isView: true,
+              },
+            },
           ],
         },
 

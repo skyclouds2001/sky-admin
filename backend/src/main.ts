@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
+import * as cookieParser from 'cookie-parser'
 import * as compression from 'compression'
 import { resolve } from 'node:path'
 import { AppModule } from './app.module'
@@ -39,6 +40,7 @@ const bootstrap = async (): Promise<void> => {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
   app.useGlobalInterceptors(new TransformResultInterceptor())
 
+  app.use(cookieParser())
   app.use(compression())
 
   SwaggerModule.setup(

@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
-import type { Tab } from '@/model'
 
 const useTabsStore = defineStore('tabs', {
   state() {
     return {
       /** 标签页 */
-      tabs: [] as Array<Tab & { isView: boolean }>,
+      tabs: [] as Array<Record<'path', string> & Record<'isView', boolean>>,
       /** 当前标签页 */
       currentTab: '/',
     }

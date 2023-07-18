@@ -1,13 +1,12 @@
-import { Controller, FileTypeValidator, MaxFileSizeValidator, ParseFilePipe, Post, UploadedFiles, UseInterceptors } from '@nestjs/common'
+import { Controller, FileTypeValidator, MaxFileSizeValidator, ParseFilePipe, Post, Query, StreamableFile, UploadedFiles, UseInterceptors } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { Express } from 'express'
 import { FilesService } from './files.service'
 
 @Controller('files')
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
-  @Post()
+  @Post('upload')
   @UseInterceptors(FileInterceptor('files'))
   upload(
     @UploadedFiles(
@@ -25,5 +24,11 @@ export class FilesController {
     files: Express.Multer.File[]
   ) {
     this.filesService.upload(files)
+  }
+
+  @Post('download')
+  async download(@Query('path') path: string) {
+    const file = await this.filesService.download(path)
+    return new StreamableFile(file)
   }
 }

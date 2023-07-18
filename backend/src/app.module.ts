@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ServerModule } from './server/server.module'
 import { ProjectModule } from './project/project.module'
+import { FilesModule } from './files/files.module'
 import { WsModule } from './ws/ws.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -44,6 +45,7 @@ import { AppService } from './app.service'
     ServerModule,
     ProjectModule,
     WsModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -94,7 +94,7 @@
     "@types/lodash-es": "^4.17.8",
     "@types/mockjs": "^1.0.7",
     "@types/qrcode": "^1.5.1",
-    "@types/three": "^0.152.1",
+    "@types/three": "^0.154.0",
     "@vitejs/plugin-legacy": "^4.1.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",

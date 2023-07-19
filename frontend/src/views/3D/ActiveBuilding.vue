@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AmbientLight, Color, CubeTextureLoader, DirectionalLight, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three'
+import { useEventListener } from '@sky-fly/shooks'
 import { nx, ny, nz, px, py, pz } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
@@ -14,6 +15,7 @@ onMounted(() => {
 
   const camera = new PerspectiveCamera(45, width / height, 1, 1000)
   camera.position.copy(cameraPosition)
+  camera.lookAt(0, 0, 0)
 
   const scene = new Scene()
   scene.background = new CubeTextureLoader().load([px, nx, py, ny, pz, nz].map((path) => new URL(path, import.meta.url).href))
@@ -32,6 +34,15 @@ onMounted(() => {
   container.value.appendChild(renderer.domElement)
 
   renderer.render(scene, camera)
+
+  useEventListener(window, 'resize', () => {
+    if (container.value === null) return
+
+    const { width, height } = container.value.getBoundingClientRect()
+    renderer.setSize(width, height)
+
+    renderer.render(scene, camera)
+  })
 })
 </script>
 

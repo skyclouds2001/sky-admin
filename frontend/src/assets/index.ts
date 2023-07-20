@@ -1,5 +1,7 @@
 export { default as avatar } from './avatar.jpg'
 
+export { default as building } from './building.glb?url'
+
 export { default as nx } from './nx.jpg'
 
 export { default as ny } from './ny.jpg'

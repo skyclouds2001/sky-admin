@@ -75,6 +75,7 @@ onMounted(() => {
   axes.visible = false
   scene.add(axes)
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   gltfLoader.load(new URL(building, import.meta.url).href, (modal: any) => {
     modal.scene.position.copy(modalPosition)
 

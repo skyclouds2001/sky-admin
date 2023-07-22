@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, CatmullRomCurve3, Color, DoubleSide, Fog, Group, Line, LineBasicMaterial, LoadingManager, Matrix4, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, TorusGeometry, Vector2, Vector3, WebGLRenderer } from 'three'
+import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, CatmullRomCurve3, Color, CubicBezierCurve3, CylinderGeometry, DoubleSide, Fog, Group, Line, LineBasicMaterial, LoadingManager, Matrix4, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, Points, PointsMaterial, Ray, Scene, SphereGeometry, Spherical, TextureLoader, TorusGeometry, Vector2, Vector3, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 // @ts-expect-error can not find type definition for this file
@@ -14,13 +14,77 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader'
 // @ts-expect-error can not find type definition for this file
 import { MTLLoader } from 'three/addons/loaders/MTLLoader'
 import { useEventListener } from '@sky-fly/shooks'
-import { earth_bump, earth_cloud, earth_spec, earth, star, sat, satellite } from '@/assets'
+import { earth_bump, earth_cloud, earth_spec, earth, light_ray, star, sat, satellite, wave } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
+const lngLats = [
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [109.51, 18.25],
+    ],
+    color: 'rgb(192, 44, 56)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [169.14, 67.74],
+    ],
+    color: 'rgb(129, 60, 133)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [22.9, 51.23],
+    ],
+    color: 'rgb(32, 161, 98)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [35.75, -6.17],
+    ],
+    color: 'rgb(255, 20, 147)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [-56.89, -14.54],
+    ],
+    color: 'rgb(255, 153, 0)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [58.48, 40.74],
+    ],
+    color: 'rgb(0, 255, 255)',
+  },
+  {
+    lng_lat: [
+      [116.4, 39.91],
+      [76.77, 12.93],
+    ],
+    color: 'rgb(75, 0, 130)',
+  },
+]
+
 onMounted(() => {
   const render = (): void => {
+    controls.update()
     renderer.render(scene, camera)
+    composer.render()
+
+    stars.rotation.y += 0.0002
+    stars.rotation.z -= 0.0002
+
+    if (progress <= 1 - 0.001) {
+      satel?.position.copy(catmull.getPointAt(progress + 0.001))
+      progress += 0.001
+    } else {
+      progress = 0
+    }
   }
 
   if (container.value === null) return
@@ -183,6 +247,9 @@ onMounted(() => {
 
   group.add(line)
 
+  let satel: Group
+  let progress = 0
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mtlLoader.load(new URL(sat, import.meta.url).href, (material: any) => {
     material.preload()
@@ -190,9 +257,117 @@ onMounted(() => {
     objLoader.setMaterials(material).load(new URL(satellite, import.meta.url).href, (object: Group) => {
       object.position.copy(catmull.points[0])
       group.add(object)
+      satel = object
     })
   })
 
+  const lglnTXyz = (lg: number, lt: number, radius: number): Vector3 => {
+    const theta = (90 + lg) * (Math.PI / 180)
+    const phi = (90 - lt) * (Math.PI / 180)
+    const spherical = new Spherical(radius, phi, theta)
+    const xyz = new Vector3()
+    xyz.setFromSpherical(spherical)
+    return xyz
+  }
+
+  const createEarthPoint = (location: Vector3, color: string): Group => {
+    const group = new Group()
+
+    const waveGeometry = new PlaneGeometry(0.3, 0.3)
+    const waveTexture = textureLoader.load(new URL(wave, import.meta.url).href)
+    const waveMaterial = new MeshBasicMaterial({
+      map: waveTexture,
+      color,
+      transparent: true,
+      opacity: 1.0,
+      side: DoubleSide,
+      depthWrite: false,
+    })
+    const waveMesh = new Mesh(waveGeometry, waveMaterial)
+    group.add(waveMesh)
+
+    // size & opacity
+    // store waves
+
+    const lightGeometry = new CylinderGeometry(0, 0.05, 0.5, 32)
+    const lightTexture = textureLoader.load(new URL(light_ray, import.meta.url).href)
+    const lightMaterial = new MeshBasicMaterial({
+      map: lightTexture,
+      color,
+      transparent: true,
+      opacity: 1.0,
+      side: DoubleSide,
+      depthWrite: false,
+    })
+    const lightMesh = new Mesh(lightGeometry, lightMaterial)
+    lightMesh.rotateX(Math.PI / 2)
+    lightMesh.position.z = 0.25
+    group.add(lightMesh)
+
+    group.position.set(location.x, location.y, location.z)
+
+    const coord = new Vector3(location.x, location.y, location.z).normalize()
+    const normal = new Vector3(0, 0, 1)
+    group.quaternion.setFromUnitVectors(normal, coord)
+
+    return group
+  }
+
+  const createFlyLine = (v0: Vector3, v3: Vector3): Line => {
+    const angle = (v0.angleTo(v3) * 180) / Math.PI
+    const horizontal = angle * 0.04
+    const vertical = angle * angle * 0.1
+    const p0 = new Vector3(0, 0, 0)
+    const center = v0.clone().add(v3.clone()).divideScalar(2)
+    const rayLine = new Ray(p0, center)
+    const t = new Vector3()
+    const vTop = rayLine.at(vertical / rayLine.at(1, t).distanceTo(p0), t)
+    const v1 = v0.clone().lerp(vTop, horizontal / v0.clone().distanceTo(vTop))
+    const v2 = v3.clone().lerp(vTop, horizontal / v3.clone().distanceTo(vTop))
+
+    const curve = new CubicBezierCurve3(v0, v1, v2, v3)
+    const points = curve.getSpacedPoints(100)
+    const lineGeometry = new BufferGeometry().setFromPoints(points)
+    const lineMaterial = new LineBasicMaterial({
+      color: new Color('rgb(255, 255, 255)'),
+      linewidth: 1,
+      transparent: true,
+      opacity: 0,
+    })
+    const line = new Line(lineGeometry, lineMaterial)
+
+    scene.add(line) // ?
+
+    const index = 0
+    const num = 5
+    const flyLinePoints = points.splice(index, index + num)
+    const flyLineGeometry = new BufferGeometry().setFromPoints(flyLinePoints)
+    const flyLineMaterial = new LineBasicMaterial({
+      color: new Color('rgb(254, 215, 26)'),
+      linewidth: 1,
+    })
+    const flyLine = new Line(flyLineGeometry, flyLineMaterial)
+
+    // points, num, index
+    // store flyLine
+
+    return flyLine
+  }
+
+  const locationGroup = new Group()
+  const flyLineGroup = new Group()
+
+  lngLats.forEach((v) => {
+    v.lng_lat.forEach((vv) => {
+      locationGroup.add(createEarthPoint(lglnTXyz(vv[0], vv[1], 5.1), v.color))
+    })
+
+    flyLineGroup.add(createFlyLine(lglnTXyz(v.lng_lat[0][0], v.lng_lat[0][1], 5.1), lglnTXyz(v.lng_lat[1][0], v.lng_lat[1][1], 5.1)))
+  })
+
+  earthGroup.add(locationGroup, flyLineGroup)
+
+  group.position.set(0, 0, -10)
   scene.add(group)
 
   useEventListener(window, 'resize', () => {
@@ -204,6 +379,7 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    composer.setSize(width, height)
   })
 
   useEventListener(window, 'orientationchange', () => {
@@ -215,6 +391,7 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    composer.setSize(width, height)
   })
 })
 </script>

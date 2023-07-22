@@ -10,6 +10,8 @@ export { default as earth_spec } from './earth_spec.png'
 
 export { default as earth } from './earth.png'
 
+export { default as light_ray } from './light_ray.png'
+
 export { default as nx } from './nx.jpg'
 
 export { default as ny } from './ny.jpg'
@@ -31,3 +33,5 @@ export { default as sat } from './satellite.mtl?url'
 export { default as satellite } from './satellite.obj?url'
 
 export { default as star } from './star.png'
+
+export { default as wave } from './wave.png'

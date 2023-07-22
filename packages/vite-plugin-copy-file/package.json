@@ -56,10 +56,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vite": "^4.4.4"
+    "vite": "^4.4.6"
   },
   "devDependencies": {
     "typescript": "^5.1.6",
-    "vite-plugin-dts": "^3.3.0"
+    "vite-plugin-dts": "^3.3.1"
   }
 }

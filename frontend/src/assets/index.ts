@@ -26,4 +26,8 @@ export { default as pz } from './pz.jpg'
 
 export { default as rain } from './rain.png'
 
+export { default as sat } from './satellite.mtl?url'
+
+export { default as satellite } from './satellite.obj?url'
+
 export { default as star } from './star.png'

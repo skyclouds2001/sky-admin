@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, Color, DoubleSide, Fog, Group, LoadingManager, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, TorusGeometry, Vector2, WebGLRenderer } from 'three'
+import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, CatmullRomCurve3, Color, DoubleSide, Fog, Group, Line, LineBasicMaterial, LoadingManager, Matrix4, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, TorusGeometry, Vector2, Vector3, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 // @ts-expect-error can not find type definition for this file
@@ -9,8 +9,12 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass'
 // @ts-expect-error can not find type definition for this file
 import { OutlinePass } from 'three/addons/postprocessing/OutlinePass'
+// @ts-expect-error can not find type definition for this file
+import { OBJLoader } from 'three/addons/loaders/OBJLoader'
+// @ts-expect-error can not find type definition for this file
+import { MTLLoader } from 'three/addons/loaders/MTLLoader'
 import { useEventListener } from '@sky-fly/shooks'
-import { earth_bump, earth_cloud, earth_spec, earth, star } from '@/assets'
+import { earth_bump, earth_cloud, earth_spec, earth, star, sat, satellite } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -51,6 +55,8 @@ onMounted(() => {
 
   const manager = new LoadingManager()
   const textureLoader = new TextureLoader(manager)
+  const objLoader = new OBJLoader(manager)
+  const mtlLoader = new MTLLoader(manager)
   const group = new Group()
 
   const starGeometry = new BufferGeometry()
@@ -151,6 +157,41 @@ onMounted(() => {
   outlinePass.selectedObjects = [torusMesh]
 
   group.add(torusMesh)
+
+  const catmull = new CatmullRomCurve3(
+    new Array(300).fill(0).map((_, i) => new Vector3(9 * Math.sin((Math.PI * 2 * i) / 300) + 0, 9 * Math.cos((Math.PI * 2 * i) / 300) + 0, 0)),
+    true,
+    'catmullrom',
+    0.5
+  )
+
+  const points = catmull.getPoints(50)
+
+  const lineGeometry = new BufferGeometry().setFromPoints(points)
+  const lineMaterial = new LineBasicMaterial({
+    transparent: true,
+    opacity: 0,
+  })
+  const line = new Line(lineGeometry, lineMaterial)
+  line.rotation.set(1.7, 0.5, 1)
+
+  const matrix = new Matrix4()
+  matrix.makeRotationFromEuler(torusMesh.rotation)
+  catmull.points.forEach((point) => {
+    point.applyMatrix4(matrix)
+  })
+
+  group.add(line)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mtlLoader.load(new URL(sat, import.meta.url).href, (material: any) => {
+    material.preload()
+
+    objLoader.setMaterials(material).load(new URL(satellite, import.meta.url).href, (object: Group) => {
+      object.position.copy(catmull.points[0])
+      group.add(object)
+    })
+  })
 
   scene.add(group)
 

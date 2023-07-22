@@ -89,7 +89,7 @@ onMounted(() => {
     flyLines.forEach((options, flyLine) => {
       const { num, index, points } = options
       let id = index
-      flyLine.geometry.setFromPoints(points.slice(id, num))
+      flyLine.geometry.setFromPoints(points.slice(id, id + num))
       if (id < points.length) {
         ++id
       } else {
@@ -99,7 +99,8 @@ onMounted(() => {
     })
 
     waves.forEach((options, wave) => {
-      let { size, opacity: o } = options
+      const { size, opacity } = options
+      let o = opacity
       o += 0.01
       wave.scale.set(size * o, size * o, size * o)
       if (o <= 1.5) {

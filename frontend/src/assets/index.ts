@@ -17,3 +17,5 @@ export { default as py } from './py.jpg'
 export { default as pz } from './pz.jpg'
 
 export { default as rain } from './rain.png'
+
+export { default as star } from './star.png'

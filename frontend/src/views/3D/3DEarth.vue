@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, Color, DoubleSide, Fog, Group, LoadingManager, Mesh, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, WebGLRenderer } from 'three'
+import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, Color, DoubleSide, Fog, Group, LoadingManager, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, TorusGeometry, Vector2, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
+// @ts-expect-error can not find type definition for this file
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer'
+// @ts-expect-error can not find type definition for this file
+import { RenderPass } from 'three/addons/postprocessing/RenderPass'
+// @ts-expect-error can not find type definition for this file
+import { OutlinePass } from 'three/addons/postprocessing/OutlinePass'
 import { useEventListener } from '@sky-fly/shooks'
 import { earth_bump, earth_cloud, earth_spec, earth, star } from '@/assets'
 
@@ -118,9 +124,48 @@ onMounted(() => {
 
   group.add(earthGroup)
 
+  const torusGeometry = new TorusGeometry(8.0, 0.2, 2, 200)
+  const torusMaterial = new MeshBasicMaterial({
+    color: new Color('rgb(147,181,207)'),
+    transparent: true,
+    opacity: 0.4,
+  })
+  const torusMesh = new Mesh(torusGeometry, torusMaterial)
+  torusMesh.rotation.set(1.7, 0.5, 1)
+  torusMesh.updateMatrix()
+
+  const composer = new EffectComposer(renderer)
+
+  const renderPass = new RenderPass(scene, camera)
+  composer.addPass(renderPass)
+
+  const outlinePass = new OutlinePass(new Vector2(width, height), scene, camera)
+  composer.addPass(outlinePass)
+
+  outlinePass.pulsePeriod = 0
+  outlinePass.visibleEdgeColor.set(new Color('rgb(147, 181, 207)'))
+  outlinePass.usePatternTexture = false
+  outlinePass.edgeStrength = 2
+  outlinePass.edgeGlow = 1
+  outlinePass.edgeThickness = 1
+  outlinePass.selectedObjects = [torusMesh]
+
+  group.add(torusMesh)
+
   scene.add(group)
 
   useEventListener(window, 'resize', () => {
+    if (container.value === null) return
+
+    const { width, height } = container.value.getBoundingClientRect()
+
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+    renderer.setSize(width, height)
+    renderer.setPixelRatio(window.devicePixelRatio)
+  })
+
+  useEventListener(window, 'orientationchange', () => {
     if (container.value === null) return
 
     const { width, height } = container.value.getBoundingClientRect()

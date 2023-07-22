@@ -2,6 +2,14 @@ export { default as avatar } from './avatar.jpg'
 
 export { default as building } from './building.glb?url'
 
+export { default as earth_bump } from './earth_bump.png'
+
+export { default as earth_cloud } from './earth_cloud.png'
+
+export { default as earth_spec } from './earth_spec.png'
+
+export { default as earth } from './earth.png'
+
 export { default as nx } from './nx.jpg'
 
 export { default as ny } from './ny.jpg'

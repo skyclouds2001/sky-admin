@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, Color, Fog, LoadingManager, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
+import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, Color, DoubleSide, Fog, Group, LoadingManager, Mesh, MeshPhongMaterial, PerspectiveCamera, Points, PointsMaterial, Scene, SphereGeometry, TextureLoader, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
-import { star } from '@/assets'
+import { earth_bump, earth_cloud, earth_spec, earth, star } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -45,8 +45,9 @@ onMounted(() => {
 
   const manager = new LoadingManager()
   const textureLoader = new TextureLoader(manager)
+  const group = new Group()
 
-  const geometry = new BufferGeometry()
+  const starGeometry = new BufferGeometry()
 
   const vertices = new Float32Array(STAR_NUMBER * 3)
   const colors = new Float32Array(STAR_NUMBER * 3)
@@ -63,8 +64,8 @@ onMounted(() => {
     colors[i * 3 + 2] = color.b
   }
 
-  geometry.setAttribute('position', new BufferAttribute(vertices, 3))
-  geometry.setAttribute('color', new BufferAttribute(colors, 3))
+  starGeometry.setAttribute('position', new BufferAttribute(vertices, 3))
+  starGeometry.setAttribute('color', new BufferAttribute(colors, 3))
 
   const starTexture = textureLoader.load(new URL(star, import.meta.url).href)
   const starMaterial = new PointsMaterial({
@@ -79,8 +80,45 @@ onMounted(() => {
     sizeAttenuation: true,
   })
 
-  const stars = new Points(geometry, starMaterial)
+  const stars = new Points(starGeometry, starMaterial)
   scene.add(stars)
+
+  const earthGroup = new Group()
+
+  const earthGeometry = new SphereGeometry(5, 32, 32)
+  const earthTexture = textureLoader.load(new URL(earth, import.meta.url).href)
+  const earthBumpTexture = textureLoader.load(new URL(earth_bump, import.meta.url).href)
+  const earthSpecTexture = textureLoader.load(new URL(earth_spec, import.meta.url).href)
+  const earthMaterial = new MeshPhongMaterial({
+    map: earthTexture,
+    bumpMap: earthBumpTexture,
+    bumpScale: 0.15,
+    specularMap: earthSpecTexture,
+    specular: new Color('#909090'),
+    shininess: 5,
+    transparent: true,
+    side: DoubleSide,
+  })
+  const earthMesh = new Mesh(earthGeometry, earthMaterial)
+  earthGroup.add(earthMesh)
+
+  const cloudGeometry = new SphereGeometry(5.1, 40, 40)
+  const cloudTexture = textureLoader.load(new URL(earth_cloud, import.meta.url).href)
+  const cloudMaterial = new MeshPhongMaterial({
+    map: cloudTexture,
+    transparent: true,
+    opacity: 1,
+    blending: AdditiveBlending,
+    side: DoubleSide,
+  })
+  const cloudMesh = new Mesh(cloudGeometry, cloudMaterial)
+  earthGroup.add(cloudMesh)
+
+  earthGroup.rotation.set(0.5, 0, -0.4)
+
+  group.add(earthGroup)
+
+  scene.add(group)
 
   useEventListener(window, 'resize', () => {
     if (container.value === null) return

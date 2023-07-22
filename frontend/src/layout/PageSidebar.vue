@@ -301,6 +301,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/raining-effect') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/earth">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/earth') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/active-building">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/active-building') }}</span>

@@ -358,6 +358,7 @@ export default {
     '/3d/video-box': 'Video Box',
     '/3d/mirror-text': 'Mirror Text',
     '/3d/raining-effect': 'Raining Effect',
+    '/3d/earth': '3D Earth',
     '/3d/active-building': 'Active Building',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',

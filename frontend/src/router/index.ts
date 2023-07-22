@@ -510,6 +510,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/earth'),
+              path: '/3d/earth',
+              component: () => import('@/views/3D/3DEarth.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/active-building'),
               path: '/3d/active-building',
               component: () => import('@/views/3D/ActiveBuilding.vue'),

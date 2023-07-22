@@ -85,6 +85,32 @@ onMounted(() => {
     } else {
       progress = 0
     }
+
+    flyLines.forEach((options, flyLine) => {
+      const { num, index, points } = options
+      let id = index
+      flyLine.geometry.setFromPoints(points.slice(id, num))
+      if (id < points.length) {
+        ++id
+      } else {
+        id = 0
+      }
+      options.index = id
+    })
+
+    waves.forEach((options, wave) => {
+      let { size, opacity: o } = options
+      o += 0.01
+      wave.scale.set(size * o, size * o, size * o)
+      if (o <= 1.5) {
+        wave.material.opacity = (o - 1) * 2
+      } else if (o > 1.5 && o <= 2) {
+        wave.material.opacity = 1 - (o - 1.5) * 2
+      } else {
+        o = 1.0
+      }
+      options.opacity = o
+    })
   }
 
   if (container.value === null) return
@@ -270,6 +296,8 @@ onMounted(() => {
     return xyz
   }
 
+  const waves = new Map<Mesh<PlaneGeometry, MeshBasicMaterial>, Record<'size' | 'opacity', number>>()
+
   const createEarthPoint = (location: Vector3, color: string): Group => {
     const group = new Group()
 
@@ -286,8 +314,10 @@ onMounted(() => {
     const waveMesh = new Mesh(waveGeometry, waveMaterial)
     group.add(waveMesh)
 
-    // size & opacity
-    // store waves
+    waves.set(waveMesh, {
+      size: 5.1 * 0.3,
+      opacity: Math.random() * 1.0 + 1.0,
+    })
 
     const lightGeometry = new CylinderGeometry(0, 0.05, 0.5, 32)
     const lightTexture = textureLoader.load(new URL(light_ray, import.meta.url).href)
@@ -313,6 +343,8 @@ onMounted(() => {
     return group
   }
 
+  const flyLines = new Map<Line<BufferGeometry, LineBasicMaterial>, Record<'num' | 'index', number> & { points: Vector3[] }>()
+
   const createFlyLine = (v0: Vector3, v3: Vector3): Line => {
     const angle = (v0.angleTo(v3) * 180) / Math.PI
     const horizontal = angle * 0.04
@@ -336,7 +368,7 @@ onMounted(() => {
     })
     const line = new Line(lineGeometry, lineMaterial)
 
-    scene.add(line) // ?
+    scene.add(line) // todo
 
     const index = 0
     const num = 5
@@ -348,8 +380,11 @@ onMounted(() => {
     })
     const flyLine = new Line(flyLineGeometry, flyLineMaterial)
 
-    // points, num, index
-    // store flyLine
+    flyLines.set(flyLine, {
+      points,
+      num,
+      index,
+    })
 
     return flyLine
   }

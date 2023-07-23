@@ -10,8 +10,6 @@ export * from './event-bus'
 
 export * from './export-excel'
 
-export * from './fake-data'
-
 export * from './generate-link'
 
 export * from './image-compress'

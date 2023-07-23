@@ -360,6 +360,7 @@ export default {
     '/3d/raining-effect': 'Raining Effect',
     '/3d/earth': '3D Earth',
     '/3d/active-building': 'Active Building',
+    '/3d/rotation-circle': 'Rotation Circle',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',
     '/error': 'Error',

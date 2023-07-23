@@ -525,6 +525,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/rotation-circle'),
+              path: '/3d/rotation-circle',
+              component: () => import('@/views/3D/RotationCircle.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

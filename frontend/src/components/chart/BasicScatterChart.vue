@@ -5,18 +5,12 @@ import { ScatterChart, type ScatterSeriesOption } from 'echarts/charts'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
-import { useTheme } from '@/hook'
-import { generateFakeData } from '@/util'
 
 type EchartsOptions = echarts.ComposeOption<ScatterSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
 
 echarts.use([ScatterChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
 const el = ref<HTMLDivElement | null>(null)
-
-const { isLight, isDark } = useTheme()
-
-const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
@@ -31,7 +25,7 @@ onMounted(() => {
         left: 'center',
         top: 'top',
         textStyle: {
-          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
+          color: '#999',
         },
       },
       legend: {
@@ -40,7 +34,7 @@ onMounted(() => {
         left: 'right',
         top: 'bottom',
         textStyle: {
-          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
+          color: '#999',
         },
       },
       grid: {
@@ -67,7 +61,7 @@ onMounted(() => {
       xAxis: {
         show: true,
         type: 'category',
-        data: data.map((v) => v.name),
+        data: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
       },
       yAxis: {
         show: true,
@@ -77,7 +71,7 @@ onMounted(() => {
         {
           type: 'scatter',
           name: 'data',
-          data: data.map((v) => v.value),
+          data: [20, 34, 10, 38, 45, 23, 21],
         },
       ],
     })

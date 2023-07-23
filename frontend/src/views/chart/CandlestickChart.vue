@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
+import { BasicCandlestickChart } from '@/components'
 </script>
 
 <template>
   <el-space direction="vertical">
-    <div>chart</div>
+    <basic-candlestick-chart />
   </el-space>
 </template>
 

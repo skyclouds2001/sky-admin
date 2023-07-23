@@ -319,6 +319,7 @@ export default {
     '/chart/line': 'line Chart',
     '/chart/pie': 'Pie Chart',
     '/chart/scatter': 'Scatter Chart',
+    '/chart/candlestick': 'Candlestick Chart',
     '/route': 'Menu',
     '/route/1': 'Menu-1',
     '/route/2': 'Menu-2',

@@ -181,6 +181,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/chart/candlestick'),
+              path: '/chart/candlestick',
+              component: () => import('@/views/chart/CandlestickChart.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

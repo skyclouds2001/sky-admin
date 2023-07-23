@@ -319,6 +319,7 @@ export default {
     '/chart/line': '折线图',
     '/chart/pie': '饼图',
     '/chart/scatter': '散点图',
+    '/chart/candlestick': 'K 线图',
     '/route': '菜单',
     '/route/1': '菜单-1',
     '/route/2': '菜单-2',

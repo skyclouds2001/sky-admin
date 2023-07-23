@@ -125,6 +125,10 @@ watch(
           <el-icon><Histogram /></el-icon>
           <span>{{ i18n.t('router./chart/scatter') }}</span>
         </el-menu-item>
+        <el-menu-item index="/chart/candlestick">
+          <el-icon><Histogram /></el-icon>
+          <span>{{ i18n.t('router./chart/candlestick') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 嵌套菜单 -->

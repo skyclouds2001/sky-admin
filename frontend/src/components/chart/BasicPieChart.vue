@@ -5,18 +5,12 @@ import { PieChart, type PieSeriesOption } from 'echarts/charts'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
-import { useTheme } from '@/hook'
-import { generateFakeData } from '@/util'
 
 type EchartsOptions = echarts.ComposeOption<PieSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
 
 echarts.use([PieChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
 const el = ref<HTMLDivElement | null>(null)
-
-const { isLight, isDark } = useTheme()
-
-const data = generateFakeData(10, 100)
 
 onMounted(() => {
   echarts
@@ -31,7 +25,7 @@ onMounted(() => {
         left: 'center',
         top: 'top',
         textStyle: {
-          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
+          color: '#999',
         },
       },
       legend: {
@@ -40,7 +34,7 @@ onMounted(() => {
         left: 'left',
         top: 'bottom',
         textStyle: {
-          color: isLight.value ? '#333' : isDark.value ? '#ccc' : '#333',
+          color: '#999',
         },
       },
       grid: {
@@ -76,7 +70,36 @@ onMounted(() => {
               shadowColor: 'rgba(0, 0, 0, 0.5)',
             },
           },
-          data,
+          data: [
+            {
+              name: 'A',
+              value: 20,
+            },
+            {
+              name: 'B',
+              value: 34,
+            },
+            {
+              name: 'C',
+              value: 10,
+            },
+            {
+              name: 'D',
+              value: 38,
+            },
+            {
+              name: 'E',
+              value: 45,
+            },
+            {
+              name: 'F',
+              value: 23,
+            },
+            {
+              name: 'G',
+              value: 21,
+            },
+          ],
         },
       ],
     })

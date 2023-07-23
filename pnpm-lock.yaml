@@ -254,8 +254,8 @@ importers:
         specifier: ^17.9.2
         version: 17.9.2
       nestjs-prisma:
-        specifier: ^0.20.1
-        version: 0.20.1(@nestjs/common@10.1.0)(@prisma/client@4.16.2)(prisma@4.16.2)
+        specifier: ^0.21.0
+        version: 0.21.0(@nestjs/common@10.1.0)(@prisma/client@4.16.2)(prisma@4.16.2)
       passport:
         specifier: ^0.6.0
         version: 0.6.0
@@ -11533,10 +11533,10 @@ packages:
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  /nestjs-prisma@0.20.1(@nestjs/common@10.1.0)(@prisma/client@4.16.2)(prisma@4.16.2):
-    resolution: {integrity: sha512-mR/kPmNqdOa6tnWXVXVCqpvGbYTOZQJaJthJziG9RNIeExzhIC6xpXcOAHbMPIFEz/egVaBRABpKxTktOXoVPg==}
+  /nestjs-prisma@0.21.0(@nestjs/common@10.1.0)(@prisma/client@4.16.2)(prisma@4.16.2):
+    resolution: {integrity: sha512-n3SzHPjsN5GnBpL92NJHfMtDdrpnM7s/rRvMHlNpVNqiNtUaI/y0onUeSRJ0Kac2ECMjc2k5K5kQ41CBwdMX6w==}
     peerDependencies:
-      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
+      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
       '@prisma/client': ^2.0.0 || ^3.0.0 || ^4.0.0
       prisma: ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:

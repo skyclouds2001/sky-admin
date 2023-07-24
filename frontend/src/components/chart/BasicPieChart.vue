@@ -2,8 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts/core'
 import { PieChart, type PieSeriesOption } from 'echarts/charts'
-import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
+import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 
 type EchartsOptions = echarts.ComposeOption<PieSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>

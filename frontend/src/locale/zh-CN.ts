@@ -320,6 +320,7 @@ export default {
     '/chart/pie': '饼图',
     '/chart/scatter': '散点图',
     '/chart/candlestick': 'K 线图',
+    '/chart/radar': '雷达图',
     '/route': '菜单',
     '/route/1': '菜单-1',
     '/route/2': '菜单-2',

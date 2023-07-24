@@ -189,6 +189,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/chart/radar'),
+              path: '/chart/radar',
+              component: () => import('@/views/chart/RadarChart.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

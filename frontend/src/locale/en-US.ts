@@ -320,6 +320,7 @@ export default {
     '/chart/pie': 'Pie Chart',
     '/chart/scatter': 'Scatter Chart',
     '/chart/candlestick': 'Candlestick Chart',
+    '/chart/radar': 'Radar Chart',
     '/route': 'Menu',
     '/route/1': 'Menu-1',
     '/route/2': 'Menu-2',

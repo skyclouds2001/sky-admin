@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ElSpace } from 'element-plus'
+import { BasicRadarChart } from '@/components'
 </script>
 
 <template>
   <el-space direction="vertical">
-    <div>chart</div>
+    <basic-radar-chart />
   </el-space>
 </template>
 

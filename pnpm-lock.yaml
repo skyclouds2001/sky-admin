@@ -336,8 +336,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.8.0)(vue@3.3.4)
       '@sky-fly/shooks':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.2
+        version: 0.0.2
       '@sky-fly/sky-ui':
         specifier: ^0.0.1
         version: 0.0.1
@@ -4029,8 +4029,8 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@sky-fly/shooks@0.0.1:
-    resolution: {integrity: sha512-tXBtZxPy9gEg4Fk9TcJihSIF1NzdRKLUk/Km451aXWbmcPgb8oKsCgx5ej7mJk+jMcdERILDwywszNmXAJDvQw==}
+  /@sky-fly/shooks@0.0.2:
+    resolution: {integrity: sha512-otxm49ZCr723FB27o0Ah5JWAf0/JvOxAQdcDo3xFG0VbFbcUe5NvwLzwYFFncx6VpTnvoYLfRekWXWuNJkizIg==}
     engines: {node: '>=18.13.0', npm: '>=9.6.0', pnpm: '>=8.4.0', yarn: '>=1.22.0'}
     requiresBuild: true
     dependencies:

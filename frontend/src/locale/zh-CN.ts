@@ -360,6 +360,7 @@ export default {
     '/3d/video-box': '视频盒子',
     '/3d/mirror-text': '镜像文字',
     '/3d/raining-effect': '下雨效果',
+    '/3d/great-raining-effect': '下雨效果 Plus',
     '/3d/earth': '3D 地球',
     '/3d/active-building': '活动建筑',
     '/3d/rotation-circle': '旋转圆圈',

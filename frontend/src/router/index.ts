@@ -526,6 +526,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/great-raining-effect'),
+              path: '/3d/great-raining-effect',
+              component: () => import('@/views/3D/GreatRainingEffect.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/earth'),
               path: '/3d/earth',
               component: () => import('@/views/3D/3DEarth.vue'),

@@ -360,6 +360,7 @@ export default {
     '/3d/video-box': 'Video Box',
     '/3d/mirror-text': 'Mirror Text',
     '/3d/raining-effect': 'Raining Effect',
+    '/3d/great-raining-effect': 'Raining Effect Plus',
     '/3d/earth': '3D Earth',
     '/3d/active-building': 'Active Building',
     '/3d/rotation-circle': 'Rotation Circle',

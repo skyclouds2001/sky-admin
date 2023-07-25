@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, BufferAttribute, BufferGeometry, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
+import { AdditiveBlending, BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import Stats from 'three/addons/libs/stats.module'
 // @ts-expect-error can not find type definition for this file
@@ -37,6 +37,7 @@ onMounted(() => {
   const stats = new Stats()
   stats.domElement.style.position = 'absolute'
   stats.domElement.style.top = '0'
+  stats.domElement.style.left = '0'
   container.value.appendChild(stats.domElement)
 
   const camera = new PerspectiveCamera(45, width / height, 1, 1000)
@@ -45,6 +46,7 @@ onMounted(() => {
   camera.lookAt(0, 0, 0)
 
   const scene = new Scene()
+  scene.background = new Color(0x000000)
 
   const renderer = new WebGLRenderer()
   renderer.setSize(width, height)
@@ -86,6 +88,17 @@ onMounted(() => {
   scene.add(points)
 
   useEventListener(window, 'resize', () => {
+    if (container.value === null) return
+
+    const { width, height } = container.value.getBoundingClientRect()
+
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+    renderer.setSize(width, height)
+    renderer.setPixelRatio(window.devicePixelRatio)
+  })
+
+  useEventListener(window, 'orientationchange', () => {
     if (container.value === null) return
 
     const { width, height } = container.value.getBoundingClientRect()

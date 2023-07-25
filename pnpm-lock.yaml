@@ -339,8 +339,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       '@sky-fly/sky-ui':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.2
+        version: 0.0.2
       '@toast-ui/chart':
         specifier: ^4.6.1
         version: 4.6.1
@@ -4037,8 +4037,8 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /@sky-fly/sky-ui@0.0.1:
-    resolution: {integrity: sha512-Yhfpq3FaSTIg4HkS3cU9NIERQ2Y8jyyT6qHAxrt3MauX6A8lWwa4lCG4n26D59xUiwChE/vnCYAFK5UOE8SzfQ==}
+  /@sky-fly/sky-ui@0.0.2:
+    resolution: {integrity: sha512-qmoh377OjPqWpggaOrAAehSlfjw5tsyD2XdrTcXAKqg7j9EfkY1bY80grF9Wr3IccW0ZrZT0V1uykAYSKyV6Lw==}
     engines: {node: '>=18.13.0', npm: '>=9.6.0', pnpm: '>=8.4.0', yarn: '>=1.22.0'}
     requiresBuild: true
     dependencies:

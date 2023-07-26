@@ -27,6 +27,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "lib": ["ESNext"],
     "target": "ESNext",
     "useDefineForClassFields": false,

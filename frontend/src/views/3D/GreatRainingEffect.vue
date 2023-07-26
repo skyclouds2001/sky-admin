@@ -19,10 +19,14 @@ onMounted(() => {
   const render = (): void => {
     time = (time + clock.getDelta() * 0.4) % 1
 
+    // @ts-expect-error not existed property
     rainMaterial.cameraPosition = camera.position
 
-    if (rainMaterial.uniforms) {
+    // @ts-expect-error not existed property
+    if (rainMaterial.uniforms != null) {
+      // @ts-expect-error not existed property
       rainMaterial.uniforms.cameraPosition.value = camera.position
+      // @ts-expect-error not existed property
       rainMaterial.uniforms.time.value = time
     }
 
@@ -127,6 +131,7 @@ onMounted(() => {
     shader.uniforms.time = {
       value: 0,
     }
+    // @ts-expect-error not existed property
     rainMaterial.uniforms = shader.uniforms
   }
 

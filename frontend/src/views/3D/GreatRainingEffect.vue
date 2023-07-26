@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, Box3, BufferAttribute, BufferGeometry, CanvasTexture, ClampToEdgeWrapping, Color, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, TextureLoader, Vector3, WebGLRenderer } from 'three'
+import { AxesHelper, Box3, BufferAttribute, BufferGeometry, CanvasTexture, ClampToEdgeWrapping, Clock, Color, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, TextureLoader, Vector3, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import Stats from 'three/addons/libs/stats.module'
 // @ts-expect-error can not find type definition for this file
@@ -13,7 +13,19 @@ import { color } from '@/assets'
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
+  let time = 0
+  const clock = new Clock()
+
   const render = (): void => {
+    time = (time + clock.getDelta() * 0.4) % 1
+
+    rainMaterial.cameraPosition = camera.position
+
+    if (rainMaterial.uniforms) {
+      rainMaterial.uniforms.cameraPosition.value = camera.position
+      rainMaterial.uniforms.time.value = time
+    }
+
     controls.update()
     stats.update()
     renderer.render(scene, camera)

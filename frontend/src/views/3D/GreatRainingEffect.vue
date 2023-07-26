@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, CanvasTexture, ClampToEdgeWrapping, Color, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, Vector3, WebGLRenderer } from 'three'
+import { AxesHelper, Box3, BufferAttribute, BufferGeometry, CanvasTexture, ClampToEdgeWrapping, Color, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, TextureLoader, Vector3, WebGLRenderer } from 'three'
 // @ts-expect-error can not find type definition for this file
 import Stats from 'three/addons/libs/stats.module'
 // @ts-expect-error can not find type definition for this file
@@ -8,6 +8,7 @@ import { ImprovedNoise } from 'three/addons/math/ImprovedNoise'
 // @ts-expect-error can not find type definition for this file
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
+import { color } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -51,6 +52,100 @@ onMounted(() => {
   controls.enableZoom = true
   controls.autoRotate = false
   controls.enablePan = true
+
+  const loader = new TextureLoader()
+
+  const box = new Box3(new Vector3(-4000, 0, -4000), new Vector3(4000, 5000, 4000))
+
+  const rainMaterial = new MeshBasicMaterial({
+    transparent: true,
+    opacity: 0.8,
+    map: loader.load(new URL(color, import.meta.url).href),
+    depthWrite: false,
+  })
+
+  rainMaterial.onBeforeCompile = (shader) => {
+    const getRoot = `
+            uniform float top;
+            uniform float bottom;
+            uniform float time;
+            #include <common>
+            float angle(float x, float y){
+              return atan(y, x);
+            }
+            vec2 getFoot(vec2 camera,vec2 normal,vec2 pos){
+                vec2 position;
+
+                float distanceLen = distance(pos, normal);
+
+                float a = angle(camera.x - normal.x, camera.y - normal.y);
+
+                pos.x > normal.x ? a -= 0.785 : a += 0.785; 
+
+                position.x = cos(a) * distanceLen;
+                position.y = sin(a) * distanceLen;
+                
+                return position + normal;
+            }
+            `
+    const beginVertex = `
+            vec2 foot = getFoot(vec2(cameraPosition.x, cameraPosition.z),  vec2(normal.x, normal.z), vec2(position.x, position.z));
+            float height = top - bottom;
+            float y = normal.y - bottom - height * time;
+            y = y + (y < 0.0 ? height : 0.0);
+            float ratio = (1.0 - y / height) * (1.0 - y / height);
+            y = height * (1.0 - ratio);
+            y += bottom;
+            y += position.y - normal.y;
+            vec3 transformed = vec3( foot.x, y, foot.y );
+            // vec3 transformed = vec3( position );
+            `
+    shader.vertexShader = shader.vertexShader.replace('#include <common>', getRoot)
+    shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>', beginVertex)
+
+    shader.uniforms.cameraPosition = {
+      value: new Vector3(0, 200, 0),
+    }
+    shader.uniforms.top = {
+      value: 500,
+    }
+    shader.uniforms.bottom = {
+      value: 0,
+    }
+    shader.uniforms.time = {
+      value: 0,
+    }
+    rainMaterial.uniforms = shader.uniforms
+  }
+
+  const rainGeometry = new BufferGeometry()
+
+  const verties = []
+  const normals = []
+  const uvs = []
+  const indices = []
+
+  for (let i = 0; i < 10000; ++i) {
+    const pos = new Vector3()
+    pos.x = Math.random() * (box.max.x - box.min.x) + box.min.x
+    pos.y = Math.random() * (box.max.y - box.min.y) + box.min.y
+    pos.z = Math.random() * (box.max.z - box.min.z) + box.min.z
+
+    const height = (box.max.y - box.min.y) / 15
+    const width = height / 50
+    verties.push(pos.x + width, pos.y + height / 2, pos.z, pos.x - width, pos.y + height / 2, pos.z, pos.x - width, pos.y - height / 2, pos.z, pos.x + width, pos.y - height / 2, pos.z)
+    normals.push(pos.x, pos.y, pos.z, pos.x, pos.y, pos.z, pos.x, pos.y, pos.z, pos.x, pos.y, pos.z)
+    uvs.push(1, 1, 0, 1, 0, 0, 1, 0)
+    indices.push(i * 4 + 0, i * 4 + 1, i * 4 + 2, i * 4 + 0, i * 4 + 2, i * 4 + 3)
+  }
+
+  rainGeometry.setAttribute('position', new BufferAttribute(new Float32Array(verties), 3))
+  rainGeometry.setAttribute('normal', new BufferAttribute(new Float32Array(normals), 3))
+  rainGeometry.setAttribute('uv', new BufferAttribute(new Float32Array(uvs), 2))
+  rainGeometry.setIndex(new BufferAttribute(new Uint32Array(indices), 1))
+
+  const rainMesh = new Mesh(rainGeometry, rainMaterial)
+  scene.add(rainMesh)
 
   const noise = new ImprovedNoise()
   const data = new Uint8Array(256 * 256)

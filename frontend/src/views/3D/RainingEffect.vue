@@ -40,13 +40,13 @@ onMounted(() => {
   stats.domElement.style.left = '0'
   container.value.appendChild(stats.domElement)
 
+  const scene = new Scene()
+  scene.background = new Color(0x000000)
+
   const camera = new PerspectiveCamera(45, width / height, 1, 1000)
   camera.position.set(0, 0, 40)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
-
-  const scene = new Scene()
-  scene.background = new Color(0x000000)
 
   const renderer = new WebGLRenderer()
   renderer.setSize(width, height)

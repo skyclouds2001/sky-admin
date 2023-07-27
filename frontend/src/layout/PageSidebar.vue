@@ -321,6 +321,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/active-building') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/bloom-effect">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/bloom-effect') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/rotation-circle">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/rotation-circle') }}</span>

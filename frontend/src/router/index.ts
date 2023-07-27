@@ -550,6 +550,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/bloom-effect'),
+              path: '/3d/bloom-effect',
+              component: () => import('@/views/3D/BloomEffect.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/rotation-circle'),
               path: '/3d/rotation-circle',
               component: () => import('@/views/3D/RotationCircle.vue'),

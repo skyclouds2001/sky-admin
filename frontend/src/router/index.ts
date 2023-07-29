@@ -565,6 +565,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/periodic-table'),
+              path: '/3d/periodic-table',
+              component: () => import('@/views/3D/PeriodicTable.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

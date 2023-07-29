@@ -365,6 +365,7 @@ export default {
     '/3d/active-building': '活动建筑',
     '/3d/bloom-effect': '爆炸效果',
     '/3d/rotation-circle': '旋转圆圈',
+    '/3d/periodic-table': '元素周期表',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',
     '/error': '异常',

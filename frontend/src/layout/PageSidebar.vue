@@ -329,6 +329,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/rotation-circle') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/periodic-table">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/periodic-table') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 系统监控 -->

@@ -2,8 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
 import { BoxGeometry, BufferGeometry, DirectionalLight, Line, LineBasicMaterial, Mesh, MeshNormalMaterial, MeshPhongMaterial, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import WebGL from 'three/addons/capabilities/WebGL.js'
+import WebGL from 'three/examples/jsm/capabilities/WebGL'
 
 const demo = ref<HTMLDivElement | null>(null)
 

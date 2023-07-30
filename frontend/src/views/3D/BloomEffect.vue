@@ -1,18 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { BoxGeometry, Color, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, ShaderMaterial, Vector2, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import Stats from 'three/addons/libs/stats.module'
-// @ts-expect-error can not find type definition for this file
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
-// @ts-expect-error can not find type definition for this file
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer'
-// @ts-expect-error can not find type definition for this file
-import { RenderPass } from 'three/addons/postprocessing/RenderPass'
-// @ts-expect-error can not find type definition for this file
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass'
-// @ts-expect-error can not find type definition for this file
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass'
+import Stats from 'three/examples/jsm/libs/stats.module'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 import { useEventListener } from '@sky-fly/shooks'
 
 const container = ref<HTMLDivElement | null>(null)
@@ -34,10 +28,10 @@ onMounted(() => {
   const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
-  stats.domElement.style.position = 'absolute'
-  stats.domElement.style.top = '0'
-  stats.domElement.style.left = '0'
-  container.value.appendChild(stats.domElement)
+  stats.dom.style.position = 'absolute'
+  stats.dom.style.top = '0'
+  stats.dom.style.left = '0'
+  container.value.appendChild(stats.dom)
 
   const scene = new Scene()
   scene.background = new Color(0x000000)

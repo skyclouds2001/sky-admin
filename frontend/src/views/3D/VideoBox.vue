@@ -2,12 +2,12 @@
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
 import { Group, PerspectiveCamera, Scene } from 'three'
-// @ts-expect-error can not find type definition for this file
-import { TrackballControls } from 'three/addons/controls/TrackballControls'
-// @ts-expect-error can not find type definition for this file
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer'
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls'
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 
 const video = ref<HTMLDivElement | null>(null)
+
+const source = 'https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1'
 
 onMounted(() => {
   const animate = (): void => {
@@ -41,13 +41,15 @@ onMounted(() => {
   const scene = new Scene()
 
   const group = new Group()
-  group.add(createElement('https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1', 0, 0, 240, 0))
-  group.add(createElement('https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1', 240, 0, 0, Math.PI / 2))
-  group.add(createElement('https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1', 0, 0, -240, Math.PI))
-  group.add(createElement('https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1', -240, 0, 0, -Math.PI / 2))
+  group.add(createElement(source, 0, 0, 240, 0))
+  group.add(createElement(source, 240, 0, 0, Math.PI / 2))
+  group.add(createElement(source, 0, 0, -240, Math.PI))
+  group.add(createElement(source, -240, 0, 0, -Math.PI / 2))
   scene.add(group)
 
-  const renderer = new CSS3DRenderer({ element: video.value })
+  const renderer = new CSS3DRenderer({
+    element: video.value as HTMLDivElement,
+  })
   renderer.setSize(1000, 600)
 
   const controls = new TrackballControls(camera, renderer.domElement)

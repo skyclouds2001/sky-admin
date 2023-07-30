@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AmbientLight, AxesHelper, Color, CubeTextureLoader, DirectionalLight, Euler, LoadingManager, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
-// @ts-expect-error can not find type definition for this file
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader'
-// @ts-expect-error can not find type definition for this file
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useEventListener } from '@sky-fly/shooks'
 import { building, nx, ny, nz, px, py, pz } from '@/assets'
 
@@ -25,7 +22,7 @@ dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/')
 dracoLoader.preload()
 
 const gltfLoader = new GLTFLoader(manager)
-gltfLoader.setDRACOLoader(gltfLoader)
+gltfLoader.setDRACOLoader(dracoLoader)
 
 onMounted(() => {
   if (container.value === null) return

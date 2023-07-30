@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { Color, Object3D, PerspectiveCamera, Scene, Vector3 } from 'three'
-// @ts-expect-error can not find type definition for this file
-import Stats from 'three/addons/libs/stats.module'
-// @ts-expect-error can not find type definition for this file
-import TWEEN from 'three/addons/libs/tween.module'
-// @ts-expect-error can not find type definition for this file
-import { TrackballControls } from 'three/addons/controls/TrackballControls'
-// @ts-expect-error can not find type definition for this file
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer'
+import Stats from 'three/examples/jsm/libs/stats.module'
+import TWEEN from 'three/examples/jsm/libs/tween.module'
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls'
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import { useEventListener } from '@sky-fly/shooks'
 import { periodic } from '@/data'
 
@@ -43,10 +39,10 @@ onMounted(() => {
   const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
-  stats.domElement.style.position = 'absolute'
-  stats.domElement.style.top = '0'
-  stats.domElement.style.left = '0'
-  container.value.appendChild(stats.domElement)
+  stats.dom.style.position = 'absolute'
+  stats.dom.style.top = '0'
+  stats.dom.style.left = '0'
+  container.value.appendChild(stats.dom)
 
   const scene = new Scene()
   scene.background = new Color(0x000000)
@@ -63,7 +59,7 @@ onMounted(() => {
 
   const controls = new TrackballControls(camera, renderer.domElement)
   controls.minDistance = 500
-  controls.MaxDistance = 6000
+  controls.maxDistance = 6000
   controls.addEventListener('change', render)
 
   const objects: CSS3DObject[] = []

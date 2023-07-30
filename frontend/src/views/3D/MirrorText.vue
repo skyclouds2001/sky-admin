@@ -2,10 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { ElCard, ElSpace } from 'element-plus'
 import { Cache, Color, DirectionalLight, Fog, Group, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, PointLight, Scene, Vector3, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import { FontLoader } from 'three/addons/loaders/FontLoader'
-// @ts-expect-error can not find type definition for this file
-import { TextGeometry } from 'three/addons/geometries/TextGeometry'
+import { type Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { useEventListener } from '@sky-fly/shooks'
 import { optimer_regular } from '@/assets'
 
@@ -53,11 +51,11 @@ onMounted(() => {
   let text = 'Hello World'
   let textMesh1: Mesh
   let textMesh2: Mesh
-  let font: unknown
+  let font: Font
 
   new FontLoader().load(
     optimer_regular,
-    (result: unknown) => {
+    (result: Font) => {
       font = result
 
       renderText()
@@ -82,7 +80,7 @@ onMounted(() => {
     })
     textGeometry.computeBoundingBox()
 
-    const center = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x)
+    const center = -0.5 * ((textGeometry.boundingBox?.max.x ?? 0) - (textGeometry.boundingBox?.min.x ?? 0))
 
     textMesh1 = new Mesh(textGeometry, materials)
     textMesh1.position.set(center, 30, 0)

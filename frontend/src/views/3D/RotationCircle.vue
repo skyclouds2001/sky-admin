@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { BufferGeometry, Color, ColorManagement, Float32BufferAttribute, Line, LineBasicMaterial, LineDashedMaterial, PerspectiveCamera, Scene } from 'three'
-// @ts-expect-error can not find type definition for this file
-import { SVGRenderer } from 'three/addons/renderers/SVGRenderer'
+import { SVGRenderer } from 'three/examples/jsm/renderers/SVGRenderer'
 import { useEventListener } from '@sky-fly/shooks'
 
 const container = ref<HTMLDivElement | null>(null)
@@ -36,7 +35,6 @@ onMounted(() => {
 
   const renderer = new SVGRenderer()
   renderer.setSize(width, height)
-  renderer.setPixelRatio(window.devicePixelRatio)
 
   container.value.appendChild(renderer.domElement)
 
@@ -82,7 +80,6 @@ onMounted(() => {
     camera.aspect = width / height
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
-    renderer.setPixelRatio(window.devicePixelRatio)
   })
 
   window.requestAnimationFrame(render)

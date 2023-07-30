@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AxesHelper, Box3, BufferAttribute, BufferGeometry, CanvasTexture, ClampToEdgeWrapping, Clock, Color, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, TextureLoader, Vector3, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import Stats from 'three/addons/libs/stats.module'
-// @ts-expect-error can not find type definition for this file
-import { ImprovedNoise } from 'three/addons/math/ImprovedNoise'
-// @ts-expect-error can not find type definition for this file
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
+import Stats from 'three/examples/jsm/libs/stats.module'
+import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
 import { color } from '@/assets'
 
@@ -40,10 +37,10 @@ onMounted(() => {
   const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
-  stats.domElement.style.position = 'absolute'
-  stats.domElement.style.top = '0'
-  stats.domElement.style.left = '0'
-  container.value.appendChild(stats.domElement)
+  stats.dom.style.position = 'absolute'
+  stats.dom.style.top = '0'
+  stats.dom.style.left = '0'
+  container.value.appendChild(stats.dom)
 
   const camera = new PerspectiveCamera(45, width / height, 1, 150000)
   camera.position.set(10000, 10000, 10000)

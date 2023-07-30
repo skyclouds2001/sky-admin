@@ -6,4 +6,6 @@ export { default as BasicLineChart } from './BasicLineChart.vue'
 
 export { default as BasicPieChart } from './BasicPieChart.vue'
 
+export { default as BasicRadarChart } from './BasicRadarChart.vue'
+
 export { default as BasicScatterChart } from './BasicScatterChart.vue'

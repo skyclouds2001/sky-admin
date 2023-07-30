@@ -2,6 +2,8 @@ export { default as avatar } from './avatar.jpg'
 
 export { default as building } from './building.glb?url'
 
+export { default as color } from './color.png'
+
 export { default as earth_bump } from './earth_bump.png'
 
 export { default as earth_cloud } from './earth_cloud.png'

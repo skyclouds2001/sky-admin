@@ -2,12 +2,13 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts/core'
 import { CandlestickChart, type CandlestickSeriesOption } from 'echarts/charts'
-import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption } from 'echarts/components'
+import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
+import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 
-type EchartsOptions = echarts.ComposeOption<CandlestickSeriesOption | GridComponentOption | TitleComponentOption>
+type EchartsOptions = echarts.ComposeOption<CandlestickSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
 
-echarts.use([CandlestickChart, GridComponent, TitleComponent, CanvasRenderer])
+echarts.use([CandlestickChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
 const el = ref<HTMLDivElement | null>(null)
 
@@ -26,6 +27,32 @@ onMounted(() => {
           color: '#333',
         },
       },
+      legend: {
+        data: ['data'],
+        left: 'right',
+        top: 'bottom',
+        textStyle: {
+          color: '#999',
+        },
+      },
+      grid: {
+        top: '5%',
+        left: '5%',
+        right: '5%',
+        bottom: '5%',
+        containLabel: true,
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {},
+        },
+      },
       xAxis: {
         data: ['A', 'B', 'C', 'D', 'E'],
       },
@@ -33,6 +60,7 @@ onMounted(() => {
       series: [
         {
           type: 'candlestick',
+          name: 'data',
           data: [
             [20, 34, 10, 38],
             [40, 35, 30, 50],

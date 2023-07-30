@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AdditiveBlending, BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
-import WebGL from 'three/examples/jsm/capabilities/WebGL'
+import { BoxGeometry, Color, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, ShaderMaterial, Vector2, WebGLRenderer } from 'three'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 import { useEventListener } from '@sky-fly/shooks'
-import { rain } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -15,18 +17,10 @@ onMounted(() => {
     stats.update()
     renderer.render(scene, camera)
 
-    const p = points.geometry.getAttribute('position').array as Float32Array
-    p.forEach((v, i) => {
-      if (i % 3 === 1) {
-        // eslint-disable-next-line security/detect-object-injection
-        p[i] -= Math.random() * 0.5
-        if (v < -40) {
-          // eslint-disable-next-line security/detect-object-injection
-          p[i] = 40
-        }
-      }
-    })
-    points.geometry.getAttribute('position').needsUpdate = true
+    mesh.rotation.x += 0.01
+    mesh.rotation.y += 0.02
+
+    composer.render()
   }
 
   if (container.value === null) return
@@ -43,7 +37,7 @@ onMounted(() => {
   scene.background = new Color(0x000000)
 
   const camera = new PerspectiveCamera(45, width / height, 1, 1000)
-  camera.position.set(0, 0, 40)
+  camera.position.set(0, 0, 5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -60,31 +54,55 @@ onMounted(() => {
   controls.autoRotate = false
   controls.enablePan = true
 
-  const POINT_COUNT = 1000
-
-  const geometry = new BufferGeometry()
-  const positions = new Float32Array(POINT_COUNT * 3).fill(0).map(() => (Math.random() - 0.5) * 100)
-  geometry.setAttribute('position', new BufferAttribute(positions, 3))
-
-  const texture = new TextureLoader()
-  const rainTexture = texture.load(rain)
-
-  const material = new PointsMaterial({
-    size: 1,
-    transparent: true,
-    opacity: 0.5,
-    vertexColors: false,
-    sizeAttenuation: true,
-    color: 0xededed,
-    depthTest: true,
-    depthWrite: false,
-    map: rainTexture,
-    alphaMap: rainTexture,
-    blending: AdditiveBlending,
+  const geometry = new BoxGeometry(1, 1, 1)
+  const material = new MeshBasicMaterial({
+    color: 0xffffff,
   })
+  const mesh = new Mesh(geometry, material)
+  scene.add(mesh)
 
-  const points = new Points(geometry, material)
-  scene.add(points)
+  const composer = new EffectComposer(renderer)
+
+  const renderPass = new RenderPass(scene, camera)
+  composer.addPass(renderPass)
+
+  const bloomPass = new UnrealBloomPass(new Vector2(width, height), 1.5, 0.4, 0.85)
+  composer.addPass(bloomPass)
+
+  const finalPass = new ShaderPass(
+    new ShaderMaterial({
+      uniforms: {
+        baseTexture: {
+          value: null,
+        },
+        bloomTexture: {
+          value: composer.renderTarget2.texture,
+        },
+      },
+      vertexShader: `
+      varying vec2 vUv;
+
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+      fragmentShader: `
+      uniform sampler2D baseTexture;
+      uniform sampler2D bloomTexture;
+
+      varying vec2 vUv;
+
+      void main() {
+        gl_FragColor = texture2D(baseTexture, vUv) + texture2D(bloomTexture, vUv);
+      }
+    `,
+      defines: {},
+    }),
+    'baseTexture'
+  )
+  finalPass.needsSwap = true
+  composer.addPass(finalPass)
 
   useEventListener(window, 'resize', () => {
     if (container.value === null) return
@@ -95,7 +113,6 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
   })
 
   useEventListener(window, 'orientationchange', () => {
@@ -107,14 +124,12 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
   })
 })
 </script>
 
 <template>
-  <div v-if="WebGL.isWebGLAvailable()" id="container" ref="container"></div>
-  <div v-else>WebGL is not supported by current version of browser, please update to the newest version of browser.</div>
+  <div id="container" ref="container"></div>
 </template>
 
 <style scoped lang="scss">

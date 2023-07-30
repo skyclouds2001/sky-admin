@@ -129,6 +129,10 @@ watch(
           <el-icon><Histogram /></el-icon>
           <span>{{ i18n.t('router./chart/candlestick') }}</span>
         </el-menu-item>
+        <el-menu-item index="/chart/radar">
+          <el-icon><Histogram /></el-icon>
+          <span>{{ i18n.t('router./chart/radar') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 嵌套菜单 -->
@@ -305,6 +309,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/raining-effect') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/great-raining-effect">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/great-raining-effect') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/earth">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/earth') }}</span>
@@ -313,9 +321,17 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/active-building') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/bloom-effect">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/bloom-effect') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/rotation-circle">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/rotation-circle') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/periodic-table">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/periodic-table') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

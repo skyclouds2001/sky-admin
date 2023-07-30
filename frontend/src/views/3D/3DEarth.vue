@@ -1,18 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AdditiveBlending, AmbientLight, BufferAttribute, BufferGeometry, CatmullRomCurve3, Color, CubicBezierCurve3, CylinderGeometry, DoubleSide, Fog, Group, Line, LineBasicMaterial, LoadingManager, Matrix4, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, Points, PointsMaterial, Ray, Scene, SphereGeometry, Spherical, TextureLoader, TorusGeometry, Vector2, Vector3, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
-// @ts-expect-error can not find type definition for this file
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer'
-// @ts-expect-error can not find type definition for this file
-import { RenderPass } from 'three/addons/postprocessing/RenderPass'
-// @ts-expect-error can not find type definition for this file
-import { OutlinePass } from 'three/addons/postprocessing/OutlinePass'
-// @ts-expect-error can not find type definition for this file
-import { OBJLoader } from 'three/addons/loaders/OBJLoader'
-// @ts-expect-error can not find type definition for this file
-import { MTLLoader } from 'three/addons/loaders/MTLLoader'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
 import { useEventListener } from '@sky-fly/shooks'
 import { earth_bump, earth_cloud, earth_spec, earth, light_ray, star, sat, satellite, wave } from '@/assets'
 

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts/core'
-import { BarChart, type BarSeriesOption } from 'echarts/charts'
+import { RadarChart, type RadarSeriesOption } from 'echarts/charts'
 import { GridComponent, type GridComponentOption, TitleComponent, type TitleComponentOption, TooltipComponent, type TooltipComponentOption, ToolboxComponent, type ToolboxComponentOption, LegendComponent, type LegendComponentOption, TransformComponent } from 'echarts/components'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 
-type EchartsOptions = echarts.ComposeOption<BarSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
+type EchartsOptions = echarts.ComposeOption<RadarSeriesOption | GridComponentOption | LegendComponentOption | TitleComponentOption | ToolboxComponentOption | TooltipComponentOption>
 
-echarts.use([BarChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
+echarts.use([RadarChart, GridComponent, LegendComponent, TitleComponent, ToolboxComponent, TooltipComponent, TransformComponent, LabelLayout, UniversalTransition, CanvasRenderer])
 
 const el = ref<HTMLDivElement | null>(null)
 
@@ -20,8 +20,7 @@ onMounted(() => {
     })
     .setOption<EchartsOptions>({
       title: {
-        show: true,
-        text: 'Simple Bar Chart',
+        text: 'Simple Radar Chart',
         left: 'center',
         top: 'top',
         textStyle: {
@@ -29,8 +28,7 @@ onMounted(() => {
         },
       },
       legend: {
-        show: true,
-        data: ['data'],
+        data: ['dataA', 'dataB'],
         left: 'right',
         top: 'bottom',
         textStyle: {
@@ -38,7 +36,6 @@ onMounted(() => {
         },
       },
       grid: {
-        show: true,
         top: '5%',
         left: '5%',
         right: '5%',
@@ -46,39 +43,55 @@ onMounted(() => {
         containLabel: true,
       },
       tooltip: {
-        show: true,
         trigger: 'axis',
         axisPointer: {
           type: 'shadow',
         },
       },
       toolbox: {
-        show: true,
         feature: {
           saveAsImage: {},
         },
       },
-      xAxis: {
-        show: true,
-        type: 'category',
-        axisTick: {
-          alignWithLabel: true,
-        },
-        data: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-      },
-      yAxis: {
-        show: true,
-        type: 'value',
+      radar: {
+        indicator: [
+          {
+            name: 'A',
+          },
+          {
+            name: 'B',
+          },
+          {
+            name: 'C',
+          },
+          {
+            name: 'D',
+          },
+          {
+            name: 'E',
+          },
+          {
+            name: 'F',
+          },
+          {
+            name: 'G',
+          },
+        ],
       },
       series: [
         {
-          type: 'bar',
+          type: 'radar',
           name: 'data',
-          showBackground: true,
-          backgroundStyle: {
-            color: 'rgba(180, 180, 180, 0.2)',
-          },
-          data: [20, 34, 10, 38, 45, 23, 21],
+          data: [
+            {
+              name: 'dataA',
+              value: [20, 34, 10, 38, 45, 23, 21],
+            },
+            {
+              name: 'dataB',
+              value: [40, 17, 20, 19, 22, 12, 32],
+            },
+          ],
         },
       ],
     })

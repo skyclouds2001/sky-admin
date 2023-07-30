@@ -189,6 +189,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/chart/radar'),
+              path: '/chart/radar',
+              component: () => import('@/views/chart/RadarChart.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 
@@ -518,6 +526,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/great-raining-effect'),
+              path: '/3d/great-raining-effect',
+              component: () => import('@/views/3D/GreatRainingEffect.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/earth'),
               path: '/3d/earth',
               component: () => import('@/views/3D/3DEarth.vue'),
@@ -534,9 +550,25 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/bloom-effect'),
+              path: '/3d/bloom-effect',
+              component: () => import('@/views/3D/BloomEffect.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/rotation-circle'),
               path: '/3d/rotation-circle',
               component: () => import('@/views/3D/RotationCircle.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/periodic-table'),
+              path: '/3d/periodic-table',
+              component: () => import('@/views/3D/PeriodicTable.vue'),
               meta: {
                 isView: true,
               },

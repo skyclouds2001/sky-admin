@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AdditiveBlending, BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
-// @ts-expect-error can not find type definition for this file
-import Stats from 'three/addons/libs/stats.module'
-// @ts-expect-error can not find type definition for this file
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
+import Stats from 'three/examples/jsm/libs/stats.module'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
 import { rain } from '@/assets'
 
@@ -35,10 +33,10 @@ onMounted(() => {
   const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
-  stats.domElement.style.position = 'absolute'
-  stats.domElement.style.top = '0'
-  stats.domElement.style.left = '0'
-  container.value.appendChild(stats.domElement)
+  stats.dom.style.position = 'absolute'
+  stats.dom.style.top = '0'
+  stats.dom.style.left = '0'
+  container.value.appendChild(stats.dom)
 
   const scene = new Scene()
   scene.background = new Color(0x000000)

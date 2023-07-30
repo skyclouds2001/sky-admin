@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { AdditiveBlending, BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, PointsMaterial, Scene, TextureLoader, WebGLRenderer } from 'three'
+import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
@@ -94,6 +95,7 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.render(scene, camera)
   })
 
   useEventListener(window, 'orientationchange', () => {
@@ -105,12 +107,14 @@ onMounted(() => {
     camera.updateProjectionMatrix()
     renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.render(scene, camera)
   })
 })
 </script>
 
 <template>
-  <div id="container" ref="container"></div>
+  <div v-if="WebGL.isWebGLAvailable()" id="container" ref="container"></div>
+  <div v-else>WebGL is not supported by current version of browser, please update to the newest version of browser.</div>
 </template>
 
 <style scoped lang="scss">

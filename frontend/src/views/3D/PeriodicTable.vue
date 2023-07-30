@@ -28,6 +28,7 @@ onMounted(() => {
   const animate = (): void => {
     controls.update()
     stats.update()
+    // eslint-disable-next-line import/no-named-as-default-member
     TWEEN.update()
 
     window.requestAnimationFrame(animate)
@@ -52,6 +53,8 @@ onMounted(() => {
 
   const camera = new PerspectiveCamera(40, width / height, 1, 1000)
   camera.position.set(0, 0, 3000)
+  camera.up.set(0, 1, 0)
+  camera.lookAt(0, 0, 0)
 
   const renderer = new CSS3DRenderer()
   renderer.setSize(width, height)
@@ -71,26 +74,24 @@ onMounted(() => {
     grid: [],
   }
 
-  for (let i = 0, v = new Vector3(); i < count * 5; i += 5) {
+  for (let i = 0, v = new Vector3(); i < count; ++i) {
     const element = document.createElement('div')
     element.classList.add('element')
     element.style.backgroundColor = `rgba(0, 127, 127, ${Math.random() * 0.5 + 0.25})`
 
     const number = document.createElement('div')
     number.classList.add('number')
-    number.textContent = String(i / 5 + 1)
+    number.textContent = String(i + 1)
     element.appendChild(number)
 
     const symbol = document.createElement('div')
     symbol.classList.add('symbol')
-    // eslint-disable-next-line security/detect-object-injection
-    symbol.textContent = String(periodic[i])
+    symbol.textContent = String(periodic[i * 5])
     element.appendChild(symbol)
 
     const details = document.createElement('div')
     details.classList.add('details')
-    // eslint-disable-next-line security/detect-object-injection
-    details.innerHTML = `${String(periodic[i + 1])}<br />${String(periodic[i + 2])}`
+    details.innerHTML = `${String(periodic[i * 5 + 1])}<br />${String(periodic[i * 5 + 2])}`
     element.appendChild(details)
 
     const objectCSS = new CSS3DObject(element)
@@ -101,23 +102,21 @@ onMounted(() => {
 
     objects.push(objectCSS)
 
-    const k = i / 5
-
     const table = new Object3D()
-    table.position.x = Number(periodic[i + 3]) * 140 - 1330
-    table.position.y = Number(periodic[i + 4]) * 180 + 990
+    table.position.x = Number(periodic[i * 5 + 3]) * 140 - 1330
+    table.position.y = -Number(periodic[i * 5 + 4]) * 180 + 990
     targets.table.push(table)
 
     const sphere = new Object3D()
-    const phi = Math.acos(-1 + (2 * k) / (count * 5))
-    const theta = Math.sqrt(5 * count * Math.PI) * phi
+    const phi = Math.acos(-1 + (2 * i) / count)
+    const theta = Math.sqrt(count * Math.PI) * phi
     sphere.position.setFromSphericalCoords(800, phi, theta)
     v.copy(sphere.position).multiplyScalar(2)
     sphere.lookAt(v)
     targets.sphere.push(sphere)
 
     const helix = new Object3D()
-    helix.position.setFromCylindricalCoords(900, k * 0.175 + Math.PI, -(k * 8) + 450)
+    helix.position.setFromCylindricalCoords(900, i * 0.175 + Math.PI, -(i * 8) + 450)
     v.x = helix.position.x * 2
     v.y = helix.position.y
     v.z = helix.position.z * 2
@@ -174,6 +173,7 @@ onMounted(() => {
   })
 
   const transform = (targets: Object3D[], duration: number, thisArgs: HTMLElement): void => {
+    // eslint-disable-next-line import/no-named-as-default-member
     TWEEN.removeAll()
 
     for (let i = 0; i < count; ++i) {
@@ -182,25 +182,30 @@ onMounted(() => {
       // eslint-disable-next-line security/detect-object-injection
       const target = targets[i]
 
+      // eslint-disable-next-line import/no-named-as-default-member
       new TWEEN.Tween(object.position)
         .to({
           x: target.position.x,
           y: target.position.y,
           z: target.position.z,
         })
+        // eslint-disable-next-line import/no-named-as-default-member
         .easing(TWEEN.Easing.Exponential.InOut)
         .start()
 
+      // eslint-disable-next-line import/no-named-as-default-member
       new TWEEN.Tween(object.rotation)
         .to({
           x: target.rotation.x,
           y: target.rotation.y,
           z: target.rotation.z,
         })
+        // eslint-disable-next-line import/no-named-as-default-member
         .easing(TWEEN.Easing.Exponential.InOut)
         .start()
     }
 
+    // eslint-disable-next-line import/no-named-as-default-member
     new TWEEN.Tween(thisArgs)
       .to({}, duration * 2)
       .onUpdate(render)
@@ -237,7 +242,7 @@ onMounted(() => {
   text-align: center;
 }
 
-.element {
+:deep(.element) {
   width: 120px;
   height: 160px;
   font-family: Helvetica, sans-serif;
@@ -246,39 +251,39 @@ onMounted(() => {
   border: 1px solid rgb(127 255 255 / 25%);
   box-shadow: 0 0 12px rgb(0 255 255 / 50%);
   cursor: default;
-}
 
-.element:hover {
-  border: 1px solid rgb(127 255 255 / 75%);
-  box-shadow: 0 0 12px rgb(0 255 255 / 75%);
-}
+  &:hover {
+    border: 1px solid rgb(127 255 255 / 75%);
+    box-shadow: 0 0 12px rgb(0 255 255 / 75%);
+  }
 
-.element .number {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: rgb(127 255 255 / 75%);
-  font-size: 12px;
-}
+  .number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: rgb(127 255 255 / 75%);
+    font-size: 12px;
+  }
 
-.element .symbol {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  left: 0;
-  color: rgb(255 255 255 / 75%);
-  font-weight: bold;
-  font-size: 60px;
-  text-shadow: 0 0 10px rgb(0 255 255 / 95%);
-}
+  .symbol {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    left: 0;
+    color: rgb(255 255 255 / 75%);
+    font-weight: bold;
+    font-size: 60px;
+    text-shadow: 0 0 10px rgb(0 255 255 / 95%);
+  }
 
-.element .details {
-  position: absolute;
-  right: 0;
-  bottom: 15px;
-  left: 0;
-  color: rgb(127 255 255 / 75%);
-  font-size: 12px;
+  .details {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    left: 0;
+    color: rgb(127 255 255 / 75%);
+    font-size: 12px;
+  }
 }
 
 button {
@@ -288,14 +293,14 @@ button {
   border: 0;
   outline: 1px solid rgb(127 255 255 / 75%);
   cursor: pointer;
-}
 
-button:hover {
-  background-color: rgb(0 255 255 / 50%);
-}
+  &:hover {
+    background-color: rgb(0 255 255 / 50%);
+  }
 
-button:active {
-  color: #000;
-  background-color: rgb(0 255 255 / 75%);
+  &:active {
+    color: #000;
+    background-color: rgb(0 255 255 / 75%);
+  }
 }
 </style>

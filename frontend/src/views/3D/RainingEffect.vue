@@ -58,9 +58,6 @@ onMounted(() => {
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
-  controls.enableZoom = true
-  controls.autoRotate = false
-  controls.enablePan = true
 
   const POINT_COUNT = 1000
 

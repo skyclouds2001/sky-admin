@@ -573,6 +573,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/selection-box'),
+              path: '/3d/selection-box',
+              component: () => import('@/views/3D/SelectionBox.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

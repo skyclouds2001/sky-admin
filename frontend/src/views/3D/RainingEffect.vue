@@ -47,7 +47,9 @@ onMounted(() => {
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
-  const renderer = new WebGLRenderer()
+  const renderer = new WebGLRenderer({
+    antialias: true,
+  })
   renderer.setSize(width, height)
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setAnimationLoop(render)

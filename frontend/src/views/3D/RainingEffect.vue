@@ -29,6 +29,8 @@ onMounted(() => {
     points.geometry.getAttribute('position').needsUpdate = true
   }
 
+  if (!WebGL.isWebGLAvailable()) return
+
   if (container.value === null) return
 
   const { width, height } = container.value.getBoundingClientRect()

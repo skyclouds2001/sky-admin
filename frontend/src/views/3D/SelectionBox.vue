@@ -91,45 +91,45 @@ onMounted(() => {
   const selectionBox = new SelectionBox(camera, scene)
   const selectionHelper = new SelectionHelper(renderer, 'select-box')
 
-  useEventListener(document, 'pointerdown', () => {
+  useEventListener(document, 'pointerdown', (e) => {
     if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+    const { width, height, left, top } = container.value.getBoundingClientRect()
 
     for (const item of selectionBox.collection) {
-      (item.material as MeshLambertMaterial).emissive.set(0x000000)
+      ;(item.material as MeshLambertMaterial).emissive.set(0x000000)
     }
 
-    selectionBox.startPoint.set((e.clientX / width) * 2 - 1, - (e.clientY / height) * 2 + 1, 0.5)
+    selectionBox.startPoint.set(((e.clientX - left) / width) * 2 - 1, -((e.clientY - top) / height) * 2 + 1, 0.5)
   })
 
-  useEventListener(document, 'pointermove', () => {
+  useEventListener(document, 'pointermove', (e) => {
     if (container.value === null) return
 
     if (selectionHelper.isDown) {
-      const { width, height } = container.value.getBoundingClientRect()
+      const { width, height, left, top } = container.value.getBoundingClientRect()
 
       for (const item of selectionBox.collection) {
-        (item.material as MeshLambertMaterial).emissive.set(0x000000)
+        ;(item.material as MeshLambertMaterial).emissive.set(0x000000)
       }
 
-      selectionBox.endPoint.set((e.clientX / width) * 2 - 1, - (e.clientY / height) * 2 + 1, 0.5)
+      selectionBox.endPoint.set(((e.clientX - left) / width) * 2 - 1, -((e.clientY - top) / height) * 2 + 1, 0.5)
 
       for (const item of selectionBox.select()) {
-        (item.material as MeshLambertMaterial).emissive.set(0xffffff)
+        ;(item.material as MeshLambertMaterial).emissive.set(0xffffff)
       }
     }
   })
 
-  useEventListener(document, 'pointerup', () => {
+  useEventListener(document, 'pointerup', (e) => {
     if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+    const { width, height, left, top } = container.value.getBoundingClientRect()
 
-    selectionBox.endPoint.set((e.clientX / width) * 2 - 1, - (e.clientY / height) * 2 + 1, 0.5)
+    selectionBox.endPoint.set(((e.clientX - left) / width) * 2 - 1, -((e.clientY - top) / height) * 2 + 1, 0.5)
 
     for (const item of selectionBox.select()) {
-      (item.material as MeshLambertMaterial).emissive.set(0xffffff)
+      ;(item.material as MeshLambertMaterial).emissive.set(0xffffff)
     }
   })
 
@@ -165,15 +165,15 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+:global(.select-box) {
+  position: fixed;
+  background-color: rgb(75 160 255 / 30%);
+  border: 1px solid #5af;
+}
+
 #container {
   position: relative;
   width: 100%;
   height: calc(100vh - 60px - 40px - 60px);
-}
-
-:global(.select-box) {
-  border: 1px solid #55aaff;
-  background-color: rgba(75, 160, 255, 0.3);
-  position: fixed;
 }
 </style>

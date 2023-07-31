@@ -10,7 +10,7 @@ import { rain } from '@/assets'
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  const render = (): void => {
+  const animate = (): void => {
     controls.update()
     stats.update()
     renderer.render(scene, camera)
@@ -52,7 +52,7 @@ onMounted(() => {
   })
   renderer.setSize(width, height)
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setAnimationLoop(render)
+  renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
 

@@ -34,6 +34,8 @@ export { default as sat } from './satellite.mtl?url'
 
 export { default as satellite } from './satellite.obj?url'
 
+export { default as sprite } from './sprite.png'
+
 export { default as star } from './star.png'
 
 export { default as wave } from './wave.png'

@@ -70,13 +70,13 @@ onMounted(() => {
   const amount = 8
   // each site length of object
   const separation = 150
-  const offset = (amount - 1) * separation / 2
+  const offset = ((amount - 1) * separation) / 2
 
   const amountX = 16
   const amountZ = 32
   const plane = 150
-  const offsetX = (amountX - 1) * plane / 2
-  const offsetZ = (amountZ - 1) * plane / 2
+  const offsetX = ((amountX - 1) * plane) / 2
+  const offsetZ = ((amountZ - 1) * plane) / 2
 
   const radius = 750
 
@@ -85,15 +85,15 @@ onMounted(() => {
     positions[total * 3 * 0 + i * 3 + 1] = Math.random() * site - site / 2
     positions[total * 3 * 0 + i * 3 + 2] = Math.random() * site - site / 2
 
-    positions[total * 3 * 1 + i * 3 + 0] = i % amount * separation - offset
-    positions[total * 3 * 1 + i * 3 + 1] = Math.floor(i / amount % amount) * separation - offset
+    positions[total * 3 * 1 + i * 3 + 0] = (i % amount) * separation - offset
+    positions[total * 3 * 1 + i * 3 + 1] = Math.floor((i / amount) % amount) * separation - offset
     positions[total * 3 * 1 + i * 3 + 2] = Math.floor(i / amount / amount) * separation - offset
 
     positions[total * 3 * 2 + i * 3 + 0] = (i % amountX) * plane - offsetX
     positions[total * 3 * 2 + i * 3 + 1] = Math.floor(i / amountX) * plane
     positions[total * 3 * 2 + i * 3 + 2] = (Math.sin((i % amountX) * plane * 0.5) + Math.sin(Math.floor(i / amountX) * plane * 0.5)) * 200 - offsetZ
 
-    const phi = Math.acos(-1 + 2 * i / total)
+    const phi = Math.acos(-1 + (2 * i) / total)
     const theta = Math.sqrt(total * Math.PI) * phi
 
     positions[total * 3 * 3 + i * 3 + 0] = radius * Math.cos(theta) * Math.sin(phi)
@@ -102,38 +102,52 @@ onMounted(() => {
   }
 
   const image = document.createElement('img')
-  image.addEventListener('load', () => {
-    for (let i = 0; i < total; ++i) {
-      const object = new CSS3DSprite(image.cloneNode() as HTMLImageElement)
+  image.addEventListener(
+    'load',
+    () => {
+      for (let i = 0; i < total; ++i) {
+        const object = new CSS3DSprite(image.cloneNode() as HTMLImageElement)
 
-      object.position.x = positions[total * 3 * current + i * 3 + 0]
-      object.position.y = positions[total * 3 * current + i * 3 + 1]
-      object.position.z = positions[total * 3 * current + i * 3 + 2]
+        object.position.x = positions[total * 3 * current + i * 3 + 0]
+        object.position.y = positions[total * 3 * current + i * 3 + 1]
+        object.position.z = positions[total * 3 * current + i * 3 + 2]
 
-      scene.add(object)
+        scene.add(object)
 
-      objects[i] = object
+        // eslint-disable-next-line security/detect-object-injection
+        objects[i] = object
+      }
+
+      transition()
+    },
+    {
+      passive: true,
+      once: true,
     }
-
-    transition()
-  }, {
-    passive: true,
-    once: true,
-  })
+  )
   image.src = new URL(sprite, import.meta.url).href
 
-  const transition = () => {
+  const transition = (): void => {
     objects.forEach((object, i) => {
-      new TWEEN.Tween(object.position).to({
-        x: positions[total * 3 * current + i * 3 + 0],
-        y: positions[total * 3 * current + i * 3 + 1],
-        z: positions[total * 3 * current + i * 3 + 2],
-      }, Math.random() * 2000 + 2000).easing(TWEEN.Easing.Exponential.InOut).start()
+      new TWEEN.Tween(object.position)
+        .to(
+          {
+            x: positions[total * 3 * current + i * 3 + 0],
+            y: positions[total * 3 * current + i * 3 + 1],
+            z: positions[total * 3 * current + i * 3 + 2],
+          },
+          Math.random() * 2000 + 2000
+        )
+        .easing(TWEEN.Easing.Exponential.InOut)
+        .start()
     })
 
-    new TWEEN.Tween(window).to({}, 2000 * 3).onComplete(transition).start()
+    new TWEEN.Tween(window)
+      .to({}, 2000 * 3)
+      .onComplete(transition)
+      .start()
 
-    current = (current + 1) % 4 as 0 | 1 | 2 | 3
+    current = ((current + 1) % 4) as 0 | 1 | 2 | 3
   }
 
   useEventListener(window, 'resize', () => {

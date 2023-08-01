@@ -51,7 +51,7 @@
     "@nestjs/platform-express": "^10.1.0",
     "@nestjs/platform-socket.io": "^10.1.0",
     "@nestjs/schedule": "^3.0.1",
-    "@nestjs/swagger": "^7.1.2",
+    "@nestjs/swagger": "^7.1.6",
     "@nestjs/websockets": "^10.1.0",
     "@prisma/client": "4.16.2",
     "axios": "^1.4.0",

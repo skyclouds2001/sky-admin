@@ -367,6 +367,7 @@ export default {
     '/3d/rotation-circle': 'Rotation Circle',
     '/3d/periodic-table': 'Periodic Table',
     '/3d/selection-box': 'Selection Box',
+    '/3d/sprite-ball': 'Sprite Ball',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',
     '/error': 'Error',

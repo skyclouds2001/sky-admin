@@ -581,6 +581,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/sprite-ball'),
+              path: '/3d/sprite-ball',
+              component: () => import('@/views/3D/SpriteBall.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

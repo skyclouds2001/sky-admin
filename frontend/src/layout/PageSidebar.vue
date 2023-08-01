@@ -337,6 +337,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/selection-box') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/sprite-ball">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/sprite-ball') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 系统监控 -->

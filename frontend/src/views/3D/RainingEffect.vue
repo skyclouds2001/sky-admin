@@ -87,29 +87,43 @@ onMounted(() => {
   const points = new Points(geometry, material)
   scene.add(points)
 
-  useEventListener(window, 'resize', () => {
-    if (container.value === null) return
+  useEventListener(
+    window,
+    'resize',
+    () => {
+      if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+      const { width, height } = container.value.getBoundingClientRect()
 
-    camera.aspect = width / height
-    camera.updateProjectionMatrix()
-    renderer.setSize(width, height)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
-  })
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      renderer.setSize(width, height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.render(scene, camera)
+    },
+    {
+      passive: true,
+    }
+  )
 
-  useEventListener(window, 'orientationchange', () => {
-    if (container.value === null) return
+  useEventListener(
+    window,
+    'orientationchange',
+    () => {
+      if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+      const { width, height } = container.value.getBoundingClientRect()
 
-    camera.aspect = width / height
-    camera.updateProjectionMatrix()
-    renderer.setSize(width, height)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
-  })
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      renderer.setSize(width, height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.render(scene, camera)
+    },
+    {
+      passive: true,
+    }
+  )
 })
 </script>
 

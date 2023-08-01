@@ -7,7 +7,7 @@ import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRe
 
 const video = ref<HTMLDivElement | null>(null)
 
-const source = 'https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1'
+const source = ['https://player.bilibili.com/player.html?aid=422093073&bvid=BV1J3411475Q&cid=453689337&page=1', 'https://player.bilibili.com/player.html?aid=548389203&bvid=BV1Mq4y1N7iE&cid=420464179&page=1', 'https://player.bilibili.com/player.html?aid=420896991&bvid=BV1G3411178Q&cid=420508449&page=1']
 
 onMounted(() => {
   const animate = (): void => {
@@ -23,6 +23,7 @@ onMounted(() => {
     iframe.style.zIndex = '9999'
     iframe.width = '480'
     iframe.height = '360'
+    iframe.name = 'video-box'
     iframe.loading = 'lazy'
     iframe.referrerPolicy = 'no-referrer'
     iframe.allowFullscreen = true
@@ -41,10 +42,10 @@ onMounted(() => {
   const scene = new Scene()
 
   const group = new Group()
-  group.add(createElement(source, 0, 0, 240, 0))
-  group.add(createElement(source, 240, 0, 0, Math.PI / 2))
-  group.add(createElement(source, 0, 0, -240, Math.PI))
-  group.add(createElement(source, -240, 0, 0, -Math.PI / 2))
+  group.add(createElement(source[0], 0, 0, 240, 0))
+  group.add(createElement(source[1], 240, 0, 0, Math.PI / 2))
+  group.add(createElement(source[0], 0, 0, -240, Math.PI))
+  group.add(createElement(source[2], -240, 0, 0, -Math.PI / 2))
   scene.add(group)
 
   const renderer = new CSS3DRenderer({

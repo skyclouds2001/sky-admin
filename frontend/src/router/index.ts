@@ -502,22 +502,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/video-box'),
-              path: '/3d/video-box',
-              component: () => import('@/views/3D/VideoBox.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/mirror-text'),
-              path: '/3d/mirror-text',
-              component: () => import('@/views/3D/MirrorText.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/3d/raining-effect'),
               path: '/3d/raining-effect',
               component: () => import('@/views/3D/RainingEffect.vue'),
@@ -574,17 +558,33 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/selection-box'),
-              path: '/3d/selection-box',
-              component: () => import('@/views/3D/SelectionBox.vue'),
+              name: Symbol('/3d/sprite-ball'),
+              path: '/3d/sprite-ball',
+              component: () => import('@/views/3D/SpriteBall.vue'),
               meta: {
                 isView: true,
               },
             },
             {
-              name: Symbol('/3d/sprite-ball'),
-              path: '/3d/sprite-ball',
-              component: () => import('@/views/3D/SpriteBall.vue'),
+              name: Symbol('/3d/video-box'),
+              path: '/3d/video-box',
+              component: () => import('@/views/3D/VideoBox.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/mirror-text'),
+              path: '/3d/mirror-text',
+              component: () => import('@/views/3D/MirrorText.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/selection-box'),
+              path: '/3d/selection-box',
+              component: () => import('@/views/3D/SelectionBox.vue'),
               meta: {
                 isView: true,
               },

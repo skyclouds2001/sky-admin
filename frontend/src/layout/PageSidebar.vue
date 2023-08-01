@@ -297,14 +297,6 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/geometry') }}</span>
         </el-menu-item>
-        <el-menu-item index="/3d/video-box">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router./3d/video-box') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/mirror-text">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router./3d/mirror-text') }}</span>
-        </el-menu-item>
         <el-menu-item index="/3d/raining-effect">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/raining-effect') }}</span>
@@ -333,13 +325,21 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/periodic-table') }}</span>
         </el-menu-item>
-        <el-menu-item index="/3d/selection-box">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router./3d/selection-box') }}</span>
-        </el-menu-item>
         <el-menu-item index="/3d/sprite-ball">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/sprite-ball') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/video-box">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/video-box') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/mirror-text">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/mirror-text') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/selection-box">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/selection-box') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

@@ -29,9 +29,11 @@ onMounted(() => {
   container.value.appendChild(stats.dom)
 
   const scene = new Scene()
+  scene.name = 'Scene'
   scene.background = new Color(0x000000)
 
   const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  camera.name = 'PerspectiveCamera'
   camera.position.set(0, 0, 0.5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
@@ -87,8 +89,11 @@ onMounted(() => {
   )
 
   const geometry = new BoxGeometry(0.2, 0.2, 0.2)
+  geometry.name = 'BoxGeometry'
   const material = new MeshNormalMaterial()
+  material.name = 'MeshNormalMaterial'
   const mesh = new Mesh(geometry, material)
+  mesh.name = 'Mesh'
   scene.add(mesh)
 })
 </script>

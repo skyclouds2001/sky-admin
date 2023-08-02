@@ -10,7 +10,7 @@ import { rain } from '@/assets'
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  const render = (): void => {
+  const animate = (): void => {
     controls.update()
     stats.update()
     renderer.render(scene, camera)
@@ -28,6 +28,8 @@ onMounted(() => {
     })
     points.geometry.getAttribute('position').needsUpdate = true
   }
+
+  if (!WebGL.isWebGLAvailable()) return
 
   if (container.value === null) return
 
@@ -47,18 +49,17 @@ onMounted(() => {
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
-  const renderer = new WebGLRenderer()
+  const renderer = new WebGLRenderer({
+    antialias: true,
+  })
   renderer.setSize(width, height)
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setAnimationLoop(render)
+  renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
-  controls.enableZoom = true
-  controls.autoRotate = false
-  controls.enablePan = true
 
   const POINT_COUNT = 1000
 
@@ -86,29 +87,43 @@ onMounted(() => {
   const points = new Points(geometry, material)
   scene.add(points)
 
-  useEventListener(window, 'resize', () => {
-    if (container.value === null) return
+  useEventListener(
+    window,
+    'resize',
+    () => {
+      if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+      const { width, height } = container.value.getBoundingClientRect()
 
-    camera.aspect = width / height
-    camera.updateProjectionMatrix()
-    renderer.setSize(width, height)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
-  })
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      renderer.setSize(width, height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.render(scene, camera)
+    },
+    {
+      passive: true,
+    }
+  )
 
-  useEventListener(window, 'orientationchange', () => {
-    if (container.value === null) return
+  useEventListener(
+    window,
+    'orientationchange',
+    () => {
+      if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+      const { width, height } = container.value.getBoundingClientRect()
 
-    camera.aspect = width / height
-    camera.updateProjectionMatrix()
-    renderer.setSize(width, height)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.render(scene, camera)
-  })
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      renderer.setSize(width, height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.render(scene, camera)
+    },
+    {
+      passive: true,
+    }
+  )
 })
 </script>
 

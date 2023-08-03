@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { inject, ref, type Ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor, Box } from '@element-plus/icons-vue'
 import { MenuCollapseKey } from '@/constants'
 import { useTabsStore } from '@/store'
-
-const route = useRoute()
 
 const i18n = useI18n()
 
@@ -15,29 +12,14 @@ const tabsStore = useTabsStore()
 
 const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey) as Ref<boolean>
 
-/**
- * 切换 Sidebar 伸缩状态方法
- */
 const handleCollapse = (): void => {
   isMenuCollapse.value = !isMenuCollapse.value
 }
-
-/**
- * 默认选取菜单 index
- */
-const defaultActive = ref(route.path)
-
-watch(
-  () => tabsStore.currentTab,
-  (path) => {
-    defaultActive.value = path
-  }
-)
 </script>
 
 <template>
   <el-scrollbar wrap-class="wrap" view-class="view">
-    <el-menu router :default-active="defaultActive" :collapse="isMenuCollapse" :class="['page-sidebar', isMenuCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
+    <el-menu router :default-active="tabsStore.currentTab" :collapse="isMenuCollapse" :class="['page-sidebar', isMenuCollapse ? 'w-16' : 'w-[18rem]', 'min-h-screen', 'pb-10']">
       <!-- 首页 -->
       <el-menu-item index="/home">
         <el-icon><HomeFilled /></el-icon>

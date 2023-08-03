@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { ElCard, ElSpace } from 'element-plus'
 import { Cache, Color, DirectionalLight, Fog, Group, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, PointLight, Scene, Vector3, WebGLRenderer } from 'three'
 import { type Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { useEventListener } from '@sky-fly/shooks'
 import { optimer_regular } from '@/assets'
 
-const el = ref<HTMLDivElement | null>(null)
+const container = ref<HTMLDivElement | null>(null)
 
 Cache.enabled = true
 
 onMounted(() => {
-  if (el.value === null) return
-
   const render = (): void => {
     group.rotation.y += (target - group.rotation.y) * 0.05
 
     renderer.render(scene, camera)
   }
 
-  const camera = new PerspectiveCamera(30, 800 / 400, 1, 1500)
+  if (container.value === null) return
+
+  const { width, height } = container.value.getBoundingClientRect()
+
+  const camera = new PerspectiveCamera(30, width / height, 1, 1500)
   camera.position.set(0, 400, 700)
   camera.lookAt(new Vector3(0, 150, 0))
 
@@ -95,12 +96,12 @@ onMounted(() => {
 
   const renderer = new WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(800, 400)
+  renderer.setSize(width, height)
   renderer.setAnimationLoop(render)
   renderer.useLegacyLights = false
-  el.value.appendChild(renderer.domElement)
+  container.value.appendChild(renderer.domElement)
 
-  el.value.style.touchAction = 'none'
+  container.value.style.touchAction = 'none'
 
   useEventListener(window, 'keydown', (e) => {
     if (e.key === 'Backspace') {
@@ -118,39 +119,41 @@ onMounted(() => {
 
   let target = 0
 
-  useEventListener(el.value, 'pointerdown', (e: PointerEvent) => {
+  useEventListener(container.value, 'pointerdown', (e: PointerEvent) => {
     if (!e.isPrimary) return
 
-    const pos = e.clientX - 800 / 2
+    const pos = e.clientX - width / 2
     const rawTarget = target
 
-    el.value?.setPointerCapture(e.pointerId)
+    container.value?.setPointerCapture(e.pointerId)
 
     const move = (e: PointerEvent): void => {
       if (!e.isPrimary) return
 
-      target = rawTarget + (e.clientX - 800 / 2 - pos) * 0.02
+      target = rawTarget + (e.clientX - width / 2 - pos) * 0.02
     }
 
     const stop = (): void => {
-      el.value?.releasePointerCapture(e.pointerId)
+      container.value?.releasePointerCapture(e.pointerId)
 
-      el.value?.removeEventListener('pointermove', move)
-      el.value?.removeEventListener('pointerup', stop)
+      container.value?.removeEventListener('pointermove', move)
+      container.value?.removeEventListener('pointerup', stop)
     }
 
-    el.value?.addEventListener('pointermove', move, { passive: true })
-    el.value?.addEventListener('pointerup', stop, { passive: true })
+    container.value?.addEventListener('pointermove', move, { passive: true })
+    container.value?.addEventListener('pointerup', stop, { passive: true })
   })
 })
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
-    <el-card shadow="always">
-      <div ref="el" style="width: 800px; height: 400px"></div>
-    </el-card>
-  </el-space>
+  <div id="container" ref="container"></div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px - 40px - 60px);
+}
+</style>

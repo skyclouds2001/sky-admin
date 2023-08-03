@@ -582,6 +582,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/look-at'),
+              path: '/3d/look-at',
+              component: () => import('@/views/3D/LookAt.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/mirror-text'),
               path: '/3d/mirror-text',
               component: () => import('@/views/3D/MirrorText.vue'),

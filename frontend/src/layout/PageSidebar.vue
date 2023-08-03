@@ -338,6 +338,10 @@ watch(
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/video-box') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/look-at">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/look-at') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/mirror-text">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/mirror-text') }}</span>

@@ -367,6 +367,7 @@ export default {
     '/3d/periodic-table': 'Periodic Table',
     '/3d/sprite-ball': 'Sprite Ball',
     '/3d/video-box': 'Video Box',
+    '/3d/look-at': 'Look At',
     '/3d/mirror-text': 'Mirror Text',
     '/3d/selection-box': 'Selection Box',
     '/monitor': 'Monitor',

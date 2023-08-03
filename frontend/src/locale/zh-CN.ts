@@ -34,6 +34,7 @@ export default {
       memory: '内存大小',
       touchPoint: '最大支持触摸点数',
       isSecureContext: '安全上下文',
+      crossOriginIsolated: '跨域隔离状态',
       cookie: 'Cookie 状态',
       pdf: 'PDF 预览功能支持情况',
       ip: 'IP 地址',

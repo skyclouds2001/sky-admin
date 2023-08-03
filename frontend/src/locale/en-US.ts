@@ -34,6 +34,7 @@ export default {
       memory: 'Memory Size',
       touchPoint: 'Maximum Number of Touch Points',
       isSecureContext: 'Secure Context',
+      crossOriginIsolated: 'Cross Origin Isolated',
       cookie: 'Cookie Status',
       pdf: 'PDF Preview Feature Support',
       ip: 'IP Address',

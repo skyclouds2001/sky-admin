@@ -121,6 +121,12 @@ const timestamp = useTimestamp()
           </template>
           <el-tag>{{ systemInfo.isSecureContext ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
         </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <span class="font-bold">{{ i18n.t('home.system.crossOriginIsolated') }}</span>
+          </template>
+          <el-tag>{{ systemInfo.crossOriginIsolated ? i18n.t('home.yes') : i18n.t('home.no') }}</el-tag>
+        </el-descriptions-item>
 
         <el-descriptions-item>
           <template #label>

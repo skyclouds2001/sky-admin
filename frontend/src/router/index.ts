@@ -502,6 +502,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/helper'),
+              path: '/3d/helper',
+              component: () => import('@/views/3D/BaseHelper.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/raining-effect'),
               path: '/3d/raining-effect',
               component: () => import('@/views/3D/RainingEffect.vue'),

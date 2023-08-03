@@ -9,13 +9,12 @@ import { useEventListener } from '@sky-fly/shooks'
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  const animate = (time: number): void => {
+  const animate = (): void => {
     controls.update()
     stats.update()
     renderer.render(scene, camera)
 
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+    render()
   }
 
   if (container.value === null) return
@@ -98,6 +97,13 @@ onMounted(() => {
   const mesh = new Mesh(geometry, material)
   mesh.name = 'Mesh'
   scene.add(mesh)
+
+  const render = (): void => {
+    const time = Date.now()
+
+    mesh.rotation.x = time / 2000
+    mesh.rotation.y = time / 1000
+  }
 })
 </script>
 

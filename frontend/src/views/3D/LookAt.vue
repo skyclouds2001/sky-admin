@@ -3,10 +3,7 @@ import { onMounted, ref } from 'vue'
 import { Color, CylinderGeometry, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, SphereGeometry, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
-// import { useEventListener } from '@sky-fly/shooks'
-
-// todo - remove it
-import useEventListener from './useEventListener'
+import { useEventListener } from '@sky-fly/shooks'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -108,7 +105,8 @@ onMounted(() => {
     scene.add(mesh)
   }
 
-  let mx = 0, my = 0
+  let mx = 0
+  let my = 0
   const render = (): void => {
     const time = Date.now() * 0.0005
     sphere.position.x = Math.sin(time * 0.7) * 2000
@@ -144,15 +142,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* todo - remove */
-/* #container {
+#container {
   position: relative;
   width: 100%;
   height: calc(100vh - 60px - 40px - 60px);
-} */
-#container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
 }
 </style>

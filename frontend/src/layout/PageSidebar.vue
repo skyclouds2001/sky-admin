@@ -4,7 +4,8 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
 import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor, Box } from '@element-plus/icons-vue'
-import { MenuCollapseKey, useTabsStore } from '@/store'
+import { MenuCollapseKey } from '@/constants'
+import { useTabsStore } from '@/store'
 
 const route = useRoute()
 

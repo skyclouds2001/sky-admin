@@ -2,7 +2,7 @@
 import { ref, provide, type Ref } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
 import { SettingDrawer } from '@/components'
-import { MenuCollapseKey, SettingDrawerKey } from '@/store'
+import { MenuCollapseKey, SettingDrawerKey } from '@/constants'
 import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
 const isShowSettingDrawer = ref(false)

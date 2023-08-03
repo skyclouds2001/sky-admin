@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 import { ElDivider, ElDrawer, ElOption, ElSelect, ElSwitch } from 'element-plus'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { useWakeLock } from '@sky-fly/shooks'
+import { SettingDrawerKey } from '@/constants'
 import { Lang, Theme } from '@/enum'
 import { useColorWeakness, useGrayMode, useLang, useTheme } from '@/hook'
-import { SettingDrawerKey } from '@/store'
 
 const i18n = useI18n()
 

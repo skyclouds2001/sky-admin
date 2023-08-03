@@ -55,146 +55,200 @@ onMounted(() => {
   light.castShadow = true
   scene.add(light)
 
-  const plane = new Mesh(new PlaneGeometry(50, 50), new MeshPhongMaterial({
-    color: 0xeeeeee,
-  }))
+  const plane = new Mesh(
+    new PlaneGeometry(50, 50),
+    new MeshPhongMaterial({
+      color: 0xeeeeee,
+    })
+  )
   plane.position.set(0, -0.5, 0)
   plane.rotation.set(-Math.PI / 2, 0, 0)
   plane.castShadow = true
   plane.receiveShadow = true
   scene.add(plane)
 
-  const box = new Mesh(new BoxGeometry(), new MeshPhongMaterial({
-    color: 0x00ff00,
-  }))
+  const box = new Mesh(
+    new BoxGeometry(),
+    new MeshPhongMaterial({
+      color: 0x00ff00,
+    })
+  )
   box.position.set(0, 0, 2)
   box.castShadow = true
   box.receiveShadow = true
   scene.add(box)
 
-  const capsule = new Mesh(new CapsuleGeometry(), new MeshPhongMaterial({
-    color: 0x0000ff,
-  }))
+  const capsule = new Mesh(
+    new CapsuleGeometry(),
+    new MeshPhongMaterial({
+      color: 0x0000ff,
+    })
+  )
   capsule.position.set(2, 0, 2)
   capsule.castShadow = true
   capsule.receiveShadow = true
   scene.add(capsule)
 
-  const cone = new Mesh(new ConeGeometry(), new MeshPhongMaterial({
-    color: 0xff0000,
-  }))
+  const cone = new Mesh(
+    new ConeGeometry(),
+    new MeshPhongMaterial({
+      color: 0xff0000,
+    })
+  )
   cone.position.set(2, 0, 0)
   cone.castShadow = true
   cone.receiveShadow = true
   scene.add(cone)
 
-  const cylinder = new Mesh(new CylinderGeometry(), new MeshPhongMaterial({
-    color: 0xffff00,
-  }))
+  const cylinder = new Mesh(
+    new CylinderGeometry(),
+    new MeshPhongMaterial({
+      color: 0xffff00,
+    })
+  )
   cylinder.position.set(2, 0, -2)
   cylinder.castShadow = true
   cylinder.receiveShadow = true
   scene.add(cylinder)
 
-  const dodecahedron = new Mesh(new DodecahedronGeometry(), new MeshPhongMaterial({
-    color: 0xff00ff,
-  }))
+  const dodecahedron = new Mesh(
+    new DodecahedronGeometry(),
+    new MeshPhongMaterial({
+      color: 0xff00ff,
+    })
+  )
   dodecahedron.position.set(0, 0, -2)
   dodecahedron.castShadow = true
   dodecahedron.receiveShadow = true
   scene.add(dodecahedron)
 
-  const extrude = new Mesh(new ExtrudeGeometry(), new MeshPhongMaterial({
-    color: 0x00ffff,
-  }))
+  const extrude = new Mesh(
+    new ExtrudeGeometry(),
+    new MeshPhongMaterial({
+      color: 0x00ffff,
+    })
+  )
   extrude.position.set(-2, 0, -2)
   extrude.castShadow = true
   extrude.receiveShadow = true
   scene.add(extrude)
 
-  const icosahedron = new Mesh(new IcosahedronGeometry(), new MeshPhongMaterial({
-    color: 0x990000,
-  }))
+  const icosahedron = new Mesh(
+    new IcosahedronGeometry(),
+    new MeshPhongMaterial({
+      color: 0x990000,
+    })
+  )
   icosahedron.position.set(-2, 0, 0)
   icosahedron.castShadow = true
   icosahedron.receiveShadow = true
   scene.add(icosahedron)
 
-  const octahedron = new Mesh(new OctahedronGeometry(), new MeshPhongMaterial({
-    color: 0x009900,
-  }))
+  const octahedron = new Mesh(
+    new OctahedronGeometry(),
+    new MeshPhongMaterial({
+      color: 0x009900,
+    })
+  )
   octahedron.position.set(-2, 0, 2)
   octahedron.castShadow = true
   octahedron.receiveShadow = true
   scene.add(octahedron)
 
-  const sphere = new Mesh(new SphereGeometry(), new MeshPhongMaterial({
-    color: 0x000099,
-  }))
+  const sphere = new Mesh(
+    new SphereGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000099,
+    })
+  )
   sphere.position.set(4, 0, 4)
   sphere.castShadow = true
   sphere.receiveShadow = true
   scene.add(sphere)
 
-  const tetrahedron = new Mesh(new TetrahedronGeometry(), new MeshPhongMaterial({
-    color: 0x999900,
-  }))
+  const tetrahedron = new Mesh(
+    new TetrahedronGeometry(),
+    new MeshPhongMaterial({
+      color: 0x999900,
+    })
+  )
   tetrahedron.position.set(4, 0, -4)
   tetrahedron.castShadow = true
   tetrahedron.receiveShadow = true
   scene.add(tetrahedron)
 
-  const torus = new Mesh(new TorusGeometry(), new MeshPhongMaterial({
-    color: 0x990099,
-  }))
+  const torus = new Mesh(
+    new TorusGeometry(),
+    new MeshPhongMaterial({
+      color: 0x990099,
+    })
+  )
   torus.position.set(-4, 0, -4)
   torus.castShadow = true
   torus.receiveShadow = true
   scene.add(torus)
 
-  const torusKnot = new Mesh(new TorusKnotGeometry(), new MeshPhongMaterial({
-    color: 0x009999,
-  }))
+  const torusKnot = new Mesh(
+    new TorusKnotGeometry(),
+    new MeshPhongMaterial({
+      color: 0x009999,
+    })
+  )
   torusKnot.position.set(-4, 0, 4)
   torusKnot.castShadow = true
   torusKnot.receiveShadow = true
   scene.add(torusKnot)
 
-  const circle = new Mesh(new CircleGeometry(), new MeshPhongMaterial({
-    color: 0x000000,
-  }))
+  const circle = new Mesh(
+    new CircleGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000000,
+    })
+  )
   circle.position.set(0, 0, 4)
   circle.castShadow = true
   circle.receiveShadow = true
   scene.add(circle)
 
-  const lathe = new Mesh(new LatheGeometry(), new MeshPhongMaterial({
-    color: 0x000000,
-  }))
+  const lathe = new Mesh(
+    new LatheGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000000,
+    })
+  )
   lathe.position.set(4, 0, 0)
   lathe.castShadow = true
   lathe.receiveShadow = true
   scene.add(lathe)
 
-  const ring = new Mesh(new RingGeometry(), new MeshPhongMaterial({
-    color: 0x000000,
-  }))
+  const ring = new Mesh(
+    new RingGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000000,
+    })
+  )
   ring.position.set(-4, 0, 0)
   ring.castShadow = true
   ring.receiveShadow = true
   scene.add(ring)
 
-  const shape = new Mesh(new ShapeGeometry(), new MeshPhongMaterial({
-    color: 0x000000,
-  }))
+  const shape = new Mesh(
+    new ShapeGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000000,
+    })
+  )
   shape.position.set(0, 0, -4)
   shape.castShadow = true
   shape.receiveShadow = true
   scene.add(shape)
 
-  const tube = new Mesh(new TubeGeometry(), new MeshPhongMaterial({
-    color: 0x000000,
-  }))
+  const tube = new Mesh(
+    new TubeGeometry(),
+    new MeshPhongMaterial({
+      color: 0x000000,
+    })
+  )
   tube.position.set(0, 2, 0)
   tube.castShadow = true
   tube.receiveShadow = true

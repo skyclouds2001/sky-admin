@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { BoxGeometry, Color, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AxesHelper, BoxGeometry, Color, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -34,7 +34,7 @@ onMounted(() => {
 
   const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0, 0, 0.5)
+  camera.position.set(0.5, 0.5, 0.5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -46,6 +46,9 @@ onMounted(() => {
   renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
+
+  const helper = new AxesHelper(20)
+  scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true

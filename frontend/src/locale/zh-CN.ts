@@ -378,6 +378,7 @@ export default {
       'look-at': '物品朝向',
       'mirror-text': '镜像文字',
       'plaster-figure': '石膏人像',
+      'rect-area': '',
       'selection-box': '范围选择',
     },
     monitor: {

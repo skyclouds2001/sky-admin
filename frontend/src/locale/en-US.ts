@@ -378,6 +378,7 @@ export default {
       'look-at': 'Look At',
       'mirror-text': 'Mirror Text',
       'plaster-figure': 'Plaster Figure',
+      'rect-area': 'Rect Area',
       'selection-box': 'Selection Box',
     },
     monitor: {

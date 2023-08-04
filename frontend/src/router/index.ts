@@ -607,6 +607,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/rect-area'),
+              path: '/3d/rect-area',
+              component: () => import('@/views/3D/RectArea.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/selection-box'),
               path: '/3d/selection-box',
               component: () => import('@/views/3D/SelectionBox.vue'),

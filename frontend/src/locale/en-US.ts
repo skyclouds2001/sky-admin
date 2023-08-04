@@ -330,16 +330,10 @@ export default {
       candlestick: 'Candlestick Chart',
       radar: 'Radar Chart',
     },
-    '/route': 'Menu',
-    '/route/1': 'Menu-1',
-    '/route/2': 'Menu-2',
-    '/route/2/1': 'Menu-2-1',
-    '/route/2/2': 'Menu-2-2',
-    '/route/2/2/1': 'Menu-2-2-1',
-    '/route/2/2/2': 'Menu-2-2-2',
-    '/route/2/2/3': 'Menu-2-2-3',
-    '/route/2/3': 'Menu-2-3',
-    '/route/3': 'Menu-3',
+    route: (args: Record<'list', (index: number) => number[] | undefined>) => {
+      const data = args.list(0)
+      return 'Menu' + (data !== undefined ? '-' + Array.from(data).join('-') : '')
+    },
     docs: {
       title: 'Docs',
       'word-preview': 'Word Preview',

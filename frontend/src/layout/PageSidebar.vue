@@ -128,43 +128,43 @@ const handleCollapse = (): void => {
         </template>
         <el-menu-item index="/route/1">
           <el-icon><Menu /></el-icon>
-          <span>{{ i18n.t('router.route.1') }}</span>
+          <span>{{ i18n.t('router.route', [[1]]) }}</span>
         </el-menu-item>
         <el-sub-menu index="/route/2">
           <template #title>
             <el-icon><Menu /></el-icon>
-            <span>{{ i18n.t('router.route.2') }}</span>
+            <span>{{ i18n.t('router.route', [[2]]) }}</span>
           </template>
           <el-menu-item index="/route/2/1">
             <el-icon><Menu /></el-icon>
-            <span>{{ i18n.t('router.route.2.1') }}</span>
+            <span>{{ i18n.t('router.route', [[2, 1]]) }}</span>
           </el-menu-item>
           <el-sub-menu index="/route/2/2">
             <template #title>
               <el-icon><Menu /></el-icon>
-              <span>{{ i18n.t('router.route.2.2') }}</span>
+              <span>{{ i18n.t('router.route', [[2, 2]]) }}</span>
             </template>
             <el-menu-item index="/route/2/2/1">
               <el-icon><Menu /></el-icon>
-              <span>{{ i18n.t('router.route.2.2.1') }}</span>
+              <span>{{ i18n.t('router.route', [[2, 2, 1]]) }}</span>
             </el-menu-item>
             <el-menu-item index="/route/2/2/2">
               <el-icon><Menu /></el-icon>
-              <span>{{ i18n.t('router.route.2.2.2') }}</span>
+              <span>{{ i18n.t('router.route', [[2, 2, 2]]) }}</span>
             </el-menu-item>
             <el-menu-item index="/route/2/2/3">
               <el-icon><Menu /></el-icon>
-              <span>{{ i18n.t('router.route.2.2.3') }}</span>
+              <span>{{ i18n.t('router.route', [[2, 2, 3]]) }}</span>
             </el-menu-item>
           </el-sub-menu>
           <el-menu-item index="/route/2/3">
             <el-icon><Menu /></el-icon>
-            <span>{{ i18n.t('router.route.2.3') }}</span>
+            <span>{{ i18n.t('router.route', [[2, 3]]) }}</span>
           </el-menu-item>
         </el-sub-menu>
         <el-menu-item index="/route/3">
           <el-icon><Menu /></el-icon>
-          <span>{{ i18n.t('router.route.3') }}</span>
+          <span>{{ i18n.t('router.route', [[3]]) }}</span>
         </el-menu-item>
       </el-sub-menu>
 

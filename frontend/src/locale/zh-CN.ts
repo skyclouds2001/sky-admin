@@ -330,16 +330,10 @@ export default {
       candlestick: 'K 线图',
       radar: '雷达图',
     },
-    '/route': '菜单',
-    '/route/1': '菜单-1',
-    '/route/2': '菜单-2',
-    '/route/2/1': '菜单-2-1',
-    '/route/2/2': '菜单-2-2',
-    '/route/2/2/1': '菜单-2-2-1',
-    '/route/2/2/2': '菜单-2-2-2',
-    '/route/2/2/3': '菜单-2-2-3',
-    '/route/2/3': '菜单-2-3',
-    '/route/3': '菜单-3',
+    route: (args: Record<'list', (index: number) => number[] | undefined>) => {
+      const data = args.list(0)
+      return '菜单' + (data !== undefined ? '-' + data.join('-') : '')
+    },
     docs: {
       title: '文档',
       'word-preview': 'Word 预览',

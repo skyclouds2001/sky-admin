@@ -38,4 +38,6 @@ export { default as sprite } from './sprite.png'
 
 export { default as star } from './star.png'
 
+export { default as walt_head } from './WaltHead.obj?url'
+
 export { default as wave } from './wave.png'

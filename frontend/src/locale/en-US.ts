@@ -370,6 +370,7 @@ export default {
     '/3d/video-box': 'Video Box',
     '/3d/look-at': 'Look At',
     '/3d/mirror-text': 'Mirror Text',
+    '/3d/plaster-figure': 'Plaster Figure',
     '/3d/selection-box': 'Selection Box',
     '/monitor': 'Monitor',
     '/monitor/performance': 'Performance',

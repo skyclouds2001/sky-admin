@@ -370,6 +370,7 @@ export default {
     '/3d/video-box': '视频盒子',
     '/3d/look-at': '视线方向',
     '/3d/mirror-text': '镜像文字',
+    '/3d/plaster-figure': '石膏人像',
     '/3d/selection-box': '范围选择',
     '/monitor': '系统监控',
     '/monitor/performance': '系统性能',

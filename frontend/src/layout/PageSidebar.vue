@@ -328,6 +328,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/mirror-text') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/plaster-figure">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router./3d/plaster-figure') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/selection-box">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router./3d/selection-box') }}</span>

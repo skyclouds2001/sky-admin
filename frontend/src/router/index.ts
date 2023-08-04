@@ -598,6 +598,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/plaster-figure'),
+              path: '/3d/plaster-figure',
+              component: () => import('@/views/3D/PlasterFigure.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/selection-box'),
               path: '/3d/selection-box',
               component: () => import('@/views/3D/SelectionBox.vue'),

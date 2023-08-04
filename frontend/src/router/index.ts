@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStorage } from '@sky-fly/shooks'
+import { INDEX_ROUTE } from '@/config'
 import { LayoutContainer } from '@/layout'
 import { usePagesStore, useTabsStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
@@ -749,9 +750,9 @@ router.afterEach((to) => {
         isView: to.meta.isView,
       })
     }
-    if (state.tabs.findIndex((v) => v.path === '/home') === -1) {
+    if (state.tabs.findIndex((v) => v.path === INDEX_ROUTE) === -1) {
       state.tabs.unshift({
-        path: '/home',
+        path: INDEX_ROUTE,
         isView: true,
       })
     }
@@ -765,9 +766,9 @@ router.afterEach((to) => {
         path: v.path,
       }))
       .filter((v) => v.path !== '/')
-    if (to.path !== '/home') {
+    if (to.path !== INDEX_ROUTE) {
       state.pages.unshift({
-        path: '/home',
+        path: INDEX_ROUTE,
       })
     }
   })

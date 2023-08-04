@@ -3,6 +3,7 @@ import { onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElTabs, ElTabPane, ElScrollbar } from 'element-plus'
+import { INDEX_ROUTE } from '@/config'
 import { useTabsStore } from '@/store'
 
 const route = useRoute()
@@ -33,6 +34,11 @@ const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
   }
 }
 
+const normalizePath = (path: string): string => {
+  console.log(path)
+  return path
+}
+
 onBeforeMount(() => {
   store.currentTab = route.path
 })
@@ -40,7 +46,7 @@ onBeforeMount(() => {
 
 <template>
   <el-tabs v-model="store.currentTab" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
-    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== '/home'">
+    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== INDEX_ROUTE">
       <el-scrollbar v-if="item.path === store.currentTab" wrap-class="wrap" view-class="view flex justify-center items-center">
         <slot />
       </el-scrollbar>

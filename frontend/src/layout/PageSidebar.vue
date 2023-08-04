@@ -376,23 +376,39 @@ const handleCollapse = (): void => {
         </template>
         <el-menu-item :index="`/link/${encodeURIComponent('https://github.com/skyclouds2001')}/external`">
           <el-icon><Link /></el-icon>
-          <span>{{ i18n.t('router.link.github') }}</span>
+          <span>{{ i18n.t('router.link.github') }} ({{ i18n.t('router.link.external') }})</span>
         </el-menu-item>
         <el-menu-item :index="`/link/${encodeURIComponent('https://skyclouds2001.github.io')}/external`">
           <el-icon><Link /></el-icon>
-          <span>{{ i18n.t('router.link.blog') }}</span>
+          <span>{{ i18n.t('router.link.blog') }} ({{ i18n.t('router.link.external') }})</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://skyclouds2001.github.io')}/internal`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router.link.blog') }} ({{ i18n.t('router.link.internal') }})</span>
         </el-menu-item>
         <el-menu-item :index="`/link/${encodeURIComponent('https://juejin.cn/user/814058986548567')}/external`">
           <el-icon><Link /></el-icon>
-          <span>{{ i18n.t('router.link.juejin') }}</span>
+          <span>{{ i18n.t('router.link.juejin') }} ({{ i18n.t('router.link.external') }})</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://juejin.cn/user/814058986548567')}/internal`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router.link.juejin') }} ({{ i18n.t('router.link.internal') }})</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}/external`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router.link.vite') }} ({{ i18n.t('router.link.external') }})</span>
         </el-menu-item>
         <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vitejs.dev/')}/internal`">
           <el-icon><Link /></el-icon>
-          <span>{{ i18n.t('router.link.vite') }}</span>
+          <span>{{ i18n.t('router.link.vite') }} ({{ i18n.t('router.link.internal') }})</span>
+        </el-menu-item>
+        <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}/external`">
+          <el-icon><Link /></el-icon>
+          <span>{{ i18n.t('router.link.vue') }} ({{ i18n.t('router.link.external') }})</span>
         </el-menu-item>
         <el-menu-item :index="`/link/${encodeURIComponent('https://cn.vuejs.org/')}/internal`">
           <el-icon><Link /></el-icon>
-          <span>{{ i18n.t('router.link.vue') }}</span>
+          <span>{{ i18n.t('router.link.vue') }} ({{ i18n.t('router.link.internal') }})</span>
         </el-menu-item>
       </el-sub-menu>
 

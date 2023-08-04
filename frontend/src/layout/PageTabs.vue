@@ -37,7 +37,22 @@ const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
 
 <template>
   <el-tabs v-model="currentPath" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
-    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== INDEX_ROUTE">
+    <el-tab-pane
+      v-for="item in store.tabs"
+      :key="item.path"
+      class="tab"
+      :label="
+        i18n.t(
+          `router.${item.path
+            .split('/')
+            .filter((v) => v.length > 0)
+            .join('.')}`
+        )
+      "
+      :name="item.path"
+      lazy
+      :closable="item.path !== INDEX_ROUTE"
+    >
       <template v-if="item.path === currentPath">
         <el-scrollbar wrap-class="wrap" view-class="view flex justify-center items-center">
           <slot />

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Clock, Color, Group, Mesh, MeshBasicMaterial, PerspectiveCamera, PointLight, Scene, SphereGeometry, WebGLRenderer } from 'three'
+import { Clock, Color, type Group, Mesh, MeshBasicMaterial, PerspectiveCamera, PointLight, Scene, SphereGeometry, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { useEventListener } from '@sky-fly/shooks'
 import { walt_head } from '@/assets'
@@ -12,7 +11,6 @@ const container = ref<HTMLDivElement | null>(null)
 
 onMounted(async () => {
   const animate = (): void => {
-    controls.update()
     stats.update()
     renderer.render(scene, camera)
 
@@ -49,9 +47,6 @@ onMounted(async () => {
   renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
-
-  const controls = new OrbitControls(camera, renderer.domElement)
-  controls.enableDamping = true
 
   useEventListener(
     window,
@@ -91,7 +86,7 @@ onMounted(async () => {
     }
   )
 
-  let object: Group
+  let object: Group | null = null
 
   const clock = new Clock()
 
@@ -117,7 +112,7 @@ onMounted(async () => {
     const time = Date.now() * 0.0005
     const delta = clock.getDelta()
 
-    if (object) object.rotation.y -= 0.5 * delta
+    if (object !== null) object.rotation.y -= 0.5 * delta
 
     light1.position.x = Math.sin(time * 0.7) * 30
     light1.position.y = Math.cos(time * 0.5) * 40
@@ -136,7 +131,7 @@ onMounted(async () => {
     light4.position.z = Math.sin(time * 0.5) * 30
   }
 
-  object = await new OBJLoader().loadAsync(walt_head)
+  object = await new OBJLoader().loadAsync(new URL(walt_head, import.meta.url).href)
   object.scale.multiplyScalar(0.8)
   object.position.y = -30
   scene.add(object)

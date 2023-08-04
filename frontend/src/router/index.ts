@@ -764,7 +764,7 @@ router.afterEach((to) => {
     state.pages = to.matched
       .map((v) => ({
         path: v.path,
-        isView: to.meta.isView,
+        isView: v.meta.isView,
       }))
       .filter((v) => v.path !== '/')
     if (to.path !== INDEX_ROUTE) {

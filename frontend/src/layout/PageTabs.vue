@@ -34,11 +34,6 @@ const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
   }
 }
 
-const normalizePath = (path: string): string => {
-  console.log(path)
-  return path
-}
-
 onBeforeMount(() => {
   store.currentTab = route.path
 })
@@ -47,9 +42,11 @@ onBeforeMount(() => {
 <template>
   <el-tabs v-model="store.currentTab" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
     <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== INDEX_ROUTE">
-      <el-scrollbar v-if="item.path === store.currentTab" wrap-class="wrap" view-class="view flex justify-center items-center">
-        <slot />
-      </el-scrollbar>
+      <template v-if="item.path === store.currentTab">
+        <el-scrollbar wrap-class="wrap" view-class="view flex justify-center items-center">
+          <slot />
+        </el-scrollbar>
+      </template>
     </el-tab-pane>
   </el-tabs>
 </template>

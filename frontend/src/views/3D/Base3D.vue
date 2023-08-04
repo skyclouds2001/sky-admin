@@ -17,6 +17,8 @@ onMounted(() => {
     render()
   }
 
+  if (!WebGL.isWebGLAvailable()) return
+
   if (container.value === null) return
 
   const { width, height } = container.value.getBoundingClientRect()

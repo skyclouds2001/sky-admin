@@ -6,7 +6,6 @@ import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
 import GenerateEnv from 'vite-plugin-generate-env'
 import svgLoader from 'vite-svg-loader'
-// @ts-expect-error typescript can not recognize its definition file
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA as pwa } from 'vite-plugin-pwa'

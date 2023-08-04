@@ -764,11 +764,13 @@ router.afterEach((to) => {
     state.pages = to.matched
       .map((v) => ({
         path: v.path,
+        isView: to.meta.isView,
       }))
       .filter((v) => v.path !== '/')
     if (to.path !== INDEX_ROUTE) {
       state.pages.unshift({
         path: INDEX_ROUTE,
+        isView: true,
       })
     }
   })

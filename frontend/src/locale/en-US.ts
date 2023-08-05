@@ -379,6 +379,7 @@ export default {
       'mirror-text': 'Mirror Text',
       'plaster-figure': 'Plaster Figure',
       'rect-area': 'Rect Area',
+      'angel-statue': 'Angel Statue',
       'selection-box': 'Selection Box',
     },
     monitor: {

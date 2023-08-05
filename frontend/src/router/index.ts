@@ -615,6 +615,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/angel-statue'),
+              path: '/3d/angel-statue',
+              component: () => import('@/views/3D/AngelStatue.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/selection-box'),
               path: '/3d/selection-box',
               component: () => import('@/views/3D/SelectionBox.vue'),

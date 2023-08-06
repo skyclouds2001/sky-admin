@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Color, PerspectiveCamera, ReinhardToneMapping, Scene, WebGLRenderer } from 'three'
+import { BoxGeometry, HemisphereLight, Mesh, MeshStandardMaterial, PerspectiveCamera, PlaneGeometry, PointLight, ReinhardToneMapping, RepeatWrapping, SRGBColorSpace, Scene, SphereGeometry, TextureLoader, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
+import { hardwood_bump, hardwood_diffuse, hardwood_roughness } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -31,7 +32,6 @@ onMounted(() => {
 
   const scene = new Scene()
   scene.name = 'Scene'
-  scene.background = new Color(0x000000)
 
   const camera = new PerspectiveCamera(50, width / height, 0.1, 100)
   camera.name = 'PerspectiveCamera'
@@ -53,7 +53,9 @@ onMounted(() => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.minDistance = 1
+  controls.minPolarAngle = 0
   controls.maxDistance = 20
+  controls.maxPolarAngle = Math.PI / 2
 
   useEventListener(
     window,
@@ -93,8 +95,97 @@ onMounted(() => {
     }
   )
 
+  const textureLoader = new TextureLoader()
+
+  const bulbLight = new PointLight(0xffee88, 1, 100, 2)
+  const bulbGeometry = new SphereGeometry(0.02, 16, 8)
+  const bulbMaterial = new MeshStandardMaterial({
+    emissive: 0xffffee,
+    emissiveIntensity: 1,
+    color: 0x000000,
+  })
+  const bulbMesh = new Mesh(bulbGeometry, bulbMaterial)
+  bulbLight.add(bulbMesh)
+  bulbLight.position.set(0, 2, 0)
+  bulbLight.castShadow = true
+  scene.add(bulbLight)
+
+  const hemiLight = new HemisphereLight(0xddeeff, 0x0f0e0d, 0.02)
+  scene.add(hemiLight)
+
+  const floorGeometry = new PlaneGeometry(20, 20)
+  const floorMaterial = new MeshStandardMaterial({
+    roughness: 0.8,
+    color: 0xffffff,
+    metalness: 0.2,
+    bumpScale: 0.0005,
+  })
+  const floorMesh = new Mesh(floorGeometry, floorMaterial)
+  floorMesh.receiveShadow = true
+  floorMesh.rotation.x = -Math.PI / 2
+  scene.add(floorMesh)
+
+  const ballGeometry = new SphereGeometry(0.25, 32, 32)
+  const ballMaterial = new MeshStandardMaterial({
+    color: 0xffffff,
+    roughness: 0.5,
+    metalness: 1.0,
+  })
+  const ballMesh = new Mesh(ballGeometry, ballMaterial)
+  ballMesh.position.set(1, 0.25, 1)
+  ballMesh.rotation.y = Math.PI
+  ballMesh.castShadow = true
+  scene.add(ballMesh)
+
+  const boxGeometry = new BoxGeometry(0.5, 0.5, 0.5)
+  const boxMaterial = new MeshStandardMaterial({
+    roughness: 0.7,
+    color: 0xffffff,
+    bumpScale: 0.002,
+    metalness: 0.2,
+  })
+  const boxMesh = new Mesh(boxGeometry, boxMaterial)
+  boxMesh.position.set(-0.25, 0.25, -1)
+  boxMesh.castShadow = true
+  scene.add(boxMesh)
+
+  textureLoader.load(new URL(hardwood_bump, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(10, 24)
+    texture.colorSpace = SRGBColorSpace
+
+    floorMaterial.bumpMap = texture
+    floorMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(hardwood_diffuse, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(10, 24)
+    texture.colorSpace = SRGBColorSpace
+
+    floorMaterial.map = texture
+    floorMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(hardwood_roughness, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(10, 24)
+    texture.colorSpace = SRGBColorSpace
+
+    floorMaterial.roughnessMap = texture
+    floorMaterial.needsUpdate = true
+  })
+
   const render = (): void => {
-    //
+    const time = performance.now() * 0.0005
+
+    bulbLight.position.y = Math.cos(time) * 0.75 + 1.25
   }
 })
 </script>

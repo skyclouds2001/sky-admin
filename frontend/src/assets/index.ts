@@ -14,6 +14,12 @@ export { default as earth_spec } from './earth_spec.png'
 
 export { default as earth } from './earth.png'
 
+export { default as hardwood_bump } from './hardwood_bump.jpg'
+
+export { default as hardwood_diffuse } from './hardwood_diffuse.jpg'
+
+export { default as hardwood_roughness } from './hardwood_roughness.jpg'
+
 export { default as light_ray } from './light_ray.png'
 
 export { default as lucy100k } from './Lucy100k.ply?url'

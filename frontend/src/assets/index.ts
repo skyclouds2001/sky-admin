@@ -1,16 +1,26 @@
 export { default as avatar } from './avatar.jpg'
 
+export { default as brick_bump } from './brick_bump.jpg'
+
+export { default as brick_diffuse } from './brick_diffuse.jpg'
+
+export { default as brick_roughness } from './brick_roughness.jpg'
+
 export { default as building } from './building.glb?url'
 
 export { default as color } from './color.png'
 
 export { default as disturb } from './disturb.jpg'
 
+export { default as earth_atmos_2048 } from './earth_atmos_2048.jpg'
+
 export { default as earth_bump } from './earth_bump.png'
 
 export { default as earth_cloud } from './earth_cloud.png'
 
 export { default as earth_spec } from './earth_spec.png'
+
+export { default as earth_specular_2048 } from './earth_specular_2048.jpg'
 
 export { default as earth } from './earth.png'
 

@@ -5,7 +5,7 @@ import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
-import { hardwood_bump, hardwood_diffuse, hardwood_roughness } from '@/assets'
+import { brick_bump, brick_diffuse, brick_roughness, earth_atmos_2048, earth_specular_2048, hardwood_bump, hardwood_diffuse, hardwood_roughness } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -97,7 +97,7 @@ onMounted(() => {
 
   const textureLoader = new TextureLoader()
 
-  const bulbLight = new PointLight(0xffee88, 1, 100, 2)
+  const bulbLight = new PointLight(0xffee88, 0.5, 100, 2)
   const bulbGeometry = new SphereGeometry(0.02, 16, 8)
   const bulbMaterial = new MeshStandardMaterial({
     emissive: 0xffffee,
@@ -180,6 +180,55 @@ onMounted(() => {
 
     floorMaterial.roughnessMap = texture
     floorMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(brick_bump, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(1, 1)
+    texture.colorSpace = SRGBColorSpace
+
+    boxMaterial.bumpMap = texture
+    boxMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(brick_diffuse, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(1, 1)
+    texture.colorSpace = SRGBColorSpace
+
+    boxMaterial.map = texture
+    boxMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(brick_roughness, import.meta.url).href, (texture) => {
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.anisotropy = 4
+    texture.repeat.set(1, 1)
+    texture.colorSpace = SRGBColorSpace
+
+    boxMaterial.roughnessMap = texture
+    boxMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(earth_atmos_2048, import.meta.url).href, (texture) => {
+    texture.anisotropy = 4
+    texture.colorSpace = SRGBColorSpace
+
+    ballMaterial.map = texture
+    ballMaterial.needsUpdate = true
+  })
+
+  textureLoader.load(new URL(earth_specular_2048, import.meta.url).href, (texture) => {
+    texture.anisotropy = 4
+    texture.colorSpace = SRGBColorSpace
+
+    ballMaterial.metalnessMap = texture
+    ballMaterial.needsUpdate = true
   })
 
   const render = (): void => {

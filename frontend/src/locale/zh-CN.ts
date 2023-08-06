@@ -380,6 +380,7 @@ export default {
       'plaster-figure': '石膏人像',
       'rect-area': '矩形光区',
       'angel-statue': '天使雕像',
+      'physical-modal': '物理模型',
       'selection-box': '范围选择',
     },
     monitor: {

@@ -380,6 +380,7 @@ export default {
       'plaster-figure': 'Plaster Figure',
       'rect-area': 'Rect Area',
       'angel-statue': 'Angel Statue',
+      'physical-modal': 'Physical Modal',
       'selection-box': 'Selection Box',
     },
     monitor: {

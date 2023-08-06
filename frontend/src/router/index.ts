@@ -623,6 +623,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/physical-modal'),
+              path: '/3d/physical-modal',
+              component: () => import('@/views/3D/PhysicalModal.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/selection-box'),
               path: '/3d/selection-box',
               component: () => import('@/views/3D/SelectionBox.vue'),

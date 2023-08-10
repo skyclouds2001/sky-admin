@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AnimationClip, AnimationMixer, AxesHelper, BoxGeometry, Clock, Color, ColorKeyframeTrack, Mesh, MeshBasicMaterial, NumberKeyframeTrack, PerspectiveCamera, Quaternion, QuaternionKeyframeTrack, Scene, Vector3, VectorKeyframeTrack, WebGLRenderer } from 'three'
+import { AnimationClip, AnimationMixer, AnimationObjectGroup, AxesHelper, BoxGeometry, Clock, Color, ColorKeyframeTrack, Mesh, MeshBasicMaterial, NumberKeyframeTrack, PerspectiveCamera, Quaternion, QuaternionKeyframeTrack, Scene, Vector3, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -35,9 +35,9 @@ onMounted(() => {
 
   const camera = new PerspectiveCamera(40, width / height, 1, 1000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(25, 25, 50)
+  camera.position.set(50, 50, 100)
   camera.up.set(0, 1, 0)
-  camera.lookAt(0, 0, 0)
+  camera.lookAt(scene.position)
 
   const renderer = new WebGLRenderer({
     antialias: true,
@@ -48,7 +48,7 @@ onMounted(() => {
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new AxesHelper(10)
+  const helper = new AxesHelper(20)
   scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
@@ -74,19 +74,24 @@ onMounted(() => {
     passive: true,
   })
 
-  const clock = new Clock()
+  const animationGroup = new AnimationObjectGroup()
 
   const geometry = new BoxGeometry(5, 5, 5)
   const material = new MeshBasicMaterial({
-    color: 0xffffff,
     transparent: true,
   })
-  const mesh = new Mesh(geometry, material)
-  scene.add(mesh)
+  for (let i = 0; i < 5; ++i) {
+    for (let j = 0; j < 5; ++j) {
+      const mesh = new Mesh(geometry, material)
 
-  const positionKeyframe = new VectorKeyframeTrack('.position', [0, 1, 2], [0, 0, 0, 30, 0, 0, 0, 0, 0])
+      mesh.position.x = 32 - (16 * i)
+      mesh.position.y = 0
+      mesh.position.z = 32 - (16 * j)
 
-  const scaleKeyframe = new VectorKeyframeTrack('.scale', [0, 1, 2], [1, 1, 1, 2, 2, 2, 1, 1, 1])
+      scene.add(mesh)
+      animationGroup.add(mesh)
+    }
+  }
 
   const x = new Vector3(1, 0, 0)
   const initial = new Quaternion().setFromAxisAngle(x, 0)
@@ -97,15 +102,17 @@ onMounted(() => {
 
   const opacityKeyframe = new NumberKeyframeTrack('.material.opacity', [0, 1, 2], [1, 0, 1])
 
-  const clip = new AnimationClip('Action', 3, [positionKeyframe, scaleKeyframe, colorKeyframe, opacityKeyframe, quaternionKeyframe])
+  const clip = new AnimationClip('Action', 3, [quaternionKeyframe, colorKeyframe, opacityKeyframe])
 
-  const mixer = new AnimationMixer(mesh)
+  const mixer = new AnimationMixer(animationGroup)
 
-  const action = mixer.clipAction(clip)
-  action.play()
+  const clipAction = mixer.clipAction(clip)
+  clipAction.play()
+
+  const clock = new Clock()
 
   const render = (): void => {
-    const delta = clock.getDelta()
+    const delta =clock.getDelta()
     mixer.update(delta)
   }
 })

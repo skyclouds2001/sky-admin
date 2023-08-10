@@ -54,9 +54,9 @@ onMounted(() => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.enableZoom = false
-  controls.maxPolarAngle = 0.9 * Math.PI / 2
+  controls.maxPolarAngle = (0.9 * Math.PI) / 2
 
-  const onResize = () => {
+  const onResize = (): void => {
     if (container.value === null) return
 
     const { width, height } = container.value.getBoundingClientRect()
@@ -85,6 +85,7 @@ onMounted(() => {
   const offset = 400
   const exponent = 0.6
 
+  // @ts-expect-error as a fact it can be use
   const h = positionLocal.add(offset).normalize().y
 
   const skyGeometry = new SphereGeometry(4000, 32, 15)

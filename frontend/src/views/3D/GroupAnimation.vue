@@ -54,7 +54,7 @@ onMounted(() => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
 
-  const onResize = () => {
+  const onResize = (): void => {
     if (container.value === null) return
 
     const { width, height } = container.value.getBoundingClientRect()
@@ -84,9 +84,9 @@ onMounted(() => {
     for (let j = 0; j < 5; ++j) {
       const mesh = new Mesh(geometry, material)
 
-      mesh.position.x = 32 - (16 * i)
+      mesh.position.x = 32 - 16 * i
       mesh.position.y = 0
-      mesh.position.z = 32 - (16 * j)
+      mesh.position.z = 32 - 16 * j
 
       scene.add(mesh)
       animationGroup.add(mesh)
@@ -112,7 +112,7 @@ onMounted(() => {
   const clock = new Clock()
 
   const render = (): void => {
-    const delta =clock.getDelta()
+    const delta = clock.getDelta()
     mixer.update(delta)
   }
 })

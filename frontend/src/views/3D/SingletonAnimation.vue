@@ -54,7 +54,7 @@ onMounted(() => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
 
-  const onResize = () => {
+  const onResize = (): void => {
     if (container.value === null) return
 
     const { width, height } = container.value.getBoundingClientRect()

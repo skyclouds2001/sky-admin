@@ -54,43 +54,25 @@ onMounted(() => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
 
-  useEventListener(
-    window,
-    'resize',
-    () => {
-      if (container.value === null) return
+  const onResize = (): void => {
+    if (container.value === null) return
 
-      const { width, height } = container.value.getBoundingClientRect()
+    const { width, height } = container.value.getBoundingClientRect()
 
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height)
-      renderer.setPixelRatio(window.devicePixelRatio)
-      renderer.render(scene, camera)
-    },
-    {
-      passive: true,
-    }
-  )
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+    renderer.setSize(width, height)
+    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.render(scene, camera)
+  }
 
-  useEventListener(
-    window,
-    'orientationchange',
-    () => {
-      if (container.value === null) return
+  useEventListener(window, 'resize', onResize, {
+    passive: true,
+  })
 
-      const { width, height } = container.value.getBoundingClientRect()
-
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height)
-      renderer.setPixelRatio(window.devicePixelRatio)
-      renderer.render(scene, camera)
-    },
-    {
-      passive: true,
-    }
-  )
+  useEventListener(window, 'orientationchange', onResize, {
+    passive: true,
+  })
 
   const geometry = new BoxGeometry(0.2, 0.2, 0.2)
   geometry.name = 'BoxGeometry'

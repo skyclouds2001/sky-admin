@@ -32,6 +32,8 @@ export { default as hardwood_roughness } from './hardwood_roughness.jpg'
 
 export { default as light_ray } from './light_ray.png'
 
+export { default as lightmap } from './lightmap.json?url'
+
 export { default as lucy100k } from './Lucy100k.ply?url'
 
 export { default as nx } from './nx.jpg'

@@ -583,17 +583,17 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/look-at'),
-              path: '/3d/look-at',
-              component: () => import('@/views/3D/LookAt.vue'),
+              name: Symbol('/3d/mirror-text'),
+              path: '/3d/mirror-text',
+              component: () => import('@/views/3D/MirrorText.vue'),
               meta: {
                 isView: true,
               },
             },
             {
-              name: Symbol('/3d/mirror-text'),
-              path: '/3d/mirror-text',
-              component: () => import('@/views/3D/MirrorText.vue'),
+              name: Symbol('/3d/light-map'),
+              path: '/3d/light-map',
+              component: () => import('@/views/3D/LightMap.vue'),
               meta: {
                 isView: true,
               },
@@ -626,6 +626,30 @@ const router = createRouter({
               name: Symbol('/3d/physical-modal'),
               path: '/3d/physical-modal',
               component: () => import('@/views/3D/PhysicalModal.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/singleton-animation'),
+              path: '/3d/singleton-animation',
+              component: () => import('@/views/3D/SingletonAnimation.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/group-animation'),
+              path: '/3d/group-animation',
+              component: () => import('@/views/3D/GroupAnimation.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/look-at'),
+              path: '/3d/look-at',
+              component: () => import('@/views/3D/LookAt.vue'),
               meta: {
                 isView: true,
               },

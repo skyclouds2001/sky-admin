@@ -322,13 +322,13 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.video-box') }}</span>
         </el-menu-item>
-        <el-menu-item index="/3d/look-at">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.look-at') }}</span>
-        </el-menu-item>
         <el-menu-item index="/3d/mirror-text">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.mirror-text') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/light-map">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.light-map') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/plaster-figure">
           <el-icon><Box /></el-icon>
@@ -345,6 +345,18 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/physical-modal">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.physical-modal') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/singleton-animation">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.singleton-animation') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/group-animation">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.group-animation') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/look-at">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.look-at') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/selection-box">
           <el-icon><Box /></el-icon>

@@ -365,6 +365,7 @@ export default {
       title: '3D',
       basis: 'Basic 3D',
       geometry: 'Basic Geometry',
+      camera: 'Basic Camera',
       helper: 'Basic Helper',
       'raining-effect': 'Raining Effect',
       'great-raining-effect': 'Raining Effect Plus',

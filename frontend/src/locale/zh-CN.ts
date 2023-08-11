@@ -365,6 +365,7 @@ export default {
       title: '3D',
       basis: '基础3D',
       geometry: '基础图元',
+      camera: '基础摄像机',
       helper: '基础帮手',
       'raining-effect': '下雨效果',
       'great-raining-effect': '增强下雨效果',

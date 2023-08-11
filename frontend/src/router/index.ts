@@ -503,6 +503,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/camera'),
+              path: '/3d/camera',
+              component: () => import('@/views/3D/BaseCamera.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/helper'),
               path: '/3d/helper',
               component: () => import('@/views/3D/BaseHelper.vue'),

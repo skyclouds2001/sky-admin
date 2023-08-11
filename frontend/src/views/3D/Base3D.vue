@@ -21,7 +21,7 @@ onMounted(() => {
 
   if (container.value === null) return
 
-  const { width, height } = container.value.getBoundingClientRect()
+  let { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
   stats.dom.style.position = 'absolute'
@@ -42,9 +42,9 @@ onMounted(() => {
   const renderer = new WebGLRenderer({
     antialias: true,
   })
-  renderer.setSize(width, height)
-  renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setAnimationLoop(animate)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(width, height)
 
   container.value.appendChild(renderer.domElement)
 
@@ -57,12 +57,14 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    const { width, height } = container.value.getBoundingClientRect()
+    const rect = container.value.getBoundingClientRect()
+    width = rect.width
+    height = rect.height
 
     camera.aspect = width / height
     camera.updateProjectionMatrix()
-    renderer.setSize(width, height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize(width, height)
     renderer.render(scene, camera)
   }
 

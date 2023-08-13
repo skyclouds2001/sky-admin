@@ -73,8 +73,8 @@ onMounted(() => {
     perspectiveCamera.aspect = 0.5 * aspect
     perspectiveCamera.updateProjectionMatrix()
 
-    orthographicCamera.left = 0.5 * size * aspect / -2
-    orthographicCamera.right = 0.5 * size * aspect / 2
+    orthographicCamera.left = (0.5 * size * aspect) / -2
+    orthographicCamera.right = (0.5 * size * aspect) / 2
     orthographicCamera.top = size / 2
     orthographicCamera.bottom = size / -2
     orthographicCamera.updateProjectionMatrix()
@@ -95,7 +95,7 @@ onMounted(() => {
   const perspectiveCameraHelper = new CameraHelper(perspectiveCamera)
   scene.add(perspectiveCameraHelper)
 
-  const orthographicCamera = new OrthographicCamera(0.5 * size * aspect / -2, 0.5 * size * aspect / 2, size / 2, size / -2, 150, 1000)
+  const orthographicCamera = new OrthographicCamera((0.5 * size * aspect) / -2, (0.5 * size * aspect) / 2, size / 2, size / -2, 150, 1000)
   orthographicCamera.rotation.set(0, Math.PI, 0)
   const orthographicCameraHelper = new CameraHelper(orthographicCamera)
   scene.add(orthographicCameraHelper)
@@ -108,32 +108,46 @@ onMounted(() => {
   group.add(orthographicCamera)
   scene.add(group)
 
-  const mesh1 = new Mesh(new SphereGeometry(50, 16, 8), new MeshBasicMaterial({
-    color: 0xffffff,
-    wireframe: true,
-  }))
+  const mesh1 = new Mesh(
+    new SphereGeometry(50, 16, 8),
+    new MeshBasicMaterial({
+      color: 0xffffff,
+      wireframe: true,
+    })
+  )
   scene.add(mesh1)
 
-  const mesh2 = new Mesh(new SphereGeometry(50, 16, 8), new MeshBasicMaterial({
-    color: 0x00ff00,
-    wireframe: true,
-  }))
+  const mesh2 = new Mesh(
+    new SphereGeometry(50, 16, 8),
+    new MeshBasicMaterial({
+      color: 0x00ff00,
+      wireframe: true,
+    })
+  )
   mesh2.position.set(0, 150, 0)
   mesh1.add(mesh2)
 
-  const mesh3 = new Mesh(new SphereGeometry(5, 16, 8), new MeshBasicMaterial({
-    color: 0x0000ff,
-    wireframe: true,
-  }))
+  const mesh3 = new Mesh(
+    new SphereGeometry(5, 16, 8),
+    new MeshBasicMaterial({
+      color: 0x0000ff,
+      wireframe: true,
+    })
+  )
   mesh3.position.set(0, 150, 0)
   group.add(mesh3)
 
   const geometry = new BufferGeometry()
-  const vertices = Array(10000 * 3).fill(0).map(() => MathUtils.randFloatSpread(2000))
+  const vertices = Array(10000 * 3)
+    .fill(0)
+    .map(() => MathUtils.randFloatSpread(2000))
   geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3))
-  const particles = new Points(geometry, new PointsMaterial({
-    color: 0x888888,
-  }))
+  const particles = new Points(
+    geometry,
+    new PointsMaterial({
+      color: 0x888888,
+    })
+  )
   scene.add(particles)
 
   const render = (): void => {
@@ -180,7 +194,7 @@ onMounted(() => {
     window,
     'keydown',
     (e) => {
-      switch(e.keyCode) {
+      switch (e.keyCode) {
         case 79:
           activeCamera = orthographicCamera
           activeCameraHelper = orthographicCameraHelper
@@ -193,7 +207,7 @@ onMounted(() => {
     },
     {
       passive: true,
-    },
+    }
   )
 })
 </script>

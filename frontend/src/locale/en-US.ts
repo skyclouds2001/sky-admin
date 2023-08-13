@@ -382,6 +382,7 @@ export default {
       'rect-area': 'Rect Area',
       'angel-statue': 'Angel Statue',
       'physical-modal': 'Physical Modal',
+      'logarithmic-depth-buffer': 'Logarithmic Depth Buffer',
       'singleton-animation': 'Light Map',
       'group-animation': 'Light Map',
       'look-at': 'Look At',

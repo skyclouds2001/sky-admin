@@ -639,6 +639,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/logarithmic-depth-buffer'),
+              path: '/3d/logarithmic-depth-buffer',
+              component: () => import('@/views/3D/LogarithmicDepthBuffer.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/singleton-animation'),
               path: '/3d/singleton-animation',
               component: () => import('@/views/3D/SingletonAnimation.vue'),

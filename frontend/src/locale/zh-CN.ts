@@ -382,6 +382,7 @@ export default {
       'rect-area': '矩形光区',
       'angel-statue': '天使雕像',
       'physical-modal': '物理模型',
+      'logarithmic-depth-buffer': '对数缓冲区',
       'singleton-animation': '单例动画',
       'group-animation': '多例动画',
       'look-at': '物品朝向',

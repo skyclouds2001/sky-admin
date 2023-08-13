@@ -350,6 +350,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.physical-modal') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/logarithmic-depth-buffer">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.logarithmic-depth-buffer') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/singleton-animation">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.singleton-animation') }}</span>

@@ -9,6 +9,10 @@ import { useEventListener } from '@sky-fly/shooks'
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
+  if (container.value === null) return
+
+  if (!WebGL.isWebGLAvailable()) return container.value.appendChild(WebGL.getWebGLErrorMessage())
+
   const animate = (): void => {
     controls.update()
     stats.update()
@@ -16,10 +20,6 @@ onMounted(() => {
 
     render()
   }
-
-  if (!WebGL.isWebGLAvailable()) return
-
-  if (container.value === null) return
 
   let { width, height } = container.value.getBoundingClientRect()
 
@@ -94,8 +94,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="WebGL.isWebGLAvailable()" id="container" ref="container"></div>
-  <div v-else>WebGL is not supported by current version of browser, please update to the newest version of browser.</div>
+  <div id="container" ref="container"></div>
 </template>
 
 <style scoped lang="scss">

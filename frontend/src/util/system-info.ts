@@ -37,6 +37,8 @@ export const generateSystemInfo = (): {
   touchPoints: number
   /** 是否安全上下文 */
   isSecureContext: boolean
+  /** 是否跨域隔离状态 */
+  crossOriginIsolated: boolean
 } => {
   const userAgent = navigator.userAgent.toLowerCase()
 
@@ -285,6 +287,9 @@ export const generateSystemInfo = (): {
   // 是否安全上下文
   const isSecureContext = window.isSecureContext
 
+  // 是否跨域隔离状态
+  const crossOriginIsolated = window.crossOriginIsolated
+
   return {
     system,
     systemVs,
@@ -301,5 +306,6 @@ export const generateSystemInfo = (): {
     processors,
     touchPoints,
     isSecureContext,
+    crossOriginIsolated,
   }
 }

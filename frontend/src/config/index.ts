@@ -38,6 +38,9 @@ export const PROJECT_CONTRIBUTORS = packageConfig.contributors
 /** 项目构建时间 */
 export const BUILD_TIME = __BUILD_TIME__
 
+/** 项目主页路径 */
+export const INDEX_ROUTE = '/home'
+
 /** 服务器 HOST */
 export const SERVER_HOST = 'https://localhost:5173'
 

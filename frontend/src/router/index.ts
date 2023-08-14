@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStorage } from '@sky-fly/shooks'
+import { INDEX_ROUTE } from '@/config'
 import { LayoutContainer } from '@/layout'
 import { usePagesStore, useTabsStore } from '@/store'
 import { openNewPageInNewTab } from '@/util'
@@ -502,6 +503,22 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/camera'),
+              path: '/3d/camera',
+              component: () => import('@/views/3D/BaseCamera.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/helper'),
+              path: '/3d/helper',
+              component: () => import('@/views/3D/BaseHelper.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/raining-effect'),
               path: '/3d/raining-effect',
               component: () => import('@/views/3D/RainingEffect.vue'),
@@ -577,6 +594,78 @@ const router = createRouter({
               name: Symbol('/3d/mirror-text'),
               path: '/3d/mirror-text',
               component: () => import('@/views/3D/MirrorText.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/light-map'),
+              path: '/3d/light-map',
+              component: () => import('@/views/3D/LightMap.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/plaster-figure'),
+              path: '/3d/plaster-figure',
+              component: () => import('@/views/3D/PlasterFigure.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/rect-area'),
+              path: '/3d/rect-area',
+              component: () => import('@/views/3D/RectArea.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/angel-statue'),
+              path: '/3d/angel-statue',
+              component: () => import('@/views/3D/AngelStatue.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/physical-modal'),
+              path: '/3d/physical-modal',
+              component: () => import('@/views/3D/PhysicalModal.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/logarithmic-depth-buffer'),
+              path: '/3d/logarithmic-depth-buffer',
+              component: () => import('@/views/3D/LogarithmicDepthBuffer.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/singleton-animation'),
+              path: '/3d/singleton-animation',
+              component: () => import('@/views/3D/SingletonAnimation.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/group-animation'),
+              path: '/3d/group-animation',
+              component: () => import('@/views/3D/GroupAnimation.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/look-at'),
+              path: '/3d/look-at',
+              component: () => import('@/views/3D/LookAt.vue'),
               meta: {
                 isView: true,
               },
@@ -725,9 +814,9 @@ router.afterEach((to) => {
         isView: to.meta.isView,
       })
     }
-    if (state.tabs.findIndex((v) => v.path === '/home') === -1) {
+    if (state.tabs.findIndex((v) => v.path === INDEX_ROUTE) === -1) {
       state.tabs.unshift({
-        path: '/home',
+        path: INDEX_ROUTE,
         isView: true,
       })
     }
@@ -739,11 +828,13 @@ router.afterEach((to) => {
     state.pages = to.matched
       .map((v) => ({
         path: v.path,
+        isView: v.meta.isView,
       }))
       .filter((v) => v.path !== '/')
-    if (to.path !== '/home') {
+    if (to.path !== INDEX_ROUTE) {
       state.pages.unshift({
-        path: '/home',
+        path: INDEX_ROUTE,
+        isView: true,
       })
     }
   })

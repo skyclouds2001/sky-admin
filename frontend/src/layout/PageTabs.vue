@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElTabs, ElTabPane, ElScrollbar } from 'element-plus'
+import { INDEX_ROUTE } from '@/config'
 import { useTabsStore } from '@/store'
-
-const route = useRoute()
 
 const router = useRouter()
 
 const i18n = useI18n()
 
 const store = useTabsStore()
+
+const currentPath = computed(() => store.currentTab)
 
 /**
  * 切换 Tab 方法
@@ -29,21 +30,34 @@ const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
   const index = store.tabs.findIndex((v) => v.path === path)
   store.tabs.splice(index, 1)
   if (store.currentTab === path) {
-    store.currentTab = store.tabs.at(index < store.tabs.length ? index : -1)?.path ?? 'Unknown'
+    store.currentTab = store.tabs.at(index < store.tabs.length ? index : -1)?.path as string
   }
 }
-
-onBeforeMount(() => {
-  store.currentTab = route.path
-})
 </script>
 
 <template>
-  <el-tabs v-model="store.currentTab" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
-    <el-tab-pane v-for="item in store.tabs" :key="item.path" class="tab" :label="i18n.t(`router.${item.path}`)" :name="item.path" lazy :closable="item.path !== '/home'">
-      <el-scrollbar v-if="item.path === store.currentTab" wrap-class="wrap" view-class="view flex justify-center items-center">
-        <slot />
-      </el-scrollbar>
+  <el-tabs v-model="currentPath" class="tabs" type="border-card" @tab-change="switchTab" @tab-remove="removeTab">
+    <el-tab-pane
+      v-for="item in store.tabs"
+      :key="item.path"
+      class="tab"
+      :label="
+        i18n.t(
+          `router.${item.path
+            .split('/')
+            .filter((v) => v.length > 0)
+            .join('.')}`
+        )
+      "
+      :name="item.path"
+      lazy
+      :closable="item.path !== INDEX_ROUTE"
+    >
+      <template v-if="item.path === currentPath">
+        <el-scrollbar wrap-class="wrap" view-class="view flex justify-center items-center">
+          <slot />
+        </el-scrollbar>
+      </template>
     </el-tab-pane>
   </el-tabs>
 </template>

@@ -6,7 +6,8 @@ import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem,
 import { FullScreen, Lock, Printer, Setting, Share, Unlock } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/shooks'
 import { PROJECT_AUTHOR_AVATAR, PROJECT_AUTHOR_NAME } from '@/config'
-import { SettingDrawerKey, usePagesStore } from '@/store'
+import { SettingDrawerKey } from '@/constants'
+import { usePagesStore } from '@/store'
 
 const appContext = getCurrentInstance()?.appContext
 
@@ -97,7 +98,15 @@ const exitLogin = (): void => {
 <template>
   <div class="page-header">
     <el-breadcrumb class="breadcrumb">
-      <el-breadcrumb-item v-for="item in store.pages" :key="item.path" :to="item.path">{{ i18n.t(`router.${item.path}`) }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in store.pages" :key="item.path" :to="item.path">{{
+        i18n.t(
+          `router.${item.path
+            .split('/')
+            .filter((v) => v.length > 0)
+            .concat(...(item.isView ? [] : ['title']))
+            .join('.')}`
+        )
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <div class="control-bar">

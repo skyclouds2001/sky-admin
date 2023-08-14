@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AnimationClip, AnimationMixer, AxesHelper, BoxGeometry, Clock, Color, ColorKeyframeTrack, Mesh, MeshBasicMaterial, NumberKeyframeTrack, PerspectiveCamera, Quaternion, QuaternionKeyframeTrack, Scene, Vector3, VectorKeyframeTrack, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -21,7 +21,7 @@ onMounted(() => {
 
   if (container.value === null) return
 
-  let { width, height } = container.value.getBoundingClientRect()
+  const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
   stats.dom.style.position = 'absolute'
@@ -33,22 +33,22 @@ onMounted(() => {
   scene.name = 'Scene'
   scene.background = new Color(0x000000)
 
-  const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new PerspectiveCamera(40, width / height, 1, 1000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0.5, 0.5, 0.5)
+  camera.position.set(25, 25, 50)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
   const renderer = new WebGLRenderer({
     antialias: true,
   })
-  renderer.setAnimationLoop(animate)
-  renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(width, height)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new AxesHelper(20)
+  const helper = new AxesHelper(10)
   scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
@@ -57,14 +57,12 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    const rect = container.value.getBoundingClientRect()
-    width = rect.width
-    height = rect.height
+    const { width, height } = container.value.getBoundingClientRect()
 
     camera.aspect = width / height
     camera.updateProjectionMatrix()
-    renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(width, height)
+    renderer.setPixelRatio(window.devicePixelRatio)
     renderer.render(scene, camera)
   }
 
@@ -76,19 +74,39 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
+  const clock = new Clock()
+
+  const geometry = new BoxGeometry(5, 5, 5)
+  const material = new MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+  })
   const mesh = new Mesh(geometry, material)
-  mesh.name = 'Mesh'
   scene.add(mesh)
 
-  const render = (): void => {
-    const time = Date.now()
+  const positionKeyframe = new VectorKeyframeTrack('.position', [0, 1, 2], [0, 0, 0, 30, 0, 0, 0, 0, 0])
 
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+  const scaleKeyframe = new VectorKeyframeTrack('.scale', [0, 1, 2], [1, 1, 1, 2, 2, 2, 1, 1, 1])
+
+  const x = new Vector3(1, 0, 0)
+  const initial = new Quaternion().setFromAxisAngle(x, 0)
+  const final = new Quaternion().setFromAxisAngle(x, Math.PI)
+  const quaternionKeyframe = new QuaternionKeyframeTrack('.quaternion', [0, 1, 2], [initial.x, initial.y, initial.z, initial.w, final.x, final.y, final.z, final.w, initial.x, initial.y, initial.z, initial.w])
+
+  const colorKeyframe = new ColorKeyframeTrack('.material.color', [0, 1, 2], [1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+  const opacityKeyframe = new NumberKeyframeTrack('.material.opacity', [0, 1, 2], [1, 0, 1])
+
+  const clip = new AnimationClip('Action', 3, [positionKeyframe, scaleKeyframe, colorKeyframe, opacityKeyframe, quaternionKeyframe])
+
+  const mixer = new AnimationMixer(mesh)
+
+  const action = mixer.clipAction(clip)
+  action.play()
+
+  const render = (): void => {
+    const delta = clock.getDelta()
+    mixer.update(delta)
   }
 })
 </script>
@@ -98,7 +116,7 @@ onMounted(() => {
   <div v-else>WebGL is not supported by current version of browser, please update to the newest version of browser.</div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 #container {
   position: relative;
   width: 100%;

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { BackSide, Color, DirectionalLight, Mesh, ObjectLoader, PerspectiveCamera, Scene, SphereGeometry, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { MeshBasicNodeMaterial, vec4, color, positionLocal, mix } from 'three/examples/jsm/nodes/Nodes'
+import { nodeFrame } from 'three/examples/jsm/renderers/webgl/nodes/WebGLNodes'
 import { useEventListener } from '@sky-fly/shooks'
+import { lightmap } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -21,7 +24,7 @@ onMounted(() => {
 
   if (container.value === null) return
 
-  let { width, height } = container.value.getBoundingClientRect()
+  const { width, height } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
   stats.dom.style.position = 'absolute'
@@ -33,38 +36,35 @@ onMounted(() => {
   scene.name = 'Scene'
   scene.background = new Color(0x000000)
 
-  const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new PerspectiveCamera(40, width / height, 1, 10000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0.5, 0.5, 0.5)
+  camera.position.set(700, 200, -500)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
   const renderer = new WebGLRenderer({
     antialias: true,
   })
-  renderer.setAnimationLoop(animate)
-  renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(width, height)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setAnimationLoop(animate)
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new AxesHelper(20)
-  scene.add(helper)
-
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
+  controls.enableZoom = false
+  controls.maxPolarAngle = (0.9 * Math.PI) / 2
 
   const onResize = (): void => {
     if (container.value === null) return
 
-    const rect = container.value.getBoundingClientRect()
-    width = rect.width
-    height = rect.height
+    const { width, height } = container.value.getBoundingClientRect()
 
     camera.aspect = width / height
     camera.updateProjectionMatrix()
-    renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(width, height)
+    renderer.setPixelRatio(window.devicePixelRatio)
     renderer.render(scene, camera)
   }
 
@@ -76,19 +76,33 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
-  const mesh = new Mesh(geometry, material)
-  mesh.name = 'Mesh'
-  scene.add(mesh)
+  const light = new DirectionalLight(0xd5deff)
+  light.position.set(300, 250, -500)
+  scene.add(light)
+
+  const topColor = new Color().copy(light.color)
+  const bottomColor = new Color(0xffffff)
+  const offset = 400
+  const exponent = 0.6
+
+  // @ts-expect-error as a fact it can be use
+  const h = positionLocal.add(offset).normalize().y
+
+  const skyGeometry = new SphereGeometry(4000, 32, 15)
+  const skyMaterial = new MeshBasicNodeMaterial({
+    side: BackSide,
+  })
+  skyMaterial.colorNode = vec4(mix(color(bottomColor), color(topColor), h.max(0.0).pow(exponent)), 1.0)
+  const sky = new Mesh(skyGeometry, skyMaterial)
+  scene.add(sky)
+
+  const loader = new ObjectLoader()
+  loader.load(new URL(lightmap, import.meta.url).href, (object) => {
+    scene.add(object)
+  })
 
   const render = (): void => {
-    const time = Date.now()
-
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+    nodeFrame.update()
   }
 })
 </script>
@@ -98,7 +112,7 @@ onMounted(() => {
   <div v-else>WebGL is not supported by current version of browser, please update to the newest version of browser.</div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 #container {
   position: relative;
   width: 100%;

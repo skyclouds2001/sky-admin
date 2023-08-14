@@ -4,7 +4,7 @@ const usePagesStore = defineStore('pages', {
   state() {
     return {
       /** 路径页 */
-      pages: [] as Array<Record<'path', string>>,
+      pages: [] as Array<Record<'path', string> & Record<'isView', boolean>>,
     }
   },
 })

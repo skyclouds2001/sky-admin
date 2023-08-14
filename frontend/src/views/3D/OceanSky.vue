@@ -14,7 +14,10 @@ const container = ref<HTMLDivElement | null>(null)
 onMounted(() => {
   if (container.value === null) return
 
-  if (!WebGL.isWebGLAvailable()) return container.value.appendChild(WebGL.getWebGLErrorMessage())
+  if (!WebGL.isWebGLAvailable()) {
+    container.value.appendChild(WebGL.getWebGLErrorMessage())
+    return
+  }
 
   const animate = (): void => {
     controls.update()
@@ -104,10 +107,10 @@ onMounted(() => {
   sky.scale.setScalar(10000)
   scene.add(sky)
 
-  sky.material.uniforms['turbidity'].value = 10
-  sky.material.uniforms['rayleigh'].value = 2
-  sky.material.uniforms['mieCoefficient'].value = 0.005
-  sky.material.uniforms['mieDirectionalG'].value = 0.8
+  sky.material.uniforms.turbidity.value = 10
+  sky.material.uniforms.rayleigh.value = 2
+  sky.material.uniforms.mieCoefficient.value = 0.005
+  sky.material.uniforms.mieDirectionalG.value = 0.8
 
   const pmremGenerator = new PMREMGenerator(renderer)
 
@@ -116,8 +119,8 @@ onMounted(() => {
 
   sun.setFromSphericalCoords(1, phi, theta)
 
-  sky.material.uniforms['sunPosition'].value.copy(sun)
-  water.material.uniforms['sunDirection'].value.copy(sun).normalize()
+  sky.material.uniforms.sunPosition.value.copy(sun)
+  water.material.uniforms.sunDirection.value.copy(sun).normalize()
 
   const renderTarget = pmremGenerator.fromScene(scene)
   scene.environment = renderTarget.texture
@@ -135,7 +138,7 @@ onMounted(() => {
     mesh.position.y = Math.sin(time) * 20 + 5
     mesh.rotation.x = time * 0.5
     mesh.rotation.z = time * 0.51
-    water.material.uniforms['time'].value += 1.0 / 60.0
+    water.material.uniforms.time.value = (water.material.uniforms.time.value as number) + 1.0 / 60.0
   }
 })
 </script>

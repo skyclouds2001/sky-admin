@@ -11,7 +11,10 @@ const container = ref<HTMLDivElement | null>(null)
 onMounted(() => {
   if (container.value === null) return
 
-  if (!WebGL.isWebGLAvailable()) return container.value.appendChild(WebGL.getWebGLErrorMessage())
+  if (!WebGL.isWebGLAvailable()) {
+    container.value.appendChild(WebGL.getWebGLErrorMessage())
+    return
+  }
 
   const animate = (): void => {
     controls.update()

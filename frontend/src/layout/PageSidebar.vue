@@ -330,6 +330,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.mirror-text') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/colorful-geometry">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.colorful-geometry') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/light-map">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.light-map') }}</span>
@@ -361,6 +365,10 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/group-animation">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.group-animation') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/ocean-sky">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.ocean-sky') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/look-at">
           <el-icon><Box /></el-icon>

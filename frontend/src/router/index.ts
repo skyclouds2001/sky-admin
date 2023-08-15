@@ -599,6 +599,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/colorful-geometry'),
+              path: '/3d/colorful-geometry',
+              component: () => import('@/views/3D/ColorfulGeometry.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/light-map'),
               path: '/3d/light-map',
               component: () => import('@/views/3D/LightMap.vue'),
@@ -658,6 +666,14 @@ const router = createRouter({
               name: Symbol('/3d/group-animation'),
               path: '/3d/group-animation',
               component: () => import('@/views/3D/GroupAnimation.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/ocean-sky'),
+              path: '/3d/ocean-sky',
+              component: () => import('@/views/3D/OceanSky.vue'),
               meta: {
                 isView: true,
               },

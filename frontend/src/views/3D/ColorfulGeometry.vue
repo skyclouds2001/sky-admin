@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AmbientLight, BufferAttribute, CanvasTexture, Color, DirectionalLight, IcosahedronGeometry, Mesh, MeshBasicMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, SRGBColorSpace, Scene, WebGLRenderer } from 'three'
+import { AmbientLight, BufferAttribute, BufferGeometryLoader, CanvasTexture, Color, DirectionalLight, DoubleSide, Float32BufferAttribute, IcosahedronGeometry, Mesh, MeshBasicMaterial, MeshLambertMaterial, MeshPhongMaterial, PerspectiveCamera, PlaneGeometry, SRGBColorSpace, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { Lut } from 'three/examples/jsm/math/Lut.js'
 import { useEventListener } from '@sky-fly/shooks'
+import { pressure } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -35,7 +37,7 @@ onMounted(() => {
 
   const camera = new PerspectiveCamera(20, width / height, 1, 10000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0, 0, 1800)
+  camera.position.set(0, 0, 2000)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -50,6 +52,10 @@ onMounted(() => {
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
+  controls.minDistance = 500
+  controls.maxDistance = 10000 - 1000
+  controls.minPolarAngle = 0
+  controls.maxPolarAngle = Math.PI / 2
 
   const onResize = (): void => {
     if (container.value === null) return
@@ -129,6 +135,36 @@ onMounted(() => {
     transparent: true,
   }))
   mesh.add(wireframe)
+
+  const lut = new Lut()
+  lut.setColorMap('rainbow')
+  lut.setMin(0)
+  lut.setMax(2000)
+
+  new BufferGeometryLoader().load(new URL(pressure, import.meta.url).href, (geometry) => {
+    geometry.center()
+    geometry.computeVertexNormals()
+    geometry.scale(75, 75, 75)
+    geometry.translate(500, 0, 0)
+
+    const colors = new Float32Array(geometry.attributes.position.count * 3).fill(1)
+    for (let i = 0, c = new Color(), p = geometry.attributes.pressure; i < p.count; ++i) {
+      c.copy(lut.getColor(p.array[i])).convertSRGBToLinear()
+      colors[3 * i + 0] = c.r
+      colors[3 * i + 1] = c.g
+      colors[3 * i + 2] = c.b
+    }
+    geometry.setAttribute('color', new Float32BufferAttribute(colors, 3))
+
+    const material = new MeshLambertMaterial({
+      side: DoubleSide,
+      color: 0xf5f5f5,
+      vertexColors: true,
+    })
+
+    const mesh = new Mesh(geometry, material)
+    scene.add(mesh)
+  })
 
   const render = (): void => {
     camera.lookAt(scene.position)

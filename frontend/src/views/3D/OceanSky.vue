@@ -108,9 +108,9 @@ onMounted(() => {
   scene.add(sky)
 
   sky.material.uniforms.turbidity.value = 10
-  sky.material.uniforms.rayleigh.value = 2
-  sky.material.uniforms.mieCoefficient.value = 0.005
-  sky.material.uniforms.mieDirectionalG.value = 0.8
+  sky.material.uniforms.rayleigh.value = 1
+  sky.material.uniforms.mieCoefficient.value = 0.01
+  sky.material.uniforms.mieDirectionalG.value = 0.5
 
   const pmremGenerator = new PMREMGenerator(renderer)
 

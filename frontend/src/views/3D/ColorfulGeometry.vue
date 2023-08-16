@@ -80,7 +80,7 @@ onMounted(() => {
     passive: true,
   })
 
-  const light = new DirectionalLight(0xffffff, 3)
+  const light = new DirectionalLight(0xffffff, 1)
   light.position.set(0, 0, 1)
   scene.add(light)
   scene.add(new AmbientLight(0xffffff, 0.5))

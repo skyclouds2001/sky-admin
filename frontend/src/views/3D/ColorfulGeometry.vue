@@ -13,7 +13,10 @@ const container = ref<HTMLDivElement | null>(null)
 onMounted(() => {
   if (container.value === null) return
 
-  if (!WebGL.isWebGLAvailable()) return container.value.appendChild(WebGL.getWebGLErrorMessage())
+  if (!WebGL.isWebGLAvailable()) {
+    container.value.appendChild(WebGL.getWebGLErrorMessage())
+    return
+  }
 
   const animate = (): void => {
     controls.update()
@@ -129,11 +132,14 @@ onMounted(() => {
   const mesh = new Mesh(geometry, material)
   scene.add(mesh)
 
-  const wireframe = new Mesh(geometry, new MeshBasicMaterial({
-    color: 0x000000,
-    wireframe: true,
-    transparent: true,
-  }))
+  const wireframe = new Mesh(
+    geometry,
+    new MeshBasicMaterial({
+      color: 0x000000,
+      wireframe: true,
+      transparent: true,
+    })
+  )
   mesh.add(wireframe)
 
   const lut = new Lut()
@@ -149,6 +155,7 @@ onMounted(() => {
 
     const colors = new Float32Array(geometry.attributes.position.count * 3).fill(1)
     for (let i = 0, c = new Color(), p = geometry.attributes.pressure; i < p.count; ++i) {
+      // eslint-disable-next-line security/detect-object-injection
       c.copy(lut.getColor(p.array[i])).convertSRGBToLinear()
       colors[3 * i + 0] = c.r
       colors[3 * i + 1] = c.g

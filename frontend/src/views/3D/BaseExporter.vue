@@ -27,7 +27,10 @@ const container = ref<HTMLDivElement | null>(null)
 onMounted(() => {
   if (container.value === null) return
 
-  if (!WebGL.isWebGLAvailable()) return container.value.appendChild(WebGL.getWebGLErrorMessage())
+  if (!WebGL.isWebGLAvailable()) {
+    container.value.appendChild(WebGL.getWebGLErrorMessage())
+    return
+  }
 
   const animate = (): void => {
     controls.update()
@@ -112,7 +115,7 @@ onMounted(() => {
     new MeshStandardMaterial({
       color: 0xbbbbbb,
       depthWrite: false,
-    }),
+    })
   )
   ground.name = 'ground'
   ground.rotation.x = -Math.PI / 2
@@ -145,7 +148,7 @@ onMounted(() => {
 
   const usdz = new USDZExporter()
 
-  const download = (buffer: ArrayBufferView | ArrayBuffer | Blob | string, file: string, type: string) => {
+  const download = (buffer: ArrayBufferView | ArrayBuffer | Blob | string, file: string, type: string): void => {
     const blob = new Blob([buffer], {
       type,
     })
@@ -167,25 +170,34 @@ onMounted(() => {
       download(buffer, 'file.drc', 'application/octet-stream')
     },
     gltf: () => {
-      gltf.parse(mesh, (gltf: Record<string, any>) => {
-        if (!(gltf instanceof ArrayBuffer)) {
-          const buffer = JSON.stringify(gltf, null, 2)
-          download(buffer, 'file.gltf', 'text/plain')
+      gltf.parse(
+        mesh,
+        (gltf: Record<string, any>) => {
+          if (!(gltf instanceof ArrayBuffer)) {
+            const buffer = JSON.stringify(gltf, null, 2)
+            download(buffer, 'file.gltf', 'text/plain')
+          }
+        },
+        (error) => {
+          console.error(error)
         }
-      }, (error) => {
-        console.error(error)
-      })
+      )
     },
     glb: () => {
-      gltf.parse(mesh, (gltf) => {
-        if (gltf instanceof ArrayBuffer) {
-          download(gltf, 'file.glb', 'application/octet-stream')
+      gltf.parse(
+        mesh,
+        (gltf) => {
+          if (gltf instanceof ArrayBuffer) {
+            download(gltf, 'file.glb', 'application/octet-stream')
+          }
+        },
+        (error) => {
+          console.error(error)
+        },
+        {
+          binary: true,
         }
-      }, (error) => {
-        console.error(error)
-      }, {
-        binary: true,
-      })
+      )
     },
     obj: () => {
       const buffer = obj.parse(mesh)

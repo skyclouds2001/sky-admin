@@ -172,6 +172,7 @@ onMounted(() => {
     gltf: () => {
       gltf.parse(
         mesh,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (gltf: Record<string, any>) => {
           if (!(gltf instanceof ArrayBuffer)) {
             const buffer = JSON.stringify(gltf, null, 2)
@@ -218,7 +219,9 @@ onMounted(() => {
     },
   }
 
-  const gui = new GUI()
+  const gui = new GUI({
+    container: container.value,
+  })
   const folder = gui.addFolder('export')
   folder.add(props, 'draco').name('Export Draco')
   folder.add(props, 'gltf').name('Export glTF as JSON')
@@ -245,5 +248,11 @@ onMounted(() => {
   position: relative;
   width: 100%;
   height: calc(100vh - 60px - 40px - 60px);
+}
+
+:global(.lil-gui.root) {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 </style>

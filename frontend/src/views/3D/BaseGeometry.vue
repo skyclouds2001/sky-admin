@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AmbientLight, BoxGeometry, CapsuleGeometry, CircleGeometry, Color, ConeGeometry, CylinderGeometry, DirectionalLight, DodecahedronGeometry, ExtrudeGeometry, IcosahedronGeometry, LatheGeometry, Mesh, MeshPhongMaterial, OctahedronGeometry, PerspectiveCamera, PlaneGeometry, RingGeometry, Scene, ShapeGeometry, SphereGeometry, TetrahedronGeometry, TorusGeometry, TorusKnotGeometry, TubeGeometry, WebGLRenderer } from 'three'
+import { AmbientLight, BoxGeometry, CapsuleGeometry, CircleGeometry, Color, ConeGeometry, CylinderGeometry, DirectionalLight, DodecahedronGeometry, DoubleSide, ExtrudeGeometry, IcosahedronGeometry, LatheGeometry, Mesh, MeshPhongMaterial, OctahedronGeometry, PerspectiveCamera, PlaneGeometry, RingGeometry, Scene, ShapeGeometry, SphereGeometry, TetrahedronGeometry, TorusGeometry, TorusKnotGeometry, TubeGeometry, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -203,6 +203,7 @@ onMounted(() => {
     new CircleGeometry(),
     new MeshPhongMaterial({
       color: 0x000000,
+      side: DoubleSide,
     })
   )
   circle.position.set(0, 0, 4)
@@ -214,6 +215,7 @@ onMounted(() => {
     new LatheGeometry(),
     new MeshPhongMaterial({
       color: 0x000000,
+      side: DoubleSide,
     })
   )
   lathe.position.set(4, 0, 0)
@@ -225,6 +227,7 @@ onMounted(() => {
     new RingGeometry(),
     new MeshPhongMaterial({
       color: 0x000000,
+      side: DoubleSide,
     })
   )
   ring.position.set(-4, 0, 0)
@@ -236,6 +239,7 @@ onMounted(() => {
     new ShapeGeometry(),
     new MeshPhongMaterial({
       color: 0x000000,
+      side: DoubleSide,
     })
   )
   shape.position.set(0, 0, -4)
@@ -247,6 +251,7 @@ onMounted(() => {
     new TubeGeometry(),
     new MeshPhongMaterial({
       color: 0x000000,
+      side: DoubleSide,
     })
   )
   tube.position.set(0, 2, 0)

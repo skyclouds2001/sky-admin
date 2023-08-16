@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AmbientLight, BoxGeometry, CapsuleGeometry, CircleGeometry, Color, ConeGeometry, CylinderGeometry, DirectionalLight, DodecahedronGeometry, DoubleSide, ExtrudeGeometry, IcosahedronGeometry, LatheGeometry, Mesh, MeshPhongMaterial, OctahedronGeometry, PerspectiveCamera, PlaneGeometry, RingGeometry, Scene, ShapeGeometry, SphereGeometry, TetrahedronGeometry, TorusGeometry, TorusKnotGeometry, TubeGeometry, WebGLRenderer } from 'three'
+import { AmbientLight, BoxGeometry, CapsuleGeometry, CircleGeometry, Color, ConeGeometry, CylinderGeometry, DirectionalLight, DodecahedronGeometry, DoubleSide, ExtrudeGeometry, Fog, IcosahedronGeometry, LatheGeometry, Mesh, MeshPhongMaterial, OctahedronGeometry, PerspectiveCamera, PlaneGeometry, RingGeometry, Scene, ShapeGeometry, SphereGeometry, TetrahedronGeometry, TorusGeometry, TorusKnotGeometry, TubeGeometry, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -28,7 +28,8 @@ onMounted(() => {
   container.value.appendChild(stats.dom)
 
   const scene = new Scene()
-  scene.background = new Color(0x000000)
+  scene.background = new Color(0xa0a0a0)
+  scene.fog = new Fog(0xa0a0a0, 10, 25)
 
   const camera = new PerspectiveCamera(50, width / height, 1, 1000)
   camera.position.set(5, 5, 5)
@@ -56,7 +57,7 @@ onMounted(() => {
   scene.add(light)
 
   const plane = new Mesh(
-    new PlaneGeometry(50, 50),
+    new PlaneGeometry(100, 100),
     new MeshPhongMaterial({
       color: 0xeeeeee,
     })

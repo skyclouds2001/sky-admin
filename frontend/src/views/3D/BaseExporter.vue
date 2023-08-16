@@ -102,6 +102,7 @@ onMounted(() => {
   scene.add(hemisphere)
 
   const directional = new DirectionalLight(0xffffff, 3)
+  directional.name = 'directional'
   directional.position.set(0, 20, 10)
   directional.castShadow = true
   directional.shadow.camera.top = 2

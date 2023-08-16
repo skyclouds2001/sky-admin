@@ -519,6 +519,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/exporter'),
+              path: '/3d/exporter',
+              component: () => import('@/views/3D/BaseExporter.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/raining-effect'),
               path: '/3d/raining-effect',
               component: () => import('@/views/3D/RainingEffect.vue'),

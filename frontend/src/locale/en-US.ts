@@ -367,6 +367,7 @@ export default {
       geometry: 'Basic Geometry',
       camera: 'Basic Camera',
       helper: 'Basic Helper',
+      exporter: 'Basic Exporter',
       'raining-effect': 'Raining Effect',
       'great-raining-effect': 'Raining Effect Plus',
       earth: '3D Earth',

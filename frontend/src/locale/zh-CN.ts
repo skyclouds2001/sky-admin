@@ -367,6 +367,7 @@ export default {
       geometry: '基础图元',
       camera: '基础摄像机',
       helper: '基础帮手',
+      exporter: '基础导出器',
       'raining-effect': '下雨效果',
       'great-raining-effect': '增强下雨效果',
       earth: '3D 地球',

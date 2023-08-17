@@ -62,7 +62,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    let { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -85,7 +85,7 @@ onMounted(() => {
   const geometry = new IcosahedronGeometry(5, 0)
   const material = new MeshPhongMaterial({
     color: 0xffffff,
-    emissive:  0x333333,
+    emissive: 0x333333,
     flatShading: true,
   })
   const mesh = new Mesh(geometry, material)
@@ -93,35 +93,50 @@ onMounted(() => {
 
   const planeGeometry = new PlaneGeometry(100.1, 100.1)
 
-  const planeTop = new Mesh(planeGeometry, new MeshPhongMaterial({
-    color: 0xffffff,
-  }))
+  const planeTop = new Mesh(
+    planeGeometry,
+    new MeshPhongMaterial({
+      color: 0xffffff,
+    })
+  )
   planeTop.position.set(0, 100, 0)
   planeTop.rotation.set(Math.PI / 2, 0, 0)
   scene.add(planeTop)
 
-  const planeBottom = new Mesh(planeGeometry, new MeshPhongMaterial({
-    color: 0xffffff,
-  }))
+  const planeBottom = new Mesh(
+    planeGeometry,
+    new MeshPhongMaterial({
+      color: 0xffffff,
+    })
+  )
   planeBottom.rotation.set(-Math.PI / 2, 0, 0)
   scene.add(planeBottom)
 
-  const planeBack = new Mesh(planeGeometry, new MeshPhongMaterial({
-    color: 0x0000ff,
-  }))
+  const planeBack = new Mesh(
+    planeGeometry,
+    new MeshPhongMaterial({
+      color: 0x0000ff,
+    })
+  )
   planeBack.position.set(0, 50, -50)
   scene.add(planeBack)
 
-  const planeLeft = new Mesh(planeGeometry, new MeshPhongMaterial({
-    color: 0xff0000,
-  }))
+  const planeLeft = new Mesh(
+    planeGeometry,
+    new MeshPhongMaterial({
+      color: 0xff0000,
+    })
+  )
   planeLeft.position.set(-50, 50, 0)
   planeLeft.rotation.set(0, Math.PI / 2, 0)
   scene.add(planeLeft)
 
-  const planeRight = new Mesh(planeGeometry, new MeshPhongMaterial({
-    color: 0x00ff00,
-  }))
+  const planeRight = new Mesh(
+    planeGeometry,
+    new MeshPhongMaterial({
+      color: 0x00ff00,
+    })
+  )
   planeRight.position.set(50, 50, 0)
   planeRight.rotation.set(0, -Math.PI / 2, 0)
   scene.add(planeRight)
@@ -150,7 +165,6 @@ onMounted(() => {
   })
   refractor.position.set(0, 50, 0)
   scene.add(refractor)
-
   ;(refractor.material as ShaderMaterial).uniforms.tDudv.value = new TextureLoader().load(waterdudv, (texture) => {
     texture.wrapS = texture.wrapT = RepeatWrapping
   })

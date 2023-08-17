@@ -388,6 +388,7 @@ export default {
       'singleton-animation': 'Singleton Animation',
       'group-animation': 'Group Animation',
       'ocean-sky': 'Ocean Sky',
+      'refractor-plane': 'Refractor Plane',
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
     },

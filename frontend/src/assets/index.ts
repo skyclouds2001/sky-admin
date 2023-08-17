@@ -66,6 +66,8 @@ export { default as star } from './star.png'
 
 export { default as walt_head } from './WaltHead.obj?url'
 
+export { default as waterdudv } from './waterdudv.jpg'
+
 export { default as waternormals } from './waternormals.jpg'
 
 export { default as wave } from './wave.png'

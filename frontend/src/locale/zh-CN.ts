@@ -374,6 +374,7 @@ export default {
       'active-building': '活动建筑',
       'bloom-effect': '爆炸效果',
       'rotation-circle': '旋转圆圈',
+      'earth-moon': '地月系',
       'periodic-table': '元素周期表',
       'sprite-ball': '精灵球',
       'video-box': '视频盒子',

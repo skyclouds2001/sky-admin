@@ -374,6 +374,7 @@ export default {
       'active-building': 'Active Building',
       'bloom-effect': 'Bloom Effect',
       'rotation-circle': 'Rotation Circle',
+      'earth-moon': 'Earth & Moon',
       'periodic-table': 'Periodic Table',
       'sprite-ball': 'Sprite Ball',
       'video-box': 'Video Box',

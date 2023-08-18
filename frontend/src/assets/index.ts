@@ -18,6 +18,8 @@ export { default as earth_bump } from './earth_bump.png'
 
 export { default as earth_cloud } from './earth_cloud.png'
 
+export { default as earth_normal_2048 } from './earth_normal_2048.jpg'
+
 export { default as earth_spec } from './earth_spec.png'
 
 export { default as earth_specular_2048 } from './earth_specular_2048.jpg'
@@ -37,6 +39,8 @@ export { default as light_ray } from './light_ray.png'
 export { default as lightmap } from './lightmap.json?url'
 
 export { default as lucy100k } from './Lucy100k.ply?url'
+
+export { default as moon_1024 } from './moon_1024.jpg'
 
 export { default as nx } from './nx.jpg'
 

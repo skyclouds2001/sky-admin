@@ -86,6 +86,11 @@ onMounted(() => {
 
   const sun = new Vector3()
 
+  const phi = MathUtils.degToRad(90)
+  const theta = MathUtils.degToRad(180)
+
+  sun.setFromSphericalCoords(1, phi, theta)
+
   const waterGeometry = new PlaneGeometry(10000, 10000)
 
   const water = new Water(waterGeometry, {
@@ -101,6 +106,7 @@ onMounted(() => {
     fog: true,
   })
   water.rotation.x = -Math.PI / 2
+  water.material.uniforms.sunDirection.value.copy(sun).normalize()
   scene.add(water)
 
   const sky = new Sky()
@@ -111,17 +117,9 @@ onMounted(() => {
   sky.material.uniforms.rayleigh.value = 1
   sky.material.uniforms.mieCoefficient.value = 0.01
   sky.material.uniforms.mieDirectionalG.value = 0.5
+  sky.material.uniforms.sunPosition.value.copy(sun)
 
   const pmremGenerator = new PMREMGenerator(renderer)
-
-  const phi = MathUtils.degToRad(90)
-  const theta = MathUtils.degToRad(180)
-
-  sun.setFromSphericalCoords(1, phi, theta)
-
-  sky.material.uniforms.sunPosition.value.copy(sun)
-  water.material.uniforms.sunDirection.value.copy(sun).normalize()
-
   const renderTarget = pmremGenerator.fromScene(scene)
   scene.environment = renderTarget.texture
 

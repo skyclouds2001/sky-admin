@@ -61,7 +61,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    let { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -107,7 +107,7 @@ onMounted(() => {
       specularMap: loader.load(new URL(earth_specular_2048, import.meta.url).href),
       normalMap: loader.load(new URL(earth_normal_2048, import.meta.url).href),
       normalScale: new Vector2(0.85, 0.85),
-    }),
+    })
   )
   earth.layers.enableAll()
   scene.add(earth)
@@ -119,7 +119,7 @@ onMounted(() => {
       map: loader.load(new URL(moon_1024, import.meta.url).href, (texture) => {
         texture.colorSpace = SRGBColorSpace
       }),
-    }),
+    })
   )
   moon.layers.enableAll()
   scene.add(moon)

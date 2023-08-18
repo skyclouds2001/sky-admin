@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AxesHelper, BoxGeometry, Color, Fog, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -35,6 +35,7 @@ onMounted(() => {
   const scene = new Scene()
   scene.name = 'Scene'
   scene.background = new Color(0x000000)
+  scene.fog = new Fog(0x000000, 10, 25)
 
   const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
   camera.name = 'PerspectiveCamera'
@@ -60,15 +61,16 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    const rect = container.value.getBoundingClientRect()
-    width = rect.width
-    height = rect.height
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
-    camera.aspect = width / height
+    camera.aspect = w / h
     camera.updateProjectionMatrix()
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(width, height)
+    renderer.setSize(w, h)
     renderer.render(scene, camera)
+
+    width = w
+    height = h
   }
 
   useEventListener(window, 'resize', onResize, {

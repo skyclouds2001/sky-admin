@@ -102,7 +102,7 @@ onMounted(() => {
     sunDirection: sun,
     sunColor: 0xffffff,
     waterColor: 0x001e0f,
-    distortionScale: 0.7,
+    distortionScale: 3.7,
     fog: true,
   })
   water.rotation.x = -Math.PI / 2
@@ -114,9 +114,9 @@ onMounted(() => {
   scene.add(sky)
 
   sky.material.uniforms.turbidity.value = 10
-  sky.material.uniforms.rayleigh.value = 1
-  sky.material.uniforms.mieCoefficient.value = 0.01
-  sky.material.uniforms.mieDirectionalG.value = 0.5
+  sky.material.uniforms.rayleigh.value = 2
+  sky.material.uniforms.mieCoefficient.value = 0.005
+  sky.material.uniforms.mieDirectionalG.value = 0.8
   sky.material.uniforms.sunPosition.value.copy(sun)
 
   const pmremGenerator = new PMREMGenerator(renderer)

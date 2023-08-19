@@ -382,6 +382,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.refractor-plane') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/reflector-mirror">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.reflector-mirror') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/look-at">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.look-at') }}</span>

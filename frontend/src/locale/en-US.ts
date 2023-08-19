@@ -390,6 +390,7 @@ export default {
       'group-animation': 'Group Animation',
       'ocean-sky': 'Ocean Sky',
       'refractor-plane': 'Refractor Plane',
+      'reflector-mirror': 'Reflector Mirror',
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
     },

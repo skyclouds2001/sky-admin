@@ -8,6 +8,8 @@ export { default as brick_roughness } from './brick_roughness.jpg'
 
 export { default as building } from './building.glb?url'
 
+export { default as Cerberus } from './Cerberus.obj?url'
+
 export { default as color } from './color.png'
 
 export { default as disturb } from './disturb.jpg'

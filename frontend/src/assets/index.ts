@@ -72,6 +72,8 @@ export { default as sprite } from './sprite.png'
 
 export { default as star } from './star.png'
 
+export { default as uv_grid_opengl } from './uv_grid_opengl.jpg'
+
 export { default as walt_head } from './WaltHead.obj?url'
 
 export { default as waterdudv } from './waterdudv.jpg'

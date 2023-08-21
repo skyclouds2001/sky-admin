@@ -726,6 +726,30 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/edge-split-modifier'),
+              path: '/3d/edge-split-modifier',
+              component: () => import('@/views/3D/EdgeSplitModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/simplify-modifier'),
+              path: '/3d/simplify-modifier',
+              component: () => import('@/views/3D/SimplifyModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/sub-divider-modifier'),
+              path: '/3d/sub-divider-modifier',
+              component: () => import('@/views/3D/SubDivisionModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

@@ -393,6 +393,9 @@ export default {
       'reflector-mirror': '反射镜面',
       'look-at': '物品朝向',
       'selection-box': '范围选择',
+      'edge-split-modifier': '边缘分割',
+      'simplify-modifier': '物体简化',
+      'sub-divider-modifier': '物体细分',
     },
     monitor: {
       title: '系统监控',

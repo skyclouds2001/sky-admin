@@ -527,46 +527,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/raining-effect'),
-              path: '/3d/raining-effect',
-              component: () => import('@/views/3D/RainingEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/great-raining-effect'),
-              path: '/3d/great-raining-effect',
-              component: () => import('@/views/3D/GreatRainingEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/earth'),
-              path: '/3d/earth',
-              component: () => import('@/views/3D/3DEarth.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/active-building'),
-              path: '/3d/active-building',
-              component: () => import('@/views/3D/ActiveBuilding.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/bloom-effect'),
-              path: '/3d/bloom-effect',
-              component: () => import('@/views/3D/BloomEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/3d/rotation-circle'),
               path: '/3d/rotation-circle',
               component: () => import('@/views/3D/RotationCircle.vue'),

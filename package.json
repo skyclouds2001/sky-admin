@@ -62,7 +62,7 @@
     "@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@playwright/test": "^1.37.0",
+    "@playwright/test": "^1.37.1",
     "@testing-library/vue": "^7.0.0",
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",

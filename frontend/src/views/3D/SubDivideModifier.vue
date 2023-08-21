@@ -5,11 +5,8 @@ import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { LoopSubdivision } from 'three-subdivide'
-// import { useEventListener } from '@sky-fly/shooks'
+import { useEventListener } from '@sky-fly/shooks'
 import { uv_grid_opengl } from '@/assets'
-
-// todo - remove it
-import useEventListener from './useEventListener'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -68,7 +65,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    let { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -98,33 +95,39 @@ onMounted(() => {
     texture.colorSpace = SRGBColorSpace
   })
 
-  const basic = new Mesh(new BoxGeometry(), new MeshStandardMaterial({
-    color: 0xffffff,
-    map: texture,
-    side: DoubleSide,
-    polygonOffset: true,
-    polygonOffsetFactor: 1,
-    polygonOffsetUnits: 1,
-    flatShading: false,
-  }))
+  const basic = new Mesh(
+    new BoxGeometry(),
+    new MeshStandardMaterial({
+      color: 0xffffff,
+      map: texture,
+      side: DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: 1,
+      polygonOffsetUnits: 1,
+      flatShading: false,
+    })
+  )
   basic.position.set(0.75, 0, 0)
   scene.add(basic)
 
-  const modified = new Mesh(LoopSubdivision.modify(new BoxGeometry(), 3, {
-    split: true,
-    uvSmooth: false,
-    keepEdges: false,
-    flatOnly: false,
-    maxTriangles: 2500,
-  }), new MeshStandardMaterial({
-    color: 0xffffff,
-    map: texture,
-    side: DoubleSide,
-    polygonOffset: true,
-    polygonOffsetFactor: 1,
-    polygonOffsetUnits: 1,
-    flatShading: false,
-  }))
+  const modified = new Mesh(
+    LoopSubdivision.modify(new BoxGeometry(), 3, {
+      split: true,
+      uvSmooth: false,
+      preserveEdges: false,
+      flatOnly: false,
+      maxTriangles: 2500,
+    }),
+    new MeshStandardMaterial({
+      color: 0xffffff,
+      map: texture,
+      side: DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: 1,
+      polygonOffsetUnits: 1,
+      flatShading: false,
+    })
+  )
   modified.position.set(-0.75, 0, 0)
   scene.add(modified)
 
@@ -144,15 +147,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* todo - remove */
-/* #container {
+#container {
   position: relative;
   width: 100%;
   height: calc(100vh - 60px - 40px - 60px);
-} */
-#container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
 }
 </style>

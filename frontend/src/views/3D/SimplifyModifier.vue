@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { BufferGeometry, Clock, Group, Mesh, MeshStandardMaterial, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
+import { type BufferGeometry, Clock, Group, type Mesh, type MeshStandardMaterial, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -59,7 +59,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    let { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -100,7 +100,7 @@ onMounted(() => {
     mesh.rotation.set(0, Math.PI / 2, 0)
     group.add(mesh)
 
-    const simplified = mesh.clone() as Mesh<BufferGeometry, MeshStandardMaterial>
+    const simplified = mesh.clone()
     simplified.material = mesh.material.clone()
     simplified.material.flatShading = true
     simplified.position.set(5, 0, 0)

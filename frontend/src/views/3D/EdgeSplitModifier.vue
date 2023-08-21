@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BufferGeometry, Color, Fog, Group, HemisphereLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AxesHelper, type BufferGeometry, Color, Fog, Group, HemisphereLight, type Mesh, type MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { EdgeSplitModifier } from 'three/examples/jsm/modifiers/EdgeSplitModifier'
-// import { useEventListener } from '@sky-fly/shooks'
+import { useEventListener } from '@sky-fly/shooks'
 import { Cerberus } from '@/assets'
-
-// todo - remove it
-import useEventListener from './useEventListener'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -68,7 +65,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    let { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -105,7 +102,7 @@ onMounted(() => {
     scene.add(cerberus)
 
     const modified = cerberus.clone()
-    modified.geometry = modifier.modify(modified.geometry, 20 * Math.PI / 180, true)
+    modified.geometry = modifier.modify(modified.geometry, (20 * Math.PI) / 180, true)
     modified.material.flatShading = false
     modified.position.set(1, 0, 0)
     modified.scale.set(3, 3, 3)
@@ -125,15 +122,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* todo - remove */
-/* #container {
+#container {
   position: relative;
   width: 100%;
   height: calc(100vh - 60px - 40px - 60px);
-} */
-#container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
 }
 </style>

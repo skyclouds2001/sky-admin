@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, type BufferGeometry, Color, Fog, Group, HemisphereLight, type Mesh, type MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AxesHelper, type BufferGeometry, Clock, Color, Fog, HemisphereLight, type Mesh, type MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { EdgeSplitModifier } from 'three/examples/jsm/modifiers/EdgeSplitModifier'
+import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils'
 import { useEventListener } from '@sky-fly/shooks'
 import { Cerberus } from '@/assets'
 
@@ -60,7 +61,8 @@ onMounted(() => {
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
-  controls.enableZoom = false
+  controls.minDistance = 2.5
+  controls.maxDistance = Infinity
 
   const onResize = (): void => {
     if (container.value === null) return
@@ -88,21 +90,23 @@ onMounted(() => {
   const light = new HemisphereLight(0xffffff, 0x444444, 3)
   scene.add(light)
 
-  const group = new Group()
-  scene.add(group)
+  const clock = new Clock()
 
   const loader = new OBJLoader()
 
   const modifier = new EdgeSplitModifier()
 
+  let cerberus: Mesh<BufferGeometry, MeshPhongMaterial>
+  let modified: Mesh<BufferGeometry, MeshPhongMaterial>
+
   loader.load(new URL(Cerberus, import.meta.url).href, (group) => {
-    const cerberus = group.children.at(0) as Mesh<BufferGeometry, MeshPhongMaterial>
+    cerberus = group.children.at(0) as Mesh<BufferGeometry, MeshPhongMaterial>
     cerberus.position.set(-1, 0, 0)
     cerberus.scale.set(3, 3, 3)
     scene.add(cerberus)
 
-    const modified = cerberus.clone()
-    modified.geometry = modifier.modify(modified.geometry, (20 * Math.PI) / 180, true)
+    modified = cerberus.clone()
+    modified.geometry = modifier.modify(BufferGeometryUtils.mergeVertices(modified.geometry), (20 * Math.PI) / 180, true)
     modified.material.flatShading = false
     modified.position.set(1, 0, 0)
     modified.scale.set(3, 3, 3)
@@ -112,7 +116,12 @@ onMounted(() => {
   })
 
   const render = (): void => {
-    // TODO
+    if (cerberus != null && modified != null) {
+      const time = clock.getElapsedTime()
+
+      cerberus.rotation.set(time * 0.5, 0, 0)
+      modified.rotation.set(time * 0.5, 0, 0)
+    }
   }
 })
 </script>

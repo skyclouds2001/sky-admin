@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { type BufferGeometry, Clock, Group, type Mesh, type MeshStandardMaterial, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
+import { type BufferGeometry, Clock, Group, type Mesh, type MeshStandardMaterial, PerspectiveCamera, PointLight, Scene, WebGLRenderer, AmbientLight } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -79,7 +79,7 @@ onMounted(() => {
     passive: true,
   })
 
-  // scene.add(new AmbientLight(0xffffff, 1))
+  scene.add(new AmbientLight(0xffffff, 1))
 
   const light = new PointLight(0xffffff, 400)
   camera.add(light)
@@ -105,7 +105,7 @@ onMounted(() => {
     simplified.material.flatShading = true
     simplified.position.set(5, 0, 0)
     simplified.rotation.set(0, -Math.PI / 2, 0)
-    simplified.geometry = modifier.modify(simplified.geometry, Math.floor(simplified.geometry.attributes.position.count * 0.875))
+    simplified.geometry = modifier.modify(simplified.geometry, Math.floor(simplified.geometry.attributes.position.count * 0.75))
     group.add(simplified)
   })
 

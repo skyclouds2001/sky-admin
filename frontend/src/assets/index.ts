@@ -34,6 +34,8 @@ export { default as hardwood_roughness } from './hardwood_roughness.jpg'
 
 export { default as helvetiker_regular } from './helvetiker_regular.typeface.json?url'
 
+export { default as LeePerrySmith } from './LeePerrySmith.glb?url'
+
 export { default as light_ray } from './light_ray.png'
 
 export { default as lightmap } from './lightmap.json?url'

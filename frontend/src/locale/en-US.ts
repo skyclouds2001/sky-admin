@@ -389,9 +389,9 @@ export default {
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
       'curve-modifier': 'Curve Modifier',
-      'edge-split-modifier': 'EdgeSplitModifier',
-      'simplify-modifier': 'SimplifyModifier',
-      'sub-divider-modifier': 'SubDividerModifier',
+      'edge-split-modifier': 'EdgeSplit Modifier',
+      'simplify-modifier': 'Simplify Modifier',
+      'sub-divider-modifier': 'SubDivider Modifier',
     },
     monitor: {
       title: 'Monitor',

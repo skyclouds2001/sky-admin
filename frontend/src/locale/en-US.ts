@@ -388,6 +388,7 @@ export default {
       'reflector-mirror': 'Reflector Mirror',
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
+      'curve-modifier': 'Curve Modifier',
       'edge-split-modifier': 'EdgeSplitModifier',
       'simplify-modifier': 'SimplifyModifier',
       'sub-divider-modifier': 'SubDividerModifier',

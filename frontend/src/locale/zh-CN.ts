@@ -388,6 +388,7 @@ export default {
       'reflector-mirror': '反射镜面',
       'look-at': '物品朝向',
       'selection-box': '范围选择',
+      'curve-modifier': '曲线修改',
       'edge-split-modifier': '边缘分割',
       'simplify-modifier': '物体简化',
       'sub-divider-modifier': '物体细分',

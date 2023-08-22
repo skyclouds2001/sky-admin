@@ -374,6 +374,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.selection-box') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/curve-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.curve-modifier') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/edge-split-modifier">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.edge-split-modifier') }}</span>

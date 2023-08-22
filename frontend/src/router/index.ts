@@ -687,6 +687,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/curve-modifier'),
+              path: '/3d/curve-modifier',
+              component: () => import('@/views/3D/CurveModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/edge-split-modifier'),
               path: '/3d/edge-split-modifier',
               component: () => import('@/views/3D/EdgeSplitModifier.vue'),

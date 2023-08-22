@@ -6,7 +6,7 @@ import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 import { Flow, InstancedFlow } from 'three/examples/jsm/modifiers/CurveModifier'
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+import { type Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { useEventListener } from '@sky-fly/shooks'
 import { helvetiker_regular } from '@/assets'
@@ -28,7 +28,7 @@ onMounted(() => {
     renderer.render(scene, camera)
   }
 
-  let { width, height } = container.value.getBoundingClientRect()
+  let { width, height, top, left } = container.value.getBoundingClientRect()
 
   const stats = new Stats()
   stats.dom.style.position = 'absolute'
@@ -60,7 +60,7 @@ onMounted(() => {
   const onResize = (): void => {
     if (container.value === null) return
 
-    const { width: w, height: h } = container.value.getBoundingClientRect()
+    const { width: w, height: h, top: t, left: l } = container.value.getBoundingClientRect()
 
     camera.aspect = w / h
     camera.updateProjectionMatrix()
@@ -70,6 +70,8 @@ onMounted(() => {
 
     width = w
     height = h
+    top = t
+    left = l
   }
 
   useEventListener(window, 'resize', onResize, {
@@ -90,18 +92,8 @@ onMounted(() => {
   const material = new MeshBasicMaterial()
 
   const handles = [
-    [
-      new Vector3(1, 0.5, -1),
-      new Vector3(1, 0.5, 1),
-      new Vector3(-1, 0.5, 1),
-      new Vector3(-1, 0.5, -1),
-    ],
-    [
-      new Vector3(1, -0.5, -1),
-      new Vector3(1, -0.5, 1),
-      new Vector3(-1, -0.5, 1),
-      new Vector3(-1, -0.5, -1),
-    ],
+    [new Vector3(1, 0.5, -1), new Vector3(1, 0.5, 1), new Vector3(-1, 0.5, 1), new Vector3(-1, 0.5, -1)],
+    [new Vector3(1, -0.5, -1), new Vector3(1, -0.5, 1), new Vector3(-1, -0.5, 1), new Vector3(-1, -0.5, -1)],
   ].map((points) => {
     return points.map((point) => {
       const handle = new Mesh(geometry, material)
@@ -121,9 +113,12 @@ onMounted(() => {
   })
 
   const lines = curves.map((curve) => {
-    const line = new LineLoop(new BufferGeometry().setFromPoints(curve.getPoints(50)), new LineBasicMaterial({
-      color: 0x00ff00,
-    }))
+    const line = new LineLoop(
+      new BufferGeometry().setFromPoints(curve.getPoints(50)),
+      new LineBasicMaterial({
+        color: 0x00ff00,
+      })
+    )
     scene.add(line)
 
     return line
@@ -139,7 +134,7 @@ onMounted(() => {
 
   let text = 'Hello world'
 
-  const renderFlows = (font: Font) => {
+  const renderFlows = (font: Font): void => {
     const geometry = new TextGeometry(text, {
       font,
       size: 0.2,
@@ -168,7 +163,7 @@ onMounted(() => {
 
     for (let i = 0; i < 4; ++i) {
       instancedFlow.setCurve(i, 0)
-      instancedFlow.moveIndividualAlongCurve(i, i * 1 / 4)
+      instancedFlow.moveIndividualAlongCurve(i, (i * 1) / 4)
       instancedFlow.object3D.setColorAt(i, new Color(0xffffff * Math.random()))
     }
   }
@@ -182,7 +177,7 @@ onMounted(() => {
 
   const controls = new TransformControls(camera, renderer.domElement)
   controls.addEventListener('dragging-changed', (e) => {
-    if (!e.value && controls.object) {
+    if (!(e.value as boolean) && controls.object != null) {
       if (handles[0].includes(controls.object as Mesh<BoxGeometry, MeshBasicMaterial>)) {
         const points = curves[0].getPoints(50)
         lines[0].geometry.setFromPoints(points)
@@ -208,8 +203,8 @@ onMounted(() => {
 
   useEventListener(window, 'pointerdown', (e) => {
     action = Action.SELECT
-    mouse.x = (e.clientX / width) * 2 - 1
-    mouse.y = -(e.clientY / height) * 2 + 1
+    mouse.x = ((e.clientX - left) / width) * 2 - 1
+    mouse.y = -((e.clientY - top) / height) * 2 + 1
   })
 
   useEventListener(window, 'keypress', (e) => {
@@ -225,7 +220,7 @@ onMounted(() => {
       rayCaster.setFromCamera(mouse, camera)
       action = Action.NONE
       const intersects = rayCaster.intersectObjects(handles.flat(1), false)
-      if (intersects.length) {
+      if (intersects.length > 0) {
         controls.attach(intersects[0].object)
         control.enabled = false
       } else {
@@ -234,10 +229,10 @@ onMounted(() => {
       }
     }
 
-    if (flow) {
+    if (flow != null) {
       flow.moveAlongCurve(0.001)
     }
-    if (instancedFlow) {
+    if (instancedFlow != null) {
       instancedFlow.moveAlongCurve(0.001)
     }
   }

@@ -89,7 +89,7 @@
     "@intlify/unplugin-vue-i18n": "^0.12.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/forms": "^0.5.4",
+    "@tailwindcss/forms": "^0.5.5",
     "@tailwindcss/typography": "^0.5.9",
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.8",

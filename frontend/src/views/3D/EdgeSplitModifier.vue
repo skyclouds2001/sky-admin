@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Fog, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { AxesHelper, type BufferGeometry, Clock, Color, Fog, HemisphereLight, type Mesh, type MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { EdgeSplitModifier } from 'three/examples/jsm/modifiers/EdgeSplitModifier'
+import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils'
 import { useEventListener } from '@sky-fly/shooks'
+import { Cerberus } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -34,12 +38,12 @@ onMounted(() => {
 
   const scene = new Scene()
   scene.name = 'Scene'
-  scene.background = new Color(0x000000)
-  scene.fog = new Fog(0x000000, 10, 25)
+  scene.background = new Color(0xaaaaaa)
+  scene.fog = new Fog(0xaaaaaa, 10, 25)
 
-  const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new PerspectiveCamera(45, width / height, 1, 1000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0.5, 0.5, 0.5)
+  camera.position.set(0, 1, 5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -52,11 +56,13 @@ onMounted(() => {
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new AxesHelper(20)
+  const helper = new AxesHelper(25)
   scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
+  controls.minDistance = 2.5
+  controls.maxDistance = Infinity
 
   const onResize = (): void => {
     if (container.value === null) return
@@ -81,19 +87,41 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
-  const mesh = new Mesh(geometry, material)
-  mesh.name = 'Mesh'
-  scene.add(mesh)
+  const light = new HemisphereLight(0xffffff, 0x444444, 3)
+  scene.add(light)
+
+  const clock = new Clock()
+
+  const loader = new OBJLoader()
+
+  const modifier = new EdgeSplitModifier()
+
+  let cerberus: Mesh<BufferGeometry, MeshPhongMaterial>
+  let modified: Mesh<BufferGeometry, MeshPhongMaterial>
+
+  loader.load(new URL(Cerberus, import.meta.url).href, (group) => {
+    cerberus = group.children.at(0) as Mesh<BufferGeometry, MeshPhongMaterial>
+    cerberus.position.set(-1, 0, 0)
+    cerberus.scale.set(3, 3, 3)
+    scene.add(cerberus)
+
+    modified = cerberus.clone()
+    modified.geometry = modifier.modify(BufferGeometryUtils.mergeVertices(modified.geometry), (20 * Math.PI) / 180, true)
+    modified.material.flatShading = false
+    modified.position.set(1, 0, 0)
+    modified.scale.set(3, 3, 3)
+    scene.add(modified)
+
+    animate()
+  })
 
   const render = (): void => {
-    const time = Date.now()
+    if (cerberus != null && modified != null) {
+      const time = clock.getElapsedTime()
 
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+      cerberus.rotation.set(time * 0.5, 0, 0)
+      modified.rotation.set(time * 0.5, 0, 0)
+    }
   }
 })
 </script>
@@ -102,7 +130,7 @@ onMounted(() => {
   <div id="container" ref="container"></div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 #container {
   position: relative;
   width: 100%;

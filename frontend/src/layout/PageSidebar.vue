@@ -290,29 +290,17 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.helper') }}</span>
         </el-menu-item>
-        <el-menu-item index="/3d/raining-effect">
+        <el-menu-item index="/3d/exporter">
           <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.raining-effect') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/great-raining-effect">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.great-raining-effect') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/earth">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.earth') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/active-building">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.active-building') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/bloom-effect">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.bloom-effect') }}</span>
+          <span>{{ i18n.t('router.3d.exporter') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/rotation-circle">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.rotation-circle') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/earth-moon">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.earth-moon') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/periodic-table">
           <el-icon><Box /></el-icon>
@@ -329,6 +317,10 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/mirror-text">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.mirror-text') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/colorful-geometry">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.colorful-geometry') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/light-map">
           <el-icon><Box /></el-icon>
@@ -362,6 +354,18 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.group-animation') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/ocean-sky">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.ocean-sky') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/refractor-plane">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.refractor-plane') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/reflector-mirror">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.reflector-mirror') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/look-at">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.look-at') }}</span>
@@ -369,6 +373,22 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/selection-box">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.selection-box') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/curve-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.curve-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/edge-split-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.edge-split-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/simplify-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.simplify-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/sub-divider-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.sub-divider-modifier') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

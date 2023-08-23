@@ -519,41 +519,9 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/raining-effect'),
-              path: '/3d/raining-effect',
-              component: () => import('@/views/3D/RainingEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/great-raining-effect'),
-              path: '/3d/great-raining-effect',
-              component: () => import('@/views/3D/GreatRainingEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/earth'),
-              path: '/3d/earth',
-              component: () => import('@/views/3D/3DEarth.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/active-building'),
-              path: '/3d/active-building',
-              component: () => import('@/views/3D/ActiveBuilding.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/bloom-effect'),
-              path: '/3d/bloom-effect',
-              component: () => import('@/views/3D/BloomEffect.vue'),
+              name: Symbol('/3d/exporter'),
+              path: '/3d/exporter',
+              component: () => import('@/views/3D/BaseExporter.vue'),
               meta: {
                 isView: true,
               },
@@ -562,6 +530,14 @@ const router = createRouter({
               name: Symbol('/3d/rotation-circle'),
               path: '/3d/rotation-circle',
               component: () => import('@/views/3D/RotationCircle.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/earth-moon'),
+              path: '/3d/earth-moon',
+              component: () => import('@/views/3D/EarthMoon.vue'),
               meta: {
                 isView: true,
               },
@@ -594,6 +570,14 @@ const router = createRouter({
               name: Symbol('/3d/mirror-text'),
               path: '/3d/mirror-text',
               component: () => import('@/views/3D/MirrorText.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/colorful-geometry'),
+              path: '/3d/colorful-geometry',
+              component: () => import('@/views/3D/ColorfulGeometry.vue'),
               meta: {
                 isView: true,
               },
@@ -663,6 +647,30 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/ocean-sky'),
+              path: '/3d/ocean-sky',
+              component: () => import('@/views/3D/OceanSky.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/refractor-plane'),
+              path: '/3d/refractor-plane',
+              component: () => import('@/views/3D/RefractorPlane.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/reflector-mirror'),
+              path: '/3d/reflector-mirror',
+              component: () => import('@/views/3D/ReflectorMirror.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/look-at'),
               path: '/3d/look-at',
               component: () => import('@/views/3D/LookAt.vue'),
@@ -674,6 +682,38 @@ const router = createRouter({
               name: Symbol('/3d/selection-box'),
               path: '/3d/selection-box',
               component: () => import('@/views/3D/SelectionBox.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/curve-modifier'),
+              path: '/3d/curve-modifier',
+              component: () => import('@/views/3D/CurveModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/edge-split-modifier'),
+              path: '/3d/edge-split-modifier',
+              component: () => import('@/views/3D/EdgeSplitModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/simplify-modifier'),
+              path: '/3d/simplify-modifier',
+              component: () => import('@/views/3D/SimplifyModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/sub-divider-modifier'),
+              path: '/3d/sub-divider-modifier',
+              component: () => import('@/views/3D/SubDivisionModifier.vue'),
               meta: {
                 isView: true,
               },

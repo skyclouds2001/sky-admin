@@ -56,7 +56,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vite": "^4.4.8"
+    "vite": "^4.4.9"
   },
   "devDependencies": {
     "typescript": "^5.1.6"

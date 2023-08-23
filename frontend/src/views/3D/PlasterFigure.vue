@@ -9,7 +9,7 @@ import { walt_head } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
-onMounted(async () => {
+onMounted(() => {
   const animate = (): void => {
     stats.update()
     renderer.render(scene, camera)
@@ -131,10 +131,13 @@ onMounted(async () => {
     light4.position.z = Math.sin(time * 0.5) * 30
   }
 
-  object = await new OBJLoader().loadAsync(new URL(walt_head, import.meta.url).href)
-  object.scale.multiplyScalar(0.8)
-  object.position.y = -30
-  scene.add(object)
+  new OBJLoader().load(new URL(walt_head, import.meta.url).href, (obj) => {
+    obj.scale.multiplyScalar(0.8)
+    obj.position.set(0, -30, 0)
+    scene.add(obj)
+
+    object = obj
+  })
 })
 </script>
 

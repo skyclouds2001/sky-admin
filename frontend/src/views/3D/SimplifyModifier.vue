@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Fog, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { type BufferGeometry, Clock, Group, type Mesh, type MeshStandardMaterial, PerspectiveCamera, PointLight, Scene, WebGLRenderer, AmbientLight } from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { SimplifyModifier } from 'three/examples/jsm/modifiers/SimplifyModifier'
 import { useEventListener } from '@sky-fly/shooks'
+import { LeePerrySmith } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -34,12 +37,10 @@ onMounted(() => {
 
   const scene = new Scene()
   scene.name = 'Scene'
-  scene.background = new Color(0x000000)
-  scene.fog = new Fog(0x000000, 10, 25)
 
-  const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new PerspectiveCamera(45, width / height, 1, 1000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0.5, 0.5, 0.5)
+  camera.position.set(0, 5, 15)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -51,9 +52,6 @@ onMounted(() => {
   renderer.setSize(width, height)
 
   container.value.appendChild(renderer.domElement)
-
-  const helper = new AxesHelper(20)
-  scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
@@ -81,19 +79,40 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
-  const mesh = new Mesh(geometry, material)
-  mesh.name = 'Mesh'
-  scene.add(mesh)
+  scene.add(new AmbientLight(0xffffff, 1))
+
+  const light = new PointLight(0xffffff, 400)
+  camera.add(light)
+  scene.add(camera)
+
+  const group = new Group()
+  scene.add(group)
+
+  const loader = new GLTFLoader()
+
+  const modifier = new SimplifyModifier()
+
+  const clock = new Clock()
+
+  loader.load(new URL(LeePerrySmith, import.meta.url).href, (gltf) => {
+    const mesh = gltf.scene.children[0] as Mesh<BufferGeometry, MeshStandardMaterial>
+    mesh.position.set(-5, 0, 0)
+    mesh.rotation.set(0, Math.PI / 2, 0)
+    group.add(mesh)
+
+    const simplified = mesh.clone()
+    simplified.material = mesh.material.clone()
+    simplified.material.flatShading = true
+    simplified.position.set(5, 0, 0)
+    simplified.rotation.set(0, -Math.PI / 2, 0)
+    simplified.geometry = modifier.modify(simplified.geometry, Math.floor(simplified.geometry.attributes.position.count * 0.75))
+    group.add(simplified)
+  })
 
   const render = (): void => {
-    const time = Date.now()
+    const time = clock.getElapsedTime()
 
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+    group.rotation.y = time * 0.5
   }
 })
 </script>
@@ -102,7 +121,7 @@ onMounted(() => {
   <div id="container" ref="container"></div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 #container {
   position: relative;
   width: 100%;

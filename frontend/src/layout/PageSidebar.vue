@@ -282,6 +282,10 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.geometry') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/material">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.material') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/camera">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.camera') }}</span>
@@ -321,6 +325,10 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/colorful-geometry">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.colorful-geometry') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/toon-geometry">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.toon-geometry') }}</span>
         </el-menu-item>
         <el-menu-item index="/3d/light-map">
           <el-icon><Box /></el-icon>

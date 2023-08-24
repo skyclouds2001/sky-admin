@@ -503,6 +503,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/material'),
+              path: '/3d/material',
+              component: () => import('@/views/3D/BaseMaterial.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/camera'),
               path: '/3d/camera',
               component: () => import('@/views/3D/BaseCamera.vue'),
@@ -578,6 +586,14 @@ const router = createRouter({
               name: Symbol('/3d/colorful-geometry'),
               path: '/3d/colorful-geometry',
               component: () => import('@/views/3D/ColorfulGeometry.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/toon-geometry'),
+              path: '/3d/toon-geometry',
+              component: () => import('@/views/3D/ToonGeometry.vue'),
               meta: {
                 isView: true,
               },

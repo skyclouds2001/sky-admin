@@ -88,33 +88,48 @@ onMounted(() => {
 
   const geometry = new THREE.TorusKnotGeometry()
 
-  const basic = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
-    color: 0x049ef4,
-  }))
+  const basic = new THREE.Mesh(
+    geometry,
+    new THREE.MeshBasicMaterial({
+      color: 0x049ef4,
+    })
+  )
   basic.position.set(-4, 0, 4)
   scene.add(basic)
 
-  const lambert = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-    color: 0x049ef4,
-  }))
+  const lambert = new THREE.Mesh(
+    geometry,
+    new THREE.MeshLambertMaterial({
+      color: 0x049ef4,
+    })
+  )
   lambert.position.set(-2, 0, 2)
   scene.add(lambert)
 
-  const phong = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
-    color: 0x049ef4,
-  }))
+  const phong = new THREE.Mesh(
+    geometry,
+    new THREE.MeshPhongMaterial({
+      color: 0x049ef4,
+    })
+  )
   phong.position.set(0, 0, 0)
   scene.add(phong)
 
-  const standard = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-    color: 0x049ef4,
-  }))
+  const standard = new THREE.Mesh(
+    geometry,
+    new THREE.MeshStandardMaterial({
+      color: 0x049ef4,
+    })
+  )
   standard.position.set(2, 0, -2)
   scene.add(standard)
 
-  const physical = new THREE.Mesh(geometry, new THREE.MeshPhysicalMaterial({
-    color: 0x049ef4,
-  }))
+  const physical = new THREE.Mesh(
+    geometry,
+    new THREE.MeshPhysicalMaterial({
+      color: 0x049ef4,
+    })
+  )
   physical.position.set(4, 0, -4)
   scene.add(physical)
 
@@ -126,9 +141,12 @@ onMounted(() => {
   // distance.position.set(0, -2, 4)
   // scene.add(distance)
 
-  const matcap = new THREE.Mesh(geometry, new THREE.MeshMatcapMaterial({
-    color: 0x049ef4,
-  }))
+  const matcap = new THREE.Mesh(
+    geometry,
+    new THREE.MeshMatcapMaterial({
+      color: 0x049ef4,
+    })
+  )
   matcap.position.set(2, -2, 2)
   scene.add(matcap)
 
@@ -136,9 +154,12 @@ onMounted(() => {
   normal.position.set(4, -2, 0)
   scene.add(normal)
 
-  const toon = new THREE.Mesh(geometry, new THREE.MeshToonMaterial({
-    color: 0x049ef4,
-  }))
+  const toon = new THREE.Mesh(
+    geometry,
+    new THREE.MeshToonMaterial({
+      color: 0x049ef4,
+    })
+  )
   toon.position.set(6, -2, -2)
   scene.add(toon)
 

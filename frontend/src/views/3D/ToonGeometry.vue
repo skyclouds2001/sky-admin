@@ -87,9 +87,14 @@ onMounted(() => {
 
   const light = new THREE.PointLight(0xffffff, 10, 800, 0)
   scene.add(light)
-  light.add(new THREE.Mesh(new THREE.SphereGeometry(4, 8, 8), new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-  })))
+  light.add(
+    new THREE.Mesh(
+      new THREE.SphereGeometry(4, 8, 8),
+      new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+      })
+    )
+  )
 
   const side = 400
   const number = 5
@@ -103,7 +108,8 @@ onMounted(() => {
     const colors = new Uint8Array(index + 2)
 
     for (let c = 0; c <= colors.length; ++c) {
-      colors[c] = c / colors.length * 256
+      // eslint-disable-next-line security/detect-object-injection
+      colors[c] = (c / colors.length) * 256
     }
 
     const gradientMap = new THREE.DataTexture(colors, colors.length, 1, format)

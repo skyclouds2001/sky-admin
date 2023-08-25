@@ -20,8 +20,6 @@ onMounted(() => {
     controls.update()
     stats.update()
     renderer.render(scene, camera)
-
-    render()
   }
 
   let { width, height } = container.value.getBoundingClientRect()
@@ -92,7 +90,7 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometries: [THREE.IcosahedronGeometry, number][] = [
+  const geometries: Array<[THREE.IcosahedronGeometry, number]> = [
     [new THREE.IcosahedronGeometry(100, 16), 50],
     [new THREE.IcosahedronGeometry(100, 8), 300],
     [new THREE.IcosahedronGeometry(100, 4), 1000],
@@ -113,7 +111,7 @@ onMounted(() => {
       mesh.scale.set(1.5, 1.5, 1.5)
       mesh.updateMatrix()
       mesh.matrixAutoUpdate = false
-      
+
       lod.addLevel(mesh, level)
     })
 
@@ -121,10 +119,6 @@ onMounted(() => {
     lod.updateMatrix()
     lod.matrixAutoUpdate = false
     scene.add(lod)
-  }
-
-  const render = (): void => {
-    // TODO
   }
 })
 </script>

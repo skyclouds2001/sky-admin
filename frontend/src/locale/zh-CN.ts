@@ -390,6 +390,7 @@ export default {
       'reflector-mirror': '反射镜面',
       'look-at': '物品朝向',
       'selection-box': '物体选择',
+      'lod-wireframe': '层次框架',
       'curve-modifier': '曲线修改',
       'edge-split-modifier': '边缘分割',
       'simplify-modifier': '物体简化',

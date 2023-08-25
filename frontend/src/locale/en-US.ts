@@ -390,6 +390,7 @@ export default {
       'reflector-mirror': 'Reflector Mirror',
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
+      'lod-wireframe': 'Lod Wireframe',
       'curve-modifier': 'Curve Modifier',
       'edge-split-modifier': 'EdgeSplit Modifier',
       'simplify-modifier': 'Simplify Modifier',

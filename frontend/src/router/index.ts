@@ -703,6 +703,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/lod-wireframe'),
+              path: '/3d/lod-wireframe',
+              component: () => import('@/views/3D/LodWireframe.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/curve-modifier'),
               path: '/3d/curve-modifier',
               component: () => import('@/views/3D/CurveModifier.vue'),

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { AxesHelper, BoxGeometry, Color, Fog, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import * as THREE from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -32,18 +32,18 @@ onMounted(() => {
   stats.dom.style.left = '0'
   container.value.appendChild(stats.dom)
 
-  const scene = new Scene()
+  const scene = new THREE.Scene()
   scene.name = 'Scene'
-  scene.background = new Color(0x000000)
-  scene.fog = new Fog(0x000000, 10, 25)
+  scene.background = new THREE.Color(0x000000)
+  scene.fog = new THREE.Fog(0x000000, 10, 25)
 
-  const camera = new PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new THREE.PerspectiveCamera(70, width / height, 0.2, 10)
   camera.name = 'PerspectiveCamera'
   camera.position.set(0.5, 0.5, 0.5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
-  const renderer = new WebGLRenderer({
+  const renderer = new THREE.WebGLRenderer({
     antialias: true,
   })
   renderer.setAnimationLoop(animate)
@@ -52,7 +52,7 @@ onMounted(() => {
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new AxesHelper(20)
+  const helper = new THREE.AxesHelper(20)
   scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
@@ -81,11 +81,11 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new BoxGeometry(0.2, 0.2, 0.2)
+  const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
   geometry.name = 'BoxGeometry'
-  const material = new MeshNormalMaterial()
+  const material = new THREE.MeshNormalMaterial()
   material.name = 'MeshNormalMaterial'
-  const mesh = new Mesh(geometry, material)
+  const mesh = new THREE.Mesh(geometry, material)
   mesh.name = 'Mesh'
   scene.add(mesh)
 

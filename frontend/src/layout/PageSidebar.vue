@@ -362,6 +362,22 @@ const handleCollapse = (): void => {
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.group-animation') }}</span>
         </el-menu-item>
+        <el-menu-item index="/3d/curve-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.curve-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/edge-split-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.edge-split-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/simplify-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.simplify-modifier') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/3d/sub-divider-modifier">
+          <el-icon><Box /></el-icon>
+          <span>{{ i18n.t('router.3d.sub-divider-modifier') }}</span>
+        </el-menu-item>
         <el-menu-item index="/3d/ocean-sky">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.ocean-sky') }}</span>
@@ -385,22 +401,6 @@ const handleCollapse = (): void => {
         <el-menu-item index="/3d/lod-wireframe">
           <el-icon><Box /></el-icon>
           <span>{{ i18n.t('router.3d.lod-wireframe') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/curve-modifier">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.curve-modifier') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/edge-split-modifier">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.edge-split-modifier') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/simplify-modifier">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.simplify-modifier') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/3d/sub-divider-modifier">
-          <el-icon><Box /></el-icon>
-          <span>{{ i18n.t('router.3d.sub-divider-modifier') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

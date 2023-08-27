@@ -35,7 +35,7 @@ onMounted(() => {
   const scene = new THREE.Scene()
   scene.name = 'Scene'
   scene.background = new THREE.Color().setHSL(0.51, 0.4, 0.01, THREE.SRGBColorSpace)
-  scene.fog = new THREE.Fog(scene.background, 10, 25)
+  scene.fog = new THREE.Fog(scene.background, 3500, 15000)
 
   const camera = new THREE.PerspectiveCamera(40, width / height, 1, 15000)
   camera.name = 'PerspectiveCamera'

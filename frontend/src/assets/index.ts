@@ -1,3 +1,5 @@
+export * as pisa from './pisa'
+
 export { default as avatar } from './avatar.jpg'
 
 export { default as brick_bump } from './brick_bump.jpg'

@@ -5,6 +5,7 @@ import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { useEventListener } from '@sky-fly/shooks'
+import { pisa } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -81,19 +82,13 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new THREE.MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
-  const mesh = new THREE.Mesh(geometry, material)
-  mesh.name = 'Mesh'
-  scene.add(mesh)
+  const urls = [pisa.px, pisa.nx, pisa.py, pisa.ny, pisa.pz, pisa.nz]
+  const loader = new THREE.CubeTextureLoader()
+  const cubeMap = loader.load(urls.map((url) => new URL(url, import.meta.url).href))
+  scene.background = cubeMap
 
   const render = (): void => {
-    const time = Date.now()
-
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+    //
   }
 })
 </script>

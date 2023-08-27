@@ -742,6 +742,14 @@ const router = createRouter({
                 isView: true,
               },
             },
+            {
+              name: Symbol('/3d/lensflare-light'),
+              path: '/3d/lensflare-light',
+              component: () => import('@/views/3D/LensflareLight.vue'),
+              meta: {
+                isView: true,
+              },
+            },
           ],
         },
 

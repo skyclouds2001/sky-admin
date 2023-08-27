@@ -395,6 +395,7 @@ export default {
       'look-at': '物品朝向',
       'selection-box': '物体选择',
       'lod-wireframe': '层次框架',
+      'lensflare-light': '相机光圈',
     },
     monitor: {
       title: '系统监控',

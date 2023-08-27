@@ -26,6 +26,8 @@ export { default as helvetiker_regular } from './helvetiker_regular.typeface.jso
 
 export { default as LeePerrySmith } from './LeePerrySmith.glb?url'
 
+export { default as lensflare } from './lensflare.png'
+
 export { default as lightmap } from './lightmap.json?url'
 
 export { default as lucy100k } from './Lucy100k.ply?url'

@@ -395,6 +395,7 @@ export default {
       'look-at': 'Look At',
       'selection-box': 'Selection Box',
       'lod-wireframe': 'Lod Wireframe',
+      'lensflare-light': 'Lensflare Light',
     },
     monitor: {
       title: 'Monitor',

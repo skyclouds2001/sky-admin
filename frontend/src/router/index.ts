@@ -599,6 +599,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/fantastic-material'),
+              path: '/3d/fantastic-material',
+              component: () => import('@/views/3D/FantasticMaterial.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/light-map'),
               path: '/3d/light-map',
               component: () => import('@/views/3D/LightMap.vue'),

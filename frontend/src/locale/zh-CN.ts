@@ -377,6 +377,7 @@ export default {
       'mirror-text': '文字镜像',
       'colorful-geometry': '彩色物体',
       'toon-geometry': '卡通物体',
+      'fantastic-material': '光彩材质',
       'light-map': '光线纹理',
       'plaster-figure': '石膏人像',
       'rect-area': '矩形光源',

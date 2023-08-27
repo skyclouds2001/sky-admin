@@ -377,6 +377,7 @@ export default {
       'mirror-text': 'Mirror Text',
       'colorful-geometry': 'Colorful Geometry',
       'toon-geometry': 'Toon Geometry',
+      'fantastic-material': 'Fantastic Material',
       'light-map': 'Light Map',
       'plaster-figure': 'Plaster Figure',
       'rect-area': 'Rect Area',

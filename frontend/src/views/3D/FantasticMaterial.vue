@@ -145,10 +145,10 @@ onMounted(() => {
     switch (envmap) {
       case 'Reflection':
         envBallMap.mapping = THREE.CubeReflectionMapping
-        break;
+        break
       case 'Refraction':
         envBallMap.mapping = THREE.CubeRefractionMapping
-        break;
+        break
     }
     envBallMaterial.needsUpdate = true
   })

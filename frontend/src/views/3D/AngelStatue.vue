@@ -6,7 +6,7 @@ import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader'
 import { useEventListener } from '@sky-fly/shooks'
-import { disturb, lucy100k } from '@/assets'
+import { disturb, Lucy100k } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -139,7 +139,7 @@ onMounted(() => {
   mesh.receiveShadow = true
   scene.add(mesh)
 
-  new PLYLoader().load(new URL(lucy100k, import.meta.url).href, (geometry) => {
+  new PLYLoader().load(new URL(Lucy100k, import.meta.url).href, (geometry) => {
     geometry.scale(0.0024, 0.0024, 0.0024)
     geometry.computeVertexNormals()
 

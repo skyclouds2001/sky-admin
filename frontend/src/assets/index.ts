@@ -32,7 +32,7 @@ export { default as lensflare } from './lensflare.png'
 
 export { default as lightmap } from './lightmap.json?url'
 
-export { default as lucy100k } from './Lucy100k.ply?url'
+export { default as Lucy100k } from './Lucy100k.ply?url'
 
 export { default as moon_1024 } from './moon_1024.jpg'
 
@@ -44,7 +44,7 @@ export { default as sprite } from './sprite.png'
 
 export { default as uv_grid_opengl } from './uv_grid_opengl.jpg'
 
-export { default as walt_head } from './WaltHead.obj?url'
+export { default as WaltHead } from './WaltHead.obj?url'
 
 export { default as waterdudv } from './waterdudv.jpg'
 

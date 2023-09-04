@@ -4,7 +4,9 @@ import * as THREE from 'three'
 import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { Lensflare, LensflareElement } from 'three/examples/jsm/objects/Lensflare'
 import { useEventListener } from '@sky-fly/shooks'
+import { lensflare } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -20,8 +22,6 @@ onMounted(() => {
     controls.update()
     stats.update()
     renderer.render(scene, camera)
-
-    render()
   }
 
   let { width, height } = container.value.getBoundingClientRect()
@@ -34,14 +34,14 @@ onMounted(() => {
 
   const scene = new THREE.Scene()
   scene.name = 'Scene'
-  scene.background = new THREE.Color(0x000000)
-  scene.fog = new THREE.Fog(0x000000, 10, 25)
+  scene.background = new THREE.Color().setHSL(0.51, 0.4, 0.01, THREE.SRGBColorSpace)
+  scene.fog = new THREE.Fog(scene.background, 3500, 15000)
 
-  const camera = new THREE.PerspectiveCamera(70, width / height, 0.2, 10)
+  const camera = new THREE.PerspectiveCamera(40, width / height, 1, 15000)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(0.5, 0.5, 0.5)
+  camera.position.set(0, 0, 250)
   camera.up.set(0, 1, 0)
-  camera.lookAt(0, 0, 0)
+  camera.lookAt(scene.position)
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -52,11 +52,13 @@ onMounted(() => {
 
   container.value.appendChild(renderer.domElement)
 
-  const helper = new THREE.AxesHelper(20)
+  const helper = new THREE.AxesHelper(15000)
   scene.add(helper)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
+  controls.minDistance = 1
+  controls.maxDistance = 15000
 
   const onResize = (): void => {
     if (container.value === null) return
@@ -81,19 +83,51 @@ onMounted(() => {
     passive: true,
   })
 
-  const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
-  geometry.name = 'BoxGeometry'
-  const material = new THREE.MeshNormalMaterial()
-  material.name = 'MeshNormalMaterial'
-  const mesh = new THREE.Mesh(geometry, material)
-  mesh.name = 'Mesh'
-  scene.add(mesh)
+  const geometry = new THREE.BoxGeometry(250, 250, 250)
+  const material = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    specular: 0xffffff,
+    shininess: 50,
+  })
+  for (let i = 0; i < 3000; ++i) {
+    const mesh = new THREE.Mesh(geometry, material)
 
-  const render = (): void => {
-    const time = Date.now()
+    mesh.position.set(8000 * (2 * Math.random() - 1), 8000 * (2 * Math.random() - 1), 8000 * (2 * Math.random() - 1))
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI)
+    mesh.matrixAutoUpdate = false
+    mesh.updateMatrix()
 
-    mesh.rotation.x = time / 2000
-    mesh.rotation.y = time / 1000
+    scene.add(mesh)
+  }
+
+  const light = new THREE.DirectionalLight(0xffffff, 0.15)
+  light.position.set(0, -1, 0).normalize()
+  light.color.setHSL(0.1, 0.7, 0.5)
+  scene.add(light)
+
+  const loader = new THREE.TextureLoader()
+
+  const texture = loader.load(new URL(lensflare, import.meta.url).href)
+
+  const lights = [
+    [0.55, 0.9, 0.5, 5000, 0, -1000],
+    [0.08, 0.8, 0.5, 0, 0, -1000],
+    [0.995, 0.5, 0.9, 5000, 5000, -1000],
+  ]
+
+  for (const l of lights) {
+    const light = new THREE.PointLight(0xffffff, 1.5, 2000, 0)
+    light.position.set(l[3], l[4], l[5])
+    light.color.set(l[0], l[1], l[2])
+    scene.add(light)
+
+    const lensflare = new Lensflare()
+    lensflare.addElement(new LensflareElement(texture, 700, 0, light.color))
+    lensflare.addElement(new LensflareElement(texture, 60, 0.6))
+    lensflare.addElement(new LensflareElement(texture, 70, 0.7))
+    lensflare.addElement(new LensflareElement(texture, 120, 0.9))
+    lensflare.addElement(new LensflareElement(texture, 70, 1))
+    light.add(lensflare)
   }
 })
 </script>

@@ -173,7 +173,7 @@ onMounted(() => {
     renderFlows(font)
   })
 
-  const rayCaster = new Raycaster()
+  const raycaster = new Raycaster()
 
   const controls = new TransformControls(camera, renderer.domElement)
   controls.addEventListener('dragging-changed', (e) => {
@@ -217,9 +217,9 @@ onMounted(() => {
 
   const render = (): void => {
     if (action === Action.SELECT) {
-      rayCaster.setFromCamera(mouse, camera)
+      raycaster.setFromCamera(mouse, camera)
       action = Action.NONE
-      const intersects = rayCaster.intersectObjects(handles.flat(1), false)
+      const intersects = raycaster.intersectObjects(handles.flat(1), false)
       if (intersects.length > 0) {
         controls.attach(intersects[0].object)
         control.enabled = false

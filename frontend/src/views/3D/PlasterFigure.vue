@@ -5,7 +5,7 @@ import WebGL from 'three/examples/jsm/capabilities/WebGL'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { useEventListener } from '@sky-fly/shooks'
-import { walt_head } from '@/assets'
+import { WaltHead } from '@/assets'
 
 const container = ref<HTMLDivElement | null>(null)
 
@@ -131,7 +131,7 @@ onMounted(() => {
     light4.position.z = Math.sin(time * 0.5) * 30
   }
 
-  new OBJLoader().load(new URL(walt_head, import.meta.url).href, (obj) => {
+  new OBJLoader().load(new URL(WaltHead, import.meta.url).href, (obj) => {
     obj.scale.multiplyScalar(0.8)
     obj.position.set(0, -30, 0)
     scene.add(obj)

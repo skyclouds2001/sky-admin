@@ -503,6 +503,14 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/material'),
+              path: '/3d/material',
+              component: () => import('@/views/3D/BaseMaterial.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/camera'),
               path: '/3d/camera',
               component: () => import('@/views/3D/BaseCamera.vue'),
@@ -583,6 +591,22 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/toon-geometry'),
+              path: '/3d/toon-geometry',
+              component: () => import('@/views/3D/ToonGeometry.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/fantastic-material'),
+              path: '/3d/fantastic-material',
+              component: () => import('@/views/3D/FantasticMaterial.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/light-map'),
               path: '/3d/light-map',
               component: () => import('@/views/3D/LightMap.vue'),
@@ -647,6 +671,38 @@ const router = createRouter({
               },
             },
             {
+              name: Symbol('/3d/curve-modifier'),
+              path: '/3d/curve-modifier',
+              component: () => import('@/views/3D/CurveModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/edge-split-modifier'),
+              path: '/3d/edge-split-modifier',
+              component: () => import('@/views/3D/EdgeSplitModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/simplify-modifier'),
+              path: '/3d/simplify-modifier',
+              component: () => import('@/views/3D/SimplifyModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/3d/sub-divider-modifier'),
+              path: '/3d/sub-divider-modifier',
+              component: () => import('@/views/3D/SubDivisionModifier.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
               name: Symbol('/3d/ocean-sky'),
               path: '/3d/ocean-sky',
               component: () => import('@/views/3D/OceanSky.vue'),
@@ -687,33 +743,17 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/3d/curve-modifier'),
-              path: '/3d/curve-modifier',
-              component: () => import('@/views/3D/CurveModifier.vue'),
+              name: Symbol('/3d/lod-wireframe'),
+              path: '/3d/lod-wireframe',
+              component: () => import('@/views/3D/LodWireframe.vue'),
               meta: {
                 isView: true,
               },
             },
             {
-              name: Symbol('/3d/edge-split-modifier'),
-              path: '/3d/edge-split-modifier',
-              component: () => import('@/views/3D/EdgeSplitModifier.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/simplify-modifier'),
-              path: '/3d/simplify-modifier',
-              component: () => import('@/views/3D/SimplifyModifier.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/3d/sub-divider-modifier'),
-              path: '/3d/sub-divider-modifier',
-              component: () => import('@/views/3D/SubDivisionModifier.vue'),
+              name: Symbol('/3d/lensflare-light'),
+              path: '/3d/lensflare-light',
+              component: () => import('@/views/3D/LensflareLight.vue'),
               meta: {
                 isView: true,
               },

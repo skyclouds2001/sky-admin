@@ -8,15 +8,26 @@ interface Asset {
   source: string
 }
 
+/**
+ * plugin options
+ */
 interface CopyAssetOptions {
   /**
    * whether continue copy file if target file has existed
    * @default true
    */
-  overwrite: boolean
+  overwrite?: boolean
 }
 
-const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions): Plugin => {
+/**
+ * A plugin for copy asset to build results
+ * @param assets assets list
+ * @param options plugin options
+ * @returns plugin instance
+ */
+const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): Plugin => {
+  const { overwrite = true } = options
+
   let config: ResolvedConfig
 
   return {
@@ -40,11 +51,13 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions): Plugi
       root = normalizePath(root)
       outDir = normalizePath(outDir)
 
+      const mode = overwrite ? fs.constants.COPYFILE_FICLONE : fs.constants.COPYFILE_EXCL
+
       assets.forEach((asset) => {
         const origin = path.resolve(root, normalizePath(asset.source))
         const target = path.resolve(outDir)
 
-        fs.copyFile(origin, target, (err) => {
+        fs.copyFile(origin, target, mode, (err) => {
           if (err != null) {
             logger.error(`[ERROR]: copy file from ${origin} to ${target} fail!`)
           } else {

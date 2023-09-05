@@ -8,7 +8,13 @@ interface Asset {
   source: string
 }
 
-interface CopyAssetOptions {}
+interface CopyAssetOptions {
+  /**
+   * whether continue copy file if target file has existed
+   * @default true
+   */
+  overwrite: boolean
+}
 
 const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions): Plugin => {
   let config: ResolvedConfig
@@ -22,30 +28,29 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions): Plugi
     closeBundle: () => {
       const logger = createLogger()
 
-      const {
+      let {
         root,
-        build: {
-          outDir,
-        },
+        build: { outDir },
       } = config
 
       if (!Array.isArray(assets)) {
         assets = [assets]
       }
 
-      const source = normalizePath(root)
-      const target = normalizePath(outDir)
+      root = normalizePath(root)
+      outDir = normalizePath(outDir)
 
       assets.forEach((asset) => {
-        const { source: src } = asset
- 
-        try {
-          fs.copyFileSync(path.resolve(source, src), path.resolve(target))
+        const origin = path.resolve(root, normalizePath(asset.source))
+        const target = path.resolve(outDir)
 
-          logger.info(`[INFO]: copy file from ${source} to ${target} success!`)
-        } catch (error) {
-          logger.error(`[ERROR]: copy file from ${source} to ${target} fail!`)
-        }
+        fs.copyFile(origin, target, (err) => {
+          if (err != null) {
+            logger.error(`[ERROR]: copy file from ${origin} to ${target} fail!`)
+          } else {
+            logger.info(`[INFO]: copy file from ${origin} to ${target} success!`)
+          }
+        })
       })
     },
   }

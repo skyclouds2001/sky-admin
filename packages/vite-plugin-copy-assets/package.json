@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-copy-file",
+  "name": "vite-plugin-copy-assets",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",

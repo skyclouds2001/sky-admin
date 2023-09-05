@@ -120,7 +120,7 @@
     "vite": "^4.4.9",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-copy-file": "workspace:*",
+    "vite-plugin-copy-assets": "workspace:*",
     "vite-plugin-generate-env": "workspace:*",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-inspect": "^0.7.38",

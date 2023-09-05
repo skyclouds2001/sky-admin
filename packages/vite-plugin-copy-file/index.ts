@@ -2,82 +2,53 @@ import { createLogger, normalizePath, type Plugin, type ResolvedConfig } from 'v
 import path from 'node:path'
 import fs from 'node:fs'
 
-const CopyFile = (
-  options: {
-    files?: Array<{
-      source: string
-      target: string
-    }>
-  } = {}
-): Plugin => {
-  const { files = [] } = options
+type MaybeArray<T> = T | T[]
 
-  const logger = createLogger()
+interface Asset {
+  source: string
+}
 
+interface CopyAssetOptions {}
+
+const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions): Plugin => {
   let config: ResolvedConfig
 
   return {
-    name: 'vite-plugin-copy-file',
+    name: 'vite-plugin-copy-assets',
     apply: 'build',
     configResolved: (cf) => {
       config = cf
     },
     closeBundle: () => {
+      const logger = createLogger()
+
       const {
         root,
-        build: { outDir: out },
+        build: {
+          outDir,
+        },
       } = config
 
-      files.forEach((file) => {
-        // 判断传入参数 - 目标文件和原文件的名称/路径是否合法
-        if (typeof file.source !== 'string') {
-          logger.error('[ERROR]: source file should be a string!')
-          return
-        }
-        if (typeof file.target !== 'string') {
-          logger.error('[ERROR]: target file should be a string!')
-          return
-        }
+      if (!Array.isArray(assets)) {
+        assets = [assets]
+      }
 
-        let source: string
-        try {
-          source = path.resolve(normalizePath(root), normalizePath(file.source))
-        } catch {
-          logger.error('[ERROR]: normalize source file path fail!')
-          return
-        }
-        let target: string
-        try {
-          target = path.resolve(normalizePath(root), normalizePath(out), normalizePath(file.target))
-        } catch {
-          logger.error('[ERROR]: normalize target file path fail!')
-          return
-        }
+      const source = normalizePath(root)
+      const target = normalizePath(outDir)
 
+      assets.forEach((asset) => {
+        const { source: src } = asset
+ 
         try {
-          fs.accessSync(source, fs.constants.R_OK)
-        } catch {
-          logger.error("[ERROR]: can't read source file!")
-          return
-        }
-        try {
-          fs.accessSync(target, fs.constants.W_OK)
-        } catch {
-          logger.error("[ERROR]: can't write target file!")
-          return
-        }
+          fs.copyFileSync(path.resolve(source, src), path.resolve(target))
 
-        try {
-          fs.copyFileSync(source, target)
-        } catch {
+          logger.info(`[INFO]: copy file from ${source} to ${target} success!`)
+        } catch (error) {
           logger.error(`[ERROR]: copy file from ${source} to ${target} fail!`)
-          return
         }
-
-        logger.info(`[INFO]: copy file from ${source} to ${target} success!`)
       })
     },
   }
 }
 
-export default CopyFile
+export default CopyAssets

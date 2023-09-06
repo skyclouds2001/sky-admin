@@ -25,6 +25,16 @@ interface Asset {
  */
 interface CopyAssetOptions {
   /**
+   * custom root dictionary path for source file, will overwrite the default value, default is `config.root` in vite config
+   * @default config.root
+   */
+  root?: string
+  /**
+   * custom root dictionary path for built output, will overwrite the default value, default is `config.build.outDirconfig.build.outDir` in vite config
+   * @default config.build.outDir
+   */
+  out?: string
+  /**
    * whether continue copy file if target file has existed
    * @default true
    */
@@ -49,17 +59,12 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): 
       config = cf
     },
     closeBundle: () => {
-      let {
-        root,
-        build: { outDir },
-      } = config
-
       if (!Array.isArray(assets)) {
         assets = [assets]
       }
 
-      root = normalizePath(root)
-      outDir = normalizePath(outDir)
+      const root = normalizePath(options.root ?? config.root)
+      const outDir = normalizePath(options.out ?? config.build.outDir)
 
       const mode = overwrite ? fs.constants.COPYFILE_FICLONE : fs.constants.COPYFILE_EXCL
 
@@ -67,7 +72,7 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): 
         const src = normalizePath(asset.source)
 
         const origin = path.resolve(root, src)
-        const target = path.resolve(outDir, asset.target && !path.isAbsolute(asset.target) ? normalizePath(asset.target) : path.basename(src))
+        const target = path.resolve(outDir, asset.target != null && !path.isAbsolute(asset.target) ? normalizePath(asset.target) : path.basename(src))
 
         fs.copyFile(origin, target, mode, (err) => {
           if (err != null) {

@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
-import GenerateEnv from 'vite-plugin-generate-env'
+import utils from 'vite-plugin-utils'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
@@ -53,7 +53,7 @@ export default defineConfig({
         lintCommand: 'stylelint "./src/**/*.{vue,css,sass,scss,less,styl,stylus}"',
       },
     }),
-    GenerateEnv(),
+    utils(),
     CopyAssets(),
   ],
   resolve: {

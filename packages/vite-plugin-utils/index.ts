@@ -2,7 +2,7 @@ import type { Plugin } from 'vite'
 
 const GenerateEnv = (): Plugin => {
   return {
-    name: 'vite-plugin-generate-env',
+    name: 'vite-plugin-utils',
     config: () => ({
       define: {
         __BUILD_TIME__: `'${new Date().toLocaleString()}'`,

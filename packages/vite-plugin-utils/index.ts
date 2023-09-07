@@ -1,15 +1,37 @@
 import type { Plugin } from 'vite'
 
-const GenerateEnv = (): Plugin => {
+/**
+ * plugin options
+ */
+interface UtilsOptions {
+  /**
+   * whether generate environment env of build time
+   * @default true
+   */
+  buildTime?: boolean
+}
+
+/**
+ * a plugin for maintain fantastic utils
+ * @param options plugin options
+ * @returns plugin instance
+ */
+const Utils = (options: UtilsOptions = {}): Plugin => {
+  const { buildTime = true } = options
+
   return {
     name: 'vite-plugin-utils',
-    config: () => ({
-      define: {
-        __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
-      },
-    }),
+    config: () => {
+      return buildTime
+        ? {
+            define: {
+              __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
+            },
+          }
+        : {}
+    },
     enforce: 'pre',
   }
 }
 
-export default GenerateEnv
+export default Utils

@@ -11,8 +11,7 @@
     "skyclouds2001"
   ],
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",

@@ -11,12 +11,20 @@ import { pisa } from '@/assets'
 const container = ref<HTMLDivElement | null>(null)
 
 const params = {
-  envMap: 'Reflection',
+  mapping: 'Reflection',
   color: 0xffffff,
-  roughness: 0,
-  metalness: 0,
+  roughness: 0.0,
+  metalness: 0.0,
   wireframe: false,
-  exposure: 1,
+  flatShading: false,
+  clearcoat: 1.0,
+  clearcoatRoughness: 0.1,
+  ior: 1.5,
+  transmission: 0.0,
+  specularIntensity: 1.0,
+  specularColor: 0xffffff,
+  envMapIntensity: 2.0,
+  exposure: 1.0,
 }
 
 onMounted(() => {
@@ -97,6 +105,8 @@ onMounted(() => {
     passive: true,
   })
 
+  const clock = new THREE.Clock()
+
   const manager = new THREE.LoadingManager(() => {
     roughMetalBallMaterial.envMap = generator.fromCubemap(cubeMap).texture
   })
@@ -111,7 +121,11 @@ onMounted(() => {
   scene.background = cubeMap
 
   const envBallMap = cubeMap.clone()
-  envBallMap.mapping = THREE.CubeReflectionMapping
+  if (params.mapping === 'reflection') {
+    envBallMap.mapping = THREE.CubeReflectionMapping
+  } else if (params.mapping === 'refraction') {
+    envBallMap.mapping = THREE.CubeRefractionMapping
+  }
   const envBallGeometry = new THREE.IcosahedronGeometry(1, 15)
   const envBallMaterial = new THREE.MeshBasicMaterial({
     envMap: envBallMap,
@@ -121,17 +135,21 @@ onMounted(() => {
 
   const roughMetalBallGeometry = new THREE.TorusKnotGeometry(1, 0.5, 150, 20)
   const roughMetalBallMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
-    roughness: 0,
-    metalness: 0,
-    wireframe: false,
-    envMap: cubeMap,
-    envMapIntensity: 1.0,
+    color: params.color,
+    roughness: params.roughness,
+    metalness: params.metalness,
+    wireframe: params.wireframe,
+    flatShading: params.flatShading,
+    clearcoat: params.clearcoat,
+    clearcoatRoughness: params.clearcoatRoughness,
+    ior: params.ior,
+    transmission: params.transmission,
+    specularIntensity: params.specularIntensity,
+    specularColor: new THREE.Color(params.specularColor),
+    envMapIntensity: params.envMapIntensity,
   })
   const roughMetalBall = new THREE.Mesh(roughMetalBallGeometry, roughMetalBallMaterial)
   scene.add(roughMetalBall)
-
-  const clock = new THREE.Clock()
 
   const render = (): void => {
     const time = clock.getElapsedTime()
@@ -144,8 +162,8 @@ onMounted(() => {
   const gui = new GUI()
 
   const envBallFolder = gui.addFolder('envBall')
-  envBallFolder.add(params, 'envMap', ['Reflection', 'Refraction']).onChange((envmap: string) => {
-    switch (envmap) {
+  envBallFolder.add(params, 'mapping', ['Reflection', 'Refraction']).onChange((mapping: 'Reflection' | 'Refraction') => {
+    switch (mapping) {
       case 'Reflection':
         envBallMap.mapping = THREE.CubeReflectionMapping
         break
@@ -168,6 +186,31 @@ onMounted(() => {
   })
   roughMetalBallFolder.add(params, 'wireframe').onChange((wireframe: boolean) => {
     roughMetalBallMaterial.wireframe = wireframe
+  })
+  roughMetalBallFolder.add(params, 'flatShading').onChange((flatShading: boolean) => {
+    roughMetalBallMaterial.flatShading = flatShading
+    roughMetalBallMaterial.needsUpdate = true
+  })
+  roughMetalBallFolder.add(params, 'clearcoat', 0, 1, 0.01).onChange((clearcoat: number) => {
+    roughMetalBallMaterial.clearcoat = clearcoat
+  })
+  roughMetalBallFolder.add(params, 'clearcoatRoughness', 0, 1, 0.01).onChange((clearcoatRoughness: number) => {
+    roughMetalBallMaterial.clearcoatRoughness = clearcoatRoughness
+  })
+  roughMetalBallFolder.add(params, 'ior', 1, 2.333, 0.001).onChange((ior: number) => {
+    roughMetalBallMaterial.ior = ior
+  })
+  roughMetalBallFolder.add(params, 'transmission', 0, 1, 0.01).onChange((transmission: number) => {
+    roughMetalBallMaterial.transmission = transmission
+  })
+  roughMetalBallFolder.add(params, 'specularIntensity', 0, 1, 0.01).onChange((specularIntensity: number) => {
+    roughMetalBallMaterial.specularIntensity = specularIntensity
+  })
+  roughMetalBallFolder.addColor(params, 'specularColor').onChange((specularColor: number) => {
+    roughMetalBallMaterial.specularColor = new THREE.Color(specularColor)
+  })
+  roughMetalBallFolder.add(params, 'envMapIntensity').onChange((envMapIntensity: number) => {
+    roughMetalBallMaterial.envMapIntensity = envMapIntensity
   })
 
   const sceneFolder = gui.addFolder('scene')

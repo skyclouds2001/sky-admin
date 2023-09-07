@@ -614,6 +614,16 @@ importers:
         specifier: ^5.1.6
         version: 5.2.2
 
+  packages/vite-plugin-mocker:
+    dependencies:
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@20.5.9)(less@4.2.0)(sass@1.66.1)(stylus@0.59.0)(sugarss@4.0.1)(terser@5.19.3)
+    devDependencies:
+      typescript:
+        specifier: ^5.1.6
+        version: 5.2.2
+
   packages/vite-plugin-utils:
     dependencies:
       vite:

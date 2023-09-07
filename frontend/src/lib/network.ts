@@ -1,4 +1,5 @@
 import axios, { type Canceler } from 'axios'
+// eslint-disable-next-line import/no-named-as-default
 import AxiosRetry from 'axios-retry'
 import { MD5 } from 'crypto-js'
 import { useStorage } from '@sky-fly/shooks'

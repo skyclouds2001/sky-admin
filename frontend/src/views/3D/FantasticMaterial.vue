@@ -12,8 +12,10 @@ const container = ref<HTMLDivElement | null>(null)
 
 const params = {
   envMap: 'Reflection',
+  color: 0xffffff,
   roughness: 0,
   metalness: 0,
+  wireframe: false,
   exposure: 1,
 }
 
@@ -44,11 +46,11 @@ onMounted(() => {
   const scene = new THREE.Scene()
   scene.name = 'Scene'
   scene.background = new THREE.Color(0x000000)
-  scene.fog = new THREE.Fog(0x000000, 10, 25)
+  scene.fog = new THREE.Fog(0xffffff, 10, 25)
 
   const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 100)
   camera.name = 'PerspectiveCamera'
-  camera.position.set(10, 5, 10)
+  camera.position.set(5, 0, 5)
   camera.up.set(0, 1, 0)
   camera.lookAt(0, 0, 0)
 
@@ -115,18 +117,18 @@ onMounted(() => {
     envMap: envBallMap,
   })
   const envBall = new THREE.Mesh(envBallGeometry, envBallMaterial)
-  envBall.position.set(0, 0, 0)
   scene.add(envBall)
 
   const roughMetalBallGeometry = new THREE.TorusKnotGeometry(1, 0.5, 150, 20)
-  const roughMetalBallMaterial = new THREE.MeshStandardMaterial({
+  const roughMetalBallMaterial = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
     roughness: 0,
     metalness: 0,
+    wireframe: false,
+    envMap: cubeMap,
     envMapIntensity: 1.0,
   })
   const roughMetalBall = new THREE.Mesh(roughMetalBallGeometry, roughMetalBallMaterial)
-  roughMetalBall.position.set(0, 3, 0)
   scene.add(roughMetalBall)
 
   const clock = new THREE.Clock()
@@ -134,12 +136,13 @@ onMounted(() => {
   const render = (): void => {
     const time = clock.getElapsedTime()
 
-    envBall.position.x = 3 * Math.sin(time * 0.5)
-    envBall.position.z = 1 * Math.sin(time)
+    envBall.position.x = 3 * Math.sin(time)
+    envBall.position.z = 3 * Math.cos(time)
     roughMetalBall.rotation.y = time * 0.2
   }
 
   const gui = new GUI()
+
   const envBallFolder = gui.addFolder('envBall')
   envBallFolder.add(params, 'envMap', ['Reflection', 'Refraction']).onChange((envmap: string) => {
     switch (envmap) {
@@ -152,16 +155,26 @@ onMounted(() => {
     }
     envBallMaterial.needsUpdate = true
   })
+
   const roughMetalBallFolder = gui.addFolder('roughMetalBall')
+  roughMetalBallFolder.addColor(params, 'color').onChange((color: number) => {
+    roughMetalBallMaterial.color = new THREE.Color(color)
+  })
   roughMetalBallFolder.add(params, 'roughness', 0, 1, 0.01).onChange((roughness: number) => {
     roughMetalBallMaterial.roughness = roughness
   })
   roughMetalBallFolder.add(params, 'metalness', 0, 1, 0.01).onChange((metalness: number) => {
     roughMetalBallMaterial.metalness = metalness
   })
-  roughMetalBallFolder.add(params, 'exposure', 0, 2, 0.01).onChange((exposure: number) => {
+  roughMetalBallFolder.add(params, 'wireframe').onChange((wireframe: boolean) => {
+    roughMetalBallMaterial.wireframe = wireframe
+  })
+
+  const sceneFolder = gui.addFolder('scene')
+  sceneFolder.add(params, 'exposure', 0, 2, 0.01).onChange((exposure: number) => {
     renderer.toneMappingExposure = exposure
   })
+
   gui.open()
 })
 </script>

@@ -9,6 +9,12 @@ interface UtilsOptions {
    * @default true
    */
   buildTime?: boolean
+
+  /**
+   * whether enable  cross-origin isolation state mode
+   * @default true
+   */
+  crossOriginIsolated?: boolean
 }
 
 /**
@@ -17,10 +23,11 @@ interface UtilsOptions {
  * @returns plugin instance
  */
 const Utils = (options: UtilsOptions = {}): Plugin => {
-  const { buildTime = true } = options
+  const { buildTime = true, crossOriginIsolated = true } = options
 
   return {
     name: 'vite-plugin-utils',
+
     config: () => {
       return buildTime
         ? {
@@ -30,7 +37,26 @@ const Utils = (options: UtilsOptions = {}): Plugin => {
           }
         : {}
     },
-    enforce: 'pre',
+
+    configureServer: (server) => {
+      server.middlewares.use((req, res, next) => {
+        if (crossOriginIsolated) {
+          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
+          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
+        }
+        next()
+      })
+    },
+
+    configurePreviewServer: (server) => {
+      server.middlewares.use((req, res, next) => {
+        if (crossOriginIsolated) {
+          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
+          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
+        }
+        next()
+      })
+    },
   }
 }
 

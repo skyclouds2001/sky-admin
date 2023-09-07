@@ -11,7 +11,7 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import compression from 'vite-plugin-compression'
-import CopyFile from 'vite-plugin-copy-file'
+import CopyAssets from 'vite-plugin-copy-assets'
 import mkcert from 'vite-plugin-mkcert'
 import { visualizer } from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
@@ -54,7 +54,7 @@ export default defineConfig({
       },
     }),
     GenerateEnv(),
-    CopyFile(),
+    CopyAssets(),
   ],
   resolve: {
     alias: {

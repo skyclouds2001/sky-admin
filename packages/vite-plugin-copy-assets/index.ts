@@ -38,6 +38,19 @@ interface CopyAssetOptions {
   out?: string
 
   /**
+   * whether enable CORS when in dev server
+   * @default false
+   */
+  cors?:
+    | boolean
+    | {
+        origin?: string
+        credentials?: boolean
+        methods?: string | string[]
+        headers?: string | string[]
+      }
+
+  /**
    * whether continue copy file if target file has existed
    * @default true
    */
@@ -51,7 +64,7 @@ interface CopyAssetOptions {
  * @returns plugin instance
  */
 const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): Plugin => {
-  const { overwrite = true } = options
+  const { overwrite = true, cors = false } = options
 
   const mappers = new Map<string, string>()
 
@@ -109,6 +122,23 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): 
           if (err != null) {
             next()
             return
+          }
+
+          if (typeof cors === 'object') {
+            if (cors.origin != null) {
+              res.setHeader('Access-Control-Allow-Origin', cors.origin)
+            }
+            if (cors.credentials != null && cors.credentials) {
+              res.setHeader('Access-Control-Allow-Credentials', 'true')
+            }
+            if (cors.methods != null) {
+              res.setHeader('Access-Control-Allow-Methods', Array.isArray(cors.methods) ? cors.methods.join(',') : cors.methods)
+            }
+            if (cors.headers != null) {
+              res.setHeader('Access-Control-Allow-Headers', Array.isArray(cors.headers) ? cors.headers.join(',') : cors.headers)
+            }
+          } else if (cors) {
+            res.setHeader('Access-Control-Allow-Origin', '*')
           }
 
           res.writeHead(200)

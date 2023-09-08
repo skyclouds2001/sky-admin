@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "WebWorker", "Webworker.Iterable", "WebWorker.ImportScripts"],
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["mocker.ts"],
+  "exclude": ["node_modules", "dist"]
+}

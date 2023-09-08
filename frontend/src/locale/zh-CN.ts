@@ -292,6 +292,7 @@ export default {
       'confirm-exit-login': '确认退出登录',
       'cancel-exit-login': '取消退出登录',
       'pointer-lock': '指针锁定',
+      date: '日期时间',
       print: '打印',
       fullscreen: '全屏',
       share: '分享',

@@ -112,7 +112,9 @@ const exitLogin = (): void => {
     <div class="control-bar">
       <el-popover trigger="click" :width="700">
         <template #reference>
-          <div class="current-time">{{ now.toLocaleString() }}</div>
+          <el-tooltip :content="i18n.t('layout.header.date')">
+            <div class="current-time">{{ now.toLocaleString() }}</div>
+          </el-tooltip>
         </template>
         <el-calendar v-model="now" />
       </el-popover>

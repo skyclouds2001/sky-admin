@@ -24,6 +24,14 @@ export class UserEntity implements User {
   })
   email: string
 
+  departmentId: number
+
+  department?: any
+
+  roleId: number
+
+  role?: any
+
   @ApiProperty({
     description: '用户创建时间',
   })

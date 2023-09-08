@@ -3,7 +3,7 @@ import { useStorage } from '@sky-fly/shooks'
 import { INDEX_ROUTE } from '@/config'
 import { LayoutContainer } from '@/layout'
 import { usePagesStore, useTabsStore } from '@/store'
-import { openNewPageInNewTab } from '@/util'
+import { openPage } from '@/util'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -869,7 +869,7 @@ const storage = useStorage<string>('token', {
 router.beforeEach((to) => {
   // 检测是否为外链（非内链），若是外链则跳转打开新页面
   if (to.path.includes('/link') && to.params.mode === 'external') {
-    openNewPageInNewTab(decodeURIComponent(to.path.slice(1).split('/')[1]))
+    openPage(decodeURIComponent(to.path.slice(1).split('/')[1]))
     return false
   }
 

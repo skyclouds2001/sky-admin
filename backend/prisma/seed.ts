@@ -9,15 +9,60 @@ const roundsOfHashing = 10
  * 数据库 seed 方法
  */
 async function main(): Promise<void> {
+  const role1 = await prisma.role.upsert({
+    where: {
+      name: 'admin',
+    },
+    update: {},
+    create: {
+      name: 'admin',
+    },
+  })
+
+  const role2 = await prisma.role.upsert({
+    where: {
+      name: 'user',
+    },
+    update: {},
+    create: {
+      name: 'user',
+    },
+  })
+
+  const department1 = await prisma.department.upsert({
+    where: {
+      name: 'develop',
+    },
+    update: {},
+    create: {
+      name: 'develop',
+    },
+  })
+
+  const department2 = await prisma.department.upsert({
+    where: {
+      name: 'manage',
+    },
+    update: {},
+    create: {
+      name: 'manage',
+    },
+  })
+
   const user1 = await prisma.user.upsert({
     where: {
       email: 'ag@ag.com',
     },
     update: {
+      roleId: role1.id,
+      departmentId: department1.id,
+      name: 'ag',
       password: bcyptjs.hashSync('password-ag', roundsOfHashing),
     },
     create: {
       email: 'ag@ag.com',
+      roleId: role1.id,
+      departmentId: department1.id,
       name: 'ag',
       password: bcyptjs.hashSync('password-ag', roundsOfHashing),
     },
@@ -28,10 +73,15 @@ async function main(): Promise<void> {
       email: 'estar@estar.com',
     },
     update: {
+      roleId: role2.id,
+      departmentId: department1.id,
+      name: 'estar',
       password: bcyptjs.hashSync('password-estar', roundsOfHashing),
     },
     create: {
       email: 'estar@estar.com',
+      roleId: role2.id,
+      departmentId: department1.id,
       name: 'estar',
       password: bcyptjs.hashSync('password-estar', roundsOfHashing),
     },
@@ -42,10 +92,15 @@ async function main(): Promise<void> {
       email: 'wb@wb.com',
     },
     update: {
+      roleId: role2.id,
+      departmentId: department2.id,
+      name: 'wb',
       password: bcyptjs.hashSync('password-wb', roundsOfHashing),
     },
     create: {
       email: 'wb@wb.com',
+      roleId: role2.id,
+      departmentId: department2.id,
       name: 'wb',
       password: bcyptjs.hashSync('password-wb', roundsOfHashing),
     },
@@ -56,10 +111,15 @@ async function main(): Promise<void> {
       email: 'edgm@edgm.com',
     },
     update: {
+      roleId: role2.id,
+      departmentId: department2.id,
+      name: 'edgm',
       password: bcyptjs.hashSync('password-edgm', roundsOfHashing),
     },
     create: {
       email: 'edgm@edgm.com',
+      roleId: role2.id,
+      departmentId: department2.id,
       name: 'edgm',
       password: bcyptjs.hashSync('password-edgm', roundsOfHashing),
     },
@@ -70,10 +130,15 @@ async function main(): Promise<void> {
       email: 'we@we.com',
     },
     update: {
+      roleId: role2.id,
+      departmentId: department1.id,
+      name: 'we',
       password: bcyptjs.hashSync('password-we', roundsOfHashing),
     },
     create: {
       email: 'we@we.com',
+      roleId: role2.id,
+      departmentId: department1.id,
       name: 'we',
       password: bcyptjs.hashSync('password-we', roundsOfHashing),
     },
@@ -85,6 +150,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user1.id,
+      star: 4,
+      read: 234,
+      status: 'Drafted',
     },
     create: {
       title: 'Hello World',
@@ -101,6 +169,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user2.id,
+      star: 3,
+      read: 2314,
+      status: 'Published',
     },
     create: {
       title: 'Hello Every One',
@@ -117,6 +188,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user3.id,
+      star: 5,
+      read: 534,
+      status: 'Published',
     },
     create: {
       title: 'Hello User',
@@ -133,6 +207,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user4.id,
+      star: 2,
+      read: 1267,
+      status: 'Published',
     },
     create: {
       title: 'Hello People',
@@ -149,6 +226,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user5.id,
+      star: 3,
+      read: 767,
+      status: 'Drafted',
     },
     create: {
       title: 'Hello Human',
@@ -165,6 +245,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user1.id,
+      star: 4,
+      read: 289,
+      status: 'Drafted',
     },
     create: {
       title: 'C Language',
@@ -181,6 +264,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user2.id,
+      star: 3,
+      read: 389,
+      status: 'Published',
     },
     create: {
       title: 'C++ Language',
@@ -197,6 +283,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user3.id,
+      star: 4,
+      read: 1073,
+      status: 'Published',
     },
     create: {
       title: 'Java Language',
@@ -213,6 +302,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user4.id,
+      star: 4,
+      read: 1087,
+      status: 'Published',
     },
     create: {
       title: 'Python Language',
@@ -229,6 +321,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user5.id,
+      star: 2,
+      read: 927,
+      status: 'Drafted',
     },
     create: {
       title: 'Go Language',
@@ -245,6 +340,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user1.id,
+      star: 2,
+      read: 456,
+      status: 'Published',
     },
     create: {
       title: 'Swift Language',
@@ -261,6 +359,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user2.id,
+      star: 1,
+      read: 1452,
+      status: 'Published',
     },
     create: {
       title: 'Kotlin Language',
@@ -277,6 +378,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user3.id,
+      star: 3,
+      read: 724,
+      status: 'Published',
     },
     create: {
       title: 'HTML Language',
@@ -293,6 +397,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user4.id,
+      star: 4,
+      read: 682,
+      status: 'Drafted',
     },
     create: {
       title: 'CSS Language',
@@ -309,6 +416,9 @@ async function main(): Promise<void> {
     },
     update: {
       authorId: user2.id,
+      star: 3,
+      read: 1043,
+      status: 'Drafted',
     },
     create: {
       title: 'JavaScript Language',
@@ -319,6 +429,8 @@ async function main(): Promise<void> {
     },
   })
 
+  console.log({ role1, role2 })
+  console.log({ department1, department2 })
   console.log({ post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15 })
   console.log({ user1, user2, user3, user4, user5 })
 }

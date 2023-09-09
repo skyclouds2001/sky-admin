@@ -117,7 +117,6 @@ const CopyAssets = (assets: MaybeArray<Asset>, options: CopyAssetOptions = {}): 
           return
         }
 
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
         fs.readFile(link, (err, data) => {
           if (err != null) {
             next()

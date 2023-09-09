@@ -3,8 +3,7 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "baseUrl": ".",
-    "declaration": true,
-    "declarationMap": true
+    "composite": true
   },
   "include": ["client.ts"],
   "exclude": ["node_modules", "dist"]

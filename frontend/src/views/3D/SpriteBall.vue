@@ -114,7 +114,6 @@ onMounted(() => {
 
         scene.add(object)
 
-        // eslint-disable-next-line security/detect-object-injection
         objects[i] = object
       }
 

@@ -4,18 +4,19 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { viteMockServe as mock } from 'vite-plugin-mock'
-import utils from 'vite-plugin-utils'
 import svgLoader from 'vite-svg-loader'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import compression from 'vite-plugin-compression'
-import copyAssets from 'vite-plugin-copy-assets'
 import mkcert from 'vite-plugin-mkcert'
 import { visualizer } from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
 import { checker } from 'vite-plugin-checker'
+import alias from 'vite-plugin-aliases'
+import copyAssets from 'vite-plugin-copy-assets'
+import utils from 'vite-plugin-utils'
 
 export default defineConfig({
   plugins: [
@@ -53,8 +54,9 @@ export default defineConfig({
         lintCommand: 'stylelint "./src/**/*.{vue,css,sass,scss,less,styl,stylus}"',
       },
     }),
-    utils(),
+    alias(),
     copyAssets([]),
+    utils(),
   ],
   resolve: {
     alias: {

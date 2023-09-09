@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { Plugin, UserConfig } from 'vite'
 
 /**
  * plugin options
@@ -25,38 +25,33 @@ interface UtilsOptions {
 const Utils = (options: UtilsOptions = {}): Plugin => {
   const { buildTime = true, crossOriginIsolated = true } = options
 
+  const config: UserConfig = {}
+
+  if (buildTime) {
+    config.define = {
+      __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
+    }
+  }
+
+  if (crossOriginIsolated) {
+    config.server = {
+      headers: {
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+      },
+    }
+    config.preview = {
+      headers: {
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+      },
+    }
+  }
+
   return {
     name: 'vite-plugin-utils',
 
-    config: () => {
-      return buildTime
-        ? {
-            define: {
-              __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
-            },
-          }
-        : {}
-    },
-
-    configureServer: (server) => {
-      server.middlewares.use((req, res, next) => {
-        if (crossOriginIsolated) {
-          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
-          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
-        }
-        next()
-      })
-    },
-
-    configurePreviewServer: (server) => {
-      server.middlewares.use((req, res, next) => {
-        if (crossOriginIsolated) {
-          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
-          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
-        }
-        next()
-      })
-    },
+    config: () => ({ ...config }),
   }
 }
 

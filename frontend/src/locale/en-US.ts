@@ -296,6 +296,7 @@ export default {
       print: 'Print',
       fullscreen: 'Fullscreen',
       share: 'Share',
+      notification: 'Notification',
       settings: 'Settings',
       about: 'About',
       exit_login: 'Exit',

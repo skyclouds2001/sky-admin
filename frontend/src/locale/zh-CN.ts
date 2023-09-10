@@ -296,6 +296,7 @@ export default {
       print: '打印',
       fullscreen: '全屏',
       share: '分享',
+      notification: '消息',
       settings: '设置',
       about: '关于',
       exit_login: '退出',

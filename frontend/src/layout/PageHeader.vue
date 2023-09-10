@@ -3,8 +3,9 @@ import { getCurrentInstance, inject, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElImage, ElMessage, ElMessageBox, ElPopover, ElTooltip } from 'element-plus'
-import { FullScreen, Lock, Printer, Setting, Share, Unlock } from '@element-plus/icons-vue'
+import { FullScreen, Lock, Printer, Setting, Share, Unlock, Bell } from '@element-plus/icons-vue'
 import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/shooks'
+import { SystemNotification } from '@/components'
 import { PROJECT_AUTHOR_AVATAR, PROJECT_AUTHOR_NAME } from '@/config'
 import { SettingDrawerKey } from '@/constants'
 import { usePagesStore } from '@/store'
@@ -146,6 +147,19 @@ const exitLogin = (): void => {
         </el-icon>
       </el-tooltip>
 
+      <el-popover trigger="click" :width="700">
+        <template #reference>
+          <div>
+            <el-tooltip :content="i18n.t(`layout.header.notification`)">
+              <el-icon :size="20" class="notification">
+                <Bell />
+              </el-icon>
+            </el-tooltip>
+          </div>
+        </template>
+        <system-notification />
+      </el-popover>
+
       <div class="user">
         <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
         <el-dropdown trigger="click">
@@ -204,6 +218,11 @@ const exitLogin = (): void => {
     }
 
     .share {
+      @apply flex justify-center items-center;
+      @apply cursor-pointer;
+    }
+
+    .notification {
       @apply flex justify-center items-center;
       @apply cursor-pointer;
     }

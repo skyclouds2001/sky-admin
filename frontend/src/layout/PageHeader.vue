@@ -146,20 +146,20 @@ const exitLogin = (): void => {
         </el-icon>
       </el-tooltip>
 
-      <el-dropdown trigger="click">
-        <div class="user">
-          <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
+      <div class="user">
+        <div class="username">{{ PROJECT_AUTHOR_NAME }}</div>
+        <el-dropdown trigger="click">
           <div class="avatar">
             <el-image :src="PROJECT_AUTHOR_AVATAR" fit="cover" loading="lazy" lazy alt="avatar" />
           </div>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="routeToAbout">{{ i18n.t(`layout.header.about`) }}</el-dropdown-item>
-            <el-dropdown-item @click="exitLogin">{{ i18n.t(`layout.header.exit_login`) }}</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="routeToAbout">{{ i18n.t(`layout.header.about`) }}</el-dropdown-item>
+              <el-dropdown-item @click="exitLogin">{{ i18n.t(`layout.header.exit_login`) }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
 
       <el-tooltip :content="i18n.t(`layout.header.settings`)">
         <el-icon :size="20" class="settings" @click="showSettingDrawer">

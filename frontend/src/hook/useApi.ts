@@ -9,8 +9,10 @@ const useApi = <D = unknown, E = unknown, P extends unknown[] = unknown[]>(
   fetch: (...args: P) => Promise<void>
 } => {
   const loading = ref(false)
-  const result = ref<D | null>(null) as Ref<D | null>
-  const error = ref<E | null>(null) as Ref<E | null>
+
+  const result: Ref<D | null> = ref(null)
+
+  const error: Ref<E | null> = ref(null)
 
   const fetch = (...params: P): Promise<void> => {
     loading.value = true

@@ -288,6 +288,11 @@ export default {
       color_weakness: '色弱模式',
       wake_lock: '电源锁',
     },
+    notification: {
+      notification: '通知',
+      message: '消息',
+      todo: '待办',
+    },
     header: {
       'confirm-exit-login': '确认退出登录',
       'cancel-exit-login': '取消退出登录',

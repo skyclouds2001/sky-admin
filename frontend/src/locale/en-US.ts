@@ -288,6 +288,11 @@ export default {
       color_weakness: 'Color Weak',
       wake_lock: 'WakeLock',
     },
+    notification: {
+      notification: 'Notification',
+      message: 'Message',
+      todo: 'Todo',
+    },
     header: {
       'confirm-exit-login': 'Confirm Exit Login',
       'cancel-exit-login': 'Cancel Exit Login',

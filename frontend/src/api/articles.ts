@@ -22,7 +22,7 @@ export const getArticles = (page: number, size: number, search: Partial<Article>
  * @param article 文章信息
  * @returns null
  */
-export const addArticle = (article: Omit<Article, 'id'>): Promise<Response<null>> =>
+export const addArticle = (article: Omit<Article, 'id' | 'author' | 'createdAt' | 'updatedAt'>): Promise<Response<null>> =>
   http.post('/api/articles', {
     article,
   })

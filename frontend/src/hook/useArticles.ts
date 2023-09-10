@@ -11,7 +11,7 @@ const useArticles = (): {
   error: Ref<unknown>
   loading: Ref<boolean>
   search: Partial<Article>
-  refresh: () => void
+  refresh: () => Promise<void>
 } => {
   const articles = ref<Article[]>([])
 
@@ -25,21 +25,21 @@ const useArticles = (): {
     title: '',
   })
 
-  const refresh = (): void => {
-    void loadData(page.value, size.value, search)
+  const refresh = async (): Promise<void> => {
+    await loadData(page.value, size.value, search)
   }
 
   const { loading, result, error, fetch } = useApi(getArticles)
 
   const loadData = async (pageIndex: number, pageSize: number, pageSearch: Partial<Article>): Promise<void> => {
-    void fetch(pageIndex, pageSize, pageSearch).then(() => {
-      if (result.value !== null) {
-        articles.value = result.value.data.data
-        total.value = result.value.data.total
-        page.value = result.value.data.page
-        size.value = result.value.data.size
-      }
-    })
+    await fetch(pageIndex, pageSize, pageSearch)
+
+    if (result.value !== null) {
+      articles.value = result.value.data.data
+      total.value = result.value.data.total
+      page.value = result.value.data.page
+      size.value = result.value.data.size
+    }
   }
 
   watch(

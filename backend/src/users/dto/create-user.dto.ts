@@ -7,9 +7,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @ApiProperty({
     description: '用户姓名',
-    required: false,
   })
-  name?: string
+  name: string
 
   @IsString()
   @IsNotEmpty()
@@ -25,4 +24,8 @@ export class CreateUserDto {
     description: '用户账户密码',
   })
   password: string
+
+  departmentId: number
+
+  roleId: number
 }

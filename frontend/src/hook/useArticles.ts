@@ -10,8 +10,8 @@ const useArticles = (): {
   size: Ref<number>
   error: Ref<unknown>
   loading: Ref<boolean>
-  search: Pick<Article, 'title'>
-  refresh: () => void
+  search: Partial<Article>
+  refresh: () => Promise<void>
 } => {
   const articles = ref<Article[]>([])
 
@@ -21,25 +21,25 @@ const useArticles = (): {
 
   const size = ref(10)
 
-  const search = reactive({
+  const search: Partial<Article> = reactive({
     title: '',
   })
 
-  const refresh = (): void => {
-    void loadData(page.value, size.value, search)
+  const refresh = async (): Promise<void> => {
+    await loadData(page.value, size.value, search)
   }
 
   const { loading, result, error, fetch } = useApi(getArticles)
 
-  const loadData = async (pageIndex: number, pageSize: number, pageSearch: Pick<Article, 'title'>): Promise<void> => {
-    void fetch(pageIndex, pageSize, pageSearch).then(() => {
-      if (result.value !== null) {
-        articles.value = result.value.data.data
-        total.value = result.value.data.total
-        page.value = result.value.data.page
-        size.value = result.value.data.size
-      }
-    })
+  const loadData = async (pageIndex: number, pageSize: number, pageSearch: Partial<Article>): Promise<void> => {
+    await fetch(pageIndex, pageSize, pageSearch)
+
+    if (result.value !== null) {
+      articles.value = result.value.data.data
+      total.value = result.value.data.total
+      page.value = result.value.data.page
+      size.value = result.value.data.size
+    }
   }
 
   watch(

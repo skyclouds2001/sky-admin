@@ -1,0 +1,14 @@
+export default {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        useBuiltIns: 'entry',
+        corejs: '3.6.4',
+        modules: false,
+      },
+      '@babel/preset-typescript',
+    ],
+  ],
+  exclude: ['node_modules/**/*', 'dist/**/*', 'test/**/*'],
+}

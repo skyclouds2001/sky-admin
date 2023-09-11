@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "composite": true
+  },
+  "include": ["client.ts"],
+  "exclude": ["node_modules", "dist"]
+}

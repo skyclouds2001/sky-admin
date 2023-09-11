@@ -173,9 +173,7 @@ onMounted(() => {
     TWEEN.removeAll()
 
     for (let i = 0; i < count; ++i) {
-      // eslint-disable-next-line security/detect-object-injection
       const object = objects[i]
-      // eslint-disable-next-line security/detect-object-injection
       const target = targets[i]
 
       // eslint-disable-next-line import/no-named-as-default-member

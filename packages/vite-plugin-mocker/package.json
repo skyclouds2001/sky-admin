@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-generate-env",
+  "name": "vite-plugin-utils",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
@@ -11,22 +11,18 @@
     "skyclouds2001"
   ],
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
-  "unpkg": "./dist/index.iife.js",
-  "jsdelivr": "./dist/index.iife.js",
-  "types": "./lib/index.d.ts",
-  "typings": "./lib/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
-      "types": "./lib/index.d.ts"
-    },
-    "./*": "./*"
+      "types": "./dist/index.d.ts"
+    }
   },
   "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
   "repository": {
@@ -53,7 +49,7 @@
     "pnpm": ">=8.4.0"
   },
   "scripts": {
-    "build": "vite build"
+    "build": ""
   },
   "dependencies": {
     "vite": "^4.4.9"

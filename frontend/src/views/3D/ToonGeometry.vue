@@ -108,7 +108,6 @@ onMounted(() => {
     const colors = new Uint8Array(index + 2)
 
     for (let c = 0; c <= colors.length; ++c) {
-      // eslint-disable-next-line security/detect-object-injection
       colors[c] = (c / colors.length) * 256
     }
 

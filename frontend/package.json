@@ -118,15 +118,16 @@
     "typescript": "^5.2.2",
     "unplugin-element-plus": "^0.7.2",
     "vite": "^4.4.9",
+    "vite-plugin-aliases": "workspace:*",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-copy-file": "workspace:*",
-    "vite-plugin-generate-env": "workspace:*",
+    "vite-plugin-copy-assets": "workspace:*",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-inspect": "^0.7.38",
     "vite-plugin-mkcert": "^1.16.0",
     "vite-plugin-mock": "^3.0.0",
     "vite-plugin-pwa": "^0.16.4",
+    "vite-plugin-utils": "workspace:*",
     "vite-svg-loader": "^4.0.0",
     "vue-tsc": "^1.8.8"
   }

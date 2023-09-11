@@ -155,7 +155,6 @@ onMounted(() => {
 
     const colors = new Float32Array(geometry.attributes.position.count * 3).fill(1)
     for (let i = 0, c = new Color(), p = geometry.attributes.pressure; i < p.count; ++i) {
-      // eslint-disable-next-line security/detect-object-injection
       c.copy(lut.getColor(p.array[i])).convertSRGBToLinear()
       colors[3 * i + 0] = c.r
       colors[3 * i + 1] = c.g

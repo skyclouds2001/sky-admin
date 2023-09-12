@@ -24,12 +24,32 @@ export class UserEntity implements User {
   })
   email: string
 
+  @ApiProperty({
+    description: '用户部门ID',
+    required: false,
+    nullable: true,
+  })
   departmentId: number
 
+  @ApiProperty({
+    type: Object,
+    description: '用户部门信息',
+    required: false,
+  })
   department?: any
 
+  @ApiProperty({
+    description: '用户角色ID',
+    required: false,
+    nullable: true,
+  })
   roleId: number
 
+  @ApiProperty({
+    type: Object,
+    description: '用户角色信息',
+    required: false,
+  })
   role?: any
 
   @ApiProperty({

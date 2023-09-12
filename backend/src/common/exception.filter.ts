@@ -4,7 +4,7 @@ import { Result } from '../common/result.entity'
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter<unknown> {
-  catch(exception: unknown, host: ArgumentsHost) {
+  catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse<Response>()
     const request = ctx.getRequest<Request>()
@@ -16,6 +16,8 @@ Request original url: ${request.originalUrl}
 Method: ${request.method}
 IP: ${request.ip}
 Code: ${HttpStatus.INTERNAL_SERVER_ERROR}
+
+${String(exception.stack)}
 -----------------------------------------------------------------------
       `
     )

@@ -17,6 +17,8 @@ Request original url: ${request.originalUrl}
 Method: ${request.method}
 IP: ${request.ip}
 Code: ${status}
+
+${String(exception.stack)}
 -----------------------------------------------------------------------
       `
     )

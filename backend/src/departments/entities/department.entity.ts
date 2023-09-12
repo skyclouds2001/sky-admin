@@ -1,19 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Role } from '@prisma/client'
+import { Department } from '@prisma/client'
 
-export class RoleEntity implements Role {
+export class DepartmentEntity implements Department {
   @ApiProperty({
-    description: '角色ID',
+    description: '部门ID',
   })
   id: number
 
   @ApiProperty({
-    description: '角色名称',
+    description: '部门名称',
   })
   name: string
 
   @ApiProperty({
-    description: '角色描述',
+    description: '部门描述',
     required: false,
     nullable: true,
     maxLength: 250,
@@ -21,12 +21,12 @@ export class RoleEntity implements Role {
   description: string | null
 
   @ApiProperty({
-    description: '角色创建时间',
+    description: '部门创建时间',
   })
   createdAt: Date
 
   @ApiProperty({
-    description: '角色更新时间',
+    description: '部门更新时间',
   })
   updatedAt: Date
 }

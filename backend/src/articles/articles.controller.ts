@@ -5,7 +5,7 @@ import { ArticlesService } from './articles.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
 import { ArticleEntity } from './entities/article.entity'
-import { Pagination } from './../entities/pagination.entity'
+import { Pagination } from './../common/pagination.entity'
 
 @Controller('articles')
 @UseInterceptors(CacheInterceptor)

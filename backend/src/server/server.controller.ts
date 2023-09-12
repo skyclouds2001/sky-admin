@@ -4,7 +4,7 @@ import { Request, Response } from 'express'
 import { Observable, interval, map } from 'rxjs'
 import { ServerService } from './server.service'
 import { ServerEntity } from './entities/server.entity'
-import { Result } from './../entities/result.entity'
+import { Result } from '../common/result.entity'
 
 @Controller('server')
 @ApiTags('server')

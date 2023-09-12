@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, Logger } from '@nestjs/common'
 import { Request, Response } from 'express'
-import { Result } from './../entities/result.entity'
+import { Result } from '../common/result.entity'
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter<unknown> {

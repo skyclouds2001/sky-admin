@@ -9,9 +9,9 @@ import * as compression from 'compression'
 import * as session from 'express-session'
 import { resolve } from 'node:path'
 import { AppModule } from './app.module'
-import { ExceptionsFilter } from './filters/exception.filter'
-import { HttpExceptionFilter } from './filters/http-exception.filter'
-import { TransformResultInterceptor } from './interceptors/result.interceptor'
+import { ExceptionsFilter } from './common/exception.filter'
+import { HttpExceptionFilter } from './common/http-exception.filter'
+import { TransformResultInterceptor } from './common/result.interceptor'
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {

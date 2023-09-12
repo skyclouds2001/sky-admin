@@ -1,6 +1,6 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
 import { Observable, map } from 'rxjs'
-import { Result } from './../entities/result.entity'
+import { Result } from './result.entity'
 
 @Injectable()
 export class TransformResultInterceptor implements NestInterceptor {

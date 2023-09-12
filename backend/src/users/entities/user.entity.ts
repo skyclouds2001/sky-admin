@@ -14,10 +14,8 @@ export class UserEntity implements User {
 
   @ApiProperty({
     description: '用户姓名',
-    required: false,
-    nullable: true,
   })
-  name: string | null
+  name: string
 
   @ApiProperty({
     description: '用户电子邮箱',

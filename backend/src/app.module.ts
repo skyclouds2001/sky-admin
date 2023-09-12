@@ -13,6 +13,7 @@ import { FilesModule } from './files/files.module'
 import { WsModule } from './ws/ws.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { RolesModule } from './roles/roles.module'
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { AppService } from './app.service'
     ProjectModule,
     WsModule,
     FilesModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

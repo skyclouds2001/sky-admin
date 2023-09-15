@@ -1,6 +1,8 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "SkyAdmin",
+  "short_name": "SkyAdmin",
+  "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

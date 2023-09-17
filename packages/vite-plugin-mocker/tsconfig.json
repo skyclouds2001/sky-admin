@@ -5,7 +5,7 @@
     "lib": ["ESNext"],
     "baseUrl": "."
   },
-  "include": ["index.ts"],
+  "include": ["index.ts", "types.ts"],
   "exclude": ["node_modules", "dist"],
   "references": [
     {

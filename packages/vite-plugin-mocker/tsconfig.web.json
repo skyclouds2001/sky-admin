@@ -5,6 +5,6 @@
     "baseUrl": ".",
     "composite": true
   },
-  "include": ["client.ts"],
+  "include": ["client.ts", "types.ts"],
   "exclude": ["node_modules", "dist"]
 }

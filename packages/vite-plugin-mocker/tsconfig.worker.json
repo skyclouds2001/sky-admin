@@ -5,6 +5,6 @@
     "baseUrl": ".",
     "composite": true
   },
-  "include": ["mocker.ts"],
+  "include": ["mocker.ts", "types.ts"],
   "exclude": ["node_modules", "dist"]
 }

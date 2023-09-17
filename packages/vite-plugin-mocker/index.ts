@@ -1,6 +1,7 @@
 import { type Plugin } from 'vite'
+import { type Mapper } from './types'
 
-const Mocker = (): Plugin => {
+const Mocker = (mappers: Mapper[]): Plugin => {
   return {
     name: 'vite-plugin-mocker',
     transformIndexHtml: {
@@ -13,6 +14,14 @@ const Mocker = (): Plugin => {
             src: '/client.ts',
           },
           children: '',
+          injectTo: 'head-prepend',
+        },
+        {
+          tag: 'script',
+          attrs: {
+            type: 'mappers',
+          },
+          children: JSON.stringify(mappers),
           injectTo: 'head-prepend',
         },
       ],

@@ -124,7 +124,6 @@
     "vite-plugin-copy-assets": "workspace:*",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-inspect": "^0.7.38",
-    "vite-plugin-mkcert": "^1.16.0",
     "vite-plugin-mock": "^3.0.0",
     "vite-plugin-pwa": "^0.16.5",
     "vite-plugin-utils": "workspace:*",

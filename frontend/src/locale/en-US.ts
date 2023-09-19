@@ -364,7 +364,6 @@ export default {
       'animation-effect': 'Animation',
       'eye-dropper': 'EyeDropper Tool',
       notification: 'Notification',
-      vibrate: 'Vibrate',
       clipboard: 'Clipboard',
       'broadcast-channel': 'BroadcastChannel',
     },

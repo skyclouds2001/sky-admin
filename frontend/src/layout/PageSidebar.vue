@@ -254,10 +254,6 @@ const handleCollapse = (): void => {
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.notification') }}</span>
         </el-menu-item>
-        <el-menu-item index="/feature/vibrate">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.vibrate') }}</span>
-        </el-menu-item>
         <el-menu-item index="/feature/clipboard">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.clipboard') }}</span>

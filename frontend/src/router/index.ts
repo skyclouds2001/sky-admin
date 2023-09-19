@@ -452,14 +452,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/feature/vibrate'),
-              path: '/feature/vibrate',
-              component: () => import('@/views/feature/WebVibrate.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/feature/clipboard'),
               path: '/feature/clipboard',
               component: () => import('@/views/feature/WebClipboard.vue'),

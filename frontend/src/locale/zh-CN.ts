@@ -364,7 +364,6 @@ export default {
       'animation-effect': '动画',
       'eye-dropper': '吸管工具',
       notification: '通知',
-      vibrate: '振动',
       clipboard: '剪切板',
       'broadcast-channel': '广播频道',
     },

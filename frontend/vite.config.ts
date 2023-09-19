@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import path from 'node:path'
+import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
@@ -80,12 +81,16 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    https: true,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+    },
     open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+        ws: true,
       },
       '/socket.io': {
         target: 'http://localhost:3000',
@@ -104,6 +109,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+        ws: true,
       },
       '/socket.io': {
         target: 'http://localhost:3000',

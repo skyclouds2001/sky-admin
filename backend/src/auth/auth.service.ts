@@ -5,7 +5,10 @@ import * as bcyptjs from 'bcryptjs'
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prisma: PrismaService, private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService
+  ) {}
 
   async login(email: string, password: string) {
     const user = await this.prisma.user.findUnique({

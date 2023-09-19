@@ -20,7 +20,7 @@ const useTheme = (): {
    * 主题
    */
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  const theme = ref(data.value !== null ? data.value : isTheme(preferredTheme) ? preferredTheme : Theme.LIGHT)
+  const theme = ref(data.value ?? (isTheme(preferredTheme) ? preferredTheme : Theme.LIGHT))
 
   /**
    * 判断是否为亮色主题

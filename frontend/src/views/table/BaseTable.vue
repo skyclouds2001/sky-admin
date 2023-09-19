@@ -56,6 +56,7 @@ const handleAddArticle = async (): Promise<void> => {
   try {
     const res = await addArticle(article)
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (res.success) {
       ElMessage.success(
         {
@@ -91,7 +92,7 @@ const handleAddArticle = async (): Promise<void> => {
       appContext
     )
   } finally {
-    refresh()
+    void refresh()
   }
 }
 
@@ -127,6 +128,7 @@ const handleToggleArticleStatus = (id: number): void => {
         const a = Object.assign({}, article)
         a.status = article.status === 'Drafted' ? 'Published' : 'Drafted'
         const res = await updateArticle(a)
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if (res.success) {
           ElMessage.success(
             {
@@ -159,7 +161,7 @@ const handleToggleArticleStatus = (id: number): void => {
           appContext
         )
       } finally {
-        refresh()
+        void refresh()
       }
     })
     .catch(() => {
@@ -195,6 +197,7 @@ const handleRemoveArticle = (id: number): void => {
     .then(async () => {
       try {
         const res = await removeArticle(id)
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if (res.success) {
           ElMessage.success(
             {
@@ -227,7 +230,7 @@ const handleRemoveArticle = (id: number): void => {
           appContext
         )
       } finally {
-        refresh()
+        void refresh()
       }
     })
     .catch(() => {

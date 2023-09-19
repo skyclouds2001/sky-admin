@@ -103,7 +103,10 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4173,
     strictPort: true,
-    https: true,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+    },
     open: true,
     proxy: {
       '/api': {

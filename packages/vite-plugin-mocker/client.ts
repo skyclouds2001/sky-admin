@@ -4,6 +4,9 @@ void window.navigator.serviceWorker.register('./mocker.ts', {
   updateViaCache: 'all',
 })
 
-void window.navigator.serviceWorker.ready.then(() => {
-  window.navigator.serviceWorker.controller.postMessage(document.getElementById('script[type="mappers"]').innerText)
+void window.navigator.serviceWorker.getRegistrations().then((registrations) => {
+  registrations.forEach((registration) => {
+    void registration.unregister()
+    void registration.update()
+  })
 })

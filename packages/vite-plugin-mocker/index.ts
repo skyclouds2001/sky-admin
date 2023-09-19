@@ -1,7 +1,7 @@
-import { type Plugin } from 'vite'
-import { type Mapper } from './types'
+import fs from 'node:fs'
+import type { Plugin } from 'vite'
 
-const Mocker = (mappers: Mapper[]): Plugin => {
+const Mocker = (mappers: string = 'mappers.json'): Plugin => {
   return {
     name: 'vite-plugin-mocker',
     transformIndexHtml: {
@@ -16,15 +16,16 @@ const Mocker = (mappers: Mapper[]): Plugin => {
           children: '',
           injectTo: 'head-prepend',
         },
-        {
-          tag: 'script',
-          attrs: {
-            type: 'mappers',
-          },
-          children: JSON.stringify(mappers),
-          injectTo: 'head-prepend',
-        },
       ],
+    },
+    configureServer: (server) => {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/mappers.json') {
+          res.write(fs.readFileSync(mappers))
+          res.end()
+        }
+        next()
+      })
     },
   }
 }

@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import { createLogger, type Plugin } from 'vite'
 import path from 'node:path'
 import fs from 'node:fs'
 
@@ -31,6 +31,8 @@ interface AliasesOptions {
  * @returns plugin instance
  */
 const Aliases = (options: AliasesOptions = {}): Plugin => {
+  const logger = createLogger()
+
   const { base = process.cwd() + '@', prefix = '@', overwrite = false } = options
 
   return {
@@ -55,7 +57,7 @@ const Aliases = (options: AliasesOptions = {}): Plugin => {
           }
         })
       } catch (error) {
-        console.error(error)
+        logger.info(String(error))
       }
 
       return {

@@ -3,7 +3,7 @@ import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/comm
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
+import { PrismaClientExceptionFilter } from 'nestjs-prisma'
 import * as cookieParser from 'cookie-parser'
 import * as compression from 'compression'
 import * as session from 'express-session'
@@ -61,8 +61,6 @@ const bootstrap = async (): Promise<void> => {
       ignoreGlobalPrefix: false,
     })
   )
-
-  await app.get(PrismaService).enableShutdownHooks(app)
 
   const port = app.get(ConfigService).get<number>('PORT') ?? 3000
 

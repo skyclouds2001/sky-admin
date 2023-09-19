@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { inject, type Ref } from 'vue'
+import { inject, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { ElDivider, ElDrawer, ElOption, ElSelect, ElSwitch } from 'element-plus'
+import { ElDivider, ElDrawer, ElOption, ElSelect, ElSlider, ElSwitch } from 'element-plus'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { useWakeLock } from '@sky-fly/shooks'
 import { SettingDrawerKey } from '@/constants'
@@ -18,9 +18,11 @@ const { theme } = useTheme()
 
 const { lang } = useLang()
 
-const { isSupported, isActive, toggle } = useWakeLock()
+const { isActive, toggle } = useWakeLock()
 
 const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolean>
+
+const vibrate = ref(0)
 </script>
 
 <template>
@@ -64,11 +66,19 @@ const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolea
     </div>
 
     <!-- 唤醒锁定控件 -->
-    <el-divider v-if="isSupported">
+    <el-divider>
       <h4 class="font-bold">{{ i18n.t('layout.setting.wake_lock') }}</h4>
     </el-divider>
-    <div v-if="isSupported" class="w-full text-center">
+    <div class="w-full text-center">
       <el-switch v-model="isActive" inline-prompt name="wake-lock" @change="toggle" />
+    </div>
+
+    <!-- 振动设置控件 -->
+    <el-divider>
+      <h4 class="font-bold">{{ i18n.t('layout.setting.vibrate') }}</h4>
+    </el-divider>
+    <div class="w-full text-center">
+      <el-slider v-model="vibrate" name="vibrate" />
     </div>
   </el-drawer>
 </template>

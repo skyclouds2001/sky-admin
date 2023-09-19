@@ -29,6 +29,18 @@ interface AliasesOptions {
    * @default false
    */
   overwrite?: boolean
+
+  /**
+   * A minimatch pattern, or array of patterns, that dictionaries should work on
+   * @default []
+   */
+  include?: string | RegExp | Array<string | RegExp>
+
+  /**
+   * A minimatch pattern, or array of patterns, that dictionaries should not work on
+   * @default []
+   */
+  exclude?: string | RegExp | Array<string | RegExp>
 }
 
 /**
@@ -37,12 +49,15 @@ interface AliasesOptions {
  * @returns plugin instance
  */
 const Aliases = (options: AliasesOptions = {}): Plugin => {
-  const logger = createLogger()
+  const { root = process.cwd(), base = 'src', prefix = '@', overwrite = false, include = [], exclude = [] } = options
 
-  const { root = process.cwd(), base = 'src', prefix = '@', overwrite = false } = options
+  const filter = createFilter(include, exclude)
+
+  const logger = createLogger()
 
   return {
     name: 'vite-plugin-aliases',
+    version: '0.0.0',
     config: (config) => {
       const alias = config.resolve?.alias ?? {}
 
@@ -53,7 +68,7 @@ const Aliases = (options: AliasesOptions = {}): Plugin => {
       const basis = path.resolve(root, base)
 
       try {
-        if (fs.statSync(basis).isDirectory() && (!hasAlias(prefix) || overwrite)) {
+        if (filter(basis) && fs.statSync(basis).isDirectory() && (!hasAlias(prefix) || overwrite)) {
           aliases.set(prefix, basis)
         }
 
@@ -62,14 +77,12 @@ const Aliases = (options: AliasesOptions = {}): Plugin => {
         routes.forEach((route) => {
           const src = path.resolve(basis, route)
 
-          if (fs.statSync(src).isDirectory() && (!hasAlias(prefix + route) || overwrite)) {
+          if (filter(src) && fs.statSync(src).isDirectory() && (!hasAlias(prefix + route) || overwrite)) {
             aliases.set(prefix + route, src)
           }
         })
-
-        logger.info(aliases)
       } catch (error) {
-        logger.info(String(error))
+        logger.error(String(error))
       }
 
       return {

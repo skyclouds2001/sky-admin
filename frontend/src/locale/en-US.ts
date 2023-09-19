@@ -286,7 +286,8 @@ export default {
       i18n: 'Language',
       gray_mode: 'Gray Mode',
       color_weakness: 'Color Weak',
-      wake_lock: 'WakeLock',
+      wake_lock: 'Screen Wake Lock',
+      vibrate: 'Vibrate',
     },
     notification: {
       notification: 'Notification',
@@ -339,7 +340,7 @@ export default {
     },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
-      return 'Menu' + (data !== undefined ? '-' + Array.from(data).join('-') : '')
+      return 'Menu' + (data != null ? '-' + Array.from(data).join('-') : '')
     },
     docs: {
       title: 'Docs',

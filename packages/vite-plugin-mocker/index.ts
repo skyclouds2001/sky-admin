@@ -1,6 +1,7 @@
-import { type Plugin } from 'vite'
+import fs from 'node:fs'
+import type { Plugin } from 'vite'
 
-const Mocker = (): Plugin => {
+const Mocker = (mappers: string = 'mappers.json'): Plugin => {
   return {
     name: 'vite-plugin-mocker',
     transformIndexHtml: {
@@ -16,6 +17,15 @@ const Mocker = (): Plugin => {
           injectTo: 'head-prepend',
         },
       ],
+    },
+    configureServer: (server) => {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/mappers.json') {
+          res.write(fs.readFileSync(mappers))
+          res.end()
+        }
+        next()
+      })
     },
   }
 }

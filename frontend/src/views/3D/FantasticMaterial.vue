@@ -162,7 +162,7 @@ onMounted(() => {
   const gui = new GUI()
 
   const envBallFolder = gui.addFolder('envBall')
-  envBallFolder.add(params, 'mapping', ['Reflection', 'Refraction']).onChange((mapping: 'Reflection' | 'Refraction') => {
+  envBallFolder.add(params, 'mapping', ['Reflection', 'Refraction']).onChange((mapping) => {
     switch (mapping) {
       case 'Reflection':
         envBallMap.mapping = THREE.CubeReflectionMapping

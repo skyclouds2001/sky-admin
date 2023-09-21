@@ -5,7 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserEntity } from './entities/user.entity'
 import { JwtAuthGuard } from './../auth/jwt-auth.guard'
-import { Pagination } from './../entities/pagination.entity'
+import { Pagination } from './../common/pagination.entity'
 
 @Controller('users')
 @ApiTags('users')

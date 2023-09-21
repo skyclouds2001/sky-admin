@@ -64,6 +64,7 @@ const handleSubmit = async (): Promise<void> => {
   try {
     isSubmitting.value = true
     const res = await login(form.username, form.password)
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (res.success) {
       ElMessage.success(
         {

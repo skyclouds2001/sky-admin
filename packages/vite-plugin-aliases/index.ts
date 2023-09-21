@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import { createFilter, createLogger, type Plugin } from 'vite'
 import path from 'node:path'
 import fs from 'node:fs'
 
@@ -7,8 +7,14 @@ import fs from 'node:fs'
  */
 interface AliasesOptions {
   /**
-   * the base path to generate alias info
-   * @default `process.cwd()+'src'`
+   * the root path of the project
+   * @default process.cwd()
+   */
+  root?: string
+
+  /**
+   * the base path to generate alias info, should be an relative path to `options.root`
+   * @default 'src'
    */
   base?: string
 
@@ -23,6 +29,18 @@ interface AliasesOptions {
    * @default false
    */
   overwrite?: boolean
+
+  /**
+   * A minimatch pattern, or array of patterns, that dictionaries should work on
+   * @default []
+   */
+  include?: string | RegExp | Array<string | RegExp>
+
+  /**
+   * A minimatch pattern, or array of patterns, that dictionaries should not work on
+   * @default []
+   */
+  exclude?: string | RegExp | Array<string | RegExp>
 }
 
 /**
@@ -31,31 +49,40 @@ interface AliasesOptions {
  * @returns plugin instance
  */
 const Aliases = (options: AliasesOptions = {}): Plugin => {
-  const { base = process.cwd() + '@', prefix = '@', overwrite = false } = options
+  const { root = process.cwd(), base = 'src', prefix = '@', overwrite = false, include = [], exclude = [] } = options
+
+  const filter = createFilter(include, exclude)
+
+  const logger = createLogger()
 
   return {
     name: 'vite-plugin-aliases',
+    version: '0.0.0',
     config: (config) => {
       const alias = config.resolve?.alias ?? {}
 
-      const hasAlias = (key: string): boolean => (Array.isArray(alias) ? alias.some((v) => v.find === alias || v.find?.test(alias)) : Object.hasOwn(alias, key))
+      const hasAlias = (key: string): boolean => (Array.isArray(alias) ? alias.some((v) => v.find === key || v.find?.test(key)) : Object.hasOwn(alias, key))
 
       const aliases = new Map<string, string>()
 
+      const basis = path.resolve(root, base)
+
       try {
-        if (!hasAlias(prefix) || overwrite) {
-          aliases.set(prefix, base)
+        if (filter(basis) && fs.statSync(basis).isDirectory() && (!hasAlias(prefix) || overwrite)) {
+          aliases.set(prefix, basis)
         }
 
-        const routes = fs.readdirSync(base)
+        const routes = fs.readdirSync(basis)
 
         routes.forEach((route) => {
-          if (!hasAlias(prefix) || overwrite) {
-            aliases.set(prefix + route, path.resolve(base, route))
+          const src = path.resolve(basis, route)
+
+          if (filter(src) && fs.statSync(src).isDirectory() && (!hasAlias(prefix + route) || overwrite)) {
+            aliases.set(prefix + route, src)
           }
         })
       } catch (error) {
-        console.error(error)
+        logger.error(String(error))
       }
 
       return {

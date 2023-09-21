@@ -3,15 +3,15 @@ import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/comm
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { PrismaClientExceptionFilter, PrismaService } from 'nestjs-prisma'
+import { PrismaClientExceptionFilter } from 'nestjs-prisma'
 import * as cookieParser from 'cookie-parser'
 import * as compression from 'compression'
 import * as session from 'express-session'
 import { resolve } from 'node:path'
 import { AppModule } from './app.module'
-import { ExceptionsFilter } from './filters/exception.filter'
-import { HttpExceptionFilter } from './filters/http-exception.filter'
-import { TransformResultInterceptor } from './interceptors/result.interceptor'
+import { ExceptionsFilter } from './common/exception.filter'
+import { HttpExceptionFilter } from './common/http-exception.filter'
+import { TransformResultInterceptor } from './common/result.interceptor'
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -61,8 +61,6 @@ const bootstrap = async (): Promise<void> => {
       ignoreGlobalPrefix: false,
     })
   )
-
-  await app.get(PrismaService).enableShutdownHooks(app)
 
   const port = app.get(ConfigService).get<number>('PORT') ?? 3000
 

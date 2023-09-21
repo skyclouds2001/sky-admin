@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import path from 'node:path'
+import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
@@ -10,7 +11,6 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import compression from 'vite-plugin-compression'
-import mkcert from 'vite-plugin-mkcert'
 import { visualizer } from 'rollup-plugin-visualizer'
 import inspect from 'vite-plugin-inspect'
 import { checker } from 'vite-plugin-checker'
@@ -36,7 +36,6 @@ export default defineConfig({
       registerType: 'autoUpdate',
     }),
     compression(),
-    mkcert(),
     visualizer({
       filename: 'report.html',
       title: 'report',
@@ -82,12 +81,16 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    https: true,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+    },
     open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+        ws: true,
       },
       '/socket.io': {
         target: 'http://localhost:3000',
@@ -100,12 +103,16 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4173,
     strictPort: true,
-    https: true,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+    },
     open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+        ws: true,
       },
       '/socket.io': {
         target: 'http://localhost:3000',

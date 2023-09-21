@@ -286,7 +286,8 @@ export default {
       i18n: '语言',
       gray_mode: '灰色模式',
       color_weakness: '色弱模式',
-      wake_lock: '电源锁',
+      wake_lock: '屏幕唤醒锁定',
+      vibrate: '振动',
     },
     notification: {
       notification: '通知',
@@ -339,7 +340,7 @@ export default {
     },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
-      return '菜单' + (data !== undefined ? '-' + data.join('-') : '')
+      return '菜单' + (data != null ? '-' + data.join('-') : '')
     },
     docs: {
       title: '文档',
@@ -364,7 +365,6 @@ export default {
       'animation-effect': '动画',
       'eye-dropper': '吸管工具',
       notification: '通知',
-      vibrate: '振动',
       clipboard: '剪切板',
       'broadcast-channel': '广播频道',
     },

@@ -22,7 +22,7 @@ todos.value = todo
 </script>
 
 <template>
-  <el-tabs v-model="tab" class="tabs">
+  <el-tabs v-model="tab">
     <el-tab-pane :label="`${i18n.t('layout.notification.notification')}(${notifications.length})`" name="Notification" lazy>
       <el-scrollbar height="300px" noresize>
         <section>Notification</section>
@@ -43,8 +43,4 @@ todos.value = todo
   </el-tabs>
 </template>
 
-<style scoped lang="scss">
-.tabs {
-  width: 300px;
-}
-</style>
+<style scoped lang="scss"></style>

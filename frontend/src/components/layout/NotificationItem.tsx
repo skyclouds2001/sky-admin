@@ -2,7 +2,7 @@ import { defineComponent, type PropType } from 'vue'
 import { ElAvatar } from 'element-plus'
 import type { Notification } from '@/model'
 
-const TodoItem = defineComponent(
+const NotificationItem = defineComponent(
   (props) => {
     return () => (
       <>
@@ -29,4 +29,4 @@ const TodoItem = defineComponent(
   }
 )
 
-export default TodoItem
+export default NotificationItem

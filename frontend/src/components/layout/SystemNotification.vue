@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElScrollbar, ElTabs, ElTabPane } from 'element-plus'
-import { NotificationItem, TodoItem } from '@/components'
-import { notifications as notification, todos as todo } from '@/data'
-import type { Notification, Todo } from '@/model'
+import { MessageItem, NotificationItem, TodoItem } from '@/components'
+import { messages as message, notifications as notification, todos as todo } from '@/data'
+import type { Message, Notification, Todo } from '@/model'
 
 const i18n = useI18n()
 
@@ -14,11 +14,12 @@ const tab = ref<Tab>('Notification')
 
 const notifications = ref<Notification[]>([])
 
-const messages = ref([])
+const messages = ref<Message[]>([])
 
 const todos = ref<Todo[]>([])
 
 notifications.value = notification
+messages.value = message
 todos.value = todo
 </script>
 
@@ -32,7 +33,7 @@ todos.value = todo
 
     <el-tab-pane :label="`${i18n.t('layout.notification.message')}(${messages.length})`" name="Message" lazy>
       <el-scrollbar height="300px" noresize>
-        <section>Message</section>
+        <message-item v-for="item in messages" :key="item.id" :message="item" />
       </el-scrollbar>
     </el-tab-pane>
 

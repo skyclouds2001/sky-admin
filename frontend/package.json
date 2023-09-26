@@ -59,7 +59,7 @@
     "axios": "^1.5.0",
     "axios-retry": "^3.7.0",
     "crypto-js": "^4.1.1",
-    "dayjs": "^1.11.9",
+    "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.14",
     "highlight.js": "^11.8.0",

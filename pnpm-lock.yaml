@@ -104,8 +104,8 @@ importers:
         specifier: ^0.31.1
         version: 0.31.1
       markdownlint-cli:
-        specifier: ^0.36.0
-        version: 0.36.0
+        specifier: ^0.37.0
+        version: 0.37.0
       only-allow:
         specifier: ^1.1.1
         version: 1.1.1
@@ -2493,7 +2493,7 @@ packages:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@20.6.2)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.4.7)(typescript@5.2.2)
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -7079,7 +7079,7 @@ packages:
     dependencies:
       '@types/node': 20.4.7
       cosmiconfig: 8.3.6(typescript@5.2.2)
-      ts-node: 10.9.1(@types/node@20.6.2)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.4.7)(typescript@5.2.2)
       typescript: 5.2.2
     dev: true
 
@@ -11274,8 +11274,8 @@ packages:
     resolution: {integrity: sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==}
     dev: true
 
-  /markdownlint-cli@0.36.0:
-    resolution: {integrity: sha512-h4WdqOam3+QOVOcJSOQuG8KvvN8dlS0OiJhbPwYWBk7VMZR40UtSSMIOpSP5B4EHPHg3W3ILSQUvqg1HNpTCxA==}
+  /markdownlint-cli@0.37.0:
+    resolution: {integrity: sha512-hNKAc0bWBBuVhJbSWbUhRzavstiB4o1jh3JeSpwC4/dt6eJ54lRfYHRxVdzVp4qGWBKbeE6Pg490PFEfrKjqSg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
@@ -11285,7 +11285,7 @@ packages:
       ignore: 5.2.4
       js-yaml: 4.1.0
       jsonc-parser: 3.2.0
-      markdownlint: 0.30.0
+      markdownlint: 0.31.1
       minimatch: 9.0.3
       run-con: 1.3.2
     dev: true
@@ -11293,14 +11293,6 @@ packages:
   /markdownlint-micromark@0.1.7:
     resolution: {integrity: sha512-BbRPTC72fl5vlSKv37v/xIENSRDYL/7X/XoFzZ740FGEbs9vZerLrIkFRY0rv7slQKxDczToYuMmqQFN61fi4Q==}
     engines: {node: '>=16'}
-    dev: true
-
-  /markdownlint@0.30.0:
-    resolution: {integrity: sha512-nInuFvI/rEzanAOArW5490Ez4EYpB5ODqVM0mcDYCPx9DKJWCQqCgejjiCvbSeE7sjbDscVtZmwr665qpF5xGA==}
-    engines: {node: '>=16'}
-    dependencies:
-      markdown-it: 13.0.1
-      markdownlint-micromark: 0.1.7
     dev: true
 
   /markdownlint@0.31.1:
@@ -11587,11 +11579,6 @@ packages:
   /minipass@4.2.8:
     resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
     engines: {node: '>=8'}
-    dev: true
-
-  /minipass@7.0.2:
-    resolution: {integrity: sha512-eL79dXrE1q9dBbDCLg7xfn/vl7MS4F1gvJAgjJrQli/jbQWdUttuVawphqpffoIYfRdq78LHx6GP4bU/EQ2ATA==}
-    engines: {node: '>=16 || 14 >=14.17'}
     dev: true
 
   /minipass@7.0.3:
@@ -12278,7 +12265,7 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       lru-cache: 10.0.0
-      minipass: 7.0.2
+      minipass: 7.0.3
     dev: true
 
   /path-to-regexp@0.1.7:
@@ -15537,6 +15524,37 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
+  /ts-node@10.9.1(@types/node@20.4.7)(typescript@5.2.2):
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.4.7
+      acorn: 8.10.0
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.2.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
+
   /ts-node@10.9.1(@types/node@20.6.2)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -16059,7 +16077,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.6.2)
+      vite: 4.4.9(@types/node@20.6.2)(less@4.2.0)(sass@1.67.0)(stylus@0.60.0)(terser@5.19.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16230,42 +16248,6 @@ packages:
       svgo: 3.0.2
     dev: true
 
-  /vite@4.4.9(@types/node@20.6.2):
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 20.6.2
-      esbuild: 0.18.20
-      postcss: 8.4.29
-      rollup: 3.29.2
-    optionalDependencies:
-      fsevents: 2.3.3
-    dev: true
-
   /vite@4.4.9(@types/node@20.6.2)(less@4.2.0)(sass@1.67.0)(stylus@0.60.0)(terser@5.19.4):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -16323,7 +16305,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.4
-      vite: 4.4.9(@types/node@20.6.2)
+      vite: 4.4.9(@types/node@20.6.2)(less@4.2.0)(sass@1.67.0)(stylus@0.60.0)(terser@5.19.4)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -16406,7 +16388,7 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.5.1
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.6.2)
+      vite: 4.4.9(@types/node@20.6.2)(less@4.2.0)(sass@1.67.0)(stylus@0.60.0)(terser@5.19.4)
       vite-node: 0.34.4(@types/node@20.6.2)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:

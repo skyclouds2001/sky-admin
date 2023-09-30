@@ -49,7 +49,7 @@
     "pnpm": ">=8.4.0"
   },
   "scripts": {
-    "build": "rollup --config rollup.config.js --bundleConfigAsCjs"
+    "build": "rollup --config --bundleConfigAsCjs"
   },
   "dependencies": {
     "vite": "^4.4.9"

@@ -66,6 +66,9 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  define: {
+    __BUILD_TIME__: `'${new Date().toLocaleString()}'`,
+  },
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -86,6 +89,10 @@ export default defineConfig({
         changeOrigin: true,
         ws: true,
       },
+    },
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
     },
   },
   preview: {
@@ -108,6 +115,10 @@ export default defineConfig({
         changeOrigin: true,
         ws: true,
       },
+    },
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
     },
   },
 })

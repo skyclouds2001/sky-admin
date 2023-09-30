@@ -12,10 +12,10 @@ self.addEventListener('install', (e) => {
         self.caches.open('mappers').then((cache) =>
           Promise.all(
             mappers.map((mapper) => {
-              const { url, data = {}, headers = {} } = mapper
+              const { url, method = 'GET', data = {}, headers = {} } = mapper
 
               // resolve response data
-              let resolvedData: string | FormData
+              let resolvedData: string | FormData | URLSearchParams
               if (typeof data === 'string') {
                 resolvedData = data
               } else {
@@ -25,7 +25,7 @@ self.addEventListener('install', (e) => {
                     Object.entries(data).forEach(([key, value]) => {
                       usp.append(key, value)
                     })
-                    resolvedData = usp.toString()
+                    resolvedData = usp
 
                     break
                   }
@@ -62,7 +62,20 @@ self.addEventListener('install', (e) => {
                 }
               }
 
-              return cache.put(new Request(url), new Response(resolvedData))
+              // generate headers
+              const h = new Headers()
+              Object.entries(headers).forEach(([key, value]) => {
+                h.append(key, value)
+              })
+
+              return cache.put(
+                new Request(url, {
+                  method,
+                }),
+                new Response(resolvedData, {
+                  headers: h,
+                })
+              )
             })
           )
         )

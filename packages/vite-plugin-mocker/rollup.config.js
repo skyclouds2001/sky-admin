@@ -26,8 +26,8 @@ export default defineConfig({
     }),
     typescript({
       sourceMap: false,
-      // declaration: true,
-      // declarationDir: 'dist',
+      declaration: true,
+      declarationDir: 'dist',
       rootDir: '.',
       exclude: ['node_modules/**/*', 'dist/**/*', 'test/**/*'],
     }),

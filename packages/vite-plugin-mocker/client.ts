@@ -7,6 +7,10 @@ window.navigator.serviceWorker.register('/mocker.ts', {
 window.navigator.serviceWorker.getRegistrations().then((registrations) => {
   registrations.forEach((registration) => {
     registration.update()
+
+    registration.addEventListener('updatefound', () => {
+      registration.update()
+    })
   })
 })
 

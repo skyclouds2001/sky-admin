@@ -1,4 +1,5 @@
 export interface Mapper {
   url: string
-  data?: Record<string, any>
+  data?: string | Record<string, any>
+  headers?: Record<string, string>
 }

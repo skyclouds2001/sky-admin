@@ -93,7 +93,7 @@
     "markdownlint": "^0.31.1",
     "markdownlint-cli": "^0.37.0",
     "only-allow": "^1.2.0",
-    "pnpm": "8.6.12",
+    "pnpm": "8.8.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "stylelint": "^15.10.3",

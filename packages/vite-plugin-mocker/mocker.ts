@@ -3,7 +3,7 @@ import type { Mapper } from './types'
 declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('install', (e) => {
-  self.skipWaiting()
+  e.waitUntil(self.skipWaiting())
 
   e.waitUntil(
     fetch('/mappers.json')
@@ -89,10 +89,24 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    self.caches.open('mappers').then((cache) =>
-      cache.match(e.request).then((response) => {
-        return response ?? fetch(e.request)
+    self.caches
+      .match(e.request, {
+        cacheName: 'mappers',
       })
-    )
+      .then(
+        (res) =>
+          res ??
+          fetch(e.request).then((res) =>
+            self.caches.open('mappers').then((cache) => {
+              cache.put(e.request, res)
+
+              return res
+            })
+          )
+      )
   )
+})
+
+self.registration.addEventListener('updatefound', () => {
+  self.registration.update()
 })

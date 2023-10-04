@@ -2,14 +2,18 @@ import type { Mapper } from './types'
 
 declare const self: ServiceWorkerGlobalScope
 
+const CACHE_NAME = 'mappers'
+
 self.addEventListener('install', (e) => {
   e.waitUntil(self.skipWaiting())
+
+  e.waitUntil(self.registration.navigationPreload.enable())
 
   e.waitUntil(
     fetch('/mappers.json')
       .then((data) => data.json())
       .then((mappers: Mapper[]) =>
-        self.caches.open('mappers').then((cache) =>
+        self.caches.open(CACHE_NAME).then((cache) =>
           Promise.all(
             mappers.map((mapper) => {
               const { url, method = 'GET', data = {}, headers = {} } = mapper
@@ -91,13 +95,13 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     self.caches
       .match(e.request, {
-        cacheName: 'mappers',
+        cacheName: CACHE_NAME,
       })
       .then(
         (res) =>
           res ??
           fetch(e.request).then((res) =>
-            self.caches.open('mappers').then((cache) => {
+            self.caches.open(CACHE_NAME).then((cache) => {
               cache.put(e.request, res)
 
               return res
@@ -108,5 +112,5 @@ self.addEventListener('fetch', (e) => {
 })
 
 self.registration.addEventListener('updatefound', () => {
-  self.registration.update()
+  self.registration.active != null && self.registration.update()
 })

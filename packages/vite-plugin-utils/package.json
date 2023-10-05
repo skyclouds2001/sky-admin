@@ -52,7 +52,7 @@
     "build": "rollup --config --bundleConfigAsCjs"
   },
   "dependencies": {
-    "vite": "^4.4.9"
+    "vite": "^4.4.11"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",

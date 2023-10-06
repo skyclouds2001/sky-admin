@@ -1,12 +1,13 @@
-void window.navigator.serviceWorker.register('./mocker.ts', {
-  scope: '/',
+window.navigator.serviceWorker.register('./mocker.ts', {
+  scope: './',
   type: 'module',
-  updateViaCache: 'all',
+  updateViaCache: 'imports',
 })
 
-void window.navigator.serviceWorker.getRegistrations().then((registrations) => {
+window.navigator.serviceWorker.getRegistrations().then((registrations) => {
   registrations.forEach((registration) => {
-    void registration.unregister()
-    void registration.update()
+    registration.update()
   })
 })
+
+window.navigator.serviceWorker.startMessages()

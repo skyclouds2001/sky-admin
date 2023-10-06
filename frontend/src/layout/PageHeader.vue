@@ -147,7 +147,7 @@ const exitLogin = (): void => {
         </el-icon>
       </el-tooltip>
 
-      <el-popover trigger="click" :width="300">
+      <el-popover trigger="click" :width="350">
         <template #reference>
           <div>
             <el-tooltip :content="i18n.t(`layout.header.notification`)">

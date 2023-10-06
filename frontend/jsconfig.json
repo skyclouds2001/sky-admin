@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/jsconfig",
+  "extends": "./../jsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue", "**/*.json", "**/*.html", "**/*.md", "**/*.mdx"],
+  "exclude": ["node_modules", "dist"]
+}

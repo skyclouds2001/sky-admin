@@ -286,7 +286,7 @@ export default {
       i18n: '语言',
       gray_mode: '灰色模式',
       color_weakness: '色弱模式',
-      wake_lock: '屏幕唤醒锁定',
+      wake_lock: '屏幕锁定',
       vibrate: '振动',
     },
     notification: {

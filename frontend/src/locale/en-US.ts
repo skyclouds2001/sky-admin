@@ -286,7 +286,7 @@ export default {
       i18n: 'Language',
       gray_mode: 'Gray Mode',
       color_weakness: 'Color Weak',
-      wake_lock: 'Screen Wake Lock',
+      wake_lock: 'Wake Lock',
       vibrate: 'Vibrate',
     },
     notification: {

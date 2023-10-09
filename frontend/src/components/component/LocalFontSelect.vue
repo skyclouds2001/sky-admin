@@ -25,6 +25,8 @@ const emits = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
+const isSupported = 'queryLocalFonts' in window
+
 const font = computed({
   get() {
     return props.modelValue
@@ -43,10 +45,17 @@ const loadFont = (): void => {
     })
   }
 }
+
+defineExpose({
+  isSupported,
+  font,
+  fonts,
+  loadFont,
+})
 </script>
 
 <template>
-  <el-select v-model="font" filterable name="local-font-select" placeholder="Please select the font you need" aria-label="Local Font" @visible-change="loadFont">
+  <el-select v-model="font" :disabled="!isSupported" filterable name="local-font-select" placeholder="Please select the font you need" aria-label="Local Font" @visible-change="loadFont">
     <el-option v-for="item in fonts" :key="item.postscriptName" :label="item.fullName" :value="item.family" />
   </el-select>
 </template>

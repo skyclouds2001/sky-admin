@@ -288,6 +288,7 @@ export default {
       color_weakness: '色弱模式',
       wake_lock: '屏幕锁定',
       vibrate: '振动',
+      font: '字体',
     },
     notification: {
       notification: '通知',

@@ -288,6 +288,7 @@ export default {
       color_weakness: 'Color Weak',
       wake_lock: 'Wake Lock',
       vibrate: 'Vibrate',
+      font: 'Font',
     },
     notification: {
       notification: 'Notification',

@@ -10,12 +10,7 @@ interface FontData {
   blob: () => Promise<Blob>
 }
 
-declare let queryLocalFonts: (options?: { postscriptNames: string[] }) => Promise<FontData[]>
-
-defineOptions({
-  name: 'LocalFontSelect',
-  inheritAttrs: false,
-})
+declare const queryLocalFonts: (options?: { postscriptNames: string[] }) => Promise<FontData[]>
 
 const props = defineProps<{
   modelValue: string
@@ -39,12 +34,19 @@ const font = computed({
 const fonts = ref<FontData[]>([])
 
 const loadFont = (): void => {
-  if (fonts.value.length === 0) {
-    void queryLocalFonts().then((data) => {
-      fonts.value = data
-    })
+  if (!isSupported) {
+    console.error('Current Browser does not support for Local Font Select API')
   }
+
+  void queryLocalFonts().then((data) => {
+    fonts.value = data
+  })
 }
+
+defineOptions({
+  name: 'LocalFontSelect',
+  inheritAttrs: false,
+})
 
 defineExpose({
   isSupported,

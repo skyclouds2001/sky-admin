@@ -53,7 +53,7 @@
     "@nestjs/schedule": "^3.0.4",
     "@nestjs/swagger": "^7.1.12",
     "@nestjs/websockets": "^10.2.6",
-    "@prisma/client": "5.3.1",
+    "@prisma/client": "5.4.2",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "cache-manager": "^5.2.3",

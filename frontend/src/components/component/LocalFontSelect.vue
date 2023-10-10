@@ -2,22 +2,24 @@
 import { computed, ref } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
 
-interface FontData {
-  readonly family: string
-  readonly fullName: string
-  readonly postscriptName: string
-  readonly style: string
-  blob: () => Promise<Blob>
-}
-
-declare const queryLocalFonts: (options?: { postscriptNames: string[] }) => Promise<FontData[]>
-
-const props = defineProps<{
-  modelValue: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    // @ts-expect-error - Local Font Access API
+    modelValue: FontData
+    name?: string
+    placeholder?: string
+    postscriptNames?: string[] | null
+  }>(),
+  {
+    name: 'Local Font Select',
+    placeholder: 'Please select the font you need',
+    postscriptNames: null,
+  }
+)
 
 const emits = defineEmits<{
-  'update:modelValue': [value: string]
+  // @ts-expect-error - Local Font Access API
+  'update:modelValue': [value: FontData]
 }>()
 
 const isSupported = 'queryLocalFonts' in window
@@ -31,16 +33,25 @@ const font = computed({
   },
 })
 
+// @ts-expect-error - Local Font Access API
 const fonts = ref<FontData[]>([])
 
-const loadFont = (): void => {
+const loadFont = async (): Promise<void> => {
   if (!isSupported) {
-    console.error('Current Browser does not support for Local Font Select API')
+    console.error('Current Browser does not support for Local Font Access API')
   }
 
-  void queryLocalFonts().then((data) => {
-    fonts.value = data
-  })
+  const options =
+    props.postscriptNames != null
+      ? {
+          postscriptNames: props.postscriptNames,
+        }
+      : {}
+
+  // @ts-expect-error - Local Font Access API
+  const data = await window.queryLocalFonts(options)
+
+  fonts.value = data
 }
 
 defineOptions({
@@ -57,8 +68,8 @@ defineExpose({
 </script>
 
 <template>
-  <el-select v-model="font" :disabled="!isSupported" filterable name="local-font-select" placeholder="Please select the font you need" aria-label="Local Font" @visible-change="loadFont">
-    <el-option v-for="item in fonts" :key="item.postscriptName" :label="item.fullName" :value="item.family" />
+  <el-select v-model="font" :disabled="!isSupported" filterable :name="props.name" :placeholder="props.placeholder" :aria-label="props.name" @visible-change="loadFont">
+    <el-option v-for="item in fonts" :key="item.postscriptName" :label="item.fullName" :value="item" />
   </el-select>
 </template>
 

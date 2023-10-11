@@ -97,7 +97,7 @@
     "@types/qrcode": "^1.5.2",
     "@types/three": "^0.156.0",
     "@vitejs/plugin-legacy": "^4.1.1",
-    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "cssnano": "^6.0.1",
     "less": "^4.2.0",

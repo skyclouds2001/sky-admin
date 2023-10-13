@@ -541,6 +541,36 @@ importers:
         specifier: ^1.8.15
         version: 1.8.15(typescript@5.2.2)
 
+  packages/fs-OPFS:
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.23.0
+        version: 7.23.0
+      '@babel/preset-env':
+        specifier: ^7.22.20
+        version: 7.22.20(@babel/core@7.23.0)
+      '@babel/preset-typescript':
+        specifier: ^7.23.0
+        version: 7.23.0(@babel/core@7.23.0)
+      '@rollup/plugin-babel':
+        specifier: ^6.0.3
+        version: 6.0.3(@babel/core@7.23.0)(rollup@3.29.4)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.1
+        version: 15.2.1(rollup@3.29.4)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.3
+        version: 0.4.3(rollup@3.29.4)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.4
+        version: 11.1.4(rollup@3.29.4)(typescript@5.2.2)
+      rollup:
+        specifier: ^3.29.4
+        version: 3.29.4
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   packages/sky-hooks:
     dependencies:
       vue:

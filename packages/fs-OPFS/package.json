@@ -1,0 +1,65 @@
+{
+  "name": "fs-opfs",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Sky Admin is a backstage management system built on Vue3, Vite4, TypeScript and Element, developed by skyclouds2001 and was available under MIT license.",
+  "keywords": [
+    "admin",
+    "management",
+    "system",
+    "skyclouds2001"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "homepage": "https://github.com/skyclouds2001/SkyAdmin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyclouds2001/SkyAdmin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skyclouds2001/SkyAdmin/issues",
+    "email": "skyclouds2001@163.com"
+  },
+  "author": {
+    "name": "skyclouds2001",
+    "email": "skyclouds2001@163.com",
+    "url": "https://skyclouds2001.github.io"
+  },
+  "contributors": [
+    "skyclouds2001"
+  ],
+  "packageManager": "pnpm@8.4.0",
+  "engines": {
+    "node": ">=18.13.0",
+    "npm": ">=9.6.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=8.4.0"
+  },
+  "scripts": {
+    "build": "rollup --config --bundleConfigAsCjs"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-typescript": "^7.23.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.4",
+    "rollup": "^3.29.4",
+    "typescript": "^5.2.2"
+  }
+}

@@ -7,3 +7,6 @@
 [submodule "packages/sky-types"]
 	path = packages/sky-types
 	url = https://github.com/skyclouds2001/sky-types
+[submodule "packages/sky-components"]
+	path = packages/sky-components
+	url = https://github.com/skyclouds2001/sky-components

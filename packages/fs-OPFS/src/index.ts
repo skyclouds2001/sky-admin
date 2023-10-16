@@ -18,6 +18,8 @@ export { readDir, readFile, readFileAsBuffer, readFileAsStream, readFileAsText }
 
 export { removeDir, removeFile } from './remove'
 
+export { renameDir, renameFile } from './rename'
+
 export { isSupported } from './util'
 
 export { writeFile } from './write'

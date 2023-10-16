@@ -1,7 +1,6 @@
-import { root } from './init'
-import { resolvePath, type Path } from './util'
+import { resolvePath, getSubDir, type Path } from './util'
 
-interface GetHandleOptions {
+interface OpenOptions {
   create?: boolean
 }
 
@@ -11,18 +10,14 @@ interface GetHandleOptions {
  * @param options read additional options
  * @returns the file handle
  */
-export const openFile = async (path: Path, options: GetHandleOptions = {}): Promise<FileSystemFileHandle> => {
+export const openFile = async (path: Path, options: OpenOptions = {}): Promise<FileSystemFileHandle> => {
   const { create = false } = options
   const paths = resolvePath(path)
   const len = paths.length
 
-  let dirHandle = root
-  for (let i = 0; i < len - 1; ++i) {
-    dirHandle = await dirHandle.getDirectoryHandle(paths[i], {
-      create,
-    })
-  }
-  const fileHandle = await dirHandle.getFileHandle(paths[len - 1], {
+  const handle = await getSubDir(path, options)
+
+  const fileHandle = await handle.getFileHandle(paths[len - 1], {
     create,
   })
 
@@ -35,17 +30,16 @@ export const openFile = async (path: Path, options: GetHandleOptions = {}): Prom
  * @param options read additional options
  * @returns the dictionary handle
  */
-export const openDir = async (path: Path, options: GetHandleOptions = {}): Promise<FileSystemDirectoryHandle> => {
+export const openDir = async (path: Path, options: OpenOptions = {}): Promise<FileSystemDirectoryHandle> => {
   const { create = false } = options
   const paths = resolvePath(path)
   const len = paths.length
 
-  let dirHandle = root
-  for (let i = 0; i < len; ++i) {
-    dirHandle = await dirHandle.getDirectoryHandle(paths[i], {
-      create,
-    })
-  }
+  const handle = await getSubDir(path, options)
+
+  const dirHandle = await handle.getDirectoryHandle(paths[len - 1], {
+    create,
+  })
 
   return dirHandle
 }

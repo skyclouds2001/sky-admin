@@ -1,4 +1,5 @@
 import { getFileHandle } from './handle'
+import { type Path } from './util'
 
 interface WriteFileOptions {
   create?: boolean
@@ -14,7 +15,7 @@ type WriteFileData = string | Blob | ArrayBuffer | ArrayBufferView | DataView
  * @param data data to be written to the specific file
  * @param options write additional options
  */
-export const writeFile = async (path: string, data: WriteFileData, options: WriteFileOptions = {}): Promise<void> => {
+export const writeFile = async (path: Path, data: WriteFileData, options: WriteFileOptions = {}): Promise<void> => {
   const { create = false, position, useExisted = false } = options
 
   const handle = await getFileHandle(path, {

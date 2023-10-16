@@ -1,4 +1,5 @@
 import { getFileHandle, getDirHandle } from './handle'
+import { type Path } from './util'
 
 interface ReadFileOptions {
   create?: boolean
@@ -10,7 +11,7 @@ interface ReadFileOptions {
  * @param options read additional options
  * @returns the content of file as a `File` object
  */
-export const readFile = async (path: string, options: ReadFileOptions = {}): Promise<File> => {
+export const readFile = async (path: Path, options: ReadFileOptions = {}): Promise<File> => {
   const { create = false } = options
 
   const handle = await getFileHandle(path, {
@@ -28,7 +29,7 @@ export const readFile = async (path: string, options: ReadFileOptions = {}): Pro
  * @param options read additional options
  * @returns the content of file as string
  */
-export const readFileAsText = async (path: string, options: ReadFileOptions = {}): Promise<string> => {
+export const readFileAsText = async (path: Path, options: ReadFileOptions = {}): Promise<string> => {
   const file = await readFile(path, options)
 
   const text = await file.text()
@@ -42,7 +43,7 @@ export const readFileAsText = async (path: string, options: ReadFileOptions = {}
  * @param options read additional options
  * @returns the content of file as a `ArrayBuffer` object
  */
-export const readFileAsBuffer = async (path: string, options: ReadFileOptions = {}): Promise<ArrayBuffer> => {
+export const readFileAsBuffer = async (path: Path, options: ReadFileOptions = {}): Promise<ArrayBuffer> => {
   const file = await readFile(path, options)
 
   const buffer = await file.arrayBuffer()
@@ -56,7 +57,7 @@ export const readFileAsBuffer = async (path: string, options: ReadFileOptions = 
  * @param options read additional options
  * @returns the content of file as a `ReadableStream` object
  */
-export const readFileAsStream = async (path: string, options: ReadFileOptions = {}): Promise<ReadableStream<Uint8Array>> => {
+export const readFileAsStream = async (path: Path, options: ReadFileOptions = {}): Promise<ReadableStream<Uint8Array>> => {
   const file = await readFile(path, options)
 
   const stream = file.stream()
@@ -74,7 +75,7 @@ interface ReadDirOptions {
  * @param options read additional options
  * @returns the name of files or dictionaries as an array of string
  */
-export const readDir = async (path: string, options: ReadDirOptions = {}): Promise<string[]> => {
+export const readDir = async (path: Path, options: ReadDirOptions = {}): Promise<string[]> => {
   const { create = false } = options
 
   const handle = await getDirHandle(path, {

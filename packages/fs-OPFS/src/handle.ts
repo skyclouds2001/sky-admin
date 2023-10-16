@@ -1,5 +1,5 @@
 import { root } from './init'
-import { resolvePath } from './util'
+import { resolvePath, type Path } from './util'
 
 interface GetHandleOptions {
   create?: boolean
@@ -11,7 +11,7 @@ interface GetHandleOptions {
  * @param options read additional options
  * @returns the file handle
  */
-export const getFileHandle = async (path: string, options: GetHandleOptions = {}): Promise<FileSystemFileHandle> => {
+export const getFileHandle = async (path: Path, options: GetHandleOptions = {}): Promise<FileSystemFileHandle> => {
   const { create = false } = options
   const paths = resolvePath(path)
   const len = paths.length
@@ -35,7 +35,7 @@ export const getFileHandle = async (path: string, options: GetHandleOptions = {}
  * @param options read additional options
  * @returns the dictionary handle
  */
-export const getDirHandle = async (path: string, options: GetHandleOptions = {}): Promise<FileSystemDirectoryHandle> => {
+export const getDirHandle = async (path: Path, options: GetHandleOptions = {}): Promise<FileSystemDirectoryHandle> => {
   const { create = false } = options
   const paths = resolvePath(path)
   const len = paths.length

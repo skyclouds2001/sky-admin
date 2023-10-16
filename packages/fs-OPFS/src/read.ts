@@ -1,4 +1,4 @@
-import { getFileHandle, getDirHandle } from './handle'
+import { openDir, openFile } from './open'
 import { type Path } from './util'
 
 interface ReadFileOptions {
@@ -14,7 +14,7 @@ interface ReadFileOptions {
 export const readFile = async (path: Path, options: ReadFileOptions = {}): Promise<File> => {
   const { create = false } = options
 
-  const handle = await getFileHandle(path, {
+  const handle = await openFile(path, {
     create,
   })
 
@@ -78,7 +78,7 @@ interface ReadDirOptions {
 export const readDir = async (path: Path, options: ReadDirOptions = {}): Promise<string[]> => {
   const { create = false } = options
 
-  const handle = await getDirHandle(path, {
+  const handle = await openDir(path, {
     create,
   })
 

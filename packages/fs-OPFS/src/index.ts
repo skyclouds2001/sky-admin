@@ -14,4 +14,6 @@ export { openDir, openFile } from './open'
 
 export { readDir, readFile, readFileAsBuffer, readFileAsStream, readFileAsText } from './read'
 
+export { removeDir, removeFile } from './remove'
+
 export { writeFile } from './write'

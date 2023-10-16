@@ -25,10 +25,10 @@ export const openFile = async (path: Path, options: OpenOptions = {}): Promise<F
 }
 
 /**
- * get dictionary handle in the given path
+ * get directory handle in the given path
  * @param path given path
  * @param options read additional options
- * @returns the dictionary handle
+ * @returns the directory handle
  */
 export const openDir = async (path: Path, options: OpenOptions = {}): Promise<FileSystemDirectoryHandle> => {
   const { create = false } = options

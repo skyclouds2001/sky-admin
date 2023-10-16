@@ -13,7 +13,7 @@ export const removeFile = async (path: Path): Promise<void> => {
 }
 
 /**
- * remove dictionary
+ * remove directory
  * @param path given path
  */
 export const removeDir = async (path: Path): Promise<void> => {

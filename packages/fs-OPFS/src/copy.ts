@@ -29,7 +29,7 @@ export const copyFile = async (src: Path | FileSystemFileHandle, dest: Path | Fi
 }
 
 /**
- * copy dictionary
+ * copy directory
  * @param src source file path
  * @param dest destination file path
  */

@@ -15,7 +15,7 @@ export type Path = string | URL
 
 /**
  * resolve path to resolved paths array
- * @param path file or dictionary path
+ * @param path file or directory path
  * @returns resolved paths array
  */
 export const resolvePath = (path: Path): string[] => {
@@ -41,9 +41,9 @@ interface GetSubDirOptions {
 }
 
 /**
- * @param path file or dictionary path
+ * @param path file or directory path
  * @param options get additional options
- * @returns the handle of sub dictionary
+ * @returns the handle of sub directory
  */
 export const getSubDir = async (path: Path, options: GetSubDirOptions = {}): Promise<FileSystemDirectoryHandle> => {
   const { create = false } = options

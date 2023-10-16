@@ -2,7 +2,7 @@ import { openDir } from './open'
 import { type Path } from './util'
 
 /**
- * create dictionary
+ * create directory
  * @param path given path
  */
 export const makeDir = async (path: Path): Promise<void> => {

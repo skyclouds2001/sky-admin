@@ -70,7 +70,7 @@ interface ReadDirOptions {
 }
 
 /**
- * read dictionary contents in the given path
+ * read directory contents in the given path
  * @param path given path
  * @param options read additional options
  * @returns the name of files or dictionaries as an array of string

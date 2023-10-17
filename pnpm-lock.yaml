@@ -573,6 +573,9 @@ importers:
 
   packages/sky-components:
     dependencies:
+      element-plus:
+        specifier: 2.3.14
+        version: 2.3.14(vue@3.3.4)
       vue:
         specifier: ^3.3.4
         version: 3.3.4

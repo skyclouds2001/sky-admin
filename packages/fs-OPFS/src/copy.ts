@@ -48,7 +48,7 @@ export const copyDir = async (src: Path | FileSystemDirectoryHandle, dest: Path 
           create: true,
         })
 
-  // @ts-expect-error builtin definition files does not support for async iterator
+  // @ts-expect-error File System API
   for await (const [name, handle] of srcHandle.entries()) {
     if (handle.kind === 'directory') {
       await copyDir(await srcHandle.getDirectoryHandle(name), await destHandle.getDirectoryHandle(name))

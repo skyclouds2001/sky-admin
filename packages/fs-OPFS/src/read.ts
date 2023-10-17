@@ -84,7 +84,7 @@ export const readDir = async (path: Path, options: ReadDirOptions = {}): Promise
 
   const keys: string[] = []
 
-  // @ts-expect-error builtin definition files does not support for async iterator
+  // @ts-expect-error File System API
   for await (const key of handle.keys()) {
     keys.push(key)
   }

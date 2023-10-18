@@ -45,13 +45,13 @@ export const INDEX_ROUTE = '/home'
 export const SERVER_HOST = 'https://localhost:5173'
 
 /** 示例 word 文件地址 */
-export const DEMO_WORD_SRC = ''
+export const DEMO_WORD_SRC = '/word-preview.docx'
 
 /** 示例 excel 文件地址 */
-export const DEMO_EXCEL_SRC = ''
+export const DEMO_EXCEL_SRC = '/excel-preview.xlsx'
 
 /** 示例 ppt 文件地址 */
-export const DEMO_PPT_SRC = ''
+export const DEMO_PPT_SRC = '/ppt-preview.pptx'
 
 /** 示例 pdf 文件地址 */
-export const DEMO_PDF_SRC = ''
+export const DEMO_PDF_SRC = '/pdf-preview.pdf'

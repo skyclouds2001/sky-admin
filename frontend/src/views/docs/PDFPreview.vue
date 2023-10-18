@@ -9,8 +9,6 @@ import { DEMO_PDF_SRC } from '@/config'
 <style scoped lang="scss">
 .pdf-preview {
   width: 100%;
-  min-width: 1000px;
   height: 100%;
-  min-height: 1200px;
 }
 </style>

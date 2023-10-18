@@ -10,8 +10,6 @@ import { generateDocumentLink } from '@/util'
 <style scoped lang="scss">
 .pdf-preview {
   width: 100%;
-  min-width: 1000px;
   height: 100%;
-  min-height: 1500px;
 }
 </style>

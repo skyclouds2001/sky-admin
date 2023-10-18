@@ -1,17 +1,32 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { renderAsync } from 'docx-preview'
 import { DEMO_WORD_SRC } from '@/config'
-import { generateDocumentLink } from '@/util'
+
+const container = ref<HTMLDivElement | null>(null)
+
+onMounted(() => {
+  fetch(DEMO_WORD_SRC)
+    .then((res) => res.blob())
+    .then(async (data) => {
+      await renderAsync(data, container.value as HTMLDivElement, undefined, {
+        debug: import.meta.env.DEV,
+        experimental: true,
+      })
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+})
 </script>
 
 <template>
-  <iframe class="word-preview" name="word-preview" title="word-preview" referrerpolicy="no-referrer" :src="generateDocumentLink(DEMO_WORD_SRC)"></iframe>
+  <div ref="container" class="word-preview"></div>
 </template>
 
 <style scoped lang="scss">
-.pdf-preview {
+.word-preview {
   width: 100%;
-  min-width: 1000px;
   height: 100%;
-  min-height: 1500px;
 }
 </style>

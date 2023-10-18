@@ -60,6 +60,7 @@
     "axios-retry": "^3.8.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.10",
+    "docx-preview": "^0.1.20",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.14",
     "highlight.js": "^11.8.0",

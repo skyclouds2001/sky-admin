@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { ElIcon } from 'element-plus'
 import { RefreshRight } from '@element-plus/icons-vue'
-import { useEventListener } from '@sky-fly/shooks'
+import { useEventListener } from '@sky-fly/sky-hooks'
+import { ElIcon } from 'element-plus'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const el = ref<HTMLDivElement | null>(null)
 

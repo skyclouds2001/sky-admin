@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { inject, ref, type Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { ElDivider, ElDrawer, ElOption, ElSelect, ElSlider, ElSwitch } from 'element-plus'
-import { Moon, Sunny } from '@element-plus/icons-vue'
-import { useWakeLock } from '@sky-fly/shooks'
 import { LocalFontSelect } from '@/components'
 import { SettingDrawerKey } from '@/constants'
 import { Lang, Theme } from '@/enum'
 import { useColorWeakness, useFont, useGrayMode, useLang, useTheme } from '@/hook'
+import { Moon, Sunny } from '@element-plus/icons-vue'
+import { useWakeLock } from '@sky-fly/sky-hooks'
+import { ElDivider, ElDrawer, ElOption, ElSelect, ElSlider, ElSwitch } from 'element-plus'
+import { inject, ref, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
 

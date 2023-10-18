@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { getCurrentInstance, inject, type Ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElImage, ElMessage, ElMessageBox, ElPopover, ElTooltip } from 'element-plus'
-import { FullScreen, Lock, Printer, Setting, Share, Unlock, Bell } from '@element-plus/icons-vue'
-import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/shooks'
 import { SystemNotification } from '@/components'
 import { PROJECT_AUTHOR_AVATAR, PROJECT_AUTHOR_NAME } from '@/config'
 import { SettingDrawerKey } from '@/constants'
 import { usePagesStore } from '@/store'
+import { Bell, FullScreen, Lock, Printer, Setting, Share, Unlock } from '@element-plus/icons-vue'
+import { useFullscreen, useNow, usePointerLock, useShare, useStorage } from '@sky-fly/sky-hooks'
+import { ElBreadcrumb, ElBreadcrumbItem, ElCalendar, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElImage, ElMessage, ElMessageBox, ElPopover, ElTooltip } from 'element-plus'
+import { getCurrentInstance, inject, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 const appContext = getCurrentInstance()?.appContext
 

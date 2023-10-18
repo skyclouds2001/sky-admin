@@ -1,9 +1,9 @@
 import axios, { type Canceler } from 'axios'
 // eslint-disable-next-line import/no-named-as-default
+import { SERVER_HOST } from '@/config'
+import { useStorage } from '@sky-fly/sky-hooks'
 import AxiosRetry from 'axios-retry'
 import { MD5 } from 'crypto-js'
-import { useStorage } from '@sky-fly/shooks'
-import { SERVER_HOST } from '@/config'
 
 const token = useStorage<string>('token', {
   prefix: 'sky-admin-0.0.0',

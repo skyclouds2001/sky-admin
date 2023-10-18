@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { useEventListener } from '@sky-fly/sky-hooks'
 import { reactive, ref } from 'vue'
-import { useEventListener } from '@sky-fly/shooks'
 
 const current = ref(0)
 

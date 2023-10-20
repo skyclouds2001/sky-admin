@@ -4,7 +4,7 @@ import router from '@/router'
 import store from '@/store'
 import i18n from '@/i18n'
 import '@/style/global.css'
-import '@/style/mode.scss'
+import '@/style/mode.css'
 
 const app = createApp(App)
 

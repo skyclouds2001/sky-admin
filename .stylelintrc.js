@@ -19,9 +19,5 @@ module.exports = {
       files: ['**/*.scss'],
       extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
     },
-    {
-      files: ['**/*.less'],
-      extends: ['stylelint-config-standard-less'],
-    },
   ],
 }

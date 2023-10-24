@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-rational-order'],
+  extends: ['stylelint-config-standard', 'stylelint-config-recess-order'],
   rules: {
     'at-rule-no-unknown': [
       true,

@@ -21,7 +21,7 @@ const { lang } = useLang()
 
 const { isActive, toggle } = useWakeLock()
 
-const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolean>
+const isShowSettingDrawer = inject(SettingDrawerKey) as Ref<boolean>
 
 const vibrate = ref(0)
 

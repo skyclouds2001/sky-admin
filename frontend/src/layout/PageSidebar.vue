@@ -12,7 +12,7 @@ const store = useTabsStore()
 
 const currentPath = computed(() => store.currentTab)
 
-const isMenuCollapse = inject<Ref<boolean>>(MenuCollapseKey) as Ref<boolean>
+const isMenuCollapse = inject(MenuCollapseKey) as Ref<boolean>
 
 const handleCollapse = (): void => {
   isMenuCollapse.value = !isMenuCollapse.value

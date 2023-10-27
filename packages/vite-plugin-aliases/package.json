@@ -41,7 +41,7 @@
   "contributors": [
     "skyclouds2001"
   ],
-  "packageManager": "pnpm@8.4.0",
+  "packageManager": "pnpm@8.10.0",
   "engines": {
     "node": ">=18.13.0",
     "npm": ">=9.6.0",

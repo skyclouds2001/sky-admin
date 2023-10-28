@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { inject, ref, type Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { ElDivider, ElDrawer, ElOption, ElSelect, ElSlider, ElSwitch } from 'element-plus'
-import { Moon, Sunny } from '@element-plus/icons-vue'
-import { useWakeLock } from '@sky-fly/shooks'
+import { LocalFontSelect } from '@/components'
 import { SettingDrawerKey } from '@/constants'
 import { Lang, Theme } from '@/enum'
-import { useColorWeakness, useGrayMode, useLang, useTheme } from '@/hook'
+import { useColorWeakness, useFont, useGrayMode, useLang, useTheme } from '@/hook'
+import { Moon, Sunny } from '@element-plus/icons-vue'
+import { useWakeLock } from '@sky-fly/sky-hooks'
+import { ElDivider, ElDrawer, ElOption, ElSelect, ElSlider, ElSwitch } from 'element-plus'
+import { inject, ref, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
 
@@ -20,9 +21,11 @@ const { lang } = useLang()
 
 const { isActive, toggle } = useWakeLock()
 
-const isShowSettingDrawer = inject<Ref<boolean>>(SettingDrawerKey) as Ref<boolean>
+const isShowSettingDrawer = inject(SettingDrawerKey) as Ref<boolean>
 
 const vibrate = ref(0)
+
+const font = useFont()
 </script>
 
 <template>
@@ -79,6 +82,14 @@ const vibrate = ref(0)
     </el-divider>
     <div class="w-full text-center">
       <el-slider v-model="vibrate" name="vibrate" />
+    </div>
+
+    <!-- 字体控件 -->
+    <el-divider>
+      <h4 class="font-bold">{{ i18n.t('layout.setting.font') }}</h4>
+    </el-divider>
+    <div class="w-full text-center">
+      <local-font-select v-model="font" />
     </div>
   </el-drawer>
 </template>

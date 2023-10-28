@@ -4,6 +4,16 @@ import router from '@/router'
 import store from '@/store'
 import i18n from '@/i18n'
 import '@/style/global.css'
-import '@/style/mode.scss'
+import '@/style/mode.css'
 
-createApp(App).use(router).use(store).use(i18n).mount('#app')
+const app = createApp(App)
+
+app.config.performance = true
+
+app.use(router)
+
+app.use(store)
+
+app.use(i18n)
+
+app.mount('#app')

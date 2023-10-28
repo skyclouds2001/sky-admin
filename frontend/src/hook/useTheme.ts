@@ -1,6 +1,6 @@
-import { computed, type ComputedRef, ref, type Ref, unref, watch } from 'vue'
-import { usePreferredTheme, useStorage } from '@sky-fly/shooks'
 import { Theme, isTheme } from '@/enum'
+import { usePreferredTheme, useStorage } from '@sky-fly/sky-hooks'
+import { computed, ref, unref, watch, type ComputedRef, type Ref } from 'vue'
 
 const useTheme = (): {
   theme: Ref<Theme>

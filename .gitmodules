@@ -1,0 +1,12 @@
+[submodule "packages/sky-hooks"]
+	path = packages/sky-hooks
+	url = https://github.com/skyclouds2001/sky-hooks
+[submodule "packages/sky-ui"]
+	path = packages/sky-ui
+	url = https://github.com/skyclouds2001/sky-ui
+[submodule "packages/sky-types"]
+	path = packages/sky-types
+	url = https://github.com/skyclouds2001/sky-types
+[submodule "packages/sky-components"]
+	path = packages/sky-components
+	url = https://github.com/skyclouds2001/sky-components

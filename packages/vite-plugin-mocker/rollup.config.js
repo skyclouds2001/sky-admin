@@ -11,10 +11,6 @@ export default defineConfig({
       dir: 'dist',
       format: 'es',
     },
-    {
-      dir: 'dist',
-      format: 'cjs',
-    },
   ],
   external: ['vite'],
   plugins: [

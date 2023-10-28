@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { useEyeDropper } from '@sky-fly/sky-hooks'
 import { ElButton, ElCard, ElSpace, ElText } from 'element-plus'
-import { useEyeDropper } from '@sky-fly/shooks'
 
 const { isSupported, color, open } = useEyeDropper()
 </script>

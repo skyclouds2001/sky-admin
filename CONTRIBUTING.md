@@ -1,3 +1,3 @@
-# Contributing to SkyAdmin
+# Contributing to sky-admin
 
-Thanks for your interest in contributing to SkyAdmin!
+Thanks for your interest in contributing to sky-admin!

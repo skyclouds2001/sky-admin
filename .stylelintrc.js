@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-rational-order'],
+  extends: ['stylelint-config-standard', 'stylelint-config-recess-order'],
   rules: {
     'at-rule-no-unknown': [
       true,
@@ -18,10 +18,6 @@ module.exports = {
     {
       files: ['**/*.scss'],
       extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
-    },
-    {
-      files: ['**/*.less'],
-      extends: ['stylelint-config-standard-less'],
     },
   ],
 }

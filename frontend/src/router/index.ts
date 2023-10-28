@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { useStorage } from '@sky-fly/shooks'
 import { INDEX_ROUTE } from '@/config'
 import { LayoutContainer } from '@/layout'
 import { usePagesStore, useTabsStore } from '@/store'
 import { openPage } from '@/util'
+import { useStorage } from '@sky-fly/sky-hooks'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(),

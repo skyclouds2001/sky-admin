@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getCurrentInstance, ref, watch } from 'vue'
+import { useBroadcastChannel } from '@sky-fly/sky-hooks'
 import { ElButton, ElCard, ElInput, ElMessage, ElSpace, ElText } from 'element-plus'
-import { useBroadcastChannel } from '@sky-fly/shooks'
+import { getCurrentInstance, ref, watch } from 'vue'
 
 const appContext = getCurrentInstance()?.appContext
 

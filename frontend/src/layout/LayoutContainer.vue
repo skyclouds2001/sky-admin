@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, provide, type Ref } from 'vue'
+import { ref, provide } from 'vue'
 import { ElContainer, ElAside, ElHeader, ElMain, ElFooter, ElBacktop } from 'element-plus'
 import { SettingDrawer } from '@/components'
 import { MenuCollapseKey, SettingDrawerKey } from '@/constants'
@@ -7,11 +7,11 @@ import { PageFooter, PageHeader, PageSidebar, PageTabs } from '.'
 
 const isShowSettingDrawer = ref(false)
 
-provide<Ref<boolean>>(SettingDrawerKey, isShowSettingDrawer)
+provide(SettingDrawerKey, isShowSettingDrawer)
 
 const isMenuCollapse = ref(false)
 
-provide<Ref<boolean>>(MenuCollapseKey, isMenuCollapse)
+provide(MenuCollapseKey, isMenuCollapse)
 </script>
 
 <template>

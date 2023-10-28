@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { ElCard, ElDescriptions, ElDescriptionsItem, ElLink, ElSpace, ElTag } from 'element-plus'
-import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@sky-fly/shooks'
 import { getServerInfo } from '@/api'
 import { PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE, PROJECT_AUTHOR_NAME } from '@/config'
 import { generateBrowserInformation, generateSystemInfo } from '@/util'
+import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@sky-fly/sky-hooks'
+import { ElCard, ElDescriptions, ElDescriptionsItem, ElLink, ElSpace, ElTag } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
 

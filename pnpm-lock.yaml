@@ -303,9 +303,15 @@ importers:
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.9.0)(vue@3.3.7)
+      '@sky-fly/sky-components':
+        specifier: workspace:*
+        version: link:../packages/sky-components
       '@sky-fly/sky-hooks':
         specifier: workspace:*
         version: link:../packages/sky-hooks
+      '@sky-fly/sky-types':
+        specifier: workspace:*
+        version: link:../packages/sky-types
       '@sky-fly/sky-ui':
         specifier: workspace:*
         version: link:../packages/sky-ui

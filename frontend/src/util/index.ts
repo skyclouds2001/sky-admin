@@ -1,5 +1,3 @@
-export * from './browser-info'
-
 export * from './debounce-throttle'
 
 export * from './download-file'

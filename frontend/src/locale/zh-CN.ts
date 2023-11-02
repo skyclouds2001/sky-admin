@@ -54,15 +54,6 @@ export default {
       nodeUptime: '服务运行时间',
       nodeVersion: '服务运行环境',
     },
-    browser: {
-      title: '浏览器信息',
-      locationbar: '地址栏可见性',
-      menubar: '菜单栏可见性',
-      personalbar: '用户界面可见性',
-      scrollbars: '滚动条可见性',
-      statusbar: '状态栏可见性',
-      toolbar: '工具栏可见性',
-    },
     website: {
       title: '网站信息',
       href: 'URL',

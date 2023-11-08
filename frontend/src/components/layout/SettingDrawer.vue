@@ -19,7 +19,7 @@ const { theme } = useTheme()
 
 const { lang } = useLang()
 
-const { isActive, toggle } = useWakeLock()
+const { isWakeLock, toggle } = useWakeLock()
 
 const isShowSettingDrawer = inject(SettingDrawerKey) as Ref<boolean>
 
@@ -73,7 +73,7 @@ const font = useFont()
       <h4 class="font-bold">{{ i18n.t('layout.setting.wake_lock') }}</h4>
     </el-divider>
     <div class="w-full text-center">
-      <el-switch v-model="isActive" inline-prompt name="wake-lock" @change="toggle" />
+      <el-switch v-model="isWakeLock" inline-prompt name="wake-lock" @change="toggle" />
     </div>
 
     <!-- 振动设置控件 -->

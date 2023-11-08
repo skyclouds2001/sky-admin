@@ -2,6 +2,7 @@ import axios, { type Canceler } from 'axios'
 // eslint-disable-next-line import/no-named-as-default
 import { SERVER_HOST } from '@/config'
 import { useStorage } from '@sky-fly/sky-hooks'
+// eslint-disable-next-line import/no-named-as-default
 import AxiosRetry from 'axios-retry'
 import { MD5 } from 'crypto-js'
 
@@ -36,6 +37,7 @@ instance.interceptors.request.use(
     if (config.cancelRepeat === 'before') {
       requests.get(key)?.()
       requests.delete(key)
+      // eslint-disable-next-line import/no-named-as-default-member
       config.cancelToken = new axios.CancelToken((cancel) => {
         requests.set(key, cancel)
       })
@@ -43,6 +45,7 @@ instance.interceptors.request.use(
     // @ts-expect-error error
     if (config.cancelRepeat === 'after') {
       if (requests.has(key)) {
+        // eslint-disable-next-line import/no-named-as-default-member
         config.cancelToken = new axios.CancelToken((cancel) => {
           cancel()
         })

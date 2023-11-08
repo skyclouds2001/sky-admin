@@ -360,7 +360,6 @@ export default {
     },
     monitor: {
       title: '系统监控',
-      performance: '系统性能',
     },
     error: {
       title: '异常',

@@ -262,10 +262,6 @@ const handleCollapse = (): void => {
           <el-icon><Monitor /></el-icon>
           <span>{{ i18n.t('router.monitor.title') }}</span>
         </template>
-        <el-menu-item index="/monitor/performance">
-          <el-icon><Monitor /></el-icon>
-          <span>{{ i18n.t('router.monitor.performance') }}</span>
-        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->

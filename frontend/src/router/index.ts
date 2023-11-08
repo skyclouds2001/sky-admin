@@ -461,16 +461,7 @@ const router = createRouter({
           meta: {
             isView: false,
           },
-          children: [
-            {
-              name: Symbol('/monitor/performance'),
-              path: '/monitor/performance',
-              component: () => import('@/views/monitor/SystemPerformance.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-          ],
+          children: [],
         },
 
         // 异常

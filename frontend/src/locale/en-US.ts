@@ -360,7 +360,6 @@ export default {
     },
     monitor: {
       title: 'Monitor',
-      performance: 'Performance',
     },
     error: {
       title: 'Error',

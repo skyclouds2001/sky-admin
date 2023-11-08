@@ -66,17 +66,9 @@ const handleCollapse = (): void => {
           <el-icon><Collection /></el-icon>
           <span>{{ i18n.t('router.component.terminal') }}</span>
         </el-menu-item>
-        <el-menu-item index="/component/draggable">
+        <el-menu-item index="/component/controllable">
           <el-icon><Collection /></el-icon>
-          <span>{{ i18n.t('router.component.draggable') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/component/scalable">
-          <el-icon><Collection /></el-icon>
-          <span>{{ i18n.t('router.component.scalable') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/component/rotatable">
-          <el-icon><Collection /></el-icon>
-          <span>{{ i18n.t('router.component.rotatable') }}</span>
+          <span>{{ i18n.t('router.component.controllable') }}</span>
         </el-menu-item>
         <el-menu-item index="/component/rich-text-editor">
           <el-icon><Collection /></el-icon>

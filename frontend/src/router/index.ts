@@ -100,25 +100,9 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/component/draggable'),
-              path: '/component/draggable',
-              component: () => import('@/views/component/DraggableComponent.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/component/scalable'),
-              path: '/component/scalable',
-              component: () => import('@/views/component/ScalableComponent.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/component/rotatable'),
-              path: '/component/rotatable',
-              component: () => import('@/views/component/RotatableComponent.vue'),
+              name: Symbol('/component/controllable'),
+              path: '/component/controllable',
+              component: () => import('@/views/component/ControllableComponent.vue'),
               meta: {
                 isView: true,
               },

@@ -218,10 +218,6 @@ const handleCollapse = (): void => {
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.image-compress') }}</span>
         </el-menu-item>
-        <el-menu-item index="/feature/geo-position">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.geo-position') }}</span>
-        </el-menu-item>
         <el-menu-item index="/feature/camera-record">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.camera-record') }}</span>
@@ -237,22 +233,6 @@ const handleCollapse = (): void => {
         <el-menu-item index="/feature/animation-effect">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.animation-effect') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/feature/eye-dropper">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.eye-dropper') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/feature/notification">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.notification') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/feature/clipboard">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.clipboard') }}</span>
-        </el-menu-item>
-        <el-menu-item index="/feature/broadcast-channel">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.broadcast-channel') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

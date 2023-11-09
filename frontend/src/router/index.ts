@@ -380,14 +380,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/feature/geo-position'),
-              path: '/feature/geo-position',
-              component: () => import('@/views/feature/GeographicalPosition.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/feature/camera-record'),
               path: '/feature/camera-record',
               component: () => import('@/views/feature/RecordCamera.vue'),
@@ -415,38 +407,6 @@ const router = createRouter({
               name: Symbol('/feature/animation-effect'),
               path: '/feature/animation-effect',
               component: () => import('@/views/feature/AnimationEffect.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/eye-dropper'),
-              path: '/feature/eye-dropper',
-              component: () => import('@/views/feature/EyeDropper.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/notification'),
-              path: '/feature/notification',
-              component: () => import('@/views/feature/WebNotification.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/clipboard'),
-              path: '/feature/clipboard',
-              component: () => import('@/views/feature/WebClipboard.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/broadcast-channel'),
-              path: '/feature/broadcast-channel',
-              component: () => import('@/views/feature/BroadcastChannel.vue'),
               meta: {
                 isView: true,
               },

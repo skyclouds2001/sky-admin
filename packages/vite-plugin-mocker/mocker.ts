@@ -5,8 +5,6 @@ declare const self: ServiceWorkerGlobalScope
 const CACHE_NAME = 'mappers'
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(self.skipWaiting())
-
   e.waitUntil(self.registration.navigationPreload.enable())
 
   e.waitUntil(
@@ -84,6 +82,7 @@ self.addEventListener('install', (e) => {
           )
         )
       )
+      .then(() => self.skipWaiting())
   )
 })
 

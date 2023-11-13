@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { getServerInfo } from '@/api'
 import { PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE, PROJECT_AUTHOR_NAME } from '@/config'
-import { generateBrowserInformation, generateSystemInfo } from '@/util'
+import { generateSystemInfo } from '@/util'
 import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@sky-fly/sky-hooks'
 import { ElCard, ElDescriptions, ElDescriptionsItem, ElLink, ElSpace, ElTag } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
-
-const browserInfo = generateBrowserInformation()
 
 const systemInfo = generateSystemInfo()
 
@@ -227,50 +225,6 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.server.nodeVersion') }}</span>
           </template>
           <el-tag>{{ serverInfo.nodeVersion }}</el-tag>
-        </el-descriptions-item>
-      </el-descriptions>
-    </el-card>
-
-    <el-card shadow="always">
-      <template #header>
-        <div class="text-left text-base font-bold">{{ i18n.t('home.browser.title') }}</div>
-      </template>
-      <el-descriptions border>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.locationbar') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.locationbar }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.menubar') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.menubar }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.personalbar') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.personalbar }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.scrollbars') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.scrollbars }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.statusbar') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.statusbar }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.browser.toolbar') }}</span>
-          </template>
-          <el-tag>{{ browserInfo.toolbar }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

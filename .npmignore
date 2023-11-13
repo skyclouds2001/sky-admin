@@ -10,12 +10,6 @@ node_modules/
 # Vite Build Output
 dist/
 
-# Vitepress Dev Cache
-docs/.vitepress/cache
-
-# Vitepress Build Output
-docs/.vitepress/dist
-
 # Visual Studio Code
 .vscode/
 

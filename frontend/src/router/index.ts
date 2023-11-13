@@ -100,25 +100,9 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/component/draggable'),
-              path: '/component/draggable',
-              component: () => import('@/views/component/DraggableComponent.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/component/scalable'),
-              path: '/component/scalable',
-              component: () => import('@/views/component/ScalableComponent.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/component/rotatable'),
-              path: '/component/rotatable',
-              component: () => import('@/views/component/RotatableComponent.vue'),
+              name: Symbol('/component/controllable'),
+              path: '/component/controllable',
+              component: () => import('@/views/component/ControllableComponent.vue'),
               meta: {
                 isView: true,
               },
@@ -396,14 +380,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/feature/geo-position'),
-              path: '/feature/geo-position',
-              component: () => import('@/views/feature/GeographicalPosition.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/feature/camera-record'),
               path: '/feature/camera-record',
               component: () => import('@/views/feature/RecordCamera.vue'),
@@ -435,38 +411,6 @@ const router = createRouter({
                 isView: true,
               },
             },
-            {
-              name: Symbol('/feature/eye-dropper'),
-              path: '/feature/eye-dropper',
-              component: () => import('@/views/feature/EyeDropper.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/notification'),
-              path: '/feature/notification',
-              component: () => import('@/views/feature/WebNotification.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/clipboard'),
-              path: '/feature/clipboard',
-              component: () => import('@/views/feature/WebClipboard.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
-              name: Symbol('/feature/broadcast-channel'),
-              path: '/feature/broadcast-channel',
-              component: () => import('@/views/feature/BroadcastChannel.vue'),
-              meta: {
-                isView: true,
-              },
-            },
           ],
         },
 
@@ -477,16 +421,7 @@ const router = createRouter({
           meta: {
             isView: false,
           },
-          children: [
-            {
-              name: Symbol('/monitor/performance'),
-              path: '/monitor/performance',
-              component: () => import('@/views/monitor/SystemPerformance.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-          ],
+          children: [],
         },
 
         // 异常

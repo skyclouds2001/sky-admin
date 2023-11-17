@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, inject, type Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor } from '@element-plus/icons-vue'
 import { MenuCollapseKey } from '@/constants'
 import { useTabsStore } from '@/store'
+import { Calendar, Collection, Document, Expand, Fold, Histogram, HomeFilled, InfoFilled, Link, List, MapLocation, Menu, Monitor, Service, Warning } from '@element-plus/icons-vue'
+import { ElIcon, ElMenu, ElMenuItem, ElScrollbar, ElSubMenu } from 'element-plus'
+import { computed, inject, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
 
@@ -109,6 +109,18 @@ const handleCollapse = (): void => {
         <el-menu-item index="/chart/radar">
           <el-icon><Histogram /></el-icon>
           <span>{{ i18n.t('router.chart.radar') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 地图 -->
+      <el-sub-menu index="/map">
+        <template #title>
+          <el-icon><MapLocation /></el-icon>
+          <span>{{ i18n.t('router.map.title') }}</span>
+        </template>
+        <el-menu-item index="/map/3d-earth">
+          <el-icon><MapLocation /></el-icon>
+          <span>{{ i18n.t('router.map.3d-earth') }}</span>
         </el-menu-item>
       </el-sub-menu>
 

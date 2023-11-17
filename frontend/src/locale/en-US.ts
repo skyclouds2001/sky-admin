@@ -328,6 +328,10 @@ export default {
       candlestick: 'Candlestick Chart',
       radar: 'Radar Chart',
     },
+    map: {
+      title: 'Map',
+      '3d-earth': '3D Earth',
+    },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
       return 'Menu' + (data != null ? '-' + Array.from(data).join('-') : '')

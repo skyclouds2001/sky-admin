@@ -185,6 +185,25 @@ const router = createRouter({
           ],
         },
 
+        // 地图
+        {
+          name: Symbol('/map'),
+          path: '/map',
+          meta: {
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/map/3d-earth'),
+              path: '/map/3d-earth',
+              component: () => import('@/views/map/3dEarth.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+          ],
+        },
+
         // 嵌套菜单
         {
           name: Symbol('/route'),

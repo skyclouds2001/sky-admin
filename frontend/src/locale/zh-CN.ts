@@ -328,6 +328,10 @@ export default {
       candlestick: 'K 线图',
       radar: '雷达图',
     },
+    map: {
+      title: '地图',
+      '3d-earth': '三维地球',
+    },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
       return '菜单' + (data != null ? '-' + data.join('-') : '')

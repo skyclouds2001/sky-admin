@@ -350,7 +350,6 @@ export default {
       'image-compress': 'Image Compress',
       'camera-record': 'Video Recorder',
       'screen-record': 'Screen Recorder',
-      'web-rtc': 'WebRTC',
       'animation-effect': 'Animation',
     },
     monitor: {

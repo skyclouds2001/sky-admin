@@ -396,14 +396,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/feature/web-rtc'),
-              path: '/feature/web-rtc',
-              component: () => import('@/views/feature/WebRTC.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/feature/animation-effect'),
               path: '/feature/animation-effect',
               component: () => import('@/views/feature/AnimationEffect.vue'),

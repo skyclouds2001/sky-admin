@@ -90,8 +90,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+      key: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1-key.pem'),
+      cert: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1.pem'),
     },
     open: true,
     proxy: {
@@ -116,8 +116,8 @@ export default defineConfig({
     port: 4173,
     strictPort: true,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+      key: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1-key.pem'),
+      cert: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1.pem'),
     },
     open: true,
     proxy: {

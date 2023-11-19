@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Ion, Viewer } from 'cesium'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { Camera, CameraEventType, Ion, Rectangle, SkyBox, Viewer } from 'cesium'
 import 'cesium/Build/CesiumUnminified/Widgets/widgets.css'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const el = ref<HTMLDivElement | null>(null)
 
@@ -12,15 +12,37 @@ window.CESIUM_BASE_URL = 'node_modules/cesium/Build/CesiumUnminified/'
 Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5YmRhMzFkYS1hMTI5LTQ2ZjEtODk3ZS0yNDFlYmNkYzk3OGMiLCJpZCI6MTc4OTM4LCJpYXQiOjE3MDAxOTYyNTB9.XmsCEAlfbOR7RqNm2zpp4qCuVkYdaBjsSXbrjcjSJew'
 
 onMounted(() => {
+  // set camera to view China on initial
+  Camera.DEFAULT_VIEW_RECTANGLE = Rectangle.fromDegrees(75.0, 0.0, 140.0, 60.0)
+
   viewer = new Viewer(el.value as HTMLDivElement, {
     fullscreenElement: el.value as HTMLDivElement,
+    skyBox: new SkyBox({
+      sources: {
+        positiveX: '/sky/00h+00.jpg',
+        negativeX: '/sky/12h+00.jpg',
+        positiveY: '/sky/06h+00.jpg',
+        negativeY: '/sky/18h+00.jpg',
+        positiveZ: '/sky/06h+90.jpg',
+        negativeZ: '/sky/06h-90.jpg',
+      },
+    }),
   })
 
   // remove credit information
   const credit = viewer.cesiumWidget.creditContainer as HTMLElement
   credit.style.display = 'none'
 
+  // show frame per second for debug
+  viewer.scene.debugShowFramesPerSecond = import.meta.env.DEV
+
   // add sunshine support
+  viewer.scene.globe.enableLighting = true
+
+  // depth-tested against the terrain surface, so to disable drag into the inner side of the earth
+  viewer.scene.globe.depthTestAgainstTerrain = true
+
+  viewer.scene.screenSpaceCameraController.tiltEventTypes = CameraEventType.RIGHT_DRAG
 })
 
 onUnmounted(() => {

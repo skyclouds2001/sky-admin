@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Camera, CameraEventType, Ion, Rectangle, SkyBox, Viewer } from 'cesium'
+import { Camera, CameraEventType, Ion, Rectangle, Viewer } from 'cesium'
 import 'cesium/Build/CesiumUnminified/Widgets/widgets.css'
 import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -17,16 +17,6 @@ onMounted(() => {
 
   viewer = new Viewer(el.value as HTMLDivElement, {
     fullscreenElement: el.value as HTMLDivElement,
-    skyBox: new SkyBox({
-      sources: {
-        positiveX: '/sky/00h+00.jpg',
-        negativeX: '/sky/12h+00.jpg',
-        positiveY: '/sky/06h+00.jpg',
-        negativeY: '/sky/18h+00.jpg',
-        positiveZ: '/sky/06h+90.jpg',
-        negativeZ: '/sky/06h-90.jpg',
-      },
-    }),
   })
 
   // remove credit information

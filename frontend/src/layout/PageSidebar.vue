@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuCollapseKey } from '@/constants'
 import { useTabsStore } from '@/store'
-import { Calendar, Collection, Document, Expand, Fold, Histogram, HomeFilled, InfoFilled, Link, List, MapLocation, Menu, Monitor, Service, Warning } from '@element-plus/icons-vue'
+import { Calendar, Collection, Document, Expand, Fold, Histogram, HomeFilled, InfoFilled, Link, List, MapLocation, Menu, Monitor, Service, Tools, Warning } from '@element-plus/icons-vue'
 import { ElIcon, ElMenu, ElMenuItem, ElScrollbar, ElSubMenu } from 'element-plus'
 import { computed, inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -250,6 +250,26 @@ const handleCollapse = (): void => {
           <el-icon><Monitor /></el-icon>
           <span>{{ i18n.t('router.monitor.title') }}</span>
         </template>
+      </el-sub-menu>
+
+      <!-- 系统管理 -->
+      <el-sub-menu index="/system">
+        <template #title>
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.title') }}</span>
+        </template>
+        <el-menu-item index="/system/department">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.department') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/system/role">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.role') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/system/user">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.user') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->

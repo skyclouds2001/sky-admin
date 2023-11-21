@@ -359,6 +359,12 @@ export default {
     monitor: {
       title: 'Monitor',
     },
+    system: {
+      title: 'System Manage',
+      department: 'Department Manage',
+      role: 'Role Manage',
+      user: 'User Manage',
+    },
     error: {
       title: 'Error',
       403: '403',

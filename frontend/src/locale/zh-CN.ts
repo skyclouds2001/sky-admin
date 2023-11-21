@@ -359,6 +359,12 @@ export default {
     monitor: {
       title: '系统监控',
     },
+    system: {
+      title: '系统管理',
+      department: '部门管理',
+      role: '角色管理',
+      user: '用户管理',
+    },
     error: {
       title: '异常',
       403: '403',

@@ -435,6 +435,41 @@ const router = createRouter({
           children: [],
         },
 
+        // 系统管理
+        {
+          name: Symbol('/system'),
+          path: '/system',
+          meta: {
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/system/department'),
+              path: '/system/department',
+              component: () => import('@/views/system/DepartmentManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/system/role'),
+              path: '/system/role',
+              component: () => import('@/views/system/RoleManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/system/user'),
+              path: '/system/user',
+              component: () => import('@/views/system/UserManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+          ],
+        },
+
         // 异常
         {
           name: Symbol('/error'),

@@ -100,12 +100,6 @@ export default {
       dischargingTime: 'DisCharging Time',
       level: 'Battery Level',
     },
-    author: {
-      title: 'Author Info',
-      name: 'Name',
-      email: 'Email',
-      website: 'Website',
-    },
   },
   table: {
     search: {

@@ -100,12 +100,6 @@ export default {
       dischargingTime: '电池续航时间',
       level: '电池电量',
     },
-    author: {
-      title: '作者信息',
-      name: '名称',
-      email: '邮箱',
-      website: '个人网站',
-    },
   },
   table: {
     search: {

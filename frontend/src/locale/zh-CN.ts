@@ -258,6 +258,8 @@ export default {
       version: '版本',
       license: '许可证',
       author: '作者',
+      email: '邮箱',
+      website: '个人网站',
       'build-time': '构建时间',
       github: 'GitHub',
     },

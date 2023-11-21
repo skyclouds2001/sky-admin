@@ -258,6 +258,8 @@ export default {
       version: 'Version',
       license: 'License',
       author: 'Author',
+      email: 'Email',
+      website: 'Website',
       'build-time': 'Build Time',
       github: 'GitHub',
     },

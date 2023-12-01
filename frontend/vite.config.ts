@@ -12,7 +12,6 @@ import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
-import inspect from 'vite-plugin-inspect'
 import { checker } from 'vite-plugin-checker'
 import alias from 'vite-plugin-aliases'
 import copyAssets from 'vite-plugin-copy-assets'
@@ -59,7 +58,6 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
     }),
-    inspect(),
     checker({
       vueTsc: true,
       eslint: {
@@ -69,7 +67,7 @@ export default defineConfig({
         lintCommand: 'stylelint "./src/**/*.{vue,css,scss}"',
       },
     }),
-    alias(),
+    alias() as unknown as any,
     copyAssets([]),
     utils(),
   ],

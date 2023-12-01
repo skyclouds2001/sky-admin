@@ -51,13 +51,7 @@ export default defineConfig({
       },
     }),
     compression(),
-    visualizer({
-      filename: 'report.html',
-      title: 'report',
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }),
+    visualizer(),
     checker({
       vueTsc: true,
       eslint: {
@@ -67,7 +61,7 @@ export default defineConfig({
         lintCommand: 'stylelint "./src/**/*.{vue,css,scss}"',
       },
     }),
-    alias() as unknown as any,
+    alias(),
     copyAssets([]),
     utils(),
   ],

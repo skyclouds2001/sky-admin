@@ -9,7 +9,7 @@
 - Get code
 
 ```bash
-git clone https://github.com/skyclouds2001/SkyAdmin.git
+git clone https://github.com/skyclouds2001/sky-admin.git
 ```
 
 - Install dependencies

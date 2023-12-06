@@ -9,7 +9,7 @@ const i18n = useI18n()
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
+  <el-space direction="vertical" fill size="large" class="w-full px-10 py-4">
     <el-card shadow="always">
       <template #header>
         <div class="title">{{ i18n.t('about.title') }}</div>

@@ -33,7 +33,7 @@ const timestamp = useTimestamp()
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
+  <el-space direction="vertical" fill size="large" class="w-full px-10 py-4">
     <el-card shadow="always">
       <template #header>
         <div class="text-left text-base font-bold">{{ i18n.t('home.system.title') }}</div>

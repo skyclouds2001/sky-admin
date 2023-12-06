@@ -6,14 +6,14 @@ const NotificationItem = defineComponent(
   (props) => {
     return () => (
       <>
-        <section class="border-b-[1px] last:border-none border-solid border-gray-600 mx-2 py-3 first:pt-0 last:pb-0 flex justify-between items-start">
+        <section class="mx-2 flex items-start justify-between border-b-[1px] border-solid border-gray-600 py-3 first:pt-0 last:border-none last:pb-0">
           <div class="grow-[1] py-1">
             <ElAvatar src={props.notification.icon} alt={props.notification.title} size={30} />
           </div>
           <div class="grow-[7]">
-            <div class="text-sm flex justify-between items-center w-full">{props.notification.title}</div>
-            <div class="line-clamp-1 text-ellipsis text-xs w-full">{props.notification.content}</div>
-            <div class="text-xs w-full mt-1">{new Date(props.notification.date).toLocaleString()}</div>
+            <div class="flex w-full items-center justify-between text-sm">{props.notification.title}</div>
+            <div class="line-clamp-1 w-full text-ellipsis text-xs">{props.notification.content}</div>
+            <div class="mt-1 w-full text-xs">{new Date(props.notification.date).toLocaleString()}</div>
           </div>
         </section>
       </>

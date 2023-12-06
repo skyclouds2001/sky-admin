@@ -369,8 +369,8 @@ const handleCollapse = (): void => {
 
   .collapse-controller {
     @apply absolute bottom-0 left-0;
-    @apply w-full h-8 px-5;
-    @apply text-left leading-8 text-xl;
+    @apply h-8 w-full px-5;
+    @apply text-left text-xl leading-8;
 
     color: #409eff;
   }

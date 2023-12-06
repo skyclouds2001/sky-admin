@@ -109,7 +109,7 @@ const rules: FormRules = {
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="px-80 py-4 w-full">
+  <el-space direction="vertical" fill size="large" class="w-full px-80 py-4">
     <el-card shadow="always">
       <el-form :model="form" :rules="rules" status-icon>
         <el-form-item prop="name" :label="i18n.t('form.basic.name')">

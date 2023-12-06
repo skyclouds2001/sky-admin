@@ -66,7 +66,7 @@ const removeTab: InstanceType<typeof ElTabs>['onTabRemove'] = (path) => {
 
 <style scoped lang="scss">
 .tabs {
-  @apply w-full h-full;
+  @apply h-full w-full;
   @apply border-0;
   @apply select-none;
 

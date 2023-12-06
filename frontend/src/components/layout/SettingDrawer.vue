@@ -31,7 +31,7 @@ const font = useFont()
 <template>
   <el-drawer v-model="isShowSettingDrawer" size="20%">
     <template #header>
-      <h1 class="text-base font-bold drawer" style="color: var(--title-text-color)">{{ i18n.t('layout.setting.title') }}</h1>
+      <h1 class="drawer text-base font-bold" style="color: var(--title-text-color)">{{ i18n.t('layout.setting.title') }}</h1>
     </template>
 
     <!-- 主题控件 -->

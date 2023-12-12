@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, inject, type Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { ElMenu, ElSubMenu, ElMenuItem, ElIcon, ElScrollbar } from 'element-plus'
-import { HomeFilled, InfoFilled, Fold, Expand, Menu, Document, Link, Histogram, Service, Calendar, List, Warning, Collection, Monitor } from '@element-plus/icons-vue'
 import { MenuCollapseKey } from '@/constants'
 import { useTabsStore } from '@/store'
+import { Calendar, Collection, Document, Expand, Fold, Histogram, HomeFilled, InfoFilled, Link, List, MapLocation, Menu, Monitor, Service, Tools, Warning } from '@element-plus/icons-vue'
+import { ElIcon, ElMenu, ElMenuItem, ElScrollbar, ElSubMenu } from 'element-plus'
+import { computed, inject, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
 
@@ -109,6 +109,18 @@ const handleCollapse = (): void => {
         <el-menu-item index="/chart/radar">
           <el-icon><Histogram /></el-icon>
           <span>{{ i18n.t('router.chart.radar') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+
+      <!-- 地图 -->
+      <el-sub-menu index="/map">
+        <template #title>
+          <el-icon><MapLocation /></el-icon>
+          <span>{{ i18n.t('router.map.title') }}</span>
+        </template>
+        <el-menu-item index="/map/3d-earth">
+          <el-icon><MapLocation /></el-icon>
+          <span>{{ i18n.t('router.map.3d-earth') }}</span>
         </el-menu-item>
       </el-sub-menu>
 
@@ -226,10 +238,6 @@ const handleCollapse = (): void => {
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.screen-record') }}</span>
         </el-menu-item>
-        <el-menu-item index="/feature/web-rtc">
-          <el-icon><Service /></el-icon>
-          <span>{{ i18n.t('router.feature.web-rtc') }}</span>
-        </el-menu-item>
         <el-menu-item index="/feature/animation-effect">
           <el-icon><Service /></el-icon>
           <span>{{ i18n.t('router.feature.animation-effect') }}</span>
@@ -242,6 +250,26 @@ const handleCollapse = (): void => {
           <el-icon><Monitor /></el-icon>
           <span>{{ i18n.t('router.monitor.title') }}</span>
         </template>
+      </el-sub-menu>
+
+      <!-- 系统管理 -->
+      <el-sub-menu index="/system">
+        <template #title>
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.title') }}</span>
+        </template>
+        <el-menu-item index="/system/department">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.department') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/system/role">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.role') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/system/user">
+          <el-icon><Tools /></el-icon>
+          <span>{{ i18n.t('router.system.user') }}</span>
+        </el-menu-item>
       </el-sub-menu>
 
       <!-- 异常 -->
@@ -341,8 +369,8 @@ const handleCollapse = (): void => {
 
   .collapse-controller {
     @apply absolute bottom-0 left-0;
-    @apply w-full h-8 px-5;
-    @apply text-left leading-8 text-xl;
+    @apply h-8 w-full px-5;
+    @apply text-left text-xl leading-8;
 
     color: #409eff;
   }

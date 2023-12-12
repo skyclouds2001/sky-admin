@@ -186,12 +186,12 @@ const exitLogin = (): void => {
 
 <style scoped lang="scss">
 .page-header {
-  @apply flex justify-between items-center;
+  @apply flex items-center justify-between;
 
   height: 100%;
 
   .control-bar {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
 
     > * {
       @apply mx-1;
@@ -203,52 +203,52 @@ const exitLogin = (): void => {
     }
 
     .printer {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
 
     .pointer-lock {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
 
     .fullscreen {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
 
     .share {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
 
     .notification {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
 
     .user {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
 
       .avatar {
-        @apply w-8 h-8 mx-1;
+        @apply mx-1 h-8 w-8;
         @apply overflow-hidden;
 
         :deep(img) {
-          @apply w-8 h-8;
+          @apply h-8 w-8;
           @apply rounded-full;
           @apply select-none;
         }
       }
 
       .username {
-        @apply text-base mx-1;
+        @apply mx-1 text-base;
         @apply select-none;
       }
     }
 
     .settings {
-      @apply flex justify-center items-center;
+      @apply flex items-center justify-center;
       @apply cursor-pointer;
     }
   }

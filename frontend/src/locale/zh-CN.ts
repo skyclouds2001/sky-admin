@@ -100,12 +100,6 @@ export default {
       dischargingTime: '电池续航时间',
       level: '电池电量',
     },
-    author: {
-      title: '作者信息',
-      name: '名称',
-      email: '邮箱',
-      website: '个人网站',
-    },
   },
   table: {
     search: {
@@ -264,6 +258,8 @@ export default {
       version: '版本',
       license: '许可证',
       author: '作者',
+      email: '邮箱',
+      website: '个人网站',
       'build-time': '构建时间',
       github: 'GitHub',
     },
@@ -328,6 +324,10 @@ export default {
       candlestick: 'K 线图',
       radar: '雷达图',
     },
+    map: {
+      title: '地图',
+      '3d-earth': '三维地球',
+    },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
       return '菜单' + (data != null ? '-' + data.join('-') : '')
@@ -344,17 +344,22 @@ export default {
       'bar-code': '条形码',
       qrcode: '二维码',
       'image-editor': '图片编辑器',
-      'encode-decode': '编解码',
-      'encrypt-decrypt': '加解密',
+      'encode-decode': '编码与解码',
+      'encrypt-decrypt': '加密与解密',
       'code-highlight': '代码高亮',
       'image-compress': '图片压缩',
       'camera-record': '视频录制',
       'screen-record': '屏幕录制',
-      'web-rtc': 'WebRTC',
       'animation-effect': '动画',
     },
     monitor: {
       title: '系统监控',
+    },
+    system: {
+      title: '系统管理',
+      department: '部门管理',
+      role: '角色管理',
+      user: '用户管理',
     },
     error: {
       title: '异常',

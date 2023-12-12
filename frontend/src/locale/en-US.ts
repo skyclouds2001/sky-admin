@@ -32,9 +32,9 @@ export default {
       shellVs: 'Shell Version',
       processor: 'Logical Processors Number',
       memory: 'Memory Size',
-      touchPoint: 'Maximum Number of Touch Points',
-      isSecureContext: 'Secure Context',
-      crossOriginIsolated: 'Cross Origin Isolated',
+      touchPoint: 'Maximum Touch Points Number',
+      isSecureContext: 'Secure Context Status',
+      crossOriginIsolated: 'Cross Origin Isolated Status',
       cookie: 'Cookie Status',
       pdf: 'PDF Preview Feature Support',
       ip: 'IP Address',
@@ -99,12 +99,6 @@ export default {
       chargingTime: 'Charging Time',
       dischargingTime: 'DisCharging Time',
       level: 'Battery Level',
-    },
-    author: {
-      title: 'Author Info',
-      name: 'Name',
-      email: 'Email',
-      website: 'Website',
     },
   },
   table: {
@@ -264,6 +258,8 @@ export default {
       version: 'Version',
       license: 'License',
       author: 'Author',
+      email: 'Email',
+      website: 'Website',
       'build-time': 'Build Time',
       github: 'GitHub',
     },
@@ -328,6 +324,10 @@ export default {
       candlestick: 'Candlestick Chart',
       radar: 'Radar Chart',
     },
+    map: {
+      title: 'Map',
+      '3d-earth': '3D Earth',
+    },
     route: (args: Record<'list', (index: number) => number[] | undefined>) => {
       const data = args.list(0)
       return 'Menu' + (data != null ? '-' + Array.from(data).join('-') : '')
@@ -341,7 +341,7 @@ export default {
     },
     feature: {
       title: 'Feature',
-      'bar-code': 'Bar Code',
+      'bar-code': 'BarCode',
       qrcode: 'QRCode',
       'image-editor': 'Image Editor',
       'encode-decode': 'Encode & Decode',
@@ -350,11 +350,16 @@ export default {
       'image-compress': 'Image Compress',
       'camera-record': 'Video Recorder',
       'screen-record': 'Screen Recorder',
-      'web-rtc': 'WebRTC',
       'animation-effect': 'Animation',
     },
     monitor: {
       title: 'Monitor',
+    },
+    system: {
+      title: 'System Manage',
+      department: 'Department Manage',
+      role: 'Role Manage',
+      user: 'User Manage',
     },
     error: {
       title: 'Error',

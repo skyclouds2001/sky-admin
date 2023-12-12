@@ -185,6 +185,25 @@ const router = createRouter({
           ],
         },
 
+        // 地图
+        {
+          name: Symbol('/map'),
+          path: '/map',
+          meta: {
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/map/3d-earth'),
+              path: '/map/3d-earth',
+              component: () => import('@/views/map/3dEarth.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+          ],
+        },
+
         // 嵌套菜单
         {
           name: Symbol('/route'),
@@ -396,14 +415,6 @@ const router = createRouter({
               },
             },
             {
-              name: Symbol('/feature/web-rtc'),
-              path: '/feature/web-rtc',
-              component: () => import('@/views/feature/WebRTC.vue'),
-              meta: {
-                isView: true,
-              },
-            },
-            {
               name: Symbol('/feature/animation-effect'),
               path: '/feature/animation-effect',
               component: () => import('@/views/feature/AnimationEffect.vue'),
@@ -422,6 +433,41 @@ const router = createRouter({
             isView: false,
           },
           children: [],
+        },
+
+        // 系统管理
+        {
+          name: Symbol('/system'),
+          path: '/system',
+          meta: {
+            isView: false,
+          },
+          children: [
+            {
+              name: Symbol('/system/department'),
+              path: '/system/department',
+              component: () => import('@/views/system/DepartmentManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/system/role'),
+              path: '/system/role',
+              component: () => import('@/views/system/RoleManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+            {
+              name: Symbol('/system/user'),
+              path: '/system/user',
+              component: () => import('@/views/system/UserManage.vue'),
+              meta: {
+                isView: true,
+              },
+            },
+          ],
         },
 
         // 异常

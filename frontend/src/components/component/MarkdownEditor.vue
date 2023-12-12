@@ -38,7 +38,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="el" class="bg-white w-full"></div>
+  <div ref="el" class="w-full bg-white"></div>
 </template>
 
 <style scoped lang="scss"></style>

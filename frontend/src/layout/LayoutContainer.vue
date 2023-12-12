@@ -16,8 +16,8 @@ provide(MenuCollapseKey, isMenuCollapse)
 
 <template>
   <el-container>
-    <el-container class="main-container w-screen h-screen">
-      <el-aside class="w-auto h-screen">
+    <el-container class="main-container h-screen w-screen">
+      <el-aside class="h-screen w-auto">
         <page-sidebar />
       </el-aside>
       <el-container class="page-container h-screen" :style="{ width: isMenuCollapse ? 'calc(100vw - 4rem)' : 'calc(100vw - 18rem)' }">

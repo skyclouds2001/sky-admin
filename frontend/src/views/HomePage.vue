@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { getServerInfo } from '@/api'
-import { PROJECT_AUTHOR_EMAIL, PROJECT_AUTHOR_HOME_PAGE, PROJECT_AUTHOR_NAME } from '@/config'
 import { generateSystemInfo } from '@/util'
 import { useBattery, useDocumentActiveElement, useDocumentReadyState, useDocumentVisibility, useLocation, useNetwork, useOnline, useScreenOrientation, useTimestamp } from '@sky-fly/sky-hooks'
-import { ElCard, ElDescriptions, ElDescriptionsItem, ElLink, ElSpace, ElTag } from 'element-plus'
+import { ElCard, ElDescriptions, ElDescriptionsItem, ElSpace, ElTag } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
 const i18n = useI18n()
@@ -34,7 +33,7 @@ const timestamp = useTimestamp()
 </script>
 
 <template>
-  <el-space direction="vertical" fill size="large" class="px-10 py-4 w-full">
+  <el-space direction="vertical" fill size="large" class="w-full px-10 py-4">
     <el-card shadow="always">
       <template #header>
         <div class="text-left text-base font-bold">{{ i18n.t('home.system.title') }}</div>
@@ -427,32 +426,6 @@ const timestamp = useTimestamp()
             <span class="font-bold">{{ i18n.t('home.battery.level') }}</span>
           </template>
           <el-tag>{{ battery.level }}%</el-tag>
-        </el-descriptions-item>
-      </el-descriptions>
-    </el-card>
-
-    <el-card shadow="always">
-      <template #header>
-        <div class="text-left text-base font-bold">{{ i18n.t('home.author.title') }}</div>
-      </template>
-      <el-descriptions border>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.author.name') }}</span>
-          </template>
-          <el-tag>{{ PROJECT_AUTHOR_NAME }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.author.email') }}</span>
-          </template>
-          <el-tag>{{ PROJECT_AUTHOR_EMAIL }}</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <span class="font-bold">{{ i18n.t('home.author.website') }}</span>
-          </template>
-          <el-link type="primary" :href="PROJECT_AUTHOR_HOME_PAGE" target="_blank" :underline="false">{{ PROJECT_AUTHOR_HOME_PAGE }}</el-link>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

@@ -49,10 +49,10 @@ const handleCompress = async (): Promise<void> => {
 }
 
 .avatar {
-  @apply w-40 h-40 block;
+  @apply block h-40 w-40;
 }
 
 .icon {
-  @apply w-40 h-40 text-center;
+  @apply h-40 w-40 text-center;
 }
 </style>

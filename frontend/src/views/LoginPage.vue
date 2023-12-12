@@ -105,7 +105,7 @@ const handleSubmit = async (): Promise<void> => {
 </script>
 
 <template>
-  <el-row class="w-screen h-screen justify-center items-center" style="background-image: linear-gradient(90deg, #0065ca, #54a9ff)">
+  <el-row class="h-screen w-screen items-center justify-center" style="background-image: linear-gradient(90deg, #0065ca, #54a9ff)">
     <el-col :span="8">
       <el-card :header="i18n.t('login.login')">
         <el-form ref="el" :model="form" :rules="rules" label-position="top" label-width="100px" status-icon hide-required-asterisk>

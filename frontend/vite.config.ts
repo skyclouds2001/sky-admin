@@ -12,7 +12,6 @@ import { VitePWA as pwa } from 'vite-plugin-pwa'
 import { createHtmlPlugin as html } from 'vite-plugin-html'
 import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
-import inspect from 'vite-plugin-inspect'
 import { checker } from 'vite-plugin-checker'
 import alias from 'vite-plugin-aliases'
 import copyAssets from 'vite-plugin-copy-assets'
@@ -52,14 +51,7 @@ export default defineConfig({
       },
     }),
     compression(),
-    visualizer({
-      filename: 'report.html',
-      title: 'report',
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }),
-    inspect(),
+    visualizer(),
     checker({
       vueTsc: true,
       eslint: {
@@ -90,8 +82,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+      key: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1-key.pem'),
+      cert: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1.pem'),
     },
     open: true,
     proxy: {
@@ -116,8 +108,8 @@ export default defineConfig({
     port: 4173,
     strictPort: true,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, './serve/localhost+1.pem')),
+      key: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1-key.pem'),
+      cert: fs.readFileSync('C:/Users/CHENSY/AppData/Local/mkcert/localhost+1.pem'),
     },
     open: true,
     proxy: {

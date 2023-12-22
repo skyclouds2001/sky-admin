@@ -10,3 +10,6 @@
 [submodule "packages/sky-components"]
 	path = packages/sky-components
 	url = https://github.com/skyclouds2001/sky-components
+[submodule "packages/sky-utils"]
+	path = packages/sky-utils
+	url = https://github.com/skyclouds2001/sky-utils

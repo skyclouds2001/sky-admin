@@ -63,7 +63,7 @@
     "cesium": "^1.111.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
-    "docx-preview": "^0.1.20",
+    "docx-preview": "^0.3.0",
     "echarts": "^5.4.3",
     "element-plus": "^2.4.3",
     "highlight.js": "^11.9.0",

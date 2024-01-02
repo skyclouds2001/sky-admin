@@ -306,18 +306,6 @@ importers:
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.9.0)(vue@3.3.9)
-      '@sky-fly/sky-components':
-        specifier: workspace:*
-        version: link:../packages/sky-components
-      '@sky-fly/sky-hooks':
-        specifier: workspace:*
-        version: link:../packages/sky-hooks
-      '@sky-fly/sky-types':
-        specifier: workspace:*
-        version: link:../packages/sky-types
-      '@sky-fly/sky-ui':
-        specifier: workspace:*
-        version: link:../packages/sky-ui
       '@toast-ui/chart':
         specifier: ^4.6.1
         version: 4.6.1
@@ -544,36 +532,6 @@ importers:
       vue-tsc:
         specifier: ^1.8.24
         version: 1.8.24(typescript@5.3.2)
-
-  packages/fs-OPFS:
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.23.5
-        version: 7.23.5
-      '@babel/preset-env':
-        specifier: ^7.23.5
-        version: 7.23.5(@babel/core@7.23.5)
-      '@babel/preset-typescript':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.5)
-      '@rollup/plugin-babel':
-        specifier: ^6.0.4
-        version: 6.0.4(@babel/core@7.23.5)(rollup@4.6.1)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.2.3
-        version: 15.2.3(rollup@4.6.1)
-      '@rollup/plugin-terser':
-        specifier: ^0.4.4
-        version: 0.4.4(rollup@4.6.1)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.5
-        version: 11.1.5(rollup@4.6.1)(typescript@5.3.2)
-      rollup:
-        specifier: ^4.6.1
-        version: 4.6.1
-      typescript:
-        specifier: ^5.3.2
-        version: 5.3.2
 
   packages/sky-components:
     dependencies:

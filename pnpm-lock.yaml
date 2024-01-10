@@ -346,8 +346,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(axios@1.6.2)
       cesium:
-        specifier: ^1.111.0
-        version: 1.111.0
+        specifier: ^1.113.0
+        version: 1.113.0
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -2199,8 +2199,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@cesium/engine@6.1.0:
-    resolution: {integrity: sha512-gufv2rfvbPVA3foYrMP+8RBOpH9z8zq6PaHqFOSCmNlRDPDsoAhsjGAog+sjFz1ybFiQ2/DY84YB/2cjs+DYxw==}
+  /@cesium/engine@6.2.0:
+    resolution: {integrity: sha512-9Iv0JFsCp7wGi7ZzP88WlkBMfOjA49obFJ4I+p2gNIGSmKZRPdstzEqUWjyJDZeck3sZaLfYUsyRDmDCgOIaBw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@tweenjs/tween.js': 21.0.0
@@ -2216,7 +2216,7 @@ packages:
       ktx-parse: 0.6.0
       lerc: 2.0.0
       mersenne-twister: 1.1.0
-      meshoptimizer: 0.19.0
+      meshoptimizer: 0.20.0
       pako: 2.1.0
       protobufjs: 7.2.5
       rbush: 3.0.1
@@ -2224,11 +2224,11 @@ packages:
       urijs: 1.19.11
     dev: false
 
-  /@cesium/widgets@4.3.0:
-    resolution: {integrity: sha512-TZoJJJpv6Jp6bEl0t+nSQwGYvttp4RJbB6oYbtJPPqURz/JP/kYd+hAF+uV0DefRws3yl6waDDZ3Lrd09Ype4g==}
+  /@cesium/widgets@4.4.0:
+    resolution: {integrity: sha512-K3kGy9rQAc1HVhPy4YE0ZIYK2RoQ9USpYh2l6NqtqFYXQy7buyctPjPC8aOvqX2+3Nn91+AOOyD1DHmkezR9BA==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 6.1.0
+      '@cesium/engine': 6.2.0
       nosleep.js: 0.12.0
     dev: false
 
@@ -2470,6 +2470,7 @@ packages:
   /@commitlint/config-validator@18.4.3:
     resolution: {integrity: sha512-FPZZmTJBARPCyef9ohRC9EANiQEKSWIdatx5OlgeHKu878dWwpyeFauVkhzuBRJFcCA4Uvz/FDtlDKs008IHcA==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 18.4.3
       ajv: 8.12.0
@@ -2490,6 +2491,7 @@ packages:
   /@commitlint/execute-rule@18.4.3:
     resolution: {integrity: sha512-t7FM4c+BdX9WWZCPrrbV5+0SWLgT3kCq7e7/GhHCreYifg3V8qyvO127HF796vyFql75n4TFF+5v1asOOWkV1Q==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@18.4.3:
@@ -2566,6 +2568,7 @@ packages:
   /@commitlint/resolve-extends@18.4.3:
     resolution: {integrity: sha512-30sk04LZWf8+SDgJrbJCjM90gTg2LxsD9cykCFeFu+JFHvBFq5ugzp2eO/DJGylAdVaqxej3c7eTSE64hR/lnw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 18.4.3
       '@commitlint/types': 18.4.3
@@ -4631,6 +4634,7 @@ packages:
 
   /@types/node@18.18.14:
     resolution: {integrity: sha512-iSOeNeXYNYNLLOMDSVPvIFojclvMZ/HDY2dU17kUlcsOsSQETbWIslJbYLZgA+ox8g2XQwSHKTkght1a5X26lQ==}
+    requiresBuild: true
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -6463,12 +6467,12 @@ packages:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
     dev: true
 
-  /cesium@1.111.0:
-    resolution: {integrity: sha512-wWtBa1KIMIJZR39U4Tv+CkJUeCfi83eVjCLxblYilD9zd4gb7vm3V9ytmJ0+v0sqk9RQws5JOg7Hobbs9ODTxQ==}
+  /cesium@1.113.0:
+    resolution: {integrity: sha512-OtbeMGXZn2dlNVYWCeq0JeGjgFPikXp6aTjo/azzuvOTj3JwgVie0tgNUGVlYDVi+fMPQqttC14lJbPYRL7etw==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 6.1.0
-      '@cesium/widgets': 4.3.0
+      '@cesium/engine': 6.2.0
+      '@cesium/widgets': 4.4.0
     dev: false
 
   /cfb@1.2.2:
@@ -6950,6 +6954,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@18.18.14)(cosmiconfig@8.3.6)(typescript@5.3.2):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -10202,6 +10207,7 @@ packages:
   /jiti@1.20.0:
     resolution: {integrity: sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==}
     hasBin: true
+    requiresBuild: true
     dev: true
 
   /jiti@1.21.0:
@@ -10678,6 +10684,7 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.once@4.1.1:
@@ -11046,8 +11053,8 @@ packages:
     resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==}
     dev: true
 
-  /meshoptimizer@0.19.0:
-    resolution: {integrity: sha512-58qz5Qc/6Geu8Ib3bBWERE5R7pM5ErrJVo16fAtu6ryxVaE3VAtM/u2vurDxaq8AGZ3yWxuM/DnylTga5a4XCQ==}
+  /meshoptimizer@0.20.0:
+    resolution: {integrity: sha512-olcJ1q+YVnjroRJpCL1Dj5aZxr2JMr2hRutMUwhuHZvpAL7SIZgOT6eMlFF4TbBGSR89tawE/gqB79J/LrW/Nw==}
     dev: false
 
   /methods@1.1.2:

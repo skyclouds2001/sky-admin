@@ -89,7 +89,7 @@
     "eslint-plugin-vue": "^9.19.2",
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
-    "jsdom": "^23.0.1",
+    "jsdom": "^23.2.0",
     "lint-staged": "^15.1.0",
     "markdownlint": "^0.32.1",
     "markdownlint-cli": "^0.37.0",

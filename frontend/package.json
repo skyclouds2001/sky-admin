@@ -50,7 +50,7 @@
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
     "@toast-ui/editor-plugin-table-merged-cell": "^3.1.0",
     "@toast-ui/editor-plugin-uml": "^3.0.1",
-    "@vueuse/core": "^10.7.2",
+    "@vueuse/core": "^10.9.0",
     "aieditor": "1.0.0-rc.7",
     "animate.css": "^4.1.1",
     "axios": "^1.6.7",

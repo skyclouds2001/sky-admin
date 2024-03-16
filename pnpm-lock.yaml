@@ -343,8 +343,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(axios@1.6.7)
       cesium:
-        specifier: ^1.113.0
-        version: 1.113.0
+        specifier: ^1.115.0
+        version: 1.115.0
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -2173,12 +2173,12 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@cesium/engine@6.2.0:
-    resolution: {integrity: sha512-9Iv0JFsCp7wGi7ZzP88WlkBMfOjA49obFJ4I+p2gNIGSmKZRPdstzEqUWjyJDZeck3sZaLfYUsyRDmDCgOIaBw==}
+  /@cesium/engine@8.0.0:
+    resolution: {integrity: sha512-0HvvpoKPrb1Go6MnKsTk0Vn2HV4wv+UAlZGbzG3sD/QjEm4FOYj/sLFrwQqmCn6nFN1aRbhAH1xXJnA9bF+1Wg==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@tweenjs/tween.js': 21.1.1
-      '@zip.js/zip.js': 2.4.26
+      '@tweenjs/tween.js': 23.1.1
+      '@zip.js/zip.js': 2.7.40
       autolinker: 4.0.0
       bitmap-sdf: 1.0.4
       dompurify: 3.0.8
@@ -2198,11 +2198,11 @@ packages:
       urijs: 1.19.11
     dev: false
 
-  /@cesium/widgets@4.4.0:
-    resolution: {integrity: sha512-K3kGy9rQAc1HVhPy4YE0ZIYK2RoQ9USpYh2l6NqtqFYXQy7buyctPjPC8aOvqX2+3Nn91+AOOyD1DHmkezR9BA==}
+  /@cesium/widgets@5.0.0:
+    resolution: {integrity: sha512-004x7F5F8CHFnhWkuRbOrgduOug8q36/fqegs4UMdzgxOG9zNXfJoZInD6jwytCZJHH7aVcZvIoTKAdsS8bNKQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 6.2.0
+      '@cesium/engine': 8.0.0
       nosleep.js: 0.12.0
     dev: false
 
@@ -2445,6 +2445,7 @@ packages:
   /@commitlint/config-validator@18.6.0:
     resolution: {integrity: sha512-Ptfa865arNozlkjxrYG3qt6wT9AlhNUHeuDyKEZiTL/l0ftncFhK/KN0t/EAMV2tec+0Mwxo0FmhbESj/bI+1g==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 18.6.0
       ajv: 8.12.0
@@ -2465,6 +2466,7 @@ packages:
   /@commitlint/execute-rule@18.4.4:
     resolution: {integrity: sha512-a37Nd3bDQydtg9PCLLWM9ZC+GO7X5i4zJvrggJv5jBhaHsXeQ9ZWdO6ODYR+f0LxBXXNYK3geYXJrCWUCP8JEg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@18.6.0:
@@ -2540,6 +2542,7 @@ packages:
   /@commitlint/resolve-extends@18.6.0:
     resolution: {integrity: sha512-k2Xp+Fxeggki2i90vGrbiLDMefPius3zGSTFFlRAPKce/SWLbZtI+uqE9Mne23mHO5lmcSV8z5m6ziiJwGpOcg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 18.6.0
       '@commitlint/types': 18.6.0
@@ -4866,8 +4869,8 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tweenjs/tween.js@21.1.1:
-    resolution: {integrity: sha512-O2GetAwEC/0MOiRb3lxCLIt/eeugoDPX0nu+1SFWLqGKf835ZdWsfM9RzDpjF+aKkpYMhvOnEhO+SxMnHHjpfw==}
+  /@tweenjs/tween.js@23.1.1:
+    resolution: {integrity: sha512-ZpboH7pCPPeyBWKf8c7TJswtCEQObFo3bOBYalm99NzZarATALYCo5OhbCa/n4RQyJyHfhkdx+hNrdL5ByFYDw==}
     dev: false
 
   /@types/aria-query@5.0.4:
@@ -5883,8 +5886,9 @@ packages:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
     dev: true
 
-  /@zip.js/zip.js@2.4.26:
-    resolution: {integrity: sha512-I9HBO3BHIxEMQmltmHM3iqUW6IHqi3gsL9wTSXvHTRpOrA6q2OxtR58EDSaOGjHhDVJ+wIOAxZyKq2x00AVmqw==}
+  /@zip.js/zip.js@2.7.40:
+    resolution: {integrity: sha512-kSYwO0Wth6G66QM4CejZqG0nRhBsVVTaR18M/Ta8EcqcvaV0dYrnDDyKAstfy0V5+ejK4b9w5xc1W0ECATJTvA==}
+    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
     dev: false
 
   /JSONStream@1.3.5:
@@ -6678,12 +6682,12 @@ packages:
     engines: {node: '>=12.13'}
     dev: false
 
-  /cesium@1.113.0:
-    resolution: {integrity: sha512-OtbeMGXZn2dlNVYWCeq0JeGjgFPikXp6aTjo/azzuvOTj3JwgVie0tgNUGVlYDVi+fMPQqttC14lJbPYRL7etw==}
+  /cesium@1.115.0:
+    resolution: {integrity: sha512-aIC+JWO+0W/WDOAR1KIN+hEAUCZ98qUTQba7cPhW0fvMKiRVblDT1IJmZlb4dGBDtUGc0ZhwMXk2KpfM8BSztQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 6.2.0
-      '@cesium/widgets': 4.4.0
+      '@cesium/engine': 8.0.0
+      '@cesium/widgets': 5.0.0
     dev: false
 
   /cfb@1.2.2:
@@ -7153,6 +7157,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.13)(cosmiconfig@8.3.6)(typescript@5.3.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -10608,6 +10613,7 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.once@4.1.1:
@@ -15802,6 +15808,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0

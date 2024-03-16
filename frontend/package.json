@@ -55,7 +55,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.6.7",
     "axios-retry": "^4.0.0",
-    "cesium": "^1.113.0",
+    "cesium": "^1.115.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "docx-preview": "^0.3.0",

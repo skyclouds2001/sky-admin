@@ -52,16 +52,16 @@
     "build": "rollup --config --bundleConfigAsCjs"
   },
   "dependencies": {
-    "vite": "^5.0.4"
+    "vite": "^5.0.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.5",
+    "@babel/core": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "rollup": "^4.6.1",
-    "typescript": "^5.3.2"
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.9.6",
+    "typescript": "^5.3.3"
   }
 }

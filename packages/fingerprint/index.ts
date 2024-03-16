@@ -15,7 +15,7 @@ export function generate(): string {
 
   data.set('max-touch-points', navigator.maxTouchPoints)
 
-  data.set('device-memory', navigator.deviceMemory ?? 1)
+  data.set('device-memory', navigator.deviceMemory as number)
 
   data.set('webdriver', navigator.webdriver)
 

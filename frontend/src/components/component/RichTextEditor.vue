@@ -1,34 +1,27 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, shallowRef } from 'vue'
-import type { IDomEditor } from '@wangeditor/editor'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import '@wangeditor/editor/dist/css/style.css'
+import { onMounted, onUnmounted, shallowRef } from 'vue'
+import { AiEditor } from 'aieditor'
+import 'aieditor/dist/style.css'
 
-const el = shallowRef<IDomEditor>()
+let editor: AiEditor | null = null
 
-const context = ref('')
+const el = shallowRef<HTMLDivElement | null>(null)
 
-const toolbarConfig = {}
+onMounted(() => {
+  editor = new AiEditor({
+    element: el.value as HTMLDivElement,
+    placeholder: '点击输入内容...',
+    content: '',
+  })
+})
 
-const editorConfig = {
-  placeholder: '请输入内容...',
-}
-
-const handleCreated = (e: IDomEditor): void => {
-  el.value = e
-}
-
-onBeforeUnmount(() => {
-  el.value?.destroy()
+onUnmounted(() => {
+  editor?.destroy()
 })
 </script>
 
 <template>
-  <div class="border border-gray-400">
-    <Toolbar class="border-b border-gray-400" :editor="el" :default-config="toolbarConfig" mode="default" />
-    <!-- eslint-disable-next-line vue/v-on-event-hyphenation -->
-    <Editor v-model="context" class="h-[500px] overflow-y-hidden" :default-config="editorConfig" mode="default" @onCreated="handleCreated" />
-  </div>
+  <div ref="el" class="border border-gray-400"></div>
 </template>
 
 <style scoped lang="scss"></style>

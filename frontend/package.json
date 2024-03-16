@@ -115,7 +115,7 @@
     "vite-plugin-copy-assets": "workspace:*",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-mock": "^3.0.1",
-    "vite-plugin-pwa": "^0.17.5",
+    "vite-plugin-pwa": "^0.19.4",
     "vite-plugin-utils": "workspace:*",
     "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^1.8.27"

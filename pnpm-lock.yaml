@@ -459,7 +459,7 @@ importers:
         version: 0.160.0
       '@vitejs/plugin-legacy':
         specifier: ^5.3.0
-        version: 5.3.0(esbuild@0.19.12)(terser@5.27.0)(vite@5.0.12)
+        version: 5.3.0(esbuild@0.19.12)(terser@5.29.2)(vite@5.0.12)
       '@vitejs/plugin-vue':
         specifier: ^5.0.3
         version: 5.0.3(vite@5.0.12)(vue@3.4.15)
@@ -488,8 +488,8 @@ importers:
         specifier: ^3.4.1
         version: 3.4.1
       terser:
-        specifier: ^5.27.0
-        version: 5.27.0
+        specifier: ^5.29.2
+        version: 5.29.2
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -498,7 +498,7 @@ importers:
         version: 0.8.0(rollup@2.79.1)
       vite:
         specifier: ^5.0.12
-        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vite-plugin-aliases:
         specifier: workspace:*
         version: link:../packages/vite-plugin-aliases
@@ -534,7 +534,7 @@ importers:
     dependencies:
       vite:
         specifier: ^5.0.12
-        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -568,7 +568,7 @@ importers:
     dependencies:
       vite:
         specifier: ^5.0.12
-        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -602,7 +602,7 @@ importers:
     dependencies:
       vite:
         specifier: ^5.0.12
-        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -633,7 +633,7 @@ importers:
     dependencies:
       vite:
         specifier: ^5.0.12
-        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+        version: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -2445,6 +2445,7 @@ packages:
   /@commitlint/config-validator@18.6.0:
     resolution: {integrity: sha512-Ptfa865arNozlkjxrYG3qt6wT9AlhNUHeuDyKEZiTL/l0ftncFhK/KN0t/EAMV2tec+0Mwxo0FmhbESj/bI+1g==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 18.6.0
       ajv: 8.12.0
@@ -2465,6 +2466,7 @@ packages:
   /@commitlint/execute-rule@18.4.4:
     resolution: {integrity: sha512-a37Nd3bDQydtg9PCLLWM9ZC+GO7X5i4zJvrggJv5jBhaHsXeQ9ZWdO6ODYR+f0LxBXXNYK3geYXJrCWUCP8JEg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@18.6.0:
@@ -2540,6 +2542,7 @@ packages:
   /@commitlint/resolve-extends@18.6.0:
     resolution: {integrity: sha512-k2Xp+Fxeggki2i90vGrbiLDMefPius3zGSTFFlRAPKce/SWLbZtI+uqE9Mne23mHO5lmcSV8z5m6ziiJwGpOcg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 18.6.0
       '@commitlint/types': 18.6.0
@@ -3431,7 +3434,7 @@ packages:
     dependencies:
       '@jridgewell/set-array': 1.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.22
 
   /@jridgewell/resolve-uri@3.1.1:
     resolution: {integrity: sha512-dSYZh7HhCDtCKm4QakX0xFpsRDqjjtZf/kjI/v3T3Nwt5r8/qz/M19F9ySyOqU94SXBmeG9ttTul+YnR4LOxFA==}
@@ -3449,12 +3452,6 @@ packages:
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
-
-  /@jridgewell/trace-mapping@0.3.20:
-    resolution: {integrity: sha512-R8LcPeWZol2zR8mmH3JeKQ6QRCFb7XgUhV9ZlGhHLGyg4wpPiPZNQOOWhFZhxKw8u//yTbNGI42Bx/3paXEQ+Q==}
-    dependencies:
-      '@jridgewell/resolve-uri': 3.1.1
-      '@jridgewell/sourcemap-codec': 1.4.15
 
   /@jridgewell/trace-mapping@0.3.22:
     resolution: {integrity: sha512-Wf963MzWtA2sjrNt+g18IAln9lKnlRp+K2eH4jjIoF1wYeq3aMREpG09xhlhdzS0EjwU7qmUJYangWa+151vZw==}
@@ -4110,7 +4107,7 @@ packages:
       rollup: 4.9.6
       serialize-javascript: 6.0.2
       smob: 1.4.1
-      terser: 5.27.0
+      terser: 5.29.2
     dev: true
 
   /@rollup/plugin-typescript@11.1.6(rollup@4.9.6)(typescript@5.3.3):
@@ -5385,7 +5382,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-legacy@5.3.0(esbuild@0.19.12)(terser@5.27.0)(vite@5.0.12):
+  /@vitejs/plugin-legacy@5.3.0(esbuild@0.19.12)(terser@5.29.2)(vite@5.0.12):
     resolution: {integrity: sha512-BhW+WcJmEgW5G/1UQRiVQ7wz9/ZPnxqzExT9n0zAk4RlqQQ/26udIeXzdU8+03AGnaF61wmZlCspexgEnxFWMA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
@@ -5400,8 +5397,8 @@ packages:
       magic-string: 0.30.5
       regenerator-runtime: 0.14.1
       systemjs: 6.14.3
-      terser: 5.27.0
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      terser: 5.29.2
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     transitivePeerDependencies:
       - esbuild
       - supports-color
@@ -5417,7 +5414,7 @@ packages:
       '@babel/core': 7.23.9
       '@babel/plugin-transform-typescript': 7.23.6(@babel/core@7.23.9)
       '@vue/babel-plugin-jsx': 1.2.1(@babel/core@7.23.9)
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vue: 3.4.15(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
@@ -5430,7 +5427,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vue: 3.4.15(typescript@5.3.3)
     dev: true
 
@@ -5921,23 +5918,17 @@ packages:
       acorn: 8.11.3
     dev: true
 
-  /acorn-jsx@5.3.2(acorn@8.11.2):
+  /acorn-jsx@5.3.2(acorn@8.11.3):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.11.2
+      acorn: 8.11.3
     dev: true
 
   /acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
     engines: {node: '>=0.4.0'}
-    dev: true
-
-  /acorn@8.11.2:
-    resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
     dev: true
 
   /acorn@8.11.3:
@@ -7153,6 +7144,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.13)(cosmiconfig@8.3.6)(typescript@5.3.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -8581,8 +8573,8 @@ packages:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.11.2
-      acorn-jsx: 5.3.2(acorn@8.11.2)
+      acorn: 8.11.3
+      acorn-jsx: 5.3.2(acorn@8.11.3)
       eslint-visitor-keys: 3.4.3
     dev: true
 
@@ -9479,7 +9471,7 @@ packages:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.27.0
+      terser: 5.29.2
     dev: true
 
   /html-tags@3.3.1:
@@ -10608,6 +10600,7 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.once@4.1.1:
@@ -13313,7 +13306,7 @@ packages:
       jest-worker: 26.6.2
       rollup: 2.79.1
       serialize-javascript: 4.0.0
-      terser: 5.27.0
+      terser: 5.29.2
     dev: true
 
   /rollup-plugin-visualizer@5.12.0(rollup@2.79.1):
@@ -14445,12 +14438,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
-      terser: 5.27.0
+      terser: 5.29.2
       webpack: 5.89.0
     dev: true
 
-  /terser@5.27.0:
-    resolution: {integrity: sha512-bi1HRwVRskAjheeYl291n3JC4GgO/Ty4z1nVs5AAsmonJulGxpSektecnNedrwK9C7vpvVtcX3cw00VSLt7U2A==}
+  /terser@5.29.2:
+    resolution: {integrity: sha512-ZiGkhUBIM+7LwkNjXYJq8svgkd+QK3UUr0wJqY4MieaezBSAIPgbSPZyIx0idM6XWK5CMzSWa8MJIzmRcB8Caw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -15046,7 +15039,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15105,7 +15098,7 @@ packages:
       stylelint: 16.2.0(typescript@5.3.3)
       tiny-invariant: 1.3.1
       typescript: 5.3.3
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.11
@@ -15121,7 +15114,7 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -15143,7 +15136,7 @@ packages:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     dev: true
 
   /vite-plugin-mock@3.0.1(esbuild@0.19.12)(mockjs@1.1.0)(vite@5.0.12):
@@ -15162,7 +15155,7 @@ packages:
       mockjs: 1.1.0
       path-to-regexp: 6.2.1
       picocolors: 1.0.0
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
     transitivePeerDependencies:
       - esbuild
       - supports-color
@@ -15179,7 +15172,7 @@ packages:
       debug: 4.3.4
       fast-glob: 3.3.2
       pretty-bytes: 6.1.1
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       workbox-build: 7.0.0
       workbox-window: 7.0.0
     transitivePeerDependencies:
@@ -15195,7 +15188,7 @@ packages:
       vue: 3.4.15(typescript@5.3.3)
     dev: true
 
-  /vite@5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0):
+  /vite@5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2):
     resolution: {integrity: sha512-4hsnEkG3q0N4Tzf1+t6NdN9dg/L3BM+q8SWgbSPnJvrgH2kgdyzfVJwbR1ic69/4uMJJ/3dqDZZE5/WwqW8U1w==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15228,7 +15221,7 @@ packages:
       postcss: 8.4.33
       rollup: 4.9.6
       sass: 1.70.0
-      terser: 5.27.0
+      terser: 5.29.2
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -15258,7 +15251,7 @@ packages:
       shikiji: 0.10.2
       shikiji-core: 0.10.2
       shikiji-transformers: 0.10.2
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vue: 3.4.15(typescript@5.3.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -15334,7 +15327,7 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.6.0
       tinypool: 0.8.2
-      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.27.0)
+      vite: 5.0.12(@types/node@20.11.13)(sass@1.70.0)(terser@5.29.2)
       vite-node: 1.2.2(@types/node@20.11.13)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
@@ -15802,6 +15795,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0

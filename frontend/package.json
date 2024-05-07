@@ -66,7 +66,7 @@
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",
     "mockjs": "^1.1.0",
-    "pdfjs-dist": "^4.0.379",
+    "pdfjs-dist": "^4.2.67",
     "pinia": "^2.1.7",
     "prismjs": "^1.29.0",
     "qrcode": "^1.5.3",
